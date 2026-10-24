@@ -8,7 +8,7 @@ export const palette = [RGBA.fromHex("#02F968"), RGBA.fromHex("#FFFFFF"), RGBA.f
 
 // Rectangles per second at a full context window. The real rate scales linearly with context use, so the glitching
 // grows with both the level and the length of the session.
-export const weight: Record<Capri.Level, number> = { none: 0, low: 0.5, medium: 1.5, max: 4 }
+export const weight: Record<Capri.Level, number> = { none: 0, low: 1, medium: 3, max: 8 }
 
 // A fresh session still glitches a little at a non-zero level.
 const FLOOR = 0.05
@@ -16,17 +16,19 @@ const SHIFT_SHARE = 0.25
 const SHIFT_SECONDS = 0.5
 const SHIFT_REROLL_SECONDS = 0.08
 
-export const spawnRate = (level: Capri.Level, ratio: number) =>
-  weight[level] * (FLOOR + (1 - FLOOR) * Math.min(1, Math.max(0, ratio)))
+// `probability` is the user's glitchProbability setting: a plain multiplier on top of the level and the context use.
+export const spawnRate = (level: Capri.Level, ratio: number, probability = 1) =>
+  weight[level] * probability * (FLOOR + (1 - FLOOR) * Math.min(1, Math.max(0, ratio)))
 
-export const shiftRate = (level: Capri.Level, ratio: number) => spawnRate(level, ratio) * SHIFT_SHARE
+export const shiftRate = (level: Capri.Level, ratio: number, probability = 1) =>
+  spawnRate(level, ratio, probability) * SHIFT_SHARE
 
 export type Rect = {
   x: number
   y: number
   width: number
   height: number
-  // Cells per second, horizontal only.
+  // Cells per second, horizontal only. Negative moves left. It is re-rolled and flipped at random while the rectangle lives.
   speed: number
   color: RGBA
   life: number
@@ -44,17 +46,19 @@ export const active = (state: State) => state.rects.length > 0 || state.shifts.l
 
 const between = (random: () => number, min: number, max: number) => min + random() * (max - min)
 
+// A random speed in either direction, from a crawl to a streak.
+const velocity = (random: () => number) => between(random, 4, 140) * (random() < 0.5 ? -1 : 1)
+
 function spawn(state: State, size: { width: number; height: number }, random: () => number) {
   const width = Math.floor(between(random, 3, Math.max(4, Math.min(24, size.width / 3))))
-  const direction = random() < 0.5 ? -1 : 1
   state.rects.push({
     x: Math.floor(random() * size.width),
     y: Math.floor(random() * size.height),
     width,
     height: random() < 0.8 ? 1 : 2,
-    speed: direction * between(random, 8, 60),
+    speed: velocity(random),
     color: palette[Math.floor(random() * palette.length)]!,
-    life: between(random, 0.1, 0.6),
+    life: between(random, 0.04, 0.25),
     flicker: between(random, 0.1, 0.5),
   })
 }
@@ -63,15 +67,18 @@ function spawn(state: State, size: { width: number; height: number }, random: ()
 export function step(
   state: State,
   dt: number,
-  input: { level: Capri.Level; ratio: number; width: number; height: number },
+  input: { level: Capri.Level; ratio: number; probability?: number; width: number; height: number },
   random: () => number = Math.random,
 ) {
   if (input.width <= 0 || input.height <= 0) return
   for (const rect of state.rects) {
     rect.x += rect.speed * dt
     rect.life -= dt
+    // Jitter: a new random velocity, or a sudden reversal, a few times a second.
+    if (random() < 12 * dt) rect.speed = velocity(random)
+    else if (random() < 10 * dt) rect.speed = -rect.speed
     // Some rectangles vanish before their time is up.
-    if (random() < 1.5 * dt) rect.life = 0
+    if (random() < 3 * dt) rect.life = 0
   }
   state.rects = state.rects.filter((rect) => rect.life > 0)
   for (const shift of state.shifts) {
@@ -84,11 +91,11 @@ export function step(
   }
   state.shifts = state.shifts.filter((shift) => shift.life > 0)
 
-  if (random() < spawnRate(input.level, input.ratio) * dt) {
-    const burst = 1 + Math.floor(random() * 3)
+  if (random() < spawnRate(input.level, input.ratio, input.probability) * dt) {
+    const burst = 1 + Math.floor(random() * 4)
     for (let i = 0; i < burst; i++) spawn(state, input, random)
   }
-  if (random() < shiftRate(input.level, input.ratio) * dt) {
+  if (random() < shiftRate(input.level, input.ratio, input.probability) * dt) {
     state.shifts.push({ row: Math.floor(random() * input.height), offset: 0, life: SHIFT_SECONDS, reroll: 0 })
   }
 }

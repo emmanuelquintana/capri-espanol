@@ -63,4 +63,4 @@ Note: these were already tracked upstream, so `.gitignore` only hides new/untrac
 
 - A workspace called `capri_dev/` stores working drafts, components. Inside `.gitignore` .  
 
-- `capri/` tracks ALL Capri-related files. Any file you create or edit for Capri, including edits to upstream opencode files, gets a copy in `capri/` (upstream files under a unique name, e.g. `session-index.tsx`), is listed in `capri/sync.sh` and recorded in `capri/README.md`, and is committed together with the change.
+- `capri/` tracks ALL Capri-related files. Any file you create or edit for Capri, including edits to upstream opencode files, gets a copy in the matching `capri/` subfolder (`prompts/`, `glitch/`, `config/`, `logo/`, `theme/`; edited upstream files go in `upstream/` under a unique name, e.g. `session-index.tsx`), is listed in `capri/sync.sh` and recorded in `capri/README.md`, and is committed together with the change.

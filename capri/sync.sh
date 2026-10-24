@@ -10,28 +10,30 @@ mode="${1:-to-repo}"
 # capri/ file -> repo path. Whole-file copies: Capri-authored files, plus upstream files Capri has edited (those are
 # snapshots, so after an opencode upstream merge run `sync.sh from-repo` before editing here, never the other way).
 code=(
-  "capri.ts packages/core/src/capri.ts"
-  "capri-config.ts packages/tui/src/capri-config.ts"
-  "glitch.ts packages/tui/src/glitch.ts"
-  "glitch.test.ts packages/tui/test/glitch.test.ts"
-  "cyber-glitch.tsx packages/tui/src/component/cyber-glitch.tsx"
-  "dialog-cyberpsycosis.tsx packages/tui/src/component/dialog-cyberpsycosis.tsx"
-  "logo-halfblock.ts packages/tui/src/logo-halfblock.ts"
-  "logo-image.ts packages/tui/src/logo-image.ts"
-  "session-index.tsx packages/tui/src/routes/session/index.tsx"
-  "message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
-  "prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
+  "logo/logo.ts packages/tui/src/logo.ts"
+  "theme/capri-theme.json packages/tui/src/theme/assets/v2/opencode.json"
+  "config/capri.ts packages/core/src/capri.ts"
+  "config/capri-config.ts packages/tui/src/capri-config.ts"
+  "glitch/glitch.ts packages/tui/src/glitch.ts"
+  "glitch/glitch.test.ts packages/tui/test/glitch.test.ts"
+  "glitch/cyber-glitch.tsx packages/tui/src/component/cyber-glitch.tsx"
+  "glitch/dialog-cyberpsycosis.tsx packages/tui/src/component/dialog-cyberpsycosis.tsx"
+  "logo/logo-halfblock.ts packages/tui/src/logo-halfblock.ts"
+  "logo/logo-image.ts packages/tui/src/logo-image.ts"
+  "upstream/session-index.tsx packages/tui/src/routes/session/index.tsx"
+  "upstream/message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
+  "upstream/prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
 )
 for entry in "${code[@]}"; do
   read -r name target <<<"$entry"
-  if [ "$mode" = "from-repo" ]; then cp "$root/$target" "$root/capri/$name"; else cp "$root/capri/$name" "$root/$target"; fi
+  if [ "$mode" = "from-repo" ]; then mkdir -p "$(dirname "$root/capri/$name")" && cp "$root/$target" "$root/capri/$name"; else cp "$root/capri/$name" "$root/$target"; fi
 done
 [ "$mode" = "from-repo" ] && exit 0
 
 dest="$root/packages/core/src/session/runner/prompt/capri"
 mkdir -p "$dest"
 strip() { awk 'found { print } /^---$/ && !found { found = 1 }' "$1" | sed '1{/^$/d}'; }
-strip "$root/capri/CAPRI.md" > "$dest/persona.txt"
+strip "$root/capri/prompts/CAPRI.md" > "$dest/persona.txt"
 for level in none low medium max; do
-  strip "$root/capri/cyberpsycosis-$level.md" > "$dest/cyberpsycosis-$level.txt"
+  strip "$root/capri/prompts/cyberpsycosis-$level.md" > "$dest/cyberpsycosis-$level.txt"
 done
