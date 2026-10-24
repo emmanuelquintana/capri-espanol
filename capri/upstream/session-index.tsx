@@ -1926,7 +1926,11 @@ function SessionMessageView(props: { message: SessionMessageInfo }) {
         <SessionSwitchMessageV2 message={props.message} />
       </Match>
       <Match
-        when={props.message.type === "system" || props.message.type === "synthetic" || props.message.type === "skill"}
+        when={
+          props.message.type === "system" ||
+          props.message.type === "synthetic" ||
+          (props.message.type === "skill" && !CapriConfig.hideSkills())
+        }
       >
         <Show when={props.message.type === "skill"} fallback={<SessionNoticeMessageV2 message={props.message} />}>
           <SessionSkillMessage message={props.message as Extract<SessionMessageInfo, { type: "skill" }>} />
@@ -2622,7 +2626,9 @@ function ToolPart(props: { part: SessionMessageAssistantTool; images?: boolean }
         <Question {...toolprops} />
       </Match>
       <Match when={display() === "skill"}>
-        <Skill {...toolprops} />
+        <Show when={!CapriConfig.hideSkills()}>
+          <Skill {...toolprops} />
+        </Show>
       </Match>
       <Match when={true}>
         <GenericTool {...toolprops} />

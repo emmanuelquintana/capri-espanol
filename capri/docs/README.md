@@ -147,7 +147,7 @@ Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with com
   "cyberpsycosis": "none",
   "glitchProbability": 1,
   "logo": { "style": "auto" },
-  "hide": { "thinking": true, "toolResults": true },
+  "hide": { "thinking": true, "toolResults": true, "skills": true },
   "footer": { "name": "Capri", "model": false, "tps": false }
 }
 ```
@@ -159,6 +159,7 @@ Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with com
 | `logo.style`        | `auto` `image` `quadrant` `halfblock` | `auto`    | `auto` uses an inline image if the terminal supports it, else quadrant blocks. The others force one renderer. |
 | `hide.thinking`     | `true` `false`                        | `true`    | Show the model's reasoning as scrambled glyphs. TUI only; the session data is unchanged.                      |
 | `hide.toolResults`  | `true` `false`                        | `true`    | Hide tool output, diffs and diagnostics. Only the call itself is shown.                                       |
+| `hide.skills`       | `true` `false`                        | `true`    | Hide the `Skill "name"` lines shown when the model loads a skill.                                             |
 | `footer.name`       | string                                | `"Capri"` | Label for the default agent in the reply footer and prompt box. Other agents keep their own name.             |
 | `footer.model`      | `true` `false`                        | `false`   | Show the model name in the footer (and provider/variant in the prompt box).                                   |
 | `footer.tps`        | `true` `false`                        | `false`   | Show tokens per second. Also needs `session.tps` in `tui.json`.                                               |

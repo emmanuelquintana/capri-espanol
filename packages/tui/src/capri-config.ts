@@ -42,6 +42,9 @@ export const Info = Schema.Struct({
       toolResults: Schema.optional(Schema.Boolean).annotate({
         description: "Hide tool output, diffs and diagnostics; only the call itself is shown (default true)",
       }),
+      skills: Schema.optional(Schema.Boolean).annotate({
+        description: "Hide the 'Skill \"name\"' lines shown when the model loads a skill (default true)",
+      }),
     }),
   ).annotate({ description: "What to keep out of sight" }),
 })
@@ -70,14 +73,15 @@ export function logoStyle(): LogoStyle {
 }
 
 // read() hits the disk, and these are asked for on every render, so settle them once per process.
-let hide: { thinking: boolean; toolResults: boolean } | undefined
+let hide: { thinking: boolean; toolResults: boolean; skills: boolean } | undefined
 function hidden() {
   const value = read().hide
-  return (hide ??= { thinking: value?.thinking ?? true, toolResults: value?.toolResults ?? true })
+  return (hide ??= { thinking: value?.thinking ?? true, toolResults: value?.toolResults ?? true, skills: value?.skills ?? true })
 }
 
 export const hideThinking = () => hidden().thinking
 export const hideToolResults = () => hidden().toolResults
+export const hideSkills = () => hidden().skills
 
 export const footerName = () => read().footer?.name ?? "Capri"
 export const footerModel = () => read().footer?.model ?? false

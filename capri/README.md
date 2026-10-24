@@ -42,7 +42,7 @@ upstream opencode changes, run `from-repo` before editing here, or the merge is 
 | File | Target | Function |
 |---|---|---|
 | `capri.ts` | `packages/core/src/capri.ts` | Reads and writes `~/.config/capri/capri.json`: `cyberpsycosis` level, `glitchProbability` multiplier (default 1, 0 = off). |
-| `capri-config.ts` | `packages/tui/src/capri-config.ts` | Reads `capri.json` for the TUI: `logo.style`, `hide.thinking`, `hide.toolResults`, `footer.name/model/tps`. |
+| `capri-config.ts` | `packages/tui/src/capri-config.ts` | Reads `capri.json` for the TUI: `logo.style`, `hide.thinking`, `hide.toolResults`, `hide.skills`, `footer.name/model/tps`. |
 
 ## logo/
 
@@ -76,7 +76,7 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 
 | File | Target | Capri edit |
 |---|---|---|
-| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. OpenCode Go upsell dialog and notice removed. |
+| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); skill-load lines hidden (`hide.skills`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. OpenCode Go upsell dialog and notice removed. |
 | `message-parts.tsx` | `packages/tui/src/routes/session/message-parts.tsx` | `reasoningContent` scrambles thinking (`hide.thinking`). |
 | `app.tsx` | `packages/tui/src/app.tsx` | `/chrome` aliases `/models`, `/nightcity` aliases `/sessions`. `/update` command removed; terminal title is `Capri`. |
 | `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. `/quickhacks` aliases `/skills`. `/cd moon` quits (alias of `/exit`, even if `moon/` is missing). |
