@@ -1,26 +1,27 @@
-import { logo } from "../logo"
+import { CapriConfig } from "../capri-config"
+import { logo, palette } from "../logo"
+import { halfblockLogo, halfblockPalette } from "../logo-halfblock"
 
 const reset = "\x1b[0m"
 const bold = "\x1b[1m"
 const dim = "\x1b[90m"
 
 function wordmark(pad = "") {
-  const draw = (line: string, fg: string, shadow: string, bg: string) =>
-    [...line]
-      .map((char) => {
-        if (char === "_") return `${bg} ${reset}`
-        if (char === "^") return `${fg}${bg}▀${reset}`
-        if (char === "~") return `${shadow}▀${reset}`
-        if (char === " ") return " "
-        return `${fg}${char}${reset}`
-      })
-      .join("")
-
-  return logo.left.map((line, index) => {
-    const left = draw(line, dim, "\x1b[38;5;235m", "\x1b[48;5;235m")
-    const right = draw(logo.right[index] ?? "", reset, "\x1b[38;5;238m", "\x1b[48;5;238m")
-    return `${pad}${left} ${right}`
-  })
+  const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(";")
+  const [art, colors] =
+    CapriConfig.logoStyle() === "halfblock" ? [halfblockLogo.small, halfblockPalette] : [logo.small, palette]
+  return art.map(
+    (row) =>
+      pad +
+      row
+        .map(([text, fg, bg]) => {
+          if (fg === null && bg === null) return text
+          const fgCode = fg === null ? "" : `\x1b[38;2;${rgb(colors[fg])}m`
+          const bgCode = bg === null ? "" : `\x1b[48;2;${rgb(colors[bg])}m`
+          return `${fgCode}${bgCode}${text}${reset}`
+        })
+        .join(""),
+  )
 }
 
 export type SessionEpilogue = { readonly title: string; readonly sessionID?: string }
