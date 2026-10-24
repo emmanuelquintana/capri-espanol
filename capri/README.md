@@ -81,6 +81,7 @@ references load when the model calls the `skill` tool and reads a file, so they 
 | File | Target | Function |
 |---|---|---|
 | `install.sh` | `install` | Linux installer: downloads the release (or `--binary` for a local build), installs it as `~/.capri/bin/capri`, adds it to `PATH`, writes the default `~/.config/capri/capri.json` unless one exists, and installs the `capri/skills` files to `~/.config/opencode/skills/` (copied from a checkout, else fetched from the repo; rerun refreshes them). Replaces opencode's installer. |
+| `install.ps1` | `install.ps1` | Windows (x64) installer: same steps as `install.sh` — downloads `capri-windows-x64.zip` (or `-Binary` for a local build), installs `%USERPROFILE%\.capri\bin\capri.exe`, adds it to the user `PATH`, writes `%USERPROFILE%\.config\capri\capri.json` unless one exists, installs the skills to `%USERPROFILE%\.config\opencode\skills\`. |
 
 ## docs/
 

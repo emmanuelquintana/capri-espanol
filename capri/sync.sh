@@ -12,6 +12,7 @@ mode="${1:-to-repo}"
 code=(
   "logo/logo.ts packages/tui/src/logo.ts"
   "install/install.sh install"
+  "install/install.ps1 install.ps1"
   "docs/README.md README.md"
   "theme/capri-theme.json packages/tui/src/theme/assets/v2/opencode.json"
   "config/capri.ts packages/core/src/capri.ts"

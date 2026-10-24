@@ -16,7 +16,7 @@ She writes your code. She also mocks you while she does it. Choose your chrome w
 
 ## 1. Download
 
-**Linux only.** Desktop and VS Code are future mods.
+**Linux and Windows (x64) CLI/TUI.** Desktop and VS Code are future mods.
 
 ### One-liner
 
@@ -24,7 +24,17 @@ She writes your code. She also mocks you while she does it. Choose your chrome w
 curl -fsSL https://raw.githubusercontent.com/seanyih/Capri/main/install | bash
 ```
 
-The installer:
+### Windows (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/seanyih/Capri/main/install.ps1 | iex
+```
+
+Installs `%USERPROFILE%\.capri\bin\capri.exe`, adds it to your user `PATH`, and uses the same config and skills locations
+under `%USERPROFILE%\.config\` as Linux (`capri\capri.json`, `opencode\skills\`). Open a new terminal afterwards. Options:
+`-Version v0.2.0`, `-Binary <path>`, `-NoModifyPath`. Windows Terminal is recommended.
+
+The Linux installer:
 
 - puts the binary at `~/.capri/bin/capri` and adds that folder to your `PATH`
 - creates `~/.config/capri/capri.json` with the default options (an existing file is never touched)
