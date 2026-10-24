@@ -22,6 +22,7 @@ import { SplitBorder } from "../../ui/border"
 import { useTuiTerminalEnvironment } from "../../context/runtime"
 import { Spinner, SPINNER_FRAMES } from "../../component/spinner"
 import { PatchDiff } from "../../component/patch-diff"
+import { CapriConfig } from "../../capri-config"
 import { useTheme, useThemes } from "../../context/theme"
 import {
   BoxRenderable,
@@ -2025,6 +2026,9 @@ function AssistantFooter(props: { message: SessionMessageAssistant }) {
   const tokensPerSecond = createMemo(() =>
     turnTokensPerSecond(props.message, messages(), ctx.messageIndex(props.message.id), ctx.legacyTurns()),
   )
+  const footerName = CapriConfig.footerName()
+  const footerModel = CapriConfig.footerModel()
+  const footerTps = CapriConfig.footerTps()
   const interrupted = createMemo(() => props.message.error?.message === "Step interrupted")
   const freeLimit = createMemo(() => props.message.error?.type === "provider.free-limit")
   return (
@@ -2045,15 +2049,15 @@ function AssistantFooter(props: { message: SessionMessageAssistant }) {
       <box paddingLeft={3} marginTop={props.message.retry || (props.message.error && !interrupted()) ? 1 : 0}>
         <text>
           <span style={{ fg: props.message.error ? theme.text.muted : local.agent.color(props.message.agent) }}>
-            {Locale.titlecase(props.message.agent)}
+            {props.message.agent === "build" ? footerName : Locale.titlecase(props.message.agent)}
           </span>
-          <Show when={ctx.terminal.width >= 28}>
+          <Show when={footerModel && ctx.terminal.width >= 28}>
             <span style={{ fg: theme.text.muted }}> · {model()}</span>
           </Show>
           <Show when={duration() && (ctx.terminal.width < 28 || ctx.terminal.width >= 36)}>
             <span style={{ fg: theme.text.muted }}> · {Locale.duration(duration())}</span>
           </Show>
-          <Show when={config.data.session.tps && tokensPerSecond()}>
+          <Show when={footerTps && config.data.session.tps && tokensPerSecond()}>
             {(value) => <span style={{ fg: theme.text.muted }}> · {value().toFixed(1)} tok/s</span>}
           </Show>
           <Show when={interrupted()}>
@@ -2571,13 +2575,17 @@ function ToolPart(props: { part: SessionMessageAssistantTool; images?: boolean }
 
   const toolprops = {
     get metadata() {
-      return toolDisplayMetadata(props.part.state)
+      const metadata = toolDisplayMetadata(props.part.state)
+      if (!CapriConfig.hideToolResults()) return metadata
+      // Diffs and diagnostics are results too; without them Edit/Patch fall back to their one-line form.
+      const { files: _files, diff: _diff, filediff: _filediff, diagnostics: _diagnostics, ...rest } = metadata
+      return rest
     },
     get input() {
       return typeof props.part.state.input === "string" ? {} : props.part.state.input
     },
     get output() {
-      if (props.part.state.status === "streaming") return undefined
+      if (props.part.state.status === "streaming" || CapriConfig.hideToolResults()) return undefined
       return toolDisplayContent(props.part.state)
         .flatMap((content) => (content.type === "text" ? [content.text] : [content.name ?? content.uri]))
         .join("\n")

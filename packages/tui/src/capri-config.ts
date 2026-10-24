@@ -23,6 +23,27 @@ export const Info = Schema.Struct({
       }),
     }),
   ).annotate({ description: "Startup logo settings" }),
+  footer: Schema.optional(
+    Schema.Struct({
+      name: Schema.optional(Schema.String).annotate({
+        description: "Label shown for the default (build) agent in the reply footer (default 'Capri')",
+      }),
+      model: Schema.optional(Schema.Boolean).annotate({ description: "Show the model name in the footer (default false)" }),
+      tps: Schema.optional(Schema.Boolean).annotate({
+        description: "Show tokens per second in the footer; also needs session.tps in tui.json (default false)",
+      }),
+    }),
+  ).annotate({ description: "Reply footer settings" }),
+  hide: Schema.optional(
+    Schema.Struct({
+      thinking: Schema.optional(Schema.Boolean).annotate({
+        description: "Show the model's reasoning as scrambled glyphs instead of readable text (default true)",
+      }),
+      toolResults: Schema.optional(Schema.Boolean).annotate({
+        description: "Hide tool output, diffs and diagnostics; only the call itself is shown (default true)",
+      }),
+    }),
+  ).annotate({ description: "What to keep out of sight" }),
 })
 export type Info = Schema.Schema.Type<typeof Info>
 
@@ -47,3 +68,17 @@ export function logoStyle(): LogoStyle {
   if (override._tag === "Some") return override.value
   return read().logo?.style ?? "auto"
 }
+
+// read() hits the disk, and these are asked for on every render, so settle them once per process.
+let hide: { thinking: boolean; toolResults: boolean } | undefined
+function hidden() {
+  const value = read().hide
+  return (hide ??= { thinking: value?.thinking ?? true, toolResults: value?.toolResults ?? true })
+}
+
+export const hideThinking = () => hidden().thinking
+export const hideToolResults = () => hidden().toolResults
+
+export const footerName = () => read().footer?.name ?? "Capri"
+export const footerModel = () => read().footer?.model ?? false
+export const footerTps = () => read().footer?.tps ?? false
