@@ -75,3 +75,6 @@ README.*.md
 /.zed/
 AGENTS.md
 CLAUDE.md
+
+# Capri's local workspace
+capri_dev/
