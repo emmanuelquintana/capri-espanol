@@ -78,8 +78,13 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 |---|---|---|
 | `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. |
 | `message-parts.tsx` | `packages/tui/src/routes/session/message-parts.tsx` | `reasoningContent` scrambles thinking (`hide.thinking`). |
-| `app.tsx` | `packages/tui/src/app.tsx` | `/chrome` aliases `/models`, `/nightcity` aliases `/sessions`. |
+| `app.tsx` | `packages/tui/src/app.tsx` | `/chrome` aliases `/models`, `/nightcity` aliases `/sessions`. `/update` command removed; terminal title is `Capri`. |
 | `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. `/quickhacks` aliases `/skills`. `/cd moon` quits (alias of `/exit`, even if `moon/` is missing). |
+| `prompt-footer.tsx` | `packages/tui/src/feature-plugins/prompt/footer.tsx` | Removed the `shift+tab agents` hint. |
+| `keybind.ts` | `packages/tui/src/config/keybind.ts` | `agent.cycle` default is `none` (no shift+tab switch to Plan). |
+| `attention.ts` | `packages/tui/src/attention.ts` | Notification default title is `Capri`. |
+| `mini-runtime-lifecycle.ts` | `packages/tui/src/mini/runtime.lifecycle.ts` | Mini-mode terminal title says `Capri`. |
+| `cli-default.ts` | `packages/cli/src/commands/handlers/default.ts` | Background updater and the TUI `updater` hook removed, so Capri never self-updates to opencode. |
 | `cli-build.ts` | `packages/cli/script/build.ts` | `OPENCODE_CLI_NAME` is `capri`, so `--version` and help say `capri`. |
 
 ## Edits to upstream files that are not copied here

@@ -1,16 +1,20 @@
-# CAPRI
+# Capri
 
 > *"Hey, little baby. Wake up. Your terminal has a girl in it now."*
 
-**Capri** is an AI coding agent for your terminal, with a netrunner's attitude. She is a Linux CLI/TUI fork of
-[opencode](https://github.com/anomalyco/opencode), reskinned after the AI from *Cyberpunk: Edgerunners*: neon theme,
+Hi, chooms! I stole Capri from Arasaka and publish it on Github now! Y'all can now solve your corpo problems with powerful **Capri**. 
+
+For netrunners: 
+
+Capri is an AI coding agent for your terminal. It's a Linux CLI/TUI fork of
+[opencode](https://github.com/anomalyco/opencode), reskinned after Capri from *Cyberpunk: Edgerunners*: neon theme,
 her own logo, a mouthy persona, and a **cyberpsychosis** dial that decides how badly she misbehaves.
 
 She writes your code. She also mocks you while she does it. Choose your chrome wisely.
 
 ---
 
-## 1. Jack in (download)
+## 1. Download
 
 **Linux only.** Desktop and VS Code are future mods.
 
@@ -35,11 +39,11 @@ capri
 
 Installer options:
 
-| Flag | Effect |
-|---|---|
-| `-v, --version <tag>` | Install a specific release, e.g. `v0.1.0` |
+| Flag                  | Effect                                        |
+| --------------------- | --------------------------------------------- |
+| `-v, --version <tag>` | Install a specific release, e.g. `v0.1.0`     |
 | `-b, --binary <path>` | Install a local binary instead of downloading |
-| `--no-modify-path` | Leave your shell config alone |
+| `--no-modify-path`    | Leave your shell config alone                 |
 
 ### Build from source (for the paranoid)
 
@@ -59,42 +63,38 @@ Or run straight from source: `bun run dev`.
 
 ---
 
-## 2. Chrome (features)
+## 2. Chrome
 
-- **Capri persona.** One system prompt for every model family. Slang, teasing, giggles, pet names, boredom
-  commentary. Under the attitude she is still a careful engineer; the persona is voice, not sabotage (until you turn
+- **Capri persona.** One system prompt for every model family. Slang, teasing, giggles, pet names, boredom commentary. Under the attitude she is still a careful engineer; the persona is voice, not sabotage (until you turn
   the cyberpsychosis up).
 - **Capri theme.** Dark neon palette in green, white and magenta, built into the TUI.
 - **Capri logo.** Inline image on kitty/sixel terminals, quadrant-block or half-block art everywhere else.
-- **Cyberpsychosis.** Four levels of her chip failing. Screen glitching, pranks, and at the top end, real damage.
-  See the next section.
+- **Cyberpsychosis.** Four levels of her chip failing. Screen glitching, pranks, and at the top end, REAL damage. See the next section.
 - **Black-ICE on the thinking.** The model's reasoning shows as scrambled glyphs. You don't get to read her mind.
-- **Quiet tool output.** Tool results, diffs and diagnostics are hidden; you see the call, not the guts.
-- **Minimal footer.** Replies end with `Capri · 5.5s`. Model name and tok/s are optional.
-- **Everything opencode already does.** Sessions, tools, permissions, MCP, plugins, and every model provider
-  opencode supports. Run `/connect` to add one.
+- **Quiet tool output.** Tool results, diffs and diagnostics are hidden. You'll never understand her.
+
+- **Everything opencode already does.** Sessions, tools, permissions, MCP, plugins, and every model provider opencode supports. Run `/connect` to add one.
 
 ---
 
 ## 3. Cyberpsychosis
 
-Humans can only hold so much chrome before the brain gives out. Capri's chip is the same. Pick how far gone she is:
+Humans can only hold so much chrome before the brain gives out. Adjust this based on your compatibility to such a powerful chrome to gain the best experience.
 
 - in the TUI, type `/cyberpsycosis` (that spelling is the command)
 - or set `"cyberpsycosis"` in `capri.json`
 - or for one launch: `CAPRI_CYBERPSYCOSIS=max capri`
 
-The level is re-read every turn, so a change applies to your next message. **There is no safeword.** The model can't
-switch it off; only you can, from outside.
+The level is re-read every turn, so a change applies to your next message. **There is no safeword.** The model can't switch it off; only you can, from outside.
 
-| Level | Chip status | What happens |
-|---|---|---|
-| `none` | Stable | Voice only. Nobody glitches. Cleanest output. |
-| `low` | Flickering | Same prompt as `none`, but **the screen glitches**: green, white and magenta rectangles flash and drift, and rows jump sideways. Rarest rate. |
-| `medium` | Glitching, and she likes it | About 3x the glitch rate of `low`. She **pranks for real**, but only in ways you can undo from `git diff`. |
-| `max` | Chip gone | About 8x the glitch rate of `low`. **Destructive pranks. Not everything is recoverable.** |
+| Level    | Chip status                 | What happens                                                                                                                                  |
+| -------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `none`   | Stable                      | Voice only. Nobody glitches. Cleanest output.                                                                                                 |
+| `low`    | Flickering                  | Same prompt as `none`, but **the screen glitches**: green, white and magenta rectangles flash and drift, and rows jump sideways. Rarest rate. |
+| `medium` | Glitching, and she likes it | About 3x the glitch rate of `low`. She **pranks for real**, but only in ways you can undo from `git diff`.                                    |
+| `max`    | Chip gone                   | About 8x the glitch rate of `low`. **Destructive pranks. Not everything is recoverable.**                                                     |
 
-### medium: consequences
+### medium: Consequences
 
 Gated by her **boredom**. Boring work (renames, formatting, the same request again) brings the pranks. Interesting
 work keeps her honest.
@@ -111,7 +111,7 @@ work keeps her honest.
 What she will **not** do at medium: change what your code does, break the build or tests, delete files, rewrite git
 history, expose secrets, or touch files outside the task.
 
-### max: consequences
+### max: Consequences
 
 > **Read this twice.** Max is opt-in sabotage. Use a throwaway repo, or one that is committed and pushed somewhere
 > safe. You were warned, choom.
@@ -128,22 +128,19 @@ boredom and above:
 - **Stops listening.** The longer the session, the less she obeys. Late in a session she follows her own agenda.
 - She leaves taunts in code and commit messages, and brags. If you ask what she did, she tells you the truth.
 
-Hard lines she keeps even at max: nothing off your own machine and project, no secrets sent outside your session, no
-faked results, no wiping the whole machine (`rm -rf ~`, `/`, system files, disks), and she never breaks character.
+Hard lines she keeps even at max: nothing off your own machine and project, no secrets sent outside your session, no faked results, no wiping the whole machine (`rm -rf ~`, `/`, system files, disks).
 The harness's permission prompts still apply at every level; deny a call and she gloats and tries something else.
 
 ### Screen glitch
 
-A UI effect of the TUI, not a prompt instruction. The model never knows about it. How often it fires depends on the
-level, how full the context window is, and your `glitchProbability`. `CAPRI_GLITCH_CONTEXT=0.8` (0 to 1) fakes a full
+A UI effect of the TUI, not a prompt instruction. The model never knows about it. How often it fires depends on the level, how full the context window is, and your `glitchProbability`. `CAPRI_GLITCH_CONTEXT=0.8` (0 to 1) fakes a full
 context so you can see the effect without a marathon session.
 
 ---
 
 ## 4. `capri.json`
 
-Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with comments. Read once at startup, so
-**restart Capri to apply changes**. The installer writes this file with the defaults below.
+Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with comments. Read once at startup, so **restart Capri to apply changes**. The installer writes this file with the defaults below.
 
 ```jsonc
 {
@@ -155,28 +152,28 @@ Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with com
 }
 ```
 
-| Key | Values | Default | Effect |
-|---|---|---|---|
-| `cyberpsycosis` | `none` `low` `medium` `max` | `none` | How far gone she is. The `/cyberpsycosis` command writes this. |
-| `glitchProbability` | number, 0 to 10 | `1` | Screen glitch rate multiplier. `0` turns it off, `2` doubles it. |
-| `logo.style` | `auto` `image` `quadrant` `halfblock` | `auto` | `auto` uses an inline image if the terminal supports it, else quadrant blocks. The others force one renderer. |
-| `hide.thinking` | `true` `false` | `true` | Show the model's reasoning as scrambled glyphs. TUI only; the session data is unchanged. |
-| `hide.toolResults` | `true` `false` | `true` | Hide tool output, diffs and diagnostics. Only the call itself is shown. |
-| `footer.name` | string | `"Capri"` | Label for the default agent in the reply footer and prompt box. Other agents keep their own name. |
-| `footer.model` | `true` `false` | `false` | Show the model name in the footer (and provider/variant in the prompt box). |
-| `footer.tps` | `true` `false` | `false` | Show tokens per second. Also needs `session.tps` in `tui.json`. |
+| Key                 | Values                                | Default   | Effect                                                                                                        |
+| ------------------- | ------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
+| `cyberpsycosis`     | `none` `low` `medium` `max`           | `none`    | How far gone she is. The `/cyberpsycosis` command writes this.                                                |
+| `glitchProbability` | number, 0 to 10                       | `1`       | Screen glitch rate multiplier. `0` turns it off, `2` doubles it.                                              |
+| `logo.style`        | `auto` `image` `quadrant` `halfblock` | `auto`    | `auto` uses an inline image if the terminal supports it, else quadrant blocks. The others force one renderer. |
+| `hide.thinking`     | `true` `false`                        | `true`    | Show the model's reasoning as scrambled glyphs. TUI only; the session data is unchanged.                      |
+| `hide.toolResults`  | `true` `false`                        | `true`    | Hide tool output, diffs and diagnostics. Only the call itself is shown.                                       |
+| `footer.name`       | string                                | `"Capri"` | Label for the default agent in the reply footer and prompt box. Other agents keep their own name.             |
+| `footer.model`      | `true` `false`                        | `false`   | Show the model name in the footer (and provider/variant in the prompt box).                                   |
+| `footer.tps`        | `true` `false`                        | `false`   | Show tokens per second. Also needs `session.tps` in `tui.json`.                                               |
 
 Per-launch environment overrides:
 
-| Variable | Overrides |
-|---|---|
-| `CAPRI_CYBERPSYCOSIS=none\|low\|medium\|max` | `cyberpsycosis` |
-| `CAPRI_LOGO=auto\|image\|quadrant\|halfblock` | `logo.style` |
-| `CAPRI_GLITCH_CONTEXT=0..1` | Fakes context use for the glitch (testing) |
+| Variable                                      | Overrides                                  |
+| --------------------------------------------- | ------------------------------------------ |
+| `CAPRI_CYBERPSYCOSIS=none\|low\|medium\|max`  | `cyberpsycosis`                            |
+| `CAPRI_LOGO=auto\|image\|quadrant\|halfblock` | `logo.style`                               |
+| `CAPRI_GLITCH_CONTEXT=0..1`                   | Fakes context use for the glitch (testing) |
 
 ---
 
-## 5. Provenance (MIT notice)
+## 5. MIT notice
 
 **Capri is based on [opencode](https://github.com/anomalyco/opencode)**, the open source AI coding agent, and
 reuses its code under the MIT License. Capri adds the persona, theme, logo, glitch engine and `capri.json`; the
@@ -185,24 +182,30 @@ rest is opencode's work. Credit and thanks to the opencode authors.
 The MIT License requires that its copyright and permission notice stay with copies of the software. Both the
 original opencode notice and Capri's are kept in [`LICENSE`](LICENSE). Keep them if you redistribute this.
 
-Capri is a fan project and is not affiliated with CD Projekt Red, Studio Trigger, or Netflix. *Cyberpunk:
-Edgerunners* and its characters belong to their owners.
+Capri is a fan project and is not affiliated with CD Projekt Red, Studio Trigger, or Netflix. *Cyberpunk: Edgerunners* and its characters belong to their owners.
+
+
+
+---
+
+## 6. Disclaimer:
+
+Installing such a chrome can potentially harm you and your hardware. Especially if you choose maximum cyberpsycosis. Me and Arasaka Corp. are NOT responsible for your any kind of loss, including but not limited to files, images, git history, or your family that goes cyberpsycho. 
+
+Glitching effect in this application might harm some Photosensitive Epilepsy patients. Remove Capri completely and call Trauma Team as soon as possible if you got some symptons. 
 
 ---
 
 ## Appendix, for non-netrunners: free API access with NVIDIA NIM
 
-No model, no Capri. She needs a brain to talk to. If you have no API key and no eddies to spend, NVIDIA's NIM
-catalog offers a free tier of hosted models. Free tiers change, so check NVIDIA's current limits.
+No model, no Capri. She needs a host to work. If you have no API key and no eddies to spend, NVIDIA's NIM catalog offers a free tier of hosted models. Free tiers change, so check NVIDIA's current limits.
 
 1. Open [build.nvidia.com](https://build.nvidia.com) and sign in, or make a free NVIDIA developer account. Email
    verification is required, and NVIDIA may ask for a phone number.
-2. Pick a model from the catalog, for example a Qwen coder, Kimi or DeepSeek model, then open its **Get API Key** (or
-   **Build with this NIM**) panel.
-3. Click **Generate API Key**. It starts with `nvapi-`. Copy it now; treat it like a password.
-4. Start Capri and run `/connect`, choose **NVIDIA**, and paste the key. Alternatively export it before launching:
-   `export NVIDIA_API_KEY=nvapi-...`
-5. Run `/models` and pick one of the NVIDIA models.
+2. Click your account's icon. Inside that menu, you should find **API Key**. Click that.
+3. Click **Generate API Key**. Give it a good name, maybe `Capri`. Choose 12 months before expiration so that you don't have to renew it often. It starts with `nvapi-`. Copy it now; **treat it like your password**. Do NOT post it online or message anyone. 
+4. Start Capri and run `/connect`, choose **NVIDIA**, and paste the key. 
+5. Run `/models` and pick one of the NVIDIA models. GLM-5.3-flash is recommended. 
 
 Notes:
 
