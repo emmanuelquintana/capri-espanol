@@ -1,4 +1,6 @@
+import { CapriConfig } from "../capri-config"
 import { logo, palette } from "../logo"
+import { halfblockLogo, halfblockPalette } from "../logo-halfblock"
 
 const reset = "\x1b[0m"
 const bold = "\x1b[1m"
@@ -6,14 +8,16 @@ const dim = "\x1b[90m"
 
 function wordmark(pad = "") {
   const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(";")
-  return logo.small.map(
+  const [art, colors] =
+    CapriConfig.logoStyle() === "halfblock" ? [halfblockLogo.small, halfblockPalette] : [logo.small, palette]
+  return art.map(
     (row) =>
       pad +
       row
         .map(([text, fg, bg]) => {
           if (fg === null && bg === null) return text
-          const fgCode = fg === null ? "" : `\x1b[38;2;${rgb(palette[fg])}m`
-          const bgCode = bg === null ? "" : `\x1b[48;2;${rgb(palette[bg])}m`
+          const fgCode = fg === null ? "" : `\x1b[38;2;${rgb(colors[fg])}m`
+          const bgCode = bg === null ? "" : `\x1b[48;2;${rgb(colors[bg])}m`
           return `${fgCode}${bgCode}${text}${reset}`
         })
         .join(""),

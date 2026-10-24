@@ -1,13 +1,16 @@
 import { createMemo, createSignal, For, onCleanup } from "solid-js"
 import { NativeImage, RGBA } from "@opentui/core"
 import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { CapriConfig } from "../capri-config"
 import { logo, palette, type LogoArt } from "../logo"
+import { halfblockLogo, halfblockPalette } from "../logo-halfblock"
 import { useTheme } from "../context/theme"
 import { logoImage, logoImageSize } from "../logo-image"
 
-const colors = palette.map((hex) => RGBA.fromHex(hex))
+const quadrantColors = palette.map((hex) => RGBA.fromHex(hex))
+const halfblockColors = halfblockPalette.map((hex) => RGBA.fromHex(hex))
 
-function Art(props: { art: LogoArt }) {
+function Art(props: { art: LogoArt; colors: readonly RGBA[] }) {
   return (
     <For each={props.art}>
       {(row) => (
@@ -15,8 +18,8 @@ function Art(props: { art: LogoArt }) {
           <For each={row}>
             {([text, fg, bg]) => (
               <text
-                fg={fg === null ? undefined : colors[fg]}
-                bg={bg === null ? undefined : colors[bg]}
+                fg={fg === null ? undefined : props.colors[fg]}
+                bg={bg === null ? undefined : props.colors[bg]}
                 selectable={false}
               >
                 {text}
@@ -61,20 +64,18 @@ export function Logo() {
   // Terminal cells are roughly twice as tall as wide, so halve the aspect ratio.
   const imageHeight = () => Math.max(4, Math.round(imageWidth() * (logoImageSize.height / logoImageSize.width) * 0.5))
 
+  const style = CapriConfig.logoStyle()
+  const useImage = () => style !== "quadrant" && style !== "halfblock" && inline()
+  const compact = () => dimensions().width < 84 || dimensions().height < 30
+
   return (
     <box>
-      {dimensions().width < 48 || dimensions().height < 16 ? null : inline() ? (
-        <image
-          source={flattened()}
-          fit="fit"
-          protocol="auto"
-          width={imageWidth()}
-          height={imageHeight()}
-        />
-      ) : dimensions().width < 84 || dimensions().height < 30 ? (
-        <Art art={logo.small} />
+      {dimensions().width < 48 || dimensions().height < 16 ? null : useImage() ? (
+        <image source={flattened()} fit="fit" protocol="auto" width={imageWidth()} height={imageHeight()} />
+      ) : style === "halfblock" ? (
+        <Art art={compact() ? halfblockLogo.small : halfblockLogo.large} colors={halfblockColors} />
       ) : (
-        <Art art={logo.large} />
+        <Art art={compact() ? logo.small : logo.large} colors={quadrantColors} />
       )}
     </box>
   )
