@@ -34,8 +34,10 @@ export function Logo() {
     <box>
       {dimensions().width < 48 || dimensions().height < 16 ? null : dimensions().width < 84 || dimensions().height < 30 ? (
         <Art art={logo.small} />
-      ) : (
+      ) : dimensions().width < 118 || dimensions().height < 38 ? (
         <Art art={logo.large} />
+      ) : (
+        <Art art={logo.xlarge} />
       )}
     </box>
   )
