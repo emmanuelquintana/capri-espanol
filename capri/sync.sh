@@ -7,8 +7,8 @@ set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 mode="${1:-to-repo}"
 
-# capri/ file -> repo path. Only files that are entirely Capri's own belong here; edits to upstream files are
-# described in capri/README.md instead.
+# capri/ file -> repo path. Whole-file copies: Capri-authored files, plus upstream files Capri has edited (those are
+# snapshots, so after an opencode upstream merge run `sync.sh from-repo` before editing here, never the other way).
 code=(
   "capri.ts packages/core/src/capri.ts"
   "capri-config.ts packages/tui/src/capri-config.ts"
@@ -18,6 +18,9 @@ code=(
   "dialog-cyberpsycosis.tsx packages/tui/src/component/dialog-cyberpsycosis.tsx"
   "logo-halfblock.ts packages/tui/src/logo-halfblock.ts"
   "logo-image.ts packages/tui/src/logo-image.ts"
+  "session-index.tsx packages/tui/src/routes/session/index.tsx"
+  "message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
+  "prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
 )
 for entry in "${code[@]}"; do
   read -r name target <<<"$entry"

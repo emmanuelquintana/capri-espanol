@@ -62,3 +62,5 @@ Note: these were already tracked upstream, so `.gitignore` only hides new/untrac
 - A dedicated README inside `capri/` records the function of each files.
 
 - A workspace called `capri_dev/` stores working drafts, components. Inside `.gitignore` .  
+
+- `capri/` tracks ALL Capri-related files. Any file you create or edit for Capri, including edits to upstream opencode files, gets a copy in `capri/` (upstream files under a unique name, e.g. `session-index.tsx`), is listed in `capri/sync.sh` and recorded in `capri/README.md`, and is committed together with the change.
