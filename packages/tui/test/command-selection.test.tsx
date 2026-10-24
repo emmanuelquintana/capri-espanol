@@ -1,10 +1,11 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { InputRenderable, TextareaRenderable } from "@opentui/core"
 import { directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
 import { createAppFixture } from "./fixture/app"
+import { whenBuildLabelShown } from "./fixture/capri-settings"
 
-test("custom commands commit the captured agent, model and variant before execution", async () => {
+whenBuildLabelShown("custom commands commit the captured agent, model and variant before execution", async () => {
   await using state = await tmpdir()
   const agent = Promise.withResolvers<Response>()
   const model = Promise.withResolvers<Response>()

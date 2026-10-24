@@ -14,6 +14,7 @@ import { tmpdir } from "./fixture/fixture"
 import { createAppFixture } from "./fixture/app"
 import { waitForHighlightedFrame } from "./fixture/frame"
 import type { PluginInfo } from "@opencode/client"
+import { whenBuildLabelShown, whenModelShown, whenTpsShown } from "./fixture/capri-settings"
 
 test.each([100, 44])("Ctrl-O is immediate, dismissible, and prunes cached deletions at width %s", async (width) => {
   await using state = await tmpdir()
@@ -542,7 +543,7 @@ test("narrow vertical session tabs collapse to a compact rail with the terminal"
   await setup.waitForFrame((frame) => frame.split("\n")[1].slice(0, 10).trim() === "⌕")
 })
 
-test("automatic rename refreshes the displayed title before settling, even without a renamed event", async () => {
+whenBuildLabelShown("automatic rename refreshes the displayed title before settling, even without a renamed event", async () => {
   await using state = await tmpdir()
   const response = Promise.withResolvers<Response>()
   const bodies: unknown[] = []
@@ -710,7 +711,7 @@ test.each([80, 120])("completes custom Markdown and ordinary fences in a session
   expect(frame).not.toContain("```")
 })
 
-test("keeps assistant footer metrics current after prepend, same-length refresh, and revert", async () => {
+whenTpsShown("keeps assistant footer metrics current after prepend, same-length refresh, and revert", async () => {
   await using state = await tmpdir()
   const session = {
     id: "ses_footer",
@@ -977,7 +978,7 @@ test("home startup prompt is submitted exactly once", async () => {
   expect(bodies[0]).toMatchObject({ text: "HOME_READY" })
 })
 
-test.each([false, true])("uses the resolved launch directory for new prompts (fallback: %s)", async (fallback) => {
+whenBuildLabelShown.each([false, true])("uses the resolved launch directory for new prompts (fallback: %s)", async (fallback) => {
   await using state = await tmpdir()
   const target = fallback ? directory : process.cwd()
   const location = { directory: target, project: { id: "project", directory: target, canonical: target } }
@@ -1200,7 +1201,7 @@ test("completed user shell output replaces a partial live read when the final re
   expect(terminal).not.toContain("Background")
 })
 
-test("new session inherits the active session model", async () => {
+whenModelShown("new session inherits the active session model", async () => {
   const cwd = process.cwd()
   const location = { directory: cwd, project: { id: "project", directory: cwd } }
   const session = {
@@ -1249,7 +1250,7 @@ test("new session inherits the active session model", async () => {
   expect(frame).toContain("Session Model")
 })
 
-test("keeps the prompt display stable while a new location catalog loads", async () => {
+whenBuildLabelShown("keeps the prompt display stable while a new location catalog loads", async () => {
   const source = process.cwd()
   const target = path.join(path.parse(source).root, "opencode-target")
   const locationCatalog = Promise.withResolvers<void>()
@@ -1704,7 +1705,7 @@ test("server plugin failures share one notice and use source names before an ID 
   expect(setup.captureCharFrame()).toContain("Open plugins")
 })
 
-test("free usage limit offers OpenCode Go once per 24h, transitions Subscribe to Connect Go, and restores focus", async () => {
+whenModelShown("free usage limit offers OpenCode Go once per 24h, transitions Subscribe to Connect Go, and restores focus", async () => {
   await using state = await tmpdir()
   const baseNow = 1_700_000_000_000
   let currentNow = baseNow
@@ -2004,7 +2005,7 @@ test("free usage limit offers OpenCode Go once per 24h, transitions Subscribe to
   })
 })
 
-test("free usage limit Subscribe handles mid-auth/mid-sync Escape, sync failure, already-connected accounts, and Don't show again across restart", async () => {
+whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, sync failure, already-connected accounts, and Don't show again across restart", async () => {
   await using state = await tmpdir()
   const baseNow = 1_700_000_000_000
   let currentNow = baseNow

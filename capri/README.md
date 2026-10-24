@@ -11,6 +11,7 @@ capri/
 ├── config/        capri.json reading and writing
 ├── logo/          logo art and renderers
 ├── theme/         color theme
+├── tests/         test fixture and tests adjusted for Capri's hidden information
 └── upstream/      snapshots of edited upstream opencode files
 ```
 
@@ -57,6 +58,13 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 | File | Target | Function |
 |---|---|---|
 | `capri-theme.json` | `packages/tui/src/theme/assets/v2/opencode.json` | Dark-only v2 TUI color theme (replaces the built-in v2 `opencode` theme). |
+
+## tests/
+
+| File | Target | Function |
+|---|---|---|
+| `capri-settings.ts` | `packages/tui/test/fixture/capri-settings.ts` | `whenModelShown`, `whenBuildLabelShown`, `whenTpsShown`, `whenThinkingShown`, `whenToolResultsShown`: `test`, or `test.skip` when capri.json hides what the test reads off the screen. |
+| `*.test.tsx` | `packages/tui/test/` | Upstream tests switched to those helpers. To run them all, set `footer.name` to `"Build"`, `footer.model` and `footer.tps` to `true`, and `hide.thinking` and `hide.toolResults` to `false` in capri.json. |
 
 ## upstream/ (snapshots of edited opencode files)
 

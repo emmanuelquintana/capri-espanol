@@ -5,6 +5,7 @@ import { Global } from "@opencode/util/global"
 import type { SessionMessageInfo } from "@opencode/client"
 import { createEventStream, createFetch, directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
+import { whenToolResultsShown } from "./fixture/capri-settings"
 
 type Setup = Awaited<ReturnType<typeof createTestRenderer>>
 
@@ -160,7 +161,7 @@ test.each([0, 1, 3])(
   20000,
 )
 
-test("a low activity summary that ends the transcript opens like v2 at the bottom", async () => {
+whenToolResultsShown("a low activity summary that ends the transcript opens like v2 at the bottom", async () => {
   await withSession(
     async (setup) => {
       const label = "1 command"

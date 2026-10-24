@@ -1,12 +1,13 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { createTestRenderer } from "@opentui/core/testing"
 import { InputRenderable } from "@opentui/core"
 import { Effect, FileSystem } from "effect"
 import { Global } from "@opencode/util/global"
 import { createEventStream, createFetch, directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
+import { whenModelShown } from "./fixture/capri-settings"
 
-test.each([70, 120])(
+whenModelShown.each([70, 120])(
   "/compact renders before model setup, suppresses repeat gestures, and toasts rollback at %i columns",
   async (width) => {
     await using state = await tmpdir()
@@ -93,7 +94,7 @@ test.each([70, 120])(
   },
 )
 
-test.each(["first", "second"])(
+whenModelShown.each(["first", "second"])(
   "a following prompt commits its selected model after prompt and compaction setup (cached: %s)",
   async (initial) => {
     await using state = await tmpdir()

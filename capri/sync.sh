@@ -23,6 +23,17 @@ code=(
   "upstream/session-index.tsx packages/tui/src/routes/session/index.tsx"
   "upstream/message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
   "upstream/prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
+  "tests/capri-settings.ts packages/tui/test/fixture/capri-settings.ts"
+  "tests/app-lifecycle.test.tsx packages/tui/test/app-lifecycle.test.tsx"
+  "tests/command-selection.test.tsx packages/tui/test/command-selection.test.tsx"
+  "tests/compact-admission.test.tsx packages/tui/test/compact-admission.test.tsx"
+  "tests/new-session-id.test.tsx packages/tui/test/new-session-id.test.tsx"
+  "tests/prompt-shell-failure.test.tsx packages/tui/test/prompt-shell-failure.test.tsx"
+  "tests/session-panel.test.tsx packages/tui/test/session-panel.test.tsx"
+  "tests/session-backfill-disclosure.test.tsx packages/tui/test/session-backfill-disclosure.test.tsx"
+  "tests/session-group-navigation.test.tsx packages/tui/test/session-group-navigation.test.tsx"
+  "tests/session-activity-anchor.test.tsx packages/tui/test/session-activity-anchor.test.tsx"
+  "tests/group-view.test.tsx packages/tui/test/cli/tui/group-view.test.tsx"
 )
 for entry in "${code[@]}"; do
   read -r name target <<<"$entry"

@@ -1,14 +1,15 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { createTestRenderer } from "@opentui/core/testing"
 import { Effect, FileSystem } from "effect"
 import { Global } from "@opencode/util/global"
 import type { SessionMessageInfo } from "@opencode/client"
 import { createEventStream, createFetch, directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
+import { whenThinkingShown } from "./fixture/capri-settings"
 
 // Regression: a thought group mounted by tail-first backfill (older rows revealed
 // after scrolling to the top) must still toggle when its disclosure is clicked.
-test("clicking a backfilled thought group toggles it", async () => {
+whenThinkingShown("clicking a backfilled thought group toggles it", async () => {
   await using state = await tmpdir()
   const setup = await createTestRenderer({ width: 112, height: 34, kittyKeyboard: true })
   await setup.renderer.setupTerminal()

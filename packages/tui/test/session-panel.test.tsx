@@ -12,8 +12,9 @@ import type { Config } from "../src/config"
 import { createAppFixture } from "./fixture/app"
 import { directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
+import { whenBuildLabelShown } from "./fixture/capri-settings"
 
-test("/diff focuses the production session panel without sending typing to the prompt", async () => {
+whenBuildLabelShown("/diff focuses the production session panel without sending typing to the prompt", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path)
   await ready(setup)
@@ -60,7 +61,7 @@ test("/diff focuses the production session panel without sending typing to the p
   expect(setup.requests.prompt).toHaveLength(0)
 })
 
-test("repeated fullscreen toggles retain the viewer, transcript, scroll, and reviewed files", async () => {
+whenBuildLabelShown("repeated fullscreen toggles retain the viewer, transcript, scroll, and reviewed files", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path)
   await ready(setup)
@@ -122,7 +123,7 @@ test("repeated fullscreen toggles retain the viewer, transcript, scroll, and rev
   expect(setup.requests.diff[0].searchParams.get("base")).toBe("refs/heads/v2")
 })
 
-test("the diff panel reopens in the presentation last chosen with the fullscreen toggle", async () => {
+whenBuildLabelShown("the diff panel reopens in the presentation last chosen with the fullscreen toggle", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path)
   await ready(setup)
@@ -158,7 +159,7 @@ test("the diff panel reopens in the presentation last chosen with the fullscreen
   await setup.waitFor(() => node(setup, "session-panel").width < setup.renderer.width)
 })
 
-test("docked tree commands leave the full-screen tree preference unchanged", async () => {
+whenBuildLabelShown("docked tree commands leave the full-screen tree preference unchanged", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path, { diffs: { tree: true } })
   await ready(setup)
@@ -180,7 +181,7 @@ test("docked tree commands leave the full-screen tree preference unchanged", asy
   expect(setup.requests.diff).toHaveLength(1)
 })
 
-test("right-clicking an inactive diff focuses its screen-relative file menu", async () => {
+whenBuildLabelShown("right-clicking an inactive diff focuses its screen-relative file menu", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path)
   await ready(setup)
@@ -203,7 +204,7 @@ test("right-clicking an inactive diff focuses its screen-relative file menu", as
   expect(prompt.plainText).toBe("")
 })
 
-test.each([60, 80])("a panel opened at %i columns can split after growing without remounting", async (width) => {
+whenBuildLabelShown.each([60, 80])("a panel opened at %i columns can split after growing without remounting", async (width) => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path, { width })
   await ready(setup)
@@ -242,7 +243,7 @@ test.each([60, 80])("a panel opened at %i columns can split after growing withou
   expect(setup.requests.diff).toHaveLength(1)
 })
 
-test("narrow terminals show the panel full screen, then compact, and dock again without remounting", async () => {
+whenBuildLabelShown("narrow terminals show the panel full screen, then compact, and dock again without remounting", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path, { diffs: { tree: true } })
   await ready(setup)
@@ -305,7 +306,7 @@ test("narrow terminals show the panel full screen, then compact, and dock again 
   expect(node(setup, "session-panel")).toBe(panel)
 })
 
-test("split eligibility uses the columns remaining beside vertical session tabs", async () => {
+whenBuildLabelShown("split eligibility uses the columns remaining beside vertical session tabs", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path, {
     width: 122,
@@ -333,7 +334,7 @@ test("split eligibility uses the columns remaining beside vertical session tabs"
   expect(setup.requests.diff).toHaveLength(1)
 })
 
-test("panel focus, scrolling, and fullscreen use customized keys", async () => {
+whenBuildLabelShown("panel focus, scrolling, and fullscreen use customized keys", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path, {
     width: 240,
@@ -378,7 +379,7 @@ test("panel focus, scrolling, and fullscreen use customized keys", async () => {
   expect(prompt.plainText).toBe("")
 })
 
-test.each(["none", false] as const)(
+whenBuildLabelShown.each(["none", false] as const)(
   "disabled panel keys (%s) have no behavioral or hint fallbacks",
   async (binding) => {
     await using state = await tmpdir()
@@ -496,7 +497,7 @@ test.each([true, false])("a form cannot capture diff keys (form already pending:
   expect(setup.requests.form).toEqual([{ answer: { target: "answerx" } }])
 })
 
-test("disabling the registered diff plugin closes its open panel and removes its bindings", async () => {
+whenBuildLabelShown("disabling the registered diff plugin closes its open panel and removes its bindings", async () => {
   await using state = await tmpdir()
   await using setup = await createSessionFixture(state.path)
   await ready(setup)

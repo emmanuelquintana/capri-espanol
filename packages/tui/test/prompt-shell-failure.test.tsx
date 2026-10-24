@@ -1,11 +1,12 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { createTestRenderer } from "@opentui/core/testing"
 import { Effect, FileSystem } from "effect"
 import { Global } from "@opencode/util/global"
 import { createEventStream, createFetch, directory, json } from "./fixture/tui-client"
 import { tmpdir } from "./fixture/fixture"
+import { whenModelShown } from "./fixture/capri-settings"
 
-test("a failed shell command in an existing session toasts and restores the composer", async () => {
+whenModelShown("a failed shell command in an existing session toasts and restores the composer", async () => {
   await using state = await tmpdir()
   const setup = await createTestRenderer({ width: 100, height: 30, kittyKeyboard: true })
   await setup.renderer.setupTerminal()

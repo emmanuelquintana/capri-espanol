@@ -38,7 +38,7 @@ export function cyberpsycosis(): Level {
 
 export const maxGlitchProbability = 10
 
-// "glitchProbability" in capri.json scales how often the screen glitches: 1 is the default, 0 turns the glitch off,
+// "glitchProbability" in capri.json (read once, when Capri starts) scales how often the screen glitches: 1 is the default, 0 turns the glitch off,
 // 2 doubles it. The rate still depends on the cyberpsycosis level and on how full the context window is.
 export function glitchProbability(): number {
   const value = readSettings().glitchProbability

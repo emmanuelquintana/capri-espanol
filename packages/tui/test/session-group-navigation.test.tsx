@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { createTestRenderer } from "@opentui/core/testing"
 import { ScrollBoxRenderable, type Renderable } from "@opentui/core"
 import { Effect, FileSystem } from "effect"
@@ -8,8 +8,9 @@ import { createEventStream, createFetch, directory, json } from "./fixture/tui-c
 import { tmpdir } from "./fixture/fixture"
 import { waitForHighlightedFrame } from "./fixture/frame"
 import { mkdir } from "node:fs/promises"
+import { whenThinkingShown } from "./fixture/capri-settings"
 
-test.each([
+whenThinkingShown.each([
   [48, 30],
   [80, 30],
   [120, 30],

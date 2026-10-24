@@ -14,8 +14,9 @@ import type { SessionEntry, SessionGroup } from "../../../src/routes/session/gro
 import { emptyThemeSource } from "../../fixture/fixture"
 import { TestTuiContexts } from "../../fixture/tui-environment"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime"
+import { whenThinkingShown } from "../../fixture/capri-settings"
 
-test("retains nested expansion state and registers exact headers and parts", async () => {
+whenThinkingShown("retains nested expansion state and registers exact headers and parts", async () => {
   addDefaultParsers(parsers.parsers)
   const anchors = createTimelineAnchors()
   const [expanded, setExpanded] = createStore<Record<string, boolean>>({})

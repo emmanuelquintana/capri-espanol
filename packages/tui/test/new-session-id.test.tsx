@@ -1,6 +1,7 @@
-import { expect, test } from "bun:test"
+import { expect } from "bun:test"
 import { createAppFixture } from "./fixture/app"
 import { json } from "./fixture/tui-client"
+import { whenModelShown } from "./fixture/capri-settings"
 
 type SessionInput = { id?: string; location?: { directory: string } }
 
@@ -62,7 +63,7 @@ async function launch(options: { failCreates?: number } = {}) {
   return { setup, attempts, created, prompts }
 }
 
-test("the first new session uses the launch session ID and later ones mint their own", async () => {
+whenModelShown("the first new session uses the launch session ID and later ones mint their own", async () => {
   const run = await launch()
   await using setup = run.setup
 
@@ -83,7 +84,7 @@ test("the first new session uses the launch session ID and later ones mint their
   expect(run.created[1]?.id).not.toBe("ses_chosen")
 })
 
-test("a failed first create keeps the launch session ID for the retry", async () => {
+whenModelShown("a failed first create keeps the launch session ID for the retry", async () => {
   const run = await launch({ failCreates: 1 })
   await using setup = run.setup
 

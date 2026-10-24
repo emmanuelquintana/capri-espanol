@@ -26,6 +26,8 @@ function contextOverride() {
 
 // Renders nothing itself: it advances the glitch state on a timer and paints it over every frame as a post-process.
 export function CyberGlitch() {
+  // capri.json is read once at startup rather than on every frame.
+  const probability = Capri.glitchProbability()
   const renderer = useRenderer()
   const dimensions = useTerminalDimensions()
   const route = useRoute()
@@ -53,11 +55,7 @@ export function CyberGlitch() {
     }
     renderer.addPostProcessFn(paint)
     let last = performance.now()
-    let probability = Capri.glitchProbability()
-    let ticks = 0
     const timer = setInterval(() => {
-      // capri.json can be edited while Capri runs, so re-read the setting about once a second.
-      if (++ticks % 20 === 0) probability = Capri.glitchProbability()
       const now = performance.now()
       const dt = Math.min(0.25, (now - last) / 1000)
       last = now
