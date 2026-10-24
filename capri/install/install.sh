@@ -171,7 +171,9 @@ else
     // Show the model's reasoning as scrambled glyphs.
     "thinking": true,
     // Hide tool output, diffs and diagnostics.
-    "toolResults": true
+    "toolResults": true,
+    // Hide the lines that show a skill being loaded.
+    "skills": true
   },
 
   "footer": {
