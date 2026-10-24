@@ -8,8 +8,11 @@ const dim = "\x1b[90m"
 
 function wordmark(pad = "") {
   const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(";")
+  // Same art and size rule as the home screen logo (component/logo.tsx).
+  const compact = (process.stdout.columns ?? 80) < 84 || (process.stdout.rows ?? 24) < 30
+  const size = compact ? "small" : "large"
   const [art, colors] =
-    CapriConfig.logoStyle() === "halfblock" ? [halfblockLogo.small, halfblockPalette] : [logo.small, palette]
+    CapriConfig.logoStyle() === "halfblock" ? [halfblockLogo[size], halfblockPalette] : [logo[size], palette]
   return art.map(
     (row) =>
       pad +
