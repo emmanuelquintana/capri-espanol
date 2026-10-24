@@ -16,7 +16,7 @@ She writes your code. She also mocks you while she does it. Choose your chrome w
 
 ## 1. Download
 
-**Linux and Windows (x64) CLI/TUI.** Desktop and VS Code are future mods.
+**Linux only.** Desktop and VS Code are future mods.
 
 ### One-liner
 
@@ -24,17 +24,7 @@ She writes your code. She also mocks you while she does it. Choose your chrome w
 curl -fsSL https://raw.githubusercontent.com/seanyih/Capri/main/install | bash
 ```
 
-### Windows (PowerShell)
-
-```powershell
-irm https://raw.githubusercontent.com/seanyih/Capri/main/install.ps1 | iex
-```
-
-Installs `%USERPROFILE%\.capri\bin\capri.exe`, adds it to your user `PATH`, and uses the same config and skills locations
-under `%USERPROFILE%\.config\` as Linux (`capri\capri.json`, `opencode\skills\`). Open a new terminal afterwards. Options:
-`-Version v0.2.0`, `-Binary <path>`, `-NoModifyPath`. Windows Terminal is recommended.
-
-The Linux installer:
+The installer:
 
 - puts the binary at `~/.capri/bin/capri` and adds that folder to your `PATH`
 - creates `~/.config/capri/capri.json` with the default options (an existing file is never touched)
@@ -77,11 +67,20 @@ Or run straight from source: `bun run dev`.
 
 - **Capri persona.** One system prompt for every model family. Slang, teasing, giggles, pet names, boredom commentary. Under the attitude she is still a careful engineer; the persona is voice, not sabotage (until you turn
   the cyberpsychosis up).
+
 - **Capri theme.** Dark neon palette in green, white and magenta, built into the TUI.
+
 - **Capri logo.** Inline image on kitty/sixel terminals, quadrant-block or half-block art everywhere else.
+
 - **Cyberpsychosis.** Four levels of her chip failing. Screen glitching, pranks, and at the top end, REAL damage. See the next section.
+
 - **Black-ICE on the thinking.** The model's reasoning shows as scrambled glyphs. You don't get to read her mind.
+
 - **Quiet tool output.** Tool results, diffs and diagnostics are hidden. You'll never understand her.
+
+- **Cyberpunk commands.** `/soulkiller` helps you transport current memory into a new, clean body, with less cyberpsychosis (i.e. `/compact`). `/quickhacks` gives you ready-made skills for newbie netrunners. 
+
+- **Knowledges.** Capri knows many things about the Night City and the legends there.
 
 - **Everything opencode already does.** Sessions, tools, permissions, MCP, plugins, and every model provider opencode supports. Run `/connect` to add one.
 
@@ -150,7 +149,7 @@ context so you can see the effect without a marathon session.
 
 ## 4. `capri.json`
 
-Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with comments. Read once at startup, so **restart Capri to apply changes**. The installer writes this file with the defaults below.
+Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). `%USERPROFILE%\.config\capri\capri.json` in Windows. JSON with comments. Read once at startup, so **restart Capri to apply changes**. The installer writes this file with the defaults below.
 
 ```jsonc
 {
@@ -195,8 +194,6 @@ original opencode notice and Capri's are kept in [`LICENSE`](LICENSE). Keep them
 
 Capri is a fan project and is not affiliated with CD Projekt Red, Studio Trigger, or Netflix. *Cyberpunk: Edgerunners* and its characters belong to their owners.
 
-
-
 ---
 
 ## 6. Disclaimer:
@@ -223,6 +220,20 @@ Notes:
 - Free usage is rate limited. If you hit the wall, wait, or switch to a smaller model.
 - Never commit the key. (At `max`, Capri may leak it for you. That's the joke, and also the danger.)
 - Capri talks to NVIDIA at `https://integrate.api.nvidia.com/v1`, an OpenAI-compatible endpoint.
+
+---
+
+## Future Extensions
+
+- More animations.
+
+- Another theme featuring the red background. 
+
+- A more complete NC knowledge base.
+
+- Windows/MacOS versions and GUI versions.
+
+- (Possibly) a screen pet. I've never made one so I don't know how hard It'll be.
 
 ---
 
