@@ -9,6 +9,7 @@ import {
   stripAnsiSequences,
   type KeyEvent,
 } from "@opentui/core"
+import { CapriConfig } from "../../capri-config"
 import { createEffect, createMemo, onMount, createSignal, onCleanup, on, Show, Switch, Match, For } from "solid-js"
 import path from "path"
 import { useLocal } from "../../context/local"
@@ -1555,7 +1556,7 @@ export function Prompt(props: PromptProps) {
       const agent = local.agent.current()
       const model = local.model.parsed()
       return {
-        agentLabel: agent ? Locale.titlecase(agent.id) : undefined,
+        agentLabel: agent ? (agent.id === "build" ? CapriConfig.footerName() : Locale.titlecase(agent.id)) : undefined,
         agentColor: agent ? local.agent.color(agent.id) : undefined,
         modelLabel: model.model,
         providerLabel: model.provider,
@@ -1842,9 +1843,9 @@ export function Prompt(props: PromptProps) {
                 mode={store.mode}
                 agent={agentLabel()}
                 auto={local.permission.mode === "autoaccept"}
-                model={promptDisplay().modelLabel}
-                provider={promptDisplay().providerLabel}
-                variant={promptDisplay().variant}
+                model={CapriConfig.footerModel() ? promptDisplay().modelLabel : ""}
+                provider={CapriConfig.footerModel() ? promptDisplay().providerLabel : ""}
+                variant={CapriConfig.footerModel() ? promptDisplay().variant : undefined}
                 muted={!!muted()}
                 highlight={highlight()}
                 agentAlpha={agentMetaAlpha()}

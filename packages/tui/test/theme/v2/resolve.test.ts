@@ -10,7 +10,8 @@ import {
   type ResolvedTheme,
   type ThemeDefinition,
 } from "@opencode/theme/tui"
-import { getOpenCodeTheme, parseTheme, type ThemeDocumentSource } from "../../../src/theme"
+import { parseTheme, type ThemeDocumentSource } from "../../../src/theme"
+import { getOpenCodeTheme } from "../../fixtures/opencode-theme"
 
 const opencodeLight = selectTheme(getOpenCodeTheme(), "light")
 const opencodeDark = selectTheme(getOpenCodeTheme(), "dark")

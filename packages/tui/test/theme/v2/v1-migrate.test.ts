@@ -7,7 +7,8 @@ import {
   type HueScale,
   type ResolvedTheme,
 } from "@opencode/theme/tui"
-import { DEFAULT_THEMES, getOpenCodeTheme, resolveTheme as resolveV1 } from "../../../src/theme"
+import { DEFAULT_THEMES, resolveTheme as resolveV1 } from "../../../src/theme"
+import { getOpenCodeTheme } from "../../fixtures/opencode-theme"
 import opencodeSource from "../../../src/theme/assets/opencode.json" with { type: "json" }
 import type { ThemeV1Json } from "@opencode/theme/tui/v1"
 

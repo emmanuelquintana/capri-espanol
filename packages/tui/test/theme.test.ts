@@ -9,6 +9,7 @@ import { terminalMode } from "../src/theme/system"
 import opencodeSource from "../src/theme/assets/opencode.json" with { type: "json" }
 import type { ThemeV1Json } from "@opencode/theme/tui/v1"
 import { tmpdir } from "./fixture/fixture"
+import { getOpenCodeTheme as getStockTheme } from "./fixtures/opencode-theme"
 
 const opencodeV1 = opencodeSource as ThemeV1Json
 
@@ -41,8 +42,8 @@ test("detects V1 themes from their theme field and caches migrations", () => {
 
 test("decodes native V2 themes lazily once", () => {
   const source = {
-    base: getOpenCodeTheme().base,
-    light: { ...getOpenCodeTheme().light, categorical: ["red"] },
+    base: getStockTheme().base,
+    light: { ...getStockTheme().light, categorical: ["red"] },
   } as const
 
   const document = parseTheme(source)

@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test"
 import { resolveThemeDocument, type HueScale, type ResolvedTheme } from "@opencode/theme/tui"
 import { terminalPalette } from "../../src/component/terminal-pane"
-import { getOpenCodeTheme } from "../../src/theme"
+import { getOpenCodeTheme } from "../fixtures/opencode-theme"
 
 test.each(["light", "dark"] as const)("builds the %s ANSI palette from semantic colors", (mode) => {
   const theme = resolveThemeDocument(getOpenCodeTheme(), mode)

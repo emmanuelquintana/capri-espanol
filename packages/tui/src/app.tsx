@@ -73,6 +73,7 @@ import { DialogHighlights } from "./component/dialog-highlights"
 import { claim } from "./util/highlights"
 import { DialogThemeList } from "./component/dialog-theme-list"
 import { DialogCyberpsycosis } from "./component/dialog-cyberpsycosis"
+import { CyberGlitch } from "./component/cyber-glitch"
 import { DialogHelp } from "./ui/dialog-help"
 import { DialogAgent } from "./component/dialog-agent"
 import { DialogSessionList } from "./component/dialog-session-list"
@@ -1477,6 +1478,7 @@ function App() {
       </Show>
       <MigrationOverlay />
       <Toast />
+      <CyberGlitch />
     </box>
   )
 }

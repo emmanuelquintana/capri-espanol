@@ -15,6 +15,7 @@ import { Locale } from "../../util/locale"
 import { use } from "./render-context"
 import { generateThinkingSyntax } from "./thinking-syntax"
 import { canonicalToolName } from "../../util/tool-display"
+import { CapriConfig } from "../../capri-config"
 
 export const INLINE_TOOL_ICON_WIDTH = 2
 
@@ -118,7 +119,20 @@ export function ReasoningPart(props: {
 
 export function reasoningContent(part: SessionMessageAssistantReasoning) {
   // OpenRouter encrypts some reasoning blocks; drop the placeholder.
-  return part.text.replace("[REDACTED]", "").trim()
+  const text = part.text.replace("[REDACTED]", "").trim()
+  return CapriConfig.hideThinking() ? encrypt(text) : text
+}
+
+const CIPHER = "░▒▓█▚▞▙▛▜▟"
+
+// Whitespace is kept so the block still has the shape of thought, but every other character becomes a glyph. Picking
+// by index keeps the already-streamed prefix stable, and dropping the markdown also drops the "**title**" summary.
+function encrypt(text: string) {
+  let out = ""
+  for (let i = 0; i < text.length; i++) {
+    out += /\s/.test(text[i]!) ? text[i] : CIPHER[(i * 7 + (i >> 3) * 3) % CIPHER.length]
+  }
+  return out
 }
 
 function ReasoningHeader(props: {
