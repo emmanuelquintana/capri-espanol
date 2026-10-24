@@ -763,7 +763,7 @@ function App() {
         title: "Switch session",
         category: "Session",
         suggested: data.session.list().length > 0,
-        slash: { name: "sessions", aliases: ["resume", "continue"] },
+        slash: { name: "sessions", aliases: ["resume", "continue", "nightcity"] },
         run: () => {
           dialog.replace(() => <DialogSessionList />)
         },
@@ -902,7 +902,7 @@ function App() {
         title: "Switch model",
         suggested: true,
         category: "Agent",
-        slash: { name: "models" },
+        slash: { name: "models", aliases: ["chrome"] },
         run: () => {
           dialog.replace(() => <DialogModel />)
         },

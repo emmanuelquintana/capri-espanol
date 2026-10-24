@@ -76,9 +76,10 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 
 | File | Target | Capri edit |
 |---|---|---|
-| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. |
+| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. |
 | `message-parts.tsx` | `packages/tui/src/routes/session/message-parts.tsx` | `reasoningContent` scrambles thinking (`hide.thinking`). |
-| `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. |
+| `app.tsx` | `packages/tui/src/app.tsx` | `/chrome` aliases `/models`, `/nightcity` aliases `/sessions`. |
+| `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. `/quickhacks` aliases `/skills`. `/cd moon` quits (alias of `/exit`, even if `moon/` is missing). |
 | `cli-build.ts` | `packages/cli/script/build.ts` | `OPENCODE_CLI_NAME` is `capri`, so `--version` and help say `capri`. |
 
 ## Edits to upstream files that are not copied here

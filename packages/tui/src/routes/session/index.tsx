@@ -1083,6 +1083,7 @@ export function Session(props: {
       group: "Session",
       slash: {
         name: "compact",
+        aliases: ["soulkiller"],
       },
       run: () => {
         const selection = local.model.current()

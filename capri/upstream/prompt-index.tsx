@@ -270,6 +270,10 @@ export function Prompt(props: PromptProps) {
         title: "Change working directory",
         slash: { name: "cd", arguments: true },
         run: async (input) => {
+          if (input?.trim().toLowerCase() === "moon") {
+            void exit()
+            return
+          }
           if (!input?.trim()) {
             toast.show({ message: "Directory is required", variant: "error" })
             return
@@ -584,7 +588,7 @@ export function Prompt(props: PromptProps) {
         title: "Skills",
         name: "prompt.skills",
         category: "Prompt",
-        slash: { name: "skills" },
+        slash: { name: "skills", aliases: ["quickhacks"] },
         run: () => {
           dialog.replace(() => (
             <DialogSkill

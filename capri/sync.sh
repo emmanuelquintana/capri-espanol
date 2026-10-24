@@ -25,6 +25,7 @@ code=(
   "upstream/session-index.tsx packages/tui/src/routes/session/index.tsx"
   "upstream/message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
   "upstream/prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
+  "upstream/app.tsx packages/tui/src/app.tsx"
   "upstream/cli-build.ts packages/cli/script/build.ts"
   "tests/capri-settings.ts packages/tui/test/fixture/capri-settings.ts"
   "tests/app-lifecycle.test.tsx packages/tui/test/app-lifecycle.test.tsx"
