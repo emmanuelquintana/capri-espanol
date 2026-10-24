@@ -53,13 +53,17 @@ export function CyberGlitch() {
     }
     renderer.addPostProcessFn(paint)
     let last = performance.now()
+    let probability = Capri.glitchProbability()
+    let ticks = 0
     const timer = setInterval(() => {
+      // capri.json can be edited while Capri runs, so re-read the setting about once a second.
+      if (++ticks % 20 === 0) probability = Capri.glitchProbability()
       const now = performance.now()
       const dt = Math.min(0.25, (now - last) / 1000)
       last = now
       const { width, height } = dimensions()
       const was = Glitch.active(state)
-      Glitch.step(state, dt, { level: level(), ratio: ratio(), width, height })
+      Glitch.step(state, dt, { level: level(), ratio: ratio(), probability, width, height })
       // Redraw while glitching, and once more after the last rectangle expires so it does not stay on screen.
       if (was || Glitch.active(state)) renderer.requestRender()
     }, FRAME_MS)

@@ -17,6 +17,43 @@ test("glitch rate grows with the level and with context use", () => {
   expect(Glitch.shiftRate("max", 1)).toBeLessThan(Glitch.spawnRate("max", 1))
 })
 
+test("the glitch probability setting scales every rate and zero turns the glitch off", () => {
+  expect(Glitch.spawnRate("medium", 0.5, 2)).toBeCloseTo(Glitch.spawnRate("medium", 0.5) * 2)
+  expect(Glitch.shiftRate("medium", 0.5, 0.5)).toBeCloseTo(Glitch.shiftRate("medium", 0.5) / 2)
+  const state = Glitch.create()
+  const random = seeded(3)
+  for (let i = 0; i < 2000; i++)
+    Glitch.step(state, 0.05, { level: "max", ratio: 1, probability: 0, width: 80, height: 24 }, random)
+  expect(Glitch.active(state)).toBe(false)
+})
+
+test("rectangles change speed and reverse direction while they live", () => {
+  const random = seeded(11)
+  const rects: Glitch.Rect[] = Array.from({ length: 40 }, (_, i) => ({
+    x: 40,
+    y: i % 20,
+    width: 5,
+    height: 1,
+    speed: 30,
+    color: Glitch.palette[0]!,
+    life: 100,
+    flicker: 0,
+  }))
+  const state: Glitch.State = { rects, shifts: [] }
+  const speeds = new Set<number>()
+  let reversed = false
+  for (let i = 0; i < 5; i++) {
+    const before = new Map(state.rects.map((rect) => [rect, rect.speed]))
+    Glitch.step(state, 0.02, { level: "none", ratio: 0, width: 80, height: 24 }, random)
+    for (const rect of state.rects) {
+      speeds.add(Math.round(rect.speed))
+      if (Math.sign(rect.speed) !== Math.sign(before.get(rect)!)) reversed = true
+    }
+  }
+  expect(speeds.size).toBeGreaterThan(5)
+  expect(reversed).toBe(true)
+})
+
 test("nothing glitches at level none", () => {
   const state = Glitch.create()
   const random = seeded(1)
