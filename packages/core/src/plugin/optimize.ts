@@ -59,7 +59,9 @@ export const MetaPlugin = make("opencode.prompt.meta", (model) => {
   return PROMPT_META.replaceAll("{{MODEL_NAME}}", model.name)
 })
 
-export const Plugins = [OpenAIPlugin, AnthropicPlugin, KimiPlugin, ArceePlugin, MetaPlugin] as const
+// Capri's persona prompt (session/system-prompt.ts) is the default for every model family, so the model-specific prompt
+// plugins above stay defined but are not registered.
+export const Plugins = [] as const
 
 const models = new WeakMap<SessionHooks["context"], Model.Info>()
 

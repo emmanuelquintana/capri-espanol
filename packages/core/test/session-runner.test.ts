@@ -54,7 +54,6 @@ import { PluginSupervisor } from "@opencode/core/plugin/supervisor"
 import { Plugin } from "@opencode/core/plugin"
 import { PluginHooks } from "@opencode/core/plugin/hooks"
 import { PluginPromise } from "@opencode/core/plugin/promise"
-import { OptimizePlugin } from "@opencode/core/plugin/optimize"
 import { IdentityPlugin } from "@opencode/core/plugin/identity"
 import { QuestionTool } from "@opencode/core/tool/plugin/question"
 import { Agent } from "@opencode/core/agent"
@@ -531,9 +530,6 @@ const setup = Effect.gen(function* () {
     model: modelHost(models),
     provider: noProviders,
     session: { hook: (name, callback) => hooks.register("session", name, callback) },
-  })
-  yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), {
-    discard: true,
   })
   yield* IdentityPlugin.Plugin.effect(pluginHost)
   yield* agents.transform((editor) => {
@@ -1753,7 +1749,7 @@ describe("SessionRunnerLLM", () => {
     expect(s.requests.at(-1)?.system.map((part) => part.text)).toEqual([defaultSystem, fakeIdentity, "Latest context"])
   })
 
-  scenario("uses the selected model family prompt when the agent does not override it", function* (s) {
+  scenario("uses the Capri prompt for every model family when the agent does not override it", function* (s) {
     s.currentModel = LanguageModel.make({ id: "gpt-5", provider: "openai", route: OpenAIChat.route })
     yield* s.admit("First")
 
@@ -1761,13 +1757,13 @@ describe("SessionRunnerLLM", () => {
     yield* s.resume
 
     expect(s.requests.at(-1)?.system.map((part) => part.text)).toEqual([
-      expect.stringContaining("# Delegation"),
+      expect.stringContaining("You are Capri"),
       gptIdentity,
       "Initial context",
     ])
   })
 
-  scenario("uses the selected model family prompt when the agent system override is empty", function* (s) {
+  scenario("uses the Capri prompt for every model family when the agent system override is empty", function* (s) {
     s.currentModel = LanguageModel.make({ id: "gpt-5", provider: "openai", route: OpenAIChat.route })
     const agent = yield* Agent.Service
     yield* agent.transform((editor) =>
@@ -1782,7 +1778,7 @@ describe("SessionRunnerLLM", () => {
     yield* s.resume
 
     expect(s.requests.at(-1)?.system.map((part) => part.text)).toEqual([
-      expect.stringContaining("# Delegation"),
+      expect.stringContaining("You are Capri"),
       gptIdentity,
       "Initial context",
     ])
@@ -3167,6 +3163,14 @@ describe("SessionRunnerLLM", () => {
 
   scenario("automatically compacts into a completed summary and retained recent turn", function* (s) {
     const store = yield* SessionStore.Service
+    // The 4k window is sized for a short system prompt; the Capri persona alone would fill most of it.
+    const agent = yield* Agent.Service
+    yield* agent.transform((editor) =>
+      editor.update(Agent.ID.make("build"), (agent) => {
+        agent.system = "Test system"
+        agent.mode = "primary"
+      }),
+    )
     yield* s.llm.push(TestLLM.textWithUsage("Earlier answer", "text-first", 3_950))
     yield* s.runPrompt("Earlier question ".repeat(180))
 

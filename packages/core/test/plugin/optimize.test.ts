@@ -24,6 +24,14 @@ import PROMPT_ANTHROPIC from "../../src/plugin/system-prompt/anthropic.txt"
 const it = testEffect(PluginTestLayer)
 const fallback = SessionSystemPrompt.make([])
 const appended = `${fallback}\n\n${SessionSystemPrompt.render(PROMPT_ANTHROPIC, [])}`
+// Capri registers none of these by default; the tests enable them explicitly.
+const promptPlugins = [
+  OptimizePlugin.OpenAIPlugin,
+  OptimizePlugin.AnthropicPlugin,
+  OptimizePlugin.KimiPlugin,
+  OptimizePlugin.ArceePlugin,
+  OptimizePlugin.MetaPlugin,
+]
 const makeHost = Effect.gen(function* () {
   const agents = yield* Agent.Service
   const plugins = yield* Plugin.Service
@@ -47,14 +55,8 @@ const context = (id: string, system = fallback): SessionHooks["context"] => ({
 })
 
 describe("OptimizePlugin", () => {
-  test("enables prompt plugins without model-specific tool optimization", () => {
-    expect(OptimizePlugin.Plugins.map((plugin) => plugin.id)).toEqual([
-      "opencode.prompt.openai",
-      "opencode.prompt.anthropic",
-      "opencode.prompt.kimi",
-      "opencode.prompt.arcee",
-      "opencode.prompt.meta",
-    ])
+  test("registers no model-family prompt plugins so the Capri prompt applies to every model", () => {
+    expect(OptimizePlugin.Plugins).toEqual([])
   })
 
   it.effect("selects model-lab prompts through session context hooks", () =>
@@ -69,7 +71,7 @@ describe("OptimizePlugin", () => {
           model.name = "Muse Spark"
         })
       })
-      yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), {
+      yield* Effect.forEach(promptPlugins, (plugin) => plugin.effect(pluginHost), {
         discard: true,
       })
       const cases = [
@@ -270,7 +272,7 @@ describe("OptimizePlugin", () => {
         }),
       )
       const pluginHost = yield* makeHost
-      yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), {
+      yield* Effect.forEach(promptPlugins, (plugin) => plugin.effect(pluginHost), {
         discard: true,
       })
       const event = context("gpt-5", "Custom agent prompt")
@@ -339,7 +341,7 @@ describe("OptimizePlugin", () => {
             if (family) model.family = Model.Family.make(family)
           })
       })
-      yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), { discard: true })
+      yield* Effect.forEach(promptPlugins, (plugin) => plugin.effect(pluginHost), { discard: true })
       yield* Effect.forEach(
         cases,
         ([id, , , prompt]) =>
@@ -375,7 +377,7 @@ describe("OptimizePlugin", () => {
           model.name = "Muse Spark"
         })
       })
-      yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), { discard: true })
+      yield* Effect.forEach(promptPlugins, (plugin) => plugin.effect(pluginHost), { discard: true })
       yield* IdentityPlugin.Plugin.effect(pluginHost)
 
       const named = context("meta/muse-spark-1.1")

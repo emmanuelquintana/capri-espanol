@@ -188,7 +188,8 @@ describe("SessionRunnerLLM recorded", () => {
         provider: noProviders,
         session: { hook: (name, callback) => hooks.register("session", name, callback) },
       })
-      yield* Effect.forEach(OptimizePlugin.Plugins, (plugin) => plugin.effect(pluginHost), { discard: true })
+      // The recording was made with the OpenAI prompt, which Capri does not register by default.
+      yield* OptimizePlugin.OpenAIPlugin.effect(pluginHost)
       yield* IdentityPlugin.Plugin.effect(pluginHost)
       const { db } = yield* Database.Service
       yield* db

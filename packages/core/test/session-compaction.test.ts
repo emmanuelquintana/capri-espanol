@@ -681,12 +681,13 @@ it.effect("summary compaction past the ceiling keeps the conversation unchanged 
   Effect.gen(function* () {
     requests = []
     const session = yield* insertSession(Session.ID.make("ses_compaction_near_window"))
-    // About 182k estimated tokens: past the 170k ceiling, within the 184k left after reserving room for the summary.
+    // About 180k estimated tokens: past the 170k ceiling, within the 184k left after reserving room for the summary and
+    // the system prompt.
     const messages = ["first", "second"].map((label) =>
       SessionMessage.User.make({
         id: SessionMessage.ID.create(),
         type: "user",
-        text: `${label} ${"x".repeat(364_000)}`,
+        text: `${label} ${"x".repeat(360_000)}`,
         time: { created: DateTime.makeUnsafe(0) },
       }),
     )

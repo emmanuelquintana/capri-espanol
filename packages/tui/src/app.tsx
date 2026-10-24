@@ -72,6 +72,7 @@ import { DialogPair } from "./component/dialog-pair"
 import { DialogHighlights } from "./component/dialog-highlights"
 import { claim } from "./util/highlights"
 import { DialogThemeList } from "./component/dialog-theme-list"
+import { DialogCyberpsycosis } from "./component/dialog-cyberpsycosis"
 import { DialogHelp } from "./ui/dialog-help"
 import { DialogAgent } from "./component/dialog-agent"
 import { DialogSessionList } from "./component/dialog-session-list"
@@ -1109,6 +1110,15 @@ function App() {
         slash: { name: "debug" },
         run: () => {
           dialog.replace(() => <DialogDebug />)
+        },
+        category: "System",
+      },
+      {
+        name: "capri.cyberpsycosis",
+        title: "Set cyberpsychosis level",
+        slash: { name: "cyberpsycosis" },
+        run: () => {
+          dialog.replace(() => <DialogCyberpsycosis />)
         },
         category: "System",
       },

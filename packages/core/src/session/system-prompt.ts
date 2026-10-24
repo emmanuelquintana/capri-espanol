@@ -1,9 +1,22 @@
 export * as SessionSystemPrompt from "./system-prompt.js"
 
+import { Capri } from "../capri.js"
 import PROMPT from "./runner/prompt/system.txt"
+import PERSONA from "./runner/prompt/capri/persona.txt"
+import CYBERPSYCOSIS_NONE from "./runner/prompt/capri/cyberpsycosis-none.txt"
+import CYBERPSYCOSIS_MEDIUM from "./runner/prompt/capri/cyberpsycosis-medium.txt"
+import CYBERPSYCOSIS_MAX from "./runner/prompt/capri/cyberpsycosis-max.txt"
 
-export function make(tools: string[]) {
-  return render(PROMPT, tools)
+const CYBERPSYCOSIS: Record<Capri.Level, string> = {
+  none: CYBERPSYCOSIS_NONE,
+  medium: CYBERPSYCOSIS_MEDIUM,
+  max: CYBERPSYCOSIS_MAX,
+}
+
+// Capri's persona and the active cyberpsycosis module replace the model-family prompts; the harness template stays
+// after them for tool guidance.
+export function make(tools: string[], level: Capri.Level = Capri.cyberpsycosis()) {
+  return [PERSONA, CYBERPSYCOSIS[level], render(PROMPT, tools)].map((part) => part.trim()).join("\n\n")
 }
 
 export function render(prompt: string, tools: string[]) {
