@@ -11,7 +11,8 @@ capri/
 ├── config/        capri.json reading and writing
 ├── logo/          logo art and renderers
 ├── theme/         color theme
-├── tests/         test fixture and tests adjusted for Capri's hidden information
+├── install/       installer
+├── docs/          project README
 └── upstream/      snapshots of edited upstream opencode files
 ```
 
@@ -59,12 +60,17 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 |---|---|---|
 | `capri-theme.json` | `packages/tui/src/theme/assets/v2/opencode.json` | Dark-only v2 TUI color theme (replaces the built-in v2 `opencode` theme). |
 
-## tests/
+## install/
 
 | File | Target | Function |
 |---|---|---|
-| `capri-settings.ts` | `packages/tui/test/fixture/capri-settings.ts` | `whenModelShown`, `whenBuildLabelShown`, `whenTpsShown`, `whenThinkingShown`, `whenToolResultsShown`: `test`, or `test.skip` when capri.json hides what the test reads off the screen. |
-| `*.test.tsx` | `packages/tui/test/` | Upstream tests switched to those helpers. To run them all, set `footer.name` to `"Build"`, `footer.model` and `footer.tps` to `true`, and `hide.thinking` and `hide.toolResults` to `false` in capri.json. |
+| `install.sh` | `install` | Linux installer: downloads the release (or `--binary` for a local build), installs it as `~/.capri/bin/capri`, adds it to `PATH`, and writes the default `~/.config/capri/capri.json` unless one exists. Replaces opencode's installer. |
+
+## docs/
+
+| File | Target | Function |
+|---|---|---|
+| `README.md` | `README.md` | Project README (English only): install, features, cyberpsychosis levels, `capri.json` options, opencode MIT attribution, NVIDIA NIM appendix. Replaces opencode's README. |
 
 ## upstream/ (snapshots of edited opencode files)
 
@@ -73,6 +79,7 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 | `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. |
 | `message-parts.tsx` | `packages/tui/src/routes/session/message-parts.tsx` | `reasoningContent` scrambles thinking (`hide.thinking`). |
 | `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. |
+| `cli-build.ts` | `packages/cli/script/build.ts` | `OPENCODE_CLI_NAME` is `capri`, so `--version` and help say `capri`. |
 
 ## Edits to upstream files that are not copied here
 
@@ -82,4 +89,6 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 | `packages/core/src/session/runner/prompt/system.txt` | First line reworded; harness guidance kept. |
 | `packages/core/src/plugin/optimize.ts` | `Plugins` is empty, so the model-family prompts are not used. |
 | `packages/tui/src/app.tsx` | `/cyberpsycosis` command and the `<CyberGlitch />` mount. |
+| `LICENSE` | Added the original opencode copyright line (MIT). |
+| `README.*.md` (translations) | Deleted with opencode's README. |
 | `packages/core/test/*`, `packages/tui/test/*` | Tests updated for the Capri prompt and theme. |

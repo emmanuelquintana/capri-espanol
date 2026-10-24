@@ -11,6 +11,8 @@ mode="${1:-to-repo}"
 # snapshots, so after an opencode upstream merge run `sync.sh from-repo` before editing here, never the other way).
 code=(
   "logo/logo.ts packages/tui/src/logo.ts"
+  "install/install.sh install"
+  "docs/README.md README.md"
   "theme/capri-theme.json packages/tui/src/theme/assets/v2/opencode.json"
   "config/capri.ts packages/core/src/capri.ts"
   "config/capri-config.ts packages/tui/src/capri-config.ts"
@@ -23,6 +25,7 @@ code=(
   "upstream/session-index.tsx packages/tui/src/routes/session/index.tsx"
   "upstream/message-parts.tsx packages/tui/src/routes/session/message-parts.tsx"
   "upstream/prompt-index.tsx packages/tui/src/component/prompt/index.tsx"
+  "upstream/cli-build.ts packages/cli/script/build.ts"
   "tests/capri-settings.ts packages/tui/test/fixture/capri-settings.ts"
   "tests/app-lifecycle.test.tsx packages/tui/test/app-lifecycle.test.tsx"
   "tests/command-selection.test.tsx packages/tui/test/command-selection.test.tsx"

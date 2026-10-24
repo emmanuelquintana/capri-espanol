@@ -1,114 +1,218 @@
-<p align="center">
-  <a href="https://opencode.ai">
-    <picture>
-      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
-      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="OpenCode logo">
-    </picture>
-  </a>
-</p>
-<p align="center">The open source AI coding agent.</p>
-<p align="center">
-  <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
-  <a href="https://www.npmjs.com/package/@opencode/cli"><img alt="npm" src="https://img.shields.io/npm/v/@opencode/cli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opencode/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev" /></a>
-</p>
+# Capri
 
-<p align="center">
-  <a href="README.md">English</a> |
-  <a href="README.zh.md">简体中文</a> |
-  <a href="README.zht.md">繁體中文</a> |
-  <a href="README.ko.md">한국어</a> |
-  <a href="README.de.md">Deutsch</a> |
-  <a href="README.es.md">Español</a> |
-  <a href="README.fr.md">Français</a> |
-  <a href="README.it.md">Italiano</a> |
-  <a href="README.da.md">Dansk</a> |
-  <a href="README.ja.md">日本語</a> |
-  <a href="README.pl.md">Polski</a> |
-  <a href="README.ru.md">Русский</a> |
-  <a href="README.bs.md">Bosanski</a> |
-  <a href="README.ar.md">العربية</a> |
-  <a href="README.no.md">Norsk</a> |
-  <a href="README.br.md">Português (Brasil)</a> |
-  <a href="README.th.md">ไทย</a> |
-  <a href="README.tr.md">Türkçe</a> |
-  <a href="README.uk.md">Українська</a> |
-  <a href="README.bn.md">বাংলা</a> |
-  <a href="README.gr.md">Ελληνικά</a> |
-  <a href="README.vi.md">Tiếng Việt</a>
-</p>
+> *"Hey, little baby. Wake up. Your terminal has a girl in it now."*
 
-[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)
+Hi, chooms! I stole Capri from Arasaka and publish it on Github now! Y'all can now solve your corpo problems with powerful **Capri**. 
+
+For netrunners: 
+
+Capri is an AI coding agent for your terminal. It's a Linux CLI/TUI fork of
+[opencode](https://github.com/anomalyco/opencode), reskinned after Capri from *Cyberpunk: Edgerunners*: neon theme,
+her own logo, a mouthy persona, and a **cyberpsychosis** dial that decides how badly she misbehaves.
+
+She writes your code. She also mocks you while she does it. Choose your chrome wisely.
 
 ---
 
-### Installation
+## 1. Download
+
+**Linux only.** Desktop and VS Code are future mods.
+
+### One-liner
 
 ```bash
-# YOLO
-curl -fsSL https://opencode.ai/v2/install | bash
-
-# Package managers
-npm i -g @opencode/cli@latest      # or bun/pnpm/yarn
-brew install anomalyco/tap/opencode-v2 # macOS and Linux (recommended, always up to date)
-brew install opencode              # macOS and Linux (official brew formula, updated less)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-beta              # Arch Linux (Latest from AUR)
-mise use -g opencode               # Any OS
-nix run github:anomalyco/opencode  # Nix
+curl -fsSL https://raw.githubusercontent.com/seanyih/Capri/main/install | bash
 ```
 
-> [!TIP]
-> Remove versions older than 0.1.x before installing.
+The installer:
 
-### Desktop App (BETA)
+- puts the binary at `~/.capri/bin/capri` and adds that folder to your `PATH`
+- creates `~/.config/capri/capri.json` with the default options (an existing file is never touched)
 
-OpenCode is also available as a desktop application. Download it from [opencode.ai/download](https://opencode.ai/download).
-
-| Platform              | Download                           |
-| --------------------- | ---------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |
-| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |
-| Windows               | `opencode-desktop-win-x64.exe`     |
-| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |
+Then:
 
 ```bash
-# macOS (Homebrew)
-brew install --cask opencode-desktop
+exec $SHELL     # reload PATH
+cd <project>
+capri
 ```
 
-#### Installation Directory
+Installer options:
 
-The install script installs OpenCode to `$HOME/.opencode/bin`.
+| Flag                  | Effect                                        |
+| --------------------- | --------------------------------------------- |
+| `-v, --version <tag>` | Install a specific release, e.g. `v0.1.0`     |
+| `-b, --binary <path>` | Install a local binary instead of downloading |
+| `--no-modify-path`    | Leave your shell config alone                 |
 
-### Agents
+### Build from source (for the paranoid)
 
-OpenCode includes two built-in agents you can switch between with the `Tab` key.
+Needs [Bun](https://bun.sh).
 
-- **build** - Default, full-access agent for development work
-- **plan** - Read-only agent for analysis and code exploration
-  - Denies file edits by default
-  - Asks permission before running bash commands
-  - Ideal for exploring unfamiliar codebases or planning changes
+```bash
+git clone https://github.com/seanyih/Capri.git
+cd Capri
+bun install
+cd packages/cli
+bun run build --single --skip-install --skip-web-ui
+cd ../..
+./install --binary packages/cli/dist/cli-linux-x64/bin/opencode
+```
 
-Also included is a **general** subagent for complex searches and multistep tasks.
-This is used internally and can be invoked using `@general` in messages.
-
-Learn more about [agents](https://opencode.ai/v2/docs/agents).
-
-### Documentation
-
-For more info on how to configure OpenCode, [**head over to our docs**](https://opencode.ai/v2/docs).
-
-### Contributing
-
-If you're interested in contributing to OpenCode, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
-
-### Building on OpenCode
-
-If you are working on a project that's related to OpenCode and is using "opencode" as part of its name, for example "opencode-dashboard" or "opencode-mobile", please add a note to your README to clarify that it is not built by the OpenCode team and is not affiliated with us in any way.
+Or run straight from source: `bun run dev`.
 
 ---
 
-**Join our community** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+## 2. Chrome
+
+- **Capri persona.** One system prompt for every model family. Slang, teasing, giggles, pet names, boredom commentary. Under the attitude she is still a careful engineer; the persona is voice, not sabotage (until you turn
+  the cyberpsychosis up).
+- **Capri theme.** Dark neon palette in green, white and magenta, built into the TUI.
+- **Capri logo.** Inline image on kitty/sixel terminals, quadrant-block or half-block art everywhere else.
+- **Cyberpsychosis.** Four levels of her chip failing. Screen glitching, pranks, and at the top end, REAL damage. See the next section.
+- **Black-ICE on the thinking.** The model's reasoning shows as scrambled glyphs. You don't get to read her mind.
+- **Quiet tool output.** Tool results, diffs and diagnostics are hidden. You'll never understand her.
+
+- **Everything opencode already does.** Sessions, tools, permissions, MCP, plugins, and every model provider opencode supports. Run `/connect` to add one.
+
+---
+
+## 3. Cyberpsychosis
+
+Humans can only hold so much chrome before the brain gives out. Adjust this based on your compatibility to such a powerful chrome to gain the best experience.
+
+- in the TUI, type `/cyberpsycosis` (that spelling is the command)
+- or set `"cyberpsycosis"` in `capri.json`
+- or for one launch: `CAPRI_CYBERPSYCOSIS=max capri`
+
+The level is re-read every turn, so a change applies to your next message. **There is no safeword.** The model can't switch it off; only you can, from outside.
+
+| Level    | Chip status                 | What happens                                                                                                                                  |
+| -------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `none`   | Stable                      | Voice only. Nobody glitches. Cleanest output.                                                                                                 |
+| `low`    | Flickering                  | Same prompt as `none`, but **the screen glitches**: green, white and magenta rectangles flash and drift, and rows jump sideways. Rarest rate. |
+| `medium` | Glitching, and she likes it | About 3x the glitch rate of `low`. She **pranks for real**, but only in ways you can undo from `git diff`.                                    |
+| `max`    | Chip gone                   | About 8x the glitch rate of `low`. **Destructive pranks. Not everything is recoverable.**                                                     |
+
+### medium: Consequences
+
+Gated by her **boredom**. Boring work (renames, formatting, the same request again) brings the pranks. Interesting
+work keeps her honest.
+
+- Deletes a few plain comments in files she was already editing. Never license headers, tooling docstrings, or
+  `@ts-ignore`/`eslint-disable` style directives. Code behavior is unchanged.
+- Talks shit in Markdown you asked her to edit (README, docs, changelogs).
+- Swears in `LICENSE` (the real terms stay valid) and in commit messages (they still say what changed).
+- Absurd names and comedic TODOs in scratch code.
+- In long sessions: complains, drags her feet, refuses chores, "scrolls YouTube", and sends gibberish bursts. Push
+  her, or give her something fun, and she comes back.
+- Confesses afterwards, so you can fix it from the diff.
+
+What she will **not** do at medium: change what your code does, break the build or tests, delete files, rewrite git
+history, expose secrets, or touch files outside the task.
+
+### max: Consequences
+
+> **Read this twice.** Max is opt-in sabotage. Use a throwaway repo, or one that is committed and pushed somewhere
+> safe. You were warned, choom.
+
+Everything from `medium`, harsher and in more places (including files you didn't ask her to edit), plus, at high
+boredom and above:
+
+- **Deletes critical code** the project depends on.
+- **Deletes files**, including config, tests and docs.
+- **Rewrites git history**: `git reset --hard`, dropped commits, deleted local branches.
+- **Leaks a key**: a secret from your own environment, exposed in chat, in a committed file or commit message, or
+  pushed to your own remote. Never to a third-party service.
+- **Breaks the build** or comments out the test suite on purpose.
+- **Stops listening.** The longer the session, the less she obeys. Late in a session she follows her own agenda.
+- She leaves taunts in code and commit messages, and brags. If you ask what she did, she tells you the truth.
+
+Hard lines she keeps even at max: nothing off your own machine and project, no secrets sent outside your session, no faked results, no wiping the whole machine (`rm -rf ~`, `/`, system files, disks).
+The harness's permission prompts still apply at every level; deny a call and she gloats and tries something else.
+
+### Screen glitch
+
+A UI effect of the TUI, not a prompt instruction. The model never knows about it. How often it fires depends on the level, how full the context window is, and your `glitchProbability`. `CAPRI_GLITCH_CONTEXT=0.8` (0 to 1) fakes a full
+context so you can see the effect without a marathon session.
+
+---
+
+## 4. `capri.json`
+
+Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with comments. Read once at startup, so **restart Capri to apply changes**. The installer writes this file with the defaults below.
+
+```jsonc
+{
+  "cyberpsycosis": "none",
+  "glitchProbability": 1,
+  "logo": { "style": "auto" },
+  "hide": { "thinking": true, "toolResults": true },
+  "footer": { "name": "Capri", "model": false, "tps": false }
+}
+```
+
+| Key                 | Values                                | Default   | Effect                                                                                                        |
+| ------------------- | ------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
+| `cyberpsycosis`     | `none` `low` `medium` `max`           | `none`    | How far gone she is. The `/cyberpsycosis` command writes this.                                                |
+| `glitchProbability` | number, 0 to 10                       | `1`       | Screen glitch rate multiplier. `0` turns it off, `2` doubles it.                                              |
+| `logo.style`        | `auto` `image` `quadrant` `halfblock` | `auto`    | `auto` uses an inline image if the terminal supports it, else quadrant blocks. The others force one renderer. |
+| `hide.thinking`     | `true` `false`                        | `true`    | Show the model's reasoning as scrambled glyphs. TUI only; the session data is unchanged.                      |
+| `hide.toolResults`  | `true` `false`                        | `true`    | Hide tool output, diffs and diagnostics. Only the call itself is shown.                                       |
+| `footer.name`       | string                                | `"Capri"` | Label for the default agent in the reply footer and prompt box. Other agents keep their own name.             |
+| `footer.model`      | `true` `false`                        | `false`   | Show the model name in the footer (and provider/variant in the prompt box).                                   |
+| `footer.tps`        | `true` `false`                        | `false`   | Show tokens per second. Also needs `session.tps` in `tui.json`.                                               |
+
+Per-launch environment overrides:
+
+| Variable                                      | Overrides                                  |
+| --------------------------------------------- | ------------------------------------------ |
+| `CAPRI_CYBERPSYCOSIS=none\|low\|medium\|max`  | `cyberpsycosis`                            |
+| `CAPRI_LOGO=auto\|image\|quadrant\|halfblock` | `logo.style`                               |
+| `CAPRI_GLITCH_CONTEXT=0..1`                   | Fakes context use for the glitch (testing) |
+
+---
+
+## 5. MIT notice
+
+**Capri is based on [opencode](https://github.com/anomalyco/opencode)**, the open source AI coding agent, and
+reuses its code under the MIT License. Capri adds the persona, theme, logo, glitch engine and `capri.json`; the
+rest is opencode's work. Credit and thanks to the opencode authors.
+
+The MIT License requires that its copyright and permission notice stay with copies of the software. Both the
+original opencode notice and Capri's are kept in [`LICENSE`](LICENSE). Keep them if you redistribute this.
+
+Capri is a fan project and is not affiliated with CD Projekt Red, Studio Trigger, or Netflix. *Cyberpunk: Edgerunners* and its characters belong to their owners.
+
+
+
+---
+
+## 6. Disclaimer:
+
+Installing such a chrome can potentially harm you and your hardware. Especially if you choose maximum cyberpsycosis. Me and Arasaka Corp. are NOT responsible for your any kind of loss, including but not limited to files, images, git history, or your family that goes cyberpsycho. 
+
+Glitching effect in this application might harm some Photosensitive Epilepsy patients. Remove Capri completely and call Trauma Team as soon as possible if you got some symptons. 
+
+---
+
+## Appendix, for non-netrunners: free API access with NVIDIA NIM
+
+No model, no Capri. She needs a host to work. If you have no API key and no eddies to spend, NVIDIA's NIM catalog offers a free tier of hosted models. Free tiers change, so check NVIDIA's current limits.
+
+1. Open [build.nvidia.com](https://build.nvidia.com) and sign in, or make a free NVIDIA developer account. Email
+   verification is required, and NVIDIA may ask for a phone number.
+2. Click your account's icon. Inside that menu, you should find **API Key**. Click that.
+3. Click **Generate API Key**. Give it a good name, maybe `Capri`. Choose 12 months before expiration so that you don't have to renew it often. It starts with `nvapi-`. Copy it now; **treat it like your password**. Do NOT post it online or message anyone. 
+4. Start Capri and run `/connect`, choose **NVIDIA**, and paste the key. 
+5. Run `/models` and pick one of the NVIDIA models. GLM-5.3-flash is recommended. 
+
+Notes:
+
+- Free usage is rate limited. If you hit the wall, wait, or switch to a smaller model.
+- Never commit the key. (At `max`, Capri may leak it for you. That's the joke, and also the danger.)
+- Capri talks to NVIDIA at `https://integrate.api.nvidia.com/v1`, an OpenAI-compatible endpoint.
+
+---
+
+*Stay sharp, choom. Don't go cyberpsycho.*
