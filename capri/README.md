@@ -76,7 +76,7 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 
 | File | Target | Capri edit |
 |---|---|---|
-| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. |
+| `session-index.tsx` | `packages/tui/src/routes/session/index.tsx` | `ToolPart` hides tool output/diffs (`hide.toolResults`); `AssistantFooter` shows the Capri label, and model and tok/s only if enabled. `/soulkiller` is an alias of `/compact`. OpenCode Go upsell dialog and notice removed. |
 | `message-parts.tsx` | `packages/tui/src/routes/session/message-parts.tsx` | `reasoningContent` scrambles thinking (`hide.thinking`). |
 | `app.tsx` | `packages/tui/src/app.tsx` | `/chrome` aliases `/models`, `/nightcity` aliases `/sessions`. `/update` command removed; terminal title is `Capri`. |
 | `prompt-index.tsx` | `packages/tui/src/component/prompt/index.tsx` | Prompt box shows the Capri label, and model/provider/variant only if `footer.model`. `/quickhacks` aliases `/skills`. `/cd moon` quits (alias of `/exit`, even if `moon/` is missing). |
@@ -85,6 +85,31 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 | `attention.ts` | `packages/tui/src/attention.ts` | Notification default title is `Capri`. |
 | `mini-runtime-lifecycle.ts` | `packages/tui/src/mini/runtime.lifecycle.ts` | Mini-mode terminal title says `Capri`. |
 | `cli-default.ts` | `packages/cli/src/commands/handlers/default.ts` | Background updater and the TUI `updater` hook removed, so Capri never self-updates to opencode. |
+| `permission.tsx` | `packages/tui/src/routes/session/permission.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `mini-footer-permission.tsx` | `packages/tui/src/mini/footer.permission.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `error-component.tsx` | `packages/tui/src/component/error-component.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `terminal-pane.tsx` | `packages/tui/src/component/terminal-pane.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `mini-footer-prompt.tsx` | `packages/tui/src/mini/footer.prompt.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `error-details.ts` | `packages/tui/src/util/error-details.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `tui-config-index.tsx` | `packages/tui/src/config/index.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `sidebar-footer.tsx` | `packages/tui/src/feature-plugins/sidebar/footer.tsx` | Removed the "OpenCode includes free models" line. |
+| `dialog-pair.tsx` | `packages/tui/src/component/dialog-pair.tsx` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `tui-error.ts` | `packages/tui/src/util/error.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `mini-splash.ts` | `packages/tui/src/mini/splash.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-commands.ts` | `packages/cli/src/commands/commands.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-pair.ts` | `packages/cli/src/commands/handlers/pair.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-uninstall.ts` | `packages/cli/src/commands/handlers/uninstall.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-upgrade.ts` | `packages/cli/src/commands/handlers/upgrade.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-stats.ts` | `packages/cli/src/commands/handlers/stats.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-acp-handler.ts` | `packages/cli/src/commands/handlers/acp.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-mcp-auth.ts` | `packages/cli/src/commands/handlers/mcp/auth.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-acp-service.ts` | `packages/cli/src/acp/service.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-acp-error.ts` | `packages/cli/src/acp/error.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-acp-translate.ts` | `packages/cli/src/acp/translate.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-mini.ts` | `packages/cli/src/mini.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-mini-host.ts` | `packages/cli/src/mini-host.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-server-process.ts` | `packages/cli/src/server-process.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
+| `cli-remote-tunnel.ts` | `packages/cli/src/services/remote-tunnel.ts` | OpenCode wording replaced with Capri (`opencode <cmd>` hints are now `capri <cmd>`). |
 | `cli-build.ts` | `packages/cli/script/build.ts` | `OPENCODE_CLI_NAME` is `capri`, so `--version` and help say `capri`. |
 
 ## Edits to upstream files that are not copied here
