@@ -11,6 +11,7 @@ capri/
 ├── config/        capri.json reading and writing
 ├── logo/          logo art and renderers
 ├── theme/         color theme
+├── skills/        on-demand skills (Cyberpunk lore)
 ├── install/       installer
 ├── docs/          project README
 └── upstream/      snapshots of edited upstream opencode files
@@ -60,11 +61,25 @@ Source masters and preview renders live in the git-ignored `capri_dev/`.
 |---|---|---|
 | `capri-theme.json` | `packages/tui/src/theme/assets/v2/opencode.json` | Dark-only v2 TUI color theme (replaces the built-in v2 `opencode` theme). |
 
+## skills/
+
+On-demand skills for Capri. Only the skill name and one-line description sit in the default prompt; the body and the
+references load when the model calls the `skill` tool and reads a file, so they cost tokens only when used.
+
+| File | Target | Function |
+|---|---|---|
+| `cyberpunk-lore/SKILL.md` | `.opencode/skills/cyberpunk-lore/SKILL.md` | Entry point: when to load, accuracy rules, and a cheat sheet of the most-asked facts (world, corps, gangs, chrome, slang, S1/S2/2077 one-liners). |
+| `cyberpunk-lore/references/characters.md` | `.opencode/skills/cyberpunk-lore/references/characters.md` | Who's who: Edgerunners 2 (D, Roman, Weak, Talia, Kyoko, Capri...), Edgerunners S1, and 2077. |
+| `cyberpunk-lore/references/factions.md` | `.opencode/skills/cyberpunk-lore/references/factions.md` | Megacorps, NCPD/Max-Tac/Trauma Team, gangs table, nomads. |
+| `cyberpunk-lore/references/places.md` | `.opencode/skills/cyberpunk-lore/references/places.md` | Night City districts and landmarks (Arasaka Tower, Afterlife...), Badlands, Moon, Net. |
+| `cyberpunk-lore/references/tech.md` | `.opencode/skills/cyberpunk-lore/references/tech.md` | Chrome (Sandevistan, Mantis Blades...), cyberpsychosis, netrunning, braindance, slang. |
+| `cyberpunk-lore/references/timeline.md` | `.opencode/skills/cyberpunk-lore/references/timeline.md` | History, S1 and Edgerunners 2 episode beats, 2077 plot. Sourced from cyberpunk.fandom.com; thin spots are marked "(thin)". |
+
 ## install/
 
 | File | Target | Function |
 |---|---|---|
-| `install.sh` | `install` | Linux installer: downloads the release (or `--binary` for a local build), installs it as `~/.capri/bin/capri`, adds it to `PATH`, and writes the default `~/.config/capri/capri.json` unless one exists. Replaces opencode's installer. |
+| `install.sh` | `install` | Linux installer: downloads the release (or `--binary` for a local build), installs it as `~/.capri/bin/capri`, adds it to `PATH`, writes the default `~/.config/capri/capri.json` unless one exists, and installs the `capri/skills` files to `~/.config/opencode/skills/` (copied from a checkout, else fetched from the repo; rerun refreshes them). Replaces opencode's installer. |
 
 ## docs/
 

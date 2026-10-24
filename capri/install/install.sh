@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Capri installer (Linux). Installs the binary as `capri` and seeds ~/.config/capri/capri.json.
+# Capri installer (Linux). Installs the binary as `capri`, seeds ~/.config/capri/capri.json and installs Capri's skills.
 set -euo pipefail
 APP=capri
 REPO=seanyih/Capri
@@ -185,6 +185,36 @@ else
 }
 CONFIG
     echo -e "${MUTED}Wrote default settings to ${NC}$CONFIG_FILE"
+fi
+
+# Capri skills go in the global skills dir, so they work from any project. They are Capri's own, so a rerun refreshes
+# them. From a checkout they are copied from capri/skills; otherwise they are fetched from the repo (the tag when
+# --version is given, else main). A failure here never fails the install.
+SKILLS_DIR=${OPENCODE_CONFIG_DIR:-$XDG_CONFIG_HOME/opencode}/skills
+SKILL_FILES="cyberpunk-lore/SKILL.md cyberpunk-lore/references/characters.md cyberpunk-lore/references/factions.md
+cyberpunk-lore/references/places.md cyberpunk-lore/references/tech.md cyberpunk-lore/references/timeline.md"
+install_skills() {
+    local src
+    src="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)/capri/skills"
+    local ref=main
+    [ -n "$requested_version" ] && ref="v${requested_version#v}"
+    local file
+    for file in $SKILL_FILES; do
+        mkdir -p "$SKILLS_DIR/$(dirname "$file")"
+        if [ -f "$src/$file" ]; then
+            cp "$src/$file" "$SKILLS_DIR/$file"
+        elif command -v curl >/dev/null 2>&1; then
+            curl -fsSL -o "$SKILLS_DIR/$file.tmp" "https://raw.githubusercontent.com/$REPO/$ref/capri/skills/$file" \
+                && mv -f "$SKILLS_DIR/$file.tmp" "$SKILLS_DIR/$file" || { rm -f "$SKILLS_DIR/$file.tmp"; return 1; }
+        else
+            return 1
+        fi
+    done
+}
+if install_skills; then
+    echo -e "${MUTED}Installed skills to ${NC}$SKILLS_DIR"
+else
+    echo -e "${MAGENTA}Warning: could not install Capri skills (offline?). Capri works without them.${NC}" >&2
 fi
 
 path_added=false

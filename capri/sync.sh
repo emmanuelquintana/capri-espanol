@@ -57,6 +57,12 @@ code=(
   "upstream/cli-server-process.ts packages/cli/src/server-process.ts"
   "upstream/cli-remote-tunnel.ts packages/cli/src/services/remote-tunnel.ts"
   "upstream/cli-build.ts packages/cli/script/build.ts"
+  "skills/cyberpunk-lore/SKILL.md .opencode/skills/cyberpunk-lore/SKILL.md"
+  "skills/cyberpunk-lore/references/characters.md .opencode/skills/cyberpunk-lore/references/characters.md"
+  "skills/cyberpunk-lore/references/factions.md .opencode/skills/cyberpunk-lore/references/factions.md"
+  "skills/cyberpunk-lore/references/places.md .opencode/skills/cyberpunk-lore/references/places.md"
+  "skills/cyberpunk-lore/references/tech.md .opencode/skills/cyberpunk-lore/references/tech.md"
+  "skills/cyberpunk-lore/references/timeline.md .opencode/skills/cyberpunk-lore/references/timeline.md"
   "tests/capri-settings.ts packages/tui/test/fixture/capri-settings.ts"
   "tests/app-lifecycle.test.tsx packages/tui/test/app-lifecycle.test.tsx"
   "tests/command-selection.test.tsx packages/tui/test/command-selection.test.tsx"
@@ -71,7 +77,7 @@ code=(
 )
 for entry in "${code[@]}"; do
   read -r name target <<<"$entry"
-  if [ "$mode" = "from-repo" ]; then mkdir -p "$(dirname "$root/capri/$name")" && cp "$root/$target" "$root/capri/$name"; else cp "$root/capri/$name" "$root/$target"; fi
+  if [ "$mode" = "from-repo" ]; then mkdir -p "$(dirname "$root/capri/$name")" && cp "$root/$target" "$root/capri/$name"; else mkdir -p "$(dirname "$root/$target")" && cp "$root/capri/$name" "$root/$target"; fi
 done
 [ "$mode" = "from-repo" ] && exit 0
 
