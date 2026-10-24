@@ -72,8 +72,9 @@ references load when the model calls the `skill` tool and reads a file, so they 
 | `cyberpunk-lore/references/characters.md` | `.opencode/skills/cyberpunk-lore/references/characters.md` | Who's who: Edgerunners 2 (D, Roman, Weak, Talia, Kyoko, Capri...), Edgerunners S1, and 2077. |
 | `cyberpunk-lore/references/factions.md` | `.opencode/skills/cyberpunk-lore/references/factions.md` | Megacorps, NCPD/Max-Tac/Trauma Team, gangs table, nomads. |
 | `cyberpunk-lore/references/places.md` | `.opencode/skills/cyberpunk-lore/references/places.md` | Night City districts and landmarks (Arasaka Tower, Afterlife...), Badlands, Moon, Net. |
-| `cyberpunk-lore/references/tech.md` | `.opencode/skills/cyberpunk-lore/references/tech.md` | Chrome (Sandevistan, Mantis Blades...), cyberpsychosis, netrunning, braindance, slang. |
+| `cyberpunk-lore/references/tech.md` | `.opencode/skills/cyberpunk-lore/references/tech.md` | Chrome (Sandevistan, Mantis Blades...), cyberpsychosis, netrunning, braindance. |
 | `cyberpunk-lore/references/timeline.md` | `.opencode/skills/cyberpunk-lore/references/timeline.md` | History, S1 and Edgerunners 2 episode beats, 2077 plot. Sourced from cyberpunk.fandom.com; thin spots are marked "(thin)". |
+| `cyberpunk-lore/references/slang.md` | `.opencode/skills/cyberpunk-lore/references/slang.md` | Street slang trimmed from the wiki's Streetslang page, tiered by how safe each word is to say (use lightly), plus Net and solo jargon. |
 
 ## install/
 

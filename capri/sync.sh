@@ -63,6 +63,7 @@ code=(
   "skills/cyberpunk-lore/references/places.md .opencode/skills/cyberpunk-lore/references/places.md"
   "skills/cyberpunk-lore/references/tech.md .opencode/skills/cyberpunk-lore/references/tech.md"
   "skills/cyberpunk-lore/references/timeline.md .opencode/skills/cyberpunk-lore/references/timeline.md"
+  "skills/cyberpunk-lore/references/slang.md .opencode/skills/cyberpunk-lore/references/slang.md"
   "tests/capri-settings.ts packages/tui/test/fixture/capri-settings.ts"
   "tests/app-lifecycle.test.tsx packages/tui/test/app-lifecycle.test.tsx"
   "tests/command-selection.test.tsx packages/tui/test/command-selection.test.tsx"

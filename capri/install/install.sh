@@ -192,7 +192,8 @@ fi
 # --version is given, else main). A failure here never fails the install.
 SKILLS_DIR=${OPENCODE_CONFIG_DIR:-$XDG_CONFIG_HOME/opencode}/skills
 SKILL_FILES="cyberpunk-lore/SKILL.md cyberpunk-lore/references/characters.md cyberpunk-lore/references/factions.md
-cyberpunk-lore/references/places.md cyberpunk-lore/references/tech.md cyberpunk-lore/references/timeline.md"
+cyberpunk-lore/references/places.md cyberpunk-lore/references/tech.md cyberpunk-lore/references/timeline.md
+cyberpunk-lore/references/slang.md"
 install_skills() {
     local src
     src="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)/capri/skills"
