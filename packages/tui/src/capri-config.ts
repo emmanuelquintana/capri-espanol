@@ -1,13 +1,13 @@
 export * as CapriConfig from "./capri-config"
 
-import { Path } from "@opencode/util/global"
 import { Schema } from "effect"
 import { parse, type ParseError } from "jsonc-parser"
 import { readFileSync } from "fs"
+import os from "os"
 import path from "path"
 
-// Capri's own settings, kept apart from opencode's tui.json/cli.json. Lives next to them in the global config directory.
-export const file = path.join(Path.config, "capri.json")
+// Capri's own settings, kept apart from opencode's tui.json/cli.json in ~/.config/capri/.
+export const file = path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"), "capri", "capri.json")
 
 export const LogoStyle = Schema.Literals(["auto", "image", "quadrant", "halfblock"])
 export type LogoStyle = Schema.Schema.Type<typeof LogoStyle>
