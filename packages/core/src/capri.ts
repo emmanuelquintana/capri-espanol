@@ -8,7 +8,7 @@ import path from "path"
 // Capri's own settings, kept apart from opencode's tui.json/cli.json in ~/.config/capri/.
 export const file = path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"), "capri", "capri.json")
 
-export const levels = ["none", "medium", "max"] as const
+export const levels = ["none", "low", "medium", "max"] as const
 export type Level = (typeof levels)[number]
 
 export const isLevel = (value: unknown): value is Level => levels.includes(value as Level)

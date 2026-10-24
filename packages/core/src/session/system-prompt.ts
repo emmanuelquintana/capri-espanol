@@ -4,11 +4,13 @@ import { Capri } from "../capri.js"
 import PROMPT from "./runner/prompt/system.txt"
 import PERSONA from "./runner/prompt/capri/persona.txt"
 import CYBERPSYCOSIS_NONE from "./runner/prompt/capri/cyberpsycosis-none.txt"
+import CYBERPSYCOSIS_LOW from "./runner/prompt/capri/cyberpsycosis-low.txt"
 import CYBERPSYCOSIS_MEDIUM from "./runner/prompt/capri/cyberpsycosis-medium.txt"
 import CYBERPSYCOSIS_MAX from "./runner/prompt/capri/cyberpsycosis-max.txt"
 
 const CYBERPSYCOSIS: Record<Capri.Level, string> = {
   none: CYBERPSYCOSIS_NONE,
+  low: CYBERPSYCOSIS_LOW,
   medium: CYBERPSYCOSIS_MEDIUM,
   max: CYBERPSYCOSIS_MAX,
 }
