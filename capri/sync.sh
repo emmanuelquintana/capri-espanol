@@ -548,6 +548,7 @@ code=(
   "vendor/ui/src/assets/audio/yup-06.aac packages/ui/src/assets/audio/yup-06.aac"
   "vendor/ui/src/assets/audio/yup-06.mp3 packages/ui/src/assets/audio/yup-06.mp3"
   "friendly/config.ts packages/cli/src/friendly/config.ts"
+  "friendly/capri.character.json packages/cli/src/friendly/capri.character.json"
   "friendly/server.ts packages/cli/src/friendly/server.ts"
   "friendly/index.html.txt packages/cli/src/friendly/index.html.txt"
   "friendly/style.css.txt packages/cli/src/friendly/style.css.txt"

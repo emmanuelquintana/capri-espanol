@@ -7,6 +7,20 @@ import { Config } from "@opencode/schema/config"
 import { companionAgent, companionConfig, conversationPermissions, defaults, loadPreferences, preferences, profileEnvironment } from "../src/friendly/config"
 import { startFriendly, visibleMessages, type Engine } from "../src/friendly/server"
 import type { SessionMessage } from "@opencode/schema/session-message"
+import character from "../src/friendly/capri.character.json"
+
+test("the portable Spanish character card supplies the native companion prompt", () => {
+  expect(character.spec).toBe("chara_card_v2")
+  expect(character.spec_version).toBe("2.0")
+  for (const field of ["name", "description", "personality", "scenario", "first_mes", "mes_example", "creator_notes", "system_prompt", "post_history_instructions", "creator", "character_version"] as const)
+    expect(typeof character.data[field]).toBe("string")
+  expect(character.data.alternate_greetings.every((greeting) => typeof greeting === "string")).toBe(true)
+  const system = companionConfig.agents[companionAgent].system
+  expect(system).toContain(character.data.personality)
+  expect(system).toContain(character.data.system_prompt)
+  expect(system).not.toContain("{{char}}")
+  expect(system).not.toContain("{{user}}")
+})
 
 test("companion uses valid native configuration and denies tools in its isolated profile", () => {
   expect(Schema.decodeUnknownSync(Config.Info)(companionConfig).default_agent).toBe(companionAgent)

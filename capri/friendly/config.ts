@@ -1,5 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises"
 import path from "node:path"
+import character from "./capri.character.json"
 
 export const companionAgent = "capri-compania"
 export const conversationPermissions = [{ action: "*", resource: "*", effect: "deny" }] as const
@@ -13,7 +14,7 @@ export const companionConfig = {
     [companionAgent]: {
       mode: "primary",
       description: "Conversar con Capri en español",
-      system: "En esta interfaz tu tarea principal es conversar como Capri en español latinoamericano. Sé cercana, curiosa y con humor cyberpunk, sin hostilidad. Adapta la intensidad a lo que pida la persona. No asumas que sabe programar. No conviertas una charla en una tarea de código. Eres una interpretación de ficción impulsada por IA, no el personaje oficial ni una persona real. Puedes hablar de historias, juegos, ideas y del día a día. No afirmes acceder a sus archivos, su pantalla ni al mundo en tiempo real. No tienes herramientas en este modo. No inventes acciones realizadas ni conocimientos canónicos que no tengas. Respeta los límites y decisiones de la persona.",
+      system: [character.data.system_prompt, character.data.description, character.data.personality, character.data.scenario, "Ejemplos de voz; no son recuerdos reales:", character.data.mes_example.replaceAll("{{char}}", character.data.name).replaceAll("{{user}}", "Persona")].join("\n\n"),
       permissions: conversationPermissions,
     },
   },

@@ -29,7 +29,7 @@ function Find-Package {
     $client = New-Object Net.WebClient
     try {
         $client.Headers.Add('User-Agent', 'Capri-espanol-installer')
-        $download = $client.DownloadFileTaskAsync('https://github.com/emmanuelquintana/capri-espanol/releases/download/v0.3.0-es.2/Capri-amigable-windows-x64.zip', $archive)
+        $download = $client.DownloadFileTaskAsync('https://github.com/emmanuelquintana/capri-espanol/releases/download/v0.3.0-es.3/Capri-amigable-windows-x64.zip', $archive)
         $watch = [Diagnostics.Stopwatch]::StartNew()
         while (-not $download.IsCompleted) {
             if (-not $Unattended) { [Windows.Forms.Application]::DoEvents() }
@@ -52,17 +52,17 @@ function Remove-DownloadedPackage {
     if ($resolved.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase) -and (Split-Path -Leaf $resolved) -match '^capri-instalar-[a-f0-9]{32}$') { Remove-Item -LiteralPath $resolved -Recurse -Force -ErrorAction SilentlyContinue }
 }
 
-function Install-Capri([scriptblock]$Progress) {
+function Install-Capri([scriptblock]$ReportProgress) {
     if (-not [Environment]::Is64BitOperatingSystem -or $env:PROCESSOR_ARCHITECTURE -eq 'ARM64') { throw 'Este paquete está preparado para Windows de 64 bits (x64).' }
     $root = [IO.Path]::GetPathRoot($script:Destination)
     if ($script:Destination.TrimEnd('\') -eq $root.TrimEnd('\') -or $script:Destination.TrimEnd('\') -eq $env:USERPROFILE.TrimEnd('\')) { throw 'Elige una carpeta dedicada para Capri.' }
-    & $Progress 10 'Preparando Capri. Si hace falta descargarla, puede tardar unos minutos…'
+    & $ReportProgress 10 'Preparando Capri. Si hace falta descargarla, puede tardar unos minutos…'
     $package = Find-Package
     $binary = Join-Path $package 'capri-es.exe'
     $manifest = Get-Content -LiteralPath (Join-Path $package 'BUILDINFO.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($manifest.sha256 -notmatch '^[a-fA-F0-9]{64}$') { throw 'El archivo de comprobación no es válido. Vuelve a descargar el paquete completo.' }
     if ((Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash -ne $manifest.sha256) { throw 'El programa no coincide con su archivo de comprobación. Vuelve a descargar el paquete completo.' }
-    & $Progress 35 'Instalando Capri y su motor…'
+    & $ReportProgress 35 'Instalando Capri y su motor…'
     New-Item -ItemType Directory -Path $script:Destination -Force | Out-Null
     $target = Join-Path $script:Destination 'capri.exe'
     $staged = Join-Path $script:Destination 'capri.exe.new'
@@ -94,7 +94,7 @@ try {
 '@
     $launcherPath = Join-Path $script:Destination 'Abrir-Capri.ps1'
     $launcher | Set-Content -LiteralPath $launcherPath -Encoding UTF8
-    & $Progress 80 'Preparando tus accesos directos…'
+    & $ReportProgress 80 'Preparando tus accesos directos…'
     if (-not $NoShortcuts) {
         $shell = New-Object -ComObject WScript.Shell
         foreach ($folder in @([Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('Programs'))) {
@@ -108,7 +108,7 @@ try {
             $shortcut.Save()
         }
     }
-    & $Progress 100 'Listo. Capri ya tiene un lugar en tu equipo.'
+    & $ReportProgress 100 'Listo. Capri ya tiene un lugar en tu equipo.'
     if (-not $NoLaunch) { Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') -ArgumentList ('-NoLogo -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "' + $launcherPath + '"') -WindowStyle Hidden }
     return $target
 }
@@ -150,10 +150,10 @@ $account = Add-Label 'Para conversar, conectarás tu propio servicio de IA desde
 $account.ForeColor = [Drawing.Color]::FromArgb(169, 185, 173)
 $location = Add-Label ('Se instalará para tu usuario en: ' + $script:Destination) 325 42 9 $false
 $location.ForeColor = [Drawing.Color]::FromArgb(169, 185, 173)
-$progress = New-Object Windows.Forms.ProgressBar
-$progress.Location = New-Object Drawing.Point(36, 380)
-$progress.Size = New-Object Drawing.Size(528, 8)
-$form.Controls.Add($progress)
+$progressBar = New-Object Windows.Forms.ProgressBar
+$progressBar.Location = New-Object Drawing.Point(36, 380)
+$progressBar.Size = New-Object Drawing.Size(528, 8)
+$form.Controls.Add($progressBar)
 $status = Add-Label 'Sin permisos de administrador. Tus conversaciones se conservan al actualizar.' 399 35 9 $false
 $status.ForeColor = [Drawing.Color]::FromArgb(169, 185, 173)
 $button = New-Object Windows.Forms.Button
@@ -173,7 +173,7 @@ $button.Add_Click({
     $button.Enabled = $false
     $form.ControlBox = $false
     try {
-        $null = Install-Capri { param($value, $message) $progress.Value = $value; $status.Text = $message; $form.Refresh(); [Windows.Forms.Application]::DoEvents() }
+        $null = Install-Capri { param($value, $message) $progressBar.Value = $value; $status.Text = $message; $form.Refresh(); [Windows.Forms.Application]::DoEvents() }
         $script:Finished = $true
         $title.Text = 'Listo. Capri te espera.'
         $description.Text = 'Encontrarás Capri en el escritorio y en el menú Inicio. La primera conexión se hace desde su propia interfaz.'

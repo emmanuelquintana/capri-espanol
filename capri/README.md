@@ -2,7 +2,9 @@
 
 Repositorio mantenido en `emmanuelquintana/capri-espanol`. `project.json` declara nuestra identidad y versión. `build-release.ps1` compila y empaqueta esta distribución; `install/Instalar-Capri.cmd` instala o descarga nuestras publicaciones.
 
-`friendly/` contiene la nueva experiencia: `config.ts` define el perfil y las preferencias; `server.ts` limita el acceso al motor nativo; `amigable.ts` arranca la aplicación; los tres archivos de texto incluyen HTML, CSS y JavaScript; `friendly.test.ts` comprueba aislamiento, credenciales y conversaciones.
+`friendly/` contiene la nueva experiencia: `config.ts` define el perfil y las preferencias y usa `capri.character.json` para construir las instrucciones del personaje; `server.ts` limita el acceso al motor nativo; `amigable.ts` arranca la aplicación; los tres archivos de texto incluyen HTML, CSS y JavaScript; `friendly.test.ts` comprueba la ficha, aislamiento, credenciales y conversaciones.
+
+`tests/installer-gui.test.ps1` pulsa el botón real del instalador en una carpeta temporal y comprueba progreso e integridad. `docs/REFERENCIAS-COMPARADAS.md` documenta los proyectos de referencia, las decisiones y las etapas pendientes; `docs/referencias-revisiones.json` fija las revisiones consultadas.
 
 `automation/capri-espanol.yml` es el único flujo activo propio. `legacy-workflows/` conserva los flujos heredados de `.github/workflows/` como referencia; no se sincronizan de vuelta ni se ejecutan. `docs/GUIA-AMIGABLE.md`, `docs/VALIDACION-AMIGABLE.md` y `docs/NOTICE.md` documentan el producto, sus verificaciones y su procedencia. `docs/qa/amigable/` conserva capturas de pruebas con un proveedor simulado.
 
@@ -26,6 +28,7 @@ Los comandos, protocolos, valores de configuración y nombres de modelos conserv
 
 | Fuente en capri/ | Destino | Función |
 | --- | --- | --- |
+| `friendly/capri.character.json` | `packages/cli/src/friendly/capri.character.json` | Ficha propia del personaje usada por las instrucciones del chat; formato Character Card V2 |
 | `logo/logo.ts` | `packages/tui/src/logo.ts` | Logo y representación de marca |
 | `install/install.sh` | `install` | Instalador local de la edición española |
 | `install/install.ps1` | `install.ps1` | Instalador local de la edición española |

@@ -2690,6 +2690,11 @@
     "purpose": "Copia del código adaptado: packages/cli/src/friendly/config.ts"
   },
   {
+    "source": "capri/friendly/capri.character.json",
+    "target": "packages/cli/src/friendly/capri.character.json",
+    "purpose": "Ficha propia del personaje en español, formato Character Card V2, utilizada por el agente de conversación"
+  },
+  {
     "source": "capri/friendly/server.ts",
     "target": "packages/cli/src/friendly/server.ts",
     "purpose": "Copia del código adaptado: packages/cli/src/friendly/server.ts"

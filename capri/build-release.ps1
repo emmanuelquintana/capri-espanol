@@ -1,7 +1,7 @@
 param([switch]$SkipInstall, [switch]$SkipBuild)
 $ErrorActionPreference = 'Stop'
 $taskRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$project = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'project.json') -Raw | ConvertFrom-Json
+$project = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'project.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($project.version -notmatch '^\d+\.\d+\.\d+-es\.\d+$') { throw 'Versión de proyecto no válida.' }
 $bun = Get-Command bun -ErrorAction Stop
 if (-not $SkipBuild -and ((& $bun.Source --version) -ne $project.bun)) { throw ('Usa Bun ' + $project.bun + ' para reproducir esta compilación.') }
@@ -37,6 +37,7 @@ try {
     Copy-Item -LiteralPath 'Instalar-Capri.cmd','LICENSE','NOTICE.md' -Destination $bundle
     Copy-Item -LiteralPath 'capri\docs\GUIA-AMIGABLE.md' -Destination (Join-Path $bundle 'LEEME.md')
     Copy-Item -LiteralPath 'capri\docs\VALIDACION-AMIGABLE.md' -Destination $bundle
+    Copy-Item -LiteralPath 'capri\docs\REFERENCIAS-COMPARADAS.md','capri\docs\referencias-revisiones.json','capri\friendly\capri.character.json' -Destination $bundle
     Copy-Item -LiteralPath 'packages\ui\LICENSE' -Destination (Join-Path $bundle 'licencias\OpenCode-ui-LICENSE.txt')
     $hash = (Get-FileHash -LiteralPath (Join-Path $bundle 'capri-es.exe') -Algorithm SHA256).Hash.ToLowerInvariant()
     [ordered]@{ name = $project.name; edition = $project.edition; version = $project.version; platform = $project.platform; repository = ('https://github.com/' + $project.repository); upstream = ('https://github.com/' + $project.upstream); upstreamCommit = $project.upstreamCommit; bun = $project.bun; sha256 = $hash; builtAtUtc = [DateTime]::UtcNow.ToString('o'); validation = 'Consultar VALIDACION-AMIGABLE.md' } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $bundle 'BUILDINFO.json') -Encoding UTF8

@@ -22,6 +22,8 @@ jobs:
         run: bun install --frozen-lockfile --ignore-scripts
       - name: Comprobar tipos
         run: bun x tsc -b packages/core packages/tui packages/cli --pretty false
+      - name: Probar el boton real del instalador
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -STA -File capri/tests/installer-gui.test.ps1
       - name: Probar conexión y gateway
         working-directory: packages/cli
         run: bun test test/friendly.test.ts test/spanish.test.ts test/auth-login-choices.test.ts --timeout 30000 --only-failures
@@ -34,6 +36,8 @@ jobs:
       - name: Compilar y preparar nuestra distribución
         shell: pwsh
         run: ./capri/build-release.ps1 -SkipInstall
+      - name: Probar el instalador del paquete compilado
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -STA -File capri/tests/installer-gui.test.ps1 -InstallerPath entrega/Capri-amigable-windows-x64/Instalar-Capri.cmd -PackageDirectory entrega/Capri-amigable-windows-x64
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: Capri-amigable-windows-x64

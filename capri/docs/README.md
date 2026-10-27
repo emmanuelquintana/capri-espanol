@@ -21,6 +21,12 @@ La interfaz abre en el navegador local y usa un perfil propio en `%LOCALAPPDATA%
 
 Consulta la [guía para empezar](capri/docs/GUIA-AMIGABLE.md), las [verificaciones de esta edición](capri/docs/VALIDACION-AMIGABLE.md) y los [créditos del fork](NOTICE.md).
 
+## Personaje y siguientes funciones
+
+La versión `0.3.0-es.3` corrige el botón del instalador y utiliza una [ficha propia del personaje en español](capri/friendly/capri.character.json), en formato Character Card V2. También se incluye en el ZIP. La ficha define personalidad, ambientación y ejemplos; no contiene un avatar, voz ni recuerdos personales. Su importación en otras aplicaciones no se ha probado.
+
+La [comparación de proyectos de GitHub y el plan de implementación](capri/docs/REFERENCIAS-COMPARADAS.md) toma AIRI como referencia principal para ampliar el personaje. Documenta licencias, funciones comprobadas en sus fuentes y lo que falta en nuestro fork: avatar, voz con interrupción, memoria y, después, acciones sobre aplicaciones y archivos.
+
 ## Mantener nuestro fork
 
 `origin` apunta a nuestro repositorio y `upstream` al original. La versión y la identidad de esta edición se declaran en `capri/project.json`. Se conservan los identificadores internos de OpenCode para mantener compatibilidad.

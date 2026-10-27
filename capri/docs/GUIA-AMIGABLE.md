@@ -42,6 +42,10 @@ Para actualizar, usa el instalador de una nueva publicación de nuestro fork. Se
 
 ## Sobre esta versión
 
+La edición `0.3.0-es.3` corrige el error «La propiedad Value no se encuentra» al instalar. Cierra la ventana anterior y utiliza el instalador nuevo. Si Capri está abierta, ciérrala antes de actualizar; tus conversaciones y preferencias se conservan.
+
+La personalidad del chat usa una ficha propia en español. El ZIP también incluye `capri.character.json`, una tarjeta textual en formato Character Card V2. No es un avatar ni una voz. `REFERENCIAS-COMPARADAS.md` documenta los proyectos estudiados y las siguientes funciones: personaje animado, voz y memoria; después, acciones en aplicaciones y archivos. Esas funciones aún están pendientes.
+
 Es una primera edición gráfica para Windows x64. Se ha probado con un proveedor local simulado, sin cuentas ni cargos reales. No se ha validado cada proveedor de IA ni todas las versiones de Windows. Consulta `VALIDACION-AMIGABLE.md` para conocer las comprobaciones y límites.
 
 Código y novedades: [emmanuelquintana/capri-espanol](https://github.com/emmanuelquintana/capri-espanol). Créditos y procedencia: `NOTICE.md` y `LICENSE`.
