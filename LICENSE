@@ -2,9 +2,10 @@ MIT License
 
 Copyright (c) 2026 Capri en español contributors
 
-This license applies to the original analysis and extraction tools in this
-repository. Third-party reference sources and assets retain their own terms,
-as described in NOTICE.md and the preserved original license notices.
+This license applies to the original analysis, tools, and modifications made
+for Capri en español. Derived code preserves its original notices in app/LICENSE.
+Third-party reference sources and assets retain their own terms, as described
+in NOTICE.md and the preserved original license notices.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

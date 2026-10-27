@@ -1,41 +1,48 @@
-# Capri en español — Fase 1: assets y análisis
+# Capri en español — Compañera de escritorio
 
-La implementación anterior del chat y su instalador quedan retirados. Esta fase parte de los **tres repositorios indicados**, conservando nuestro repositorio independiente. Su resultado es material de investigación para una única compañera de escritorio en español: todavía no es una aplicación nueva ni un instalador.
+Capri aparece sobre el escritorio, se mueve, se sienta en las ventanas y conversa en paneles junto al personaje. Esta edición parte de **mochiiwuff/capri-desktop**, con identidad propia y español por defecto.
 
-Las versiones anteriores se retiraron de las descargas públicas. Durante esta fase no hay una publicación instalable recomendada.
+**Etapa actual: fase 2, versión preliminar `0.1.0-es.1`.** El código está en `app/`. La implementación anterior del chat web permanece retirada.
 
-## Abrir los resultados
+## Instalar sin terminal
 
-- [Análisis de funcionalidades](analisis/FUNCIONALIDADES.md): qué existe en cada proyecto, evidencias y diferencias.
-- [Catálogo de assets](analisis/ASSETS.md): originales, animaciones, fotogramas, recursos procedurales y procedencia.
-- [Propuesta de unión, español e instalación](analisis/UNIFICACION.md): qué tomar de cada uno, incompatibilidades y condiciones para una instalación sin terminal.
-- [Lámina visual de los recursos](analisis/lamina-assets.jpg), disponible en la entrega local.
-- [Revisiones exactas y SHA-256 de los originales](repositorios.json).
-- [Registro del reinicio](analisis/REINICIO.md) y [verificación de la extracción](analisis/VERIFICACION.txt).
+En la entrega local abre **`entrega-desktop/Capri-Espanol-Setup-0.1.0-es.1.exe`**. El asistente está en español: instalación para tu usuario, elección de carpeta, Instalar y Finalizar. Puedes abrir Capri desde el escritorio o el menú Inicio.
 
-**Extracción:** 3.680 archivos fuente; 141 recursos recuperados, incluidas cuatro imágenes embebidas en código; 13 tiras de animación separadas en 142 PNG y 13 vistas animadas. Se comprobaron los hashes de los originales y se reconstruyeron las tiras desde sus fotogramas sin diferencias de píxeles.
+El instalador incluye el programa, Electron y sus fuentes. Para verla y usarla como mascota no necesitas cuentas, claves, Node, Bun, Git ni Python. Para conversar eliges un servicio de IA o descargas un modelo local desde sus paneles; esas opciones pueden necesitar conexión y recursos adicionales.
 
-Los 141 recursos incluyen imágenes, iconos, fuentes, temas JSON, recursos de documentación y muestras de pruebas; no son 141 dibujos del personaje. Los duplicados y las categorías están identificados.
+- Clic derecho sobre Capri: menú, tamaño, animaciones, modelo, ayuda y personalización.
+- **Ctrl + Alt + P:** guardarla o traerla de vuelta.
+- **Hablar conmigo:** conversación y configuración del modelo con botones.
+- **Personalizarme:** nombre, estilo, frases y recuerdos explícitos.
+- **Ver sus animaciones:** secuencias del personaje, sin ejecutar trabajos en tu equipo.
 
-## Fuentes de esta fase
+El sonido de efectos empieza silenciado. La posesión de ventanas está apagada. El perfil propio se guarda en `%APPDATA%\CapriEspanol`. Los mensajes y el contexto que use el chat se procesan mediante el proveedor elegido. Las claves no se incluyen en la información enviada al renderer.
 
-| Proyecto | Revisión | Papel en el análisis |
-| --- | --- | --- |
-| [seanyih/Capri](https://github.com/seanyih/Capri) | `7160631f275a8fae32462a511624cae20d85b05e` | Personalidad, lore, tema y agente de programación original. |
-| [mochiiwuff/capri-desktop](https://github.com/mochiiwuff/capri-desktop) | `f8395800976b4c787ec088d6fead140a934875fb` | Personaje procedural, escritorio, español existente, hooks y configuración guiada. |
-| [lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop) | `1165ff963e230d55704699894db8becd641f5e63` | Sprites, voz, percepción, acciones y distribución nativa de Windows. |
+El código está publicado en [nuestro repositorio](https://github.com/emmanuelquintana/capri-espanol). El instalador se conserva como entrega local y borrador de publicación; las versiones anteriores siguen retiradas.
 
-Revisión realizada el 26 de octubre de 2026, hora de México. Las descripciones se contrastaron con el código fijado, sin ejecutar aplicaciones, instalar dependencias, conectar cuentas ni modificar los hooks personales.
+## Qué se comprobó
 
-## Carpetas
+- Nueve pruebas automatizadas, incluido el runtime de hooks sin Node en PATH y el movimiento sobre ventanas.
+- Aplicación real y paneles a seis tamaños, de 390 a 1440 píxeles.
+- Chat con proveedor HTTP local simulado, errores, nombre con tilde y recuerdos.
+- Persistencia de nombre, recuerdos y conversación al reiniciar.
+- Instalación y desinstalación de prueba, integridad de ejecutable y recursos.
+- Detección de una ventana nativa al moverla y caída cuando su borde queda cubierto. Seguimiento de una ventana visible comprobado por separado en la lógica real del personaje.
 
-- `fuentes/`: copias completas de los tres árboles originales; se tratan como datos de referencia.
-- `descargas/`: los tres ZIP originales, con hashes fijados.
-- `assets/`: recursos separados por autor y ruta original; `embedded/` contiene imágenes decodificadas y `frames-lachy/` los fotogramas y vistas animadas.
-- `licencias/`: avisos originales copiados sin modificar; el código y el arte no comparten necesariamente licencia.
-- `analisis/`: informes, inventarios CSV/JSON, duplicados y lámina visual.
-- `herramientas/`: scripts de extracción y comprobación para reproducir la investigación; no son el futuro instalador del producto.
+Consulta la [validación y alcance de fase 2](analisis/FASE-2.md). La voz hablada, el micrófono y la percepción avanzada corresponden a la siguiente fase; los efectos actuales no son TTS. No se han validado proveedores reales ni todas las configuraciones de Windows.
 
-En GitHub se versionan el análisis, los inventarios y las herramientas. Los árboles originales, ZIP e imágenes se mantienen **en la entrega local**, sin publicar de nuevo material artístico de terceros. Los enlaces de evidencia permiten localizar cada original en su repositorio.
+## Procedencia
 
-La decisión propuesta es usar mochiiwuff como base de la experiencia y evaluar las capacidades de lachydotmcg antes de portarlas. No se han unido sus motores en esta fase. La licencia no comercial de lachydotmcg y los derechos separados del arte se detallan en [UNIFICACION.md](analisis/UNIFICACION.md).
+- [mochiiwuff/capri-desktop](https://github.com/mochiiwuff/capri-desktop): base MIT de escritorio, renderizador, coreografías y paneles.
+- [seanyih/Capri](https://github.com/seanyih/Capri): referencia de personalidad y lore de aficionados.
+- [lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop): referencia para las siguientes fases de voz y acciones. Su código PolyForm no se incorpora en esta entrega.
+
+El arte mantiene los derechos y condiciones de sus titulares. El MIT del código base excluye su arte. Se conservan [avisos y licencias](NOTICE.md); no se atribuye el personaje a los autores del fork ni se declara afiliación oficial.
+
+## Para contribuir
+
+Con Node 24.19 y Windows, `herramientas/compilar-desktop.ps1` recupera los assets fijados, instala dependencias, prueba y compila. Las revisiones y hashes están en [repositorios.json](repositorios.json). Los assets se comprueban individualmente y no se versionan como arte propio.
+
+`herramientas/qa-desktop.cjs` prueba la app real. `herramientas/probar-instalador-desktop.ps1` instala una copia aislada y la retira al terminar. No modifica hooks personales ni usa cuentas de IA.
+
+Se conservan el [análisis de funcionalidades](analisis/FUNCIONALIDADES.md), el [inventario de assets](analisis/ASSETS.md), la [propuesta de unión](analisis/UNIFICACION.md) y el [registro del reinicio](analisis/REINICIO.md) de la fase 1.

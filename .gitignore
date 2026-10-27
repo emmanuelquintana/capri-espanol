@@ -5,3 +5,9 @@
 __pycache__/
 *.pyc
 /*.zip
+/app/node_modules/
+/app/assets/
+/.capri-build/
+/entrega-desktop/
+/qa-desktop/
+/app/captures/

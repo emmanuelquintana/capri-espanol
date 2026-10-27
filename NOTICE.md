@@ -2,6 +2,8 @@
 
 Los informes y herramientas de esta fase son trabajo propio de Capri en español. Su licencia no cambia las condiciones de los repositorios estudiados ni concede derechos sobre sus personajes, imágenes, voces, fuentes o marcas.
 
+La aplicación de `app/` deriva del código MIT de mochiiwuff en la revisión fijada. Sus cambios propios incluyen identidad de distribución, perfil separado, español inicial, bienvenida de compañía, ajustes visuales, protección de claves y runtime de hooks. `app/LICENSE` conserva el texto original y `app/NOTICE.md` acompaña al ejecutable. No se ha incorporado código PolyForm de lachydotmcg en esta fase.
+
 - **seanyih/Capri:** código MIT; aviso original conservado en `licencias/seanyih--Capri/LICENSE`. Los prompts y el lore se inspeccionan como material del proyecto de aficionados; no se certifica su canon.
 - **mochiiwuff/capri-desktop:** código MIT; el propio archivo LICENSE excluye el arte de `assets/capri/` y `docs/`. Aviso conservado en `licencias/mochiiwuff--capri-desktop/LICENSE`.
 - **lachydotmcg/capri-desktop:** PolyForm Noncommercial 1.0.0. Aviso obligatorio original: `Required Notice: Copyright 2026 Lachy (https://github.com/lachydotmcg)`. Texto conservado en `licencias/lachydotmcg--capri-desktop/LICENSE.md`.
