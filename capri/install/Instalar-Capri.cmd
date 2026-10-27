@@ -29,14 +29,14 @@ function Find-Package {
     $client = New-Object Net.WebClient
     try {
         $client.Headers.Add('User-Agent', 'Capri-espanol-installer')
-        $download = $client.DownloadFileTaskAsync('https://github.com/emmanuelquintana/capri-espanol/releases/download/v0.3.0-es.1/Capri-amigable-windows-x64.zip', $archive)
+        $download = $client.DownloadFileTaskAsync('https://github.com/emmanuelquintana/capri-espanol/releases/download/v0.3.0-es.2/Capri-amigable-windows-x64.zip', $archive)
         $watch = [Diagnostics.Stopwatch]::StartNew()
         while (-not $download.IsCompleted) {
             if (-not $Unattended) { [Windows.Forms.Application]::DoEvents() }
             if ($watch.Elapsed.TotalMinutes -gt 5) { $client.CancelAsync(); throw 'La descarga tardó demasiado. Comprueba internet y vuelve a intentarlo.' }
             Start-Sleep -Milliseconds 100
         }
-        $download.GetAwaiter().GetResult()
+        [void]$download.GetAwaiter().GetResult()
     } catch { throw 'No se pudo descargar nuestra edición de Capri. Comprueba internet o descarga y extrae el ZIP de emmanuelquintana/capri-espanol antes de instalar.' }
     finally { $client.Dispose() }
     Expand-Archive -LiteralPath $archive -DestinationPath $script:DownloadedPackage -Force

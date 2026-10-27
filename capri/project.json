@@ -1,7 +1,7 @@
 {
   "name": "Capri en español",
   "edition": "Comunidad",
-  "version": "0.3.0-es.1",
+  "version": "0.3.0-es.2",
   "repository": "emmanuelquintana/capri-espanol",
   "upstream": "seanyih/Capri",
   "upstreamCommit": "7160631f275a8fae32462a511624cae20d85b05e",

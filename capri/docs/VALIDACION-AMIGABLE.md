@@ -1,4 +1,4 @@
-# Validación · Edición Comunidad 0.3.0-es.1
+# Validación · Edición Comunidad 0.3.0-es.2
 
 Esta edición añade la interfaz de conversación y el instalador propio sobre la base española. El repositorio es `emmanuelquintana/capri-espanol`.
 
@@ -23,7 +23,7 @@ La configuración del agente y de cada sesión deniega las herramientas con la r
 
 ## Resultado de la entrega
 
-Compilación Windows x64 correcta, versión `capri v0.3.0-es.1`. El instalador se ejecutó con Windows PowerShell 5.1 sobre una carpeta aislada, sin accesos directos ni cambios en el perfil personal. La copia instalada coincide con el SHA-256 del paquete. La ventana nativa también se construyó sin errores.
+Compilación Windows x64 correcta, versión `capri v0.3.0-es.2`. El instalador se ejecutó con Windows PowerShell 5.1 sobre una carpeta aislada, sin accesos directos ni cambios en el perfil personal. La copia instalada coincide con el SHA-256 del paquete. La ventana nativa también se construyó sin errores.
 
 Las 10 pruebas focalizadas de CLI pasan (47 aserciones), incluidas las 7 nuevas del gateway y configuración. La comprobación de tipos de core, TUI y CLI pasa. Las pruebas focalizadas anteriores de español se conservan en `VALIDACION.md`.
 
@@ -31,4 +31,4 @@ En el ejecutable final también se verificaron una interrupción real con Detene
 
 También se intentó la prueba heredada `standalone server exits when its owner is killed`: falló porque no recibió su señal inicial dentro de los 10 segundos que espera internamente. Aumentar el tiempo global no cambia esa espera. Se registra como pendiente y no se incluye en el flujo focalizado de este fork. El arranque real y el cierre desde la interfaz se comprueban por separado.
 
-Esta publicación se distribuye como **versión preliminar**. No se ha comprobado el descargador contra una publicación remota antes de crearla; la instalación desde el ZIP local sí se verificó.
+Esta publicación se distribuye como **versión preliminar**. Se probó el descargador con una publicación real de nuestro fork y se corrigió el valor nulo que PowerShell emitía al completar la tarea asíncrona. La instalación desde el ZIP local también se verificó. El flujo propio de GitHub completó instalación de dependencias, tipos, 73 pruebas focalizadas, compilación y generación del paquete.
