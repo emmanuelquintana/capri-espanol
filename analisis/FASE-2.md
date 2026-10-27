@@ -36,7 +36,7 @@ Las capturas y registros detallados son locales, en `qa-desktop/`; los perfiles 
 
 `herramientas/compilar-desktop.ps1` instala las versiones fijadas por `app/package-lock.json`, prepara Electron, ejecuta las pruebas y genera el instalador. `preparar-desktop.ps1` recupera únicamente los 27 assets del producto base desde el ZIP fijado, comprobando tanto el ZIP como cada recurso. No sobrescribe nuestros fuentes con los originales.
 
-El flujo de GitHub Windows reproduce la compilación y las pruebas. El código propio y derivado MIT se versiona; el arte y los binarios se entregan localmente y en un borrador de publicación, conservando los avisos originales. No se incorpora código PolyForm de lachydotmcg.
+El flujo de GitHub Windows reproduce la compilación y las pruebas. El comando pasa `--publish never` al empaquetador para desactivar su publicación implícita en CI. El código propio y derivado MIT se versiona; el arte y los binarios se entregan localmente y en un borrador de publicación, conservando los avisos originales. No se incorpora código PolyForm de lachydotmcg.
 
 ## Límites y siguiente fase
 

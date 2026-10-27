@@ -13,7 +13,7 @@ try {
     & npm.cmd test
     if ($LASTEXITCODE -ne 0) { throw 'Las pruebas no pasan.' }
     $env:CSC_IDENTITY_AUTO_DISCOVERY = 'false'
-    & npm.cmd run dist
+    & npm.cmd run dist -- --publish never
     if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar el instalador.' }
     $package = Get-Content package.json -Raw -Encoding UTF8 | ConvertFrom-Json
     $installer = Join-Path $taskRoot ('entrega-desktop/Capri-Espanol-Setup-' + $package.version + '.exe')
