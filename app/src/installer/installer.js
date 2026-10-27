@@ -95,7 +95,7 @@ async function scan() {
 }
 function preview() {
   $('character').style.height = Math.round(260 * Number($('size').value) / .6) + 'px';
-  $('preview-greeting').textContent = `Hola, ${$('user-name').value.trim() || 'choom'}. Aquí me quedo contigo.`;
+  $('preview-greeting').textContent = `Hola, ${$('user-name').value.trim() || 'chum'}. Aquí me quedo contigo.`;
 }
 function showStep(next) {
   step = next; error();
@@ -112,7 +112,7 @@ function showStep(next) {
     const p = personal(), later = $('provider').value === 'later';
     $('summary-intro').textContent = later ? 'Tu personaje está preparado. La conexión de IA queda para cuando quieras configurarla.'
       : 'Tu modelo ya devolvió una respuesta de prueba. Al guardar conservaré esta conexión y tus preferencias.';
-    definitions($('summary-list'), [['Tu nombre', p.userName || 'Choom'], ['Tamaño', $('size').selectedOptions[0].textContent],
+    definitions($('summary-list'), [['Tu nombre', p.userName || 'Chum'], ['Tamaño', $('size').selectedOptions[0].textContent],
       ['Conversación', p.persona || 'La personalidad de Capri en español'], ['Movimiento', $('motion').selectedOptions[0].textContent],
       ['Descanso', $('rest').selectedOptions[0].textContent], ['Sonido', p.muted ? 'Efectos silenciados' : 'Efectos activados'],
       ['Al iniciar Windows', p.startup ? 'Abrir Capri' : 'Abrirla cuando tú quieras'],

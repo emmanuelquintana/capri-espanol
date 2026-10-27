@@ -351,7 +351,7 @@ export class Brain {
   // Something to say with nothing going on: one of your lines half the time, if you wrote some.
   idleLine() {
     const mine = this.custom.myLines || [];
-    return fmt(mine.length && Math.random() < 0.5 ? pick(mine) : pick(this.t.idle), { name: this.custom.userName || 'choom' });
+    return fmt(mine.length && Math.random() < 0.5 ? pick(mine) : pick(this.t.idle), { name: this.custom.userName || (this.lang === 'es' ? 'chum' : 'choom') });
   }
 
   // What she says when she comes online: with your name, if she knows it.

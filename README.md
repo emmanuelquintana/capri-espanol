@@ -2,11 +2,11 @@
 
 Capri aparece sobre el escritorio, se mueve, se sienta en las ventanas y conversa en paneles junto al personaje. Esta edición parte de **mochiiwuff/capri-desktop**, con identidad propia y español por defecto.
 
-**Etapa actual: fase 2, versión preliminar `0.2.0-es.1`.** El código está en `app/`. La implementación anterior del chat web permanece retirada.
+**Etapa actual: fase 2, versión preliminar `0.2.0-es.2`.** El código está en `app/`. La implementación anterior del chat web permanece retirada. La terminología española usa **chum**.
 
 ## Instalar sin terminal
 
-En la entrega local abre **`entrega-desktop/Capri-Espanol-Setup-0.2.0-es.1.exe`**. El asistente está en español: instalación para tu usuario, elección de carpeta e Instalar. Al finalizar, deja marcada **Personalizar Capri y comprobar mi IA** para continuar con la configuración gráfica. También puedes abrir Capri desde el escritorio o el menú Inicio.
+En la entrega local abre **`entrega-desktop/Capri-Espanol-Setup-0.2.0-es.2.exe`**. El asistente está en español: instalación para tu usuario, elección de carpeta e Instalar. Al finalizar, deja marcada **Personalizar Capri y comprobar mi IA** para continuar con la configuración gráfica. También puedes abrir Capri desde el escritorio o el menú Inicio.
 
 El nuevo asistente tiene tres pasos:
 

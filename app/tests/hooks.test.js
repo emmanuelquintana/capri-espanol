@@ -46,6 +46,8 @@ test('Spanish companion prompt uses the fork identity and does not invent its ca
     assert.match(prompt, /mi gato se llama Neko/);
     assert.match(prompt, /No inventes recuerdos, acceso a pantalla, acciones realizadas/);
     assert.doesNotMatch(prompt, /Never say which AI model/);
+    assert.match(prompt, /\bchum\b/);
+    assert.doesNotMatch(prompt, /\bcho{1,2}m\b/i);
   } finally { delete globalThis.matchMedia; }
 });
 

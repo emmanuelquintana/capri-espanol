@@ -488,7 +488,7 @@ export const LINES = {
   es: {
     state: { work: 'EN CURSO', done: 'LISTO', alert: 'ESPERA', error: 'ERROR', info: 'LISTA', idle: 'REPOSO' },
     hello: [
-      'Conexión establecida. Hola, choom.',
+      'Conexión establecida. Hola, chum.',
       'Constructo Capricornio en línea. ¿En qué trabajamos?',
       'Todas mis yo están despiertas. Vigilo {project}.',
       'Biochip caliente. Aquí estoy.',
@@ -507,13 +507,13 @@ export const LINES = {
     ],
     done: [
       '¡Listo! Eso es preem.',
-      'Encargo cumplido, choom.',
+      'Encargo cumplido, chum.',
       'Claude terminó. Ya puedes volver.',
       'Entregado. Bastante nova, ¿no?',
       'Terminado. Éramos docenas vigilando, nada raro.',
     ],
-    permission: ['¡Oye! Claude necesita tu permiso.', 'Choom, tienes que aprobar algo.', 'Esperamos tu luz verde.'],
-    waiting: ['Claude espera tu respuesta.', 'Te toca, choom.'],
+    permission: ['¡Oye! Claude necesita tu permiso.', 'Chum, tienes que aprobar algo.', 'Esperamos tu luz verde.'],
+    waiting: ['Claude espera tu respuesta.', 'Te toca, chum.'],
     error: ['Ay. {tool} falló.', '{tool} hizo flatline. Claude lo volverá a intentar.', 'Error en {tool}. Nada grave… creo.'],
     interrupted: ['Interrumpido. ¿Cambio de planes?', 'Cortado en seco. Me quedo aquí.'],
     crashed: ['Claude se detuvo en pleno vuelo.', 'Caída grave. Claude no pudo terminar.'],
@@ -524,7 +524,7 @@ export const LINES = {
     // hablar con ella (chat.js): un modelo local con Ollama; respuestas generadas por IA, y lo dice
     chat: {
       badge: 'IA · EN VIVO', talk: 'Háblame',
-      hello: ['Hola, choom. ¿Qué tienes en mente?', 'La línea está abierta. Háblanos.', '¿Quieres charlar? Somos todo oídos. Todos los nuestros.'],
+      hello: ['Hola, chum. ¿Qué tienes en mente?', 'La línea está abierta. Háblanos.', '¿Quieres charlar? Somos todo oídos. Todos los nuestros.'],
       again: ['¿Dónde estábamos?', '¿Ya de vuelta? Dale.'],
       placeholder: 'Dime algo…', send: 'Enviar', close: 'Cerrar',
       noteTag: 'IA',
@@ -563,7 +563,7 @@ export const LINES = {
       lines: {
         none: ['Nada en el registro hoy. Noche tranquila.', 'Registro vacío. Claude se tomó el día libre.'],
         light: ['Día ligero. Me vale.', 'Turno corto. Aquí está el registro.'],
-        good: ['Nada mal, choom. Aquí está tu día.', 'El registro del día. Bastante nova.'],
+        good: ['Nada mal, chum. Aquí está tu día.', 'El registro del día. Bastante nova.'],
         big: ['Día intenso. Night City nunca fue tan rápido.', 'Mira eso. Hoy estábamos que ardíamos.'],
       },
     },
@@ -585,7 +585,7 @@ export const LINES = {
       possess: 'Esta ventana ahora es mía.',
       sleep: 'Una siestecita…',
       chip: 'Ctrl+Alt+P y me guardo aquí.',
-      end: 'Fin de la demo. Te toca, choom.',
+      end: 'Fin de la demo. Te toca, chum.',
     },
     guide: {
       ok: 'Entendido', next: 'Siguiente', more: 'Enséñame',
@@ -699,7 +699,7 @@ export const LINES = {
       afterInstall: 'Cuando lo tengas, clic derecho sobre mí › «Instalar los hooks de Claude Code».',
       failed: 'No pude conectarme: {error}',
     },
-    online: ['Capri en línea.', 'De vuelta en tu escritorio, choom.'],
+    online: ['Capri en línea.', 'De vuelta en tu escritorio, chum.'],
     // Windows tiene las animaciones desactivadas: apenas se mueve, y lo dice una vez
     motion: { line: 'Windows tiene las animaciones desactivadas, así que apenas me muevo.', quote: '¿Quieres que me mueva igual? Puedes cambiarlo en mi menú › Animaciones.', full: '¡Muévete!', still: 'Quédate tranquila' },
     status: 'Claude lleva {time} trabajando en {project}.',

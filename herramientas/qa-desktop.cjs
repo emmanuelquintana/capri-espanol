@@ -19,7 +19,7 @@ fs.mkdirSync(profile, { recursive: true });
       requests.push(JSON.parse(raw));
       if (unavailable) { res.writeHead(503); return res.end(JSON.stringify({ error: { message: 'Prueba local: servicio temporalmente no disponible.' } })); }
       res.writeHead(200, { 'Content-Type': 'text/event-stream' });
-      for (const text of ['Hola, choom. ', 'Soy una respuesta de prueba local. ', 'Tu modelo real se elige en el menú.']) {
+      for (const text of ['Hola, chum. ', 'Soy una respuesta de prueba local. ', 'Tu modelo real se elige en el menú.']) {
         res.write('data: ' + JSON.stringify({ choices: [{ delta: { content: text } }] }) + '\n\n');
         await new Promise(resolve => setTimeout(resolve, 120));
       }
