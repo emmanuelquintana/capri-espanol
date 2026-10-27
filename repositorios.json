@@ -1,0 +1,41 @@
+[
+  {
+    "repository": "seanyih/Capri",
+    "slug": "seanyih--Capri",
+    "commit": "7160631f275a8fae32462a511624cae20d85b05e",
+    "commitDate": "2026-10-24T17:37:46Z",
+    "branch": "main",
+    "licenseDetected": "MIT",
+    "fork": false,
+    "parent": null,
+    "source": "https://github.com/seanyih/Capri/tree/7160631f275a8fae32462a511624cae20d85b05e",
+    "archive": "https://codeload.github.com/seanyih/Capri/zip/7160631f275a8fae32462a511624cae20d85b05e",
+    "archiveSha256": "9c0f792e76e117ca6f57397af81db3f7087343c2be85cf6da7ac7727dafdac50"
+  },
+  {
+    "repository": "mochiiwuff/capri-desktop",
+    "slug": "mochiiwuff--capri-desktop",
+    "commit": "f8395800976b4c787ec088d6fead140a934875fb",
+    "commitDate": "2026-10-26T23:47:56Z",
+    "branch": "main",
+    "licenseDetected": "NOASSERTION",
+    "fork": false,
+    "parent": null,
+    "source": "https://github.com/mochiiwuff/capri-desktop/tree/f8395800976b4c787ec088d6fead140a934875fb",
+    "archive": "https://codeload.github.com/mochiiwuff/capri-desktop/zip/f8395800976b4c787ec088d6fead140a934875fb",
+    "archiveSha256": "cf3e1b8505ea88641a737dc244eb1c402a67389d8e692ec5f52fa5ed39ca59b3"
+  },
+  {
+    "repository": "lachydotmcg/capri-desktop",
+    "slug": "lachydotmcg--capri-desktop",
+    "commit": "1165ff963e230d55704699894db8becd641f5e63",
+    "commitDate": "2026-10-26T13:39:02Z",
+    "branch": "main",
+    "licenseDetected": "NOASSERTION",
+    "fork": false,
+    "parent": null,
+    "source": "https://github.com/lachydotmcg/capri-desktop/tree/1165ff963e230d55704699894db8becd641f5e63",
+    "archive": "https://codeload.github.com/lachydotmcg/capri-desktop/zip/1165ff963e230d55704699894db8becd641f5e63",
+    "archiveSha256": "766af4e581c075323f49b96ddf1486be72f0c0468e056bd7ab7dccbb0b1cb8e7"
+  }
+]

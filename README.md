@@ -1,137 +1,41 @@
-# Capri en español · Edición Comunidad
+# Capri en español — Fase 1: assets y análisis
 
-**Nuestro repositorio:** [emmanuelquintana/capri-espanol](https://github.com/emmanuelquintana/capri-espanol). Fork independiente en español de [seanyih/Capri](https://github.com/seanyih/Capri), basado en OpenCode. Conservamos sus créditos y licencia; nuestra distribución y mejoras se mantienen aquí.
+La implementación anterior del chat y su instalador quedan retirados. Esta fase parte de los **tres repositorios indicados**, conservando nuestro repositorio independiente. Su resultado es material de investigación para una única compañera de escritorio en español: todavía no es una aplicación nueva ni un instalador.
 
-Esta edición añade un chat gráfico para personas sin conocimientos de programación, bienvenida y conexión guiadas, historial, preferencias de lectura y un instalador propio para Windows.
+Las versiones anteriores se retiraron de las descargas públicas. Durante esta fase no hay una publicación instalable recomendada.
 
-![Chat de Capri en español](capri/docs/qa/amigable/chat-final-1280.png)
+## Abrir los resultados
 
-*Captura de validación con un proveedor local simulado; la respuesta está identificada como prueba.*
+- [Análisis de funcionalidades](analisis/FUNCIONALIDADES.md): qué existe en cada proyecto, evidencias y diferencias.
+- [Catálogo de assets](analisis/ASSETS.md): originales, animaciones, fotogramas, recursos procedurales y procedencia.
+- [Propuesta de unión, español e instalación](analisis/UNIFICACION.md): qué tomar de cada uno, incompatibilidades y condiciones para una instalación sin terminal.
+- [Lámina visual de los recursos](analisis/lamina-assets.jpg), disponible en la entrega local.
+- [Revisiones exactas y SHA-256 de los originales](repositorios.json).
+- [Registro del reinicio](analisis/REINICIO.md) y [verificación de la extracción](analisis/VERIFICACION.txt).
 
-## Empezar sin usar comandos
+**Extracción:** 3.680 archivos fuente; 141 recursos recuperados, incluidas cuatro imágenes embebidas en código; 13 tiras de animación separadas en 142 PNG y 13 vistas animadas. Se comprobaron los hashes de los originales y se reconstruyeron las tiras desde sus fotogramas sin diferencias de píxeles.
 
-1. Descarga **Capri-amigable-windows-x64.zip** desde [nuestras publicaciones](https://github.com/emmanuelquintana/capri-espanol/releases).
-2. Extrae el ZIP y haz doble clic en **Instalar-Capri.cmd**.
-3. Pulsa **Instalar y abrir Capri**. Después podrás abrirla desde el escritorio o el menú Inicio.
-4. Sigue el asistente para conectar tu servicio de IA y elegir un modelo.
+Los 141 recursos incluyen imágenes, iconos, fuentes, temas JSON, recursos de documentación y muestras de pruebas; no son 141 dibujos del personaje. Los duplicados y las categorías están identificados.
 
-El paquete incluye el motor de ejecución. El modo de conversación no requiere Bun, Node ni Git, ni permisos de administrador. El instalador independiente también puede descargar nuestra publicación automáticamente. **No hace falta reiniciar Codex.**
+## Fuentes de esta fase
 
-La interfaz abre en el navegador local y usa un perfil propio en `%LOCALAPPDATA%\Capri\perfil`. Tiene desactivadas las herramientas de archivos y comandos. La cuenta de IA y su posible consumo son los del usuario; no se incluyen claves ni saldo.
+| Proyecto | Revisión | Papel en el análisis |
+| --- | --- | --- |
+| [seanyih/Capri](https://github.com/seanyih/Capri) | `7160631f275a8fae32462a511624cae20d85b05e` | Personalidad, lore, tema y agente de programación original. |
+| [mochiiwuff/capri-desktop](https://github.com/mochiiwuff/capri-desktop) | `f8395800976b4c787ec088d6fead140a934875fb` | Personaje procedural, escritorio, español existente, hooks y configuración guiada. |
+| [lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop) | `1165ff963e230d55704699894db8becd641f5e63` | Sprites, voz, percepción, acciones y distribución nativa de Windows. |
 
-Consulta la [guía para empezar](capri/docs/GUIA-AMIGABLE.md), las [verificaciones de esta edición](capri/docs/VALIDACION-AMIGABLE.md) y los [créditos del fork](NOTICE.md).
+Revisión realizada el 26 de octubre de 2026, hora de México. Las descripciones se contrastaron con el código fijado, sin ejecutar aplicaciones, instalar dependencias, conectar cuentas ni modificar los hooks personales.
 
-## Personaje y siguientes funciones
+## Carpetas
 
-La versión `0.3.0-es.3` corrige el botón del instalador y utiliza una [ficha propia del personaje en español](capri/friendly/capri.character.json), en formato Character Card V2. También se incluye en el ZIP. La ficha define personalidad, ambientación y ejemplos; no contiene un avatar, voz ni recuerdos personales. Su importación en otras aplicaciones no se ha probado.
+- `fuentes/`: copias completas de los tres árboles originales; se tratan como datos de referencia.
+- `descargas/`: los tres ZIP originales, con hashes fijados.
+- `assets/`: recursos separados por autor y ruta original; `embedded/` contiene imágenes decodificadas y `frames-lachy/` los fotogramas y vistas animadas.
+- `licencias/`: avisos originales copiados sin modificar; el código y el arte no comparten necesariamente licencia.
+- `analisis/`: informes, inventarios CSV/JSON, duplicados y lámina visual.
+- `herramientas/`: scripts de extracción y comprobación para reproducir la investigación; no son el futuro instalador del producto.
 
-La [comparación de proyectos de GitHub y el plan de implementación](capri/docs/REFERENCIAS-COMPARADAS.md) toma AIRI como referencia principal para ampliar el personaje. Documenta licencias, funciones comprobadas en sus fuentes y lo que falta en nuestro fork: avatar, voz con interrupción, memoria y, después, acciones sobre aplicaciones y archivos.
+En GitHub se versionan el análisis, los inventarios y las herramientas. Los árboles originales, ZIP e imágenes se mantienen **en la entrega local**, sin publicar de nuevo material artístico de terceros. Los enlaces de evidencia permiten localizar cada original en su repositorio.
 
-## Mantener nuestro fork
-
-`origin` apunta a nuestro repositorio y `upstream` al original. La versión y la identidad de esta edición se declaran en `capri/project.json`. Se conservan los identificadores internos de OpenCode para mantener compatibilidad.
-
-Con Bun 1.4.4, genera el paquete de Windows desde PowerShell:
-
-```powershell
-.\capri\build-release.ps1
-```
-
-El flujo de GitHub Actions de este fork comprueba tipos, pruebas focalizadas y el paquete. Los flujos antiguos de despliegue y publicación se conservan como referencia en `capri/legacy-workflows/` y no se ejecutan.
-
-## Modo de programación y desarrollo
-
-La CLI/TUI original sigue disponible para usuarios técnicos. El instalador siguiente corresponde a una compilación local de ese modo; la entrada recomendada para público general es **Instalar-Capri.cmd**.
-
-## Ejecutar en Windows
-
-El ejecutable local se encuentra en:
-
-```powershell
-.\packages\cli\dist\cli-windows-x64\bin\opencode.exe
-```
-
-Aunque el archivo interno se llama `opencode.exe`, la aplicación se identifica como Capri. El paquete de entrega incluye una copia llamada `capri-es.exe`.
-
-Para instalar una compilación local con el instalador del proyecto:
-
-```powershell
-.\install.ps1 -Binary ".\packages\cli\dist\cli-windows-x64\bin\opencode.exe"
-```
-
-El instalador copia el ejecutable a `%USERPROFILE%\.capri\bin\capri.exe`, añade la carpeta al PATH salvo que se use `-NoModifyPath` y crea la configuración inicial si no existe. No se ha ejecutado automáticamente sobre tu perfil.
-
-Este instalador de consola requiere un binario local. El instalador gráfico obtiene exclusivamente las publicaciones de nuestro fork.
-
-## Desarrollar y compilar
-
-Se utiliza Bun **1.4.4**, la versión declarada por el proyecto.
-
-```bash
-bun install --frozen-lockfile --ignore-scripts
-bun run dev
-```
-
-Para generar el ejecutable de la plataforma actual:
-
-```bash
-cd packages/cli
-bun run build --single --skip-install --skip-web-ui
-```
-
-En Linux el resultado es `packages/cli/dist/cli-linux-x64/bin/opencode` y se instala con:
-
-```bash
-./install --binary packages/cli/dist/cli-linux-x64/bin/opencode
-```
-
-La distribución de esta tarea corresponde a Windows x64. No se ha validado la ejecución en Linux ni macOS. La compilación de terminal omite la interfaz web, como en las instrucciones del fork original.
-
-## Primer uso
-
-Abre Capri dentro de un proyecto. Ejecuta `/connect` para conectar un proveedor y `/models` para elegir un modelo. Las conversaciones nuevas usan español por defecto; el usuario puede pedir otro idioma.
-
-Los comandos, identificadores de modelos, nombres de paquetes, claves JSON y variables de entorno conservan sus nombres técnicos. Por ejemplo, `/sessions`, `/skills`, `provider/model` y `CAPRI_LOGO` no se traducen.
-
-| Comando | Función |
-| --- | --- |
-| `/connect` | Conectar una integración |
-| `/models` o `/chrome` | Seleccionar modelo |
-| `/sessions` o `/nightcity` | Elegir sesión |
-| `/skills` o `/quickhacks` | Abrir habilidades |
-| `/compact` o `/soulkiller` | Compactar el contexto |
-| `/settings` | Abrir configuración |
-| `/cyberpsycosis` | Elegir nivel visual y de personalidad |
-| `/exit` | Salir |
-
-## Configuración de Capri
-
-Archivo: `~/.config/capri/capri.json`; en Windows, `%USERPROFILE%\.config\capri\capri.json`. Se respeta `XDG_CONFIG_HOME`.
-
-```json
-{
-  "cyberpsycosis": "none",
-  "glitchProbability": 1,
-  "logo": { "style": "auto" },
-  "hide": { "thinking": true, "toolResults": true, "skills": true },
-  "footer": { "name": "Capri", "model": false, "tps": false }
-}
-```
-
-Reinicia **Capri** después de modificar las opciones de inicio. No hace falta reiniciar Codex para trabajar con este proyecto.
-
-Los niveles técnicos `none`, `low`, `medium` y `max` se muestran como Desactivada, Baja, Media y Máxima. En esta edición todos mantienen un comportamiento profesional. Los niveles altos aumentan los efectos visuales y la intensidad del personaje; se retiraron las instrucciones originales de sabotaje, alteración del historial y exposición de secretos. El valor inicial sigue siendo `none`. Usa `glitchProbability: 0` para desactivar los destellos.
-
-Capri hereda de OpenCode sus rutas de sesiones, credenciales y servicio. Puede compartir datos con una instalación existente de OpenCode. Para pruebas se utilizaron directorios XDG separados; no se conectaron cuentas personales.
-
-## Arquitectura y mantenimiento
-
-Consulta [el análisis del repositorio](capri/docs/INGENIERIA_INVERSA.md) y [las verificaciones](capri/docs/VALIDACION.md). Los originales de las personalizaciones se mantienen en `capri/`; `capri/sync.sh` los sincroniza con sus destinos en `packages/`.
-
-El catálogo `capri/localization/es.tsv` registra las traducciones. Los valores técnicos de configuración y las decisiones de permisos se conservan separados de sus etiquetas visibles.
-
-## Créditos y licencia
-
-El proyecto deriva de Capri y OpenCode bajo licencia MIT. Se conserva íntegro `LICENSE`, incluidos los avisos originales. Los paquetes recuperados de OpenCode 2.1.4 se identifican en `capri/vendor/ORIGEN.md`.
-
-Capri es un proyecto de aficionados y no está afiliado a CD Projekt Red, Studio Trigger ni Netflix. Cyberpunk: Edgerunners y sus personajes pertenecen a sus respectivos titulares.
+La decisión propuesta es usar mochiiwuff como base de la experiencia y evaluar las capacidades de lachydotmcg antes de portarlas. No se han unido sus motores en esta fase. La licencia no comercial de lachydotmcg y los derechos separados del arte se detallan en [UNIFICACION.md](analisis/UNIFICACION.md).

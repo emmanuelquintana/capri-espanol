@@ -1,0 +1,145 @@
+[
+  {
+    "name": "idle",
+    "frames": 16,
+    "fps": 8.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/idle.png",
+    "output": "assets/frames-lachy/idle",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "blink",
+    "frames": 4,
+    "fps": 8.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/blink.png",
+    "output": "assets/frames-lachy/blink",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "blink_glitch",
+    "frames": 4,
+    "fps": 8.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/blink_glitch.png",
+    "output": "assets/frames-lachy/blink_glitch",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "grin",
+    "frames": 16,
+    "fps": 8.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/grin.png",
+    "output": "assets/frames-lachy/grin",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "glitch",
+    "frames": 10,
+    "fps": 15.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/glitch.png",
+    "output": "assets/frames-lachy/glitch",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "dangle",
+    "frames": 24,
+    "fps": 10.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/dangle.png",
+    "output": "assets/frames-lachy/dangle",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "sleep",
+    "frames": 16,
+    "fps": 6.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/sleep.png",
+    "output": "assets/frames-lachy/sleep",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "wake",
+    "frames": 13,
+    "fps": 15.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/wake.png",
+    "output": "assets/frames-lachy/wake",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "perch",
+    "frames": 16,
+    "fps": 8.0,
+    "render_height_factor": 1.0,
+    "cell_width": 384,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/perch.png",
+    "output": "assets/frames-lachy/perch",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "perch_blink",
+    "frames": 4,
+    "fps": 8.0,
+    "render_height_factor": 1.0,
+    "cell_width": 384,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/perch_blink.png",
+    "output": "assets/frames-lachy/perch_blink",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "perch_blink_glitch",
+    "frames": 4,
+    "fps": 8.0,
+    "render_height_factor": 1.0,
+    "cell_width": 384,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/perch_blink_glitch.png",
+    "output": "assets/frames-lachy/perch_blink_glitch",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "perch_glitch",
+    "frames": 10,
+    "fps": 15.0,
+    "render_height_factor": 1.0,
+    "cell_width": 384,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/perch_glitch.png",
+    "output": "assets/frames-lachy/perch_glitch",
+    "evidence": "app/Capri.cs:363-375"
+  },
+  {
+    "name": "mouth",
+    "frames": 5,
+    "fps": 12.0,
+    "render_height_factor": 1.11,
+    "cell_width": 240,
+    "cell_height": 384,
+    "source": "fuentes/lachydotmcg--capri-desktop/assets/sprites/mouth.png",
+    "output": "assets/frames-lachy/mouth",
+    "evidence": "app/Capri.cs:363-375"
+  }
+]

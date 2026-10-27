@@ -1,0 +1,6 @@
+VERIFICACION DE FASE 1
+PASS: 141 assets íntegros, 142 frames reconstruidos sin diferencias, 3 archivos de origen verificados.
+PASS: 3680 archivos fuente coinciden byte a byte con sus ZIP originales.
+PASS: extractor reproducido en una carpeta temporal, tres arboles restaurados sin diferencias.
+PASS: 15 enlaces locales de informes resueltos.
+LIMITES: no se ejecutaron aplicaciones, instaladores, hooks ni proveedores de los originales.

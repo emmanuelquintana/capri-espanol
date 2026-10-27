@@ -1,0 +1,25 @@
+{
+  "source_files": 3680,
+  "extracted_assets": 141,
+  "embedded_images": 4,
+  "unique_asset_hashes": 137,
+  "asset_bytes": 23169763,
+  "by_repository": {
+    "seanyih/Capri": 43,
+    "mochiiwuff/capri-desktop": 39,
+    "lachydotmcg/capri-desktop": 59
+  },
+  "by_type": {
+    "png": 70,
+    "mp3": 2,
+    "jpg": 1,
+    "json": 35,
+    "webp": 27,
+    "ico": 3,
+    "ttf": 2,
+    "m4a": 1
+  },
+  "animation_clips": 13,
+  "extracted_frames": 142,
+  "contact_sheet_tiles": 37
+}

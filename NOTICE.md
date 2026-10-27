@@ -1,11 +1,12 @@
-# Capri en español · Edición Comunidad
+# Procedencia y alcance
 
-Este fork es mantenido de forma independiente en [emmanuelquintana/capri-espanol](https://github.com/emmanuelquintana/capri-espanol).
+Los informes y herramientas de esta fase son trabajo propio de Capri en español. Su licencia no cambia las condiciones de los repositorios estudiados ni concede derechos sobre sus personajes, imágenes, voces, fuentes o marcas.
 
-Nuestras adaptaciones incluyen el español de la interfaz y del personaje, el chat gráfico para personas sin conocimientos de programación, el perfil de conversación aislado, el instalador guiado de Windows y su distribución.
+- **seanyih/Capri:** código MIT; aviso original conservado en `licencias/seanyih--Capri/LICENSE`. Los prompts y el lore se inspeccionan como material del proyecto de aficionados; no se certifica su canon.
+- **mochiiwuff/capri-desktop:** código MIT; el propio archivo LICENSE excluye el arte de `assets/capri/` y `docs/`. Aviso conservado en `licencias/mochiiwuff--capri-desktop/LICENSE`.
+- **lachydotmcg/capri-desktop:** PolyForm Noncommercial 1.0.0. Aviso obligatorio original: `Required Notice: Copyright 2026 Lachy (https://github.com/lachydotmcg)`. Texto conservado en `licencias/lachydotmcg--capri-desktop/LICENSE.md`.
+- **Share Tech Mono:** licencia OFL conservada junto al inventario de licencias de las fuentes originales.
 
-Se basa en [seanyih/Capri](https://github.com/seanyih/Capri), revisión `7160631f275a8fae32462a511624cae20d85b05e`, que deriva de [OpenCode](https://github.com/anomalyco/opencode). Se conserva la licencia MIT y sus avisos. El logo procede del repositorio original; no se reivindica como creación de este fork.
+La extracción local es material de investigación. La muestra de voz no es un modelo de síntesis; los fotogramas no son una autorización para distribuir el personaje. Se conserva la procedencia de cada recurso en `analisis/assets.csv` y `analisis/assets.json`.
 
-El personaje se interpreta mediante IA. Este es un proyecto de aficionados y no está afiliado a CD Projekt Red, Studio Trigger ni Netflix. Los nombres y personajes de Cyberpunk pertenecen a sus respectivos titulares.
-
-Los nombres internos de paquetes, protocolos y ciertas rutas de OpenCode se conservan por compatibilidad. No identifican al mantenedor de esta edición ni a su canal de distribución.
+Este proyecto de aficionados no está afiliado a los titulares de Cyberpunk ni a los autores de los tres repositorios.
