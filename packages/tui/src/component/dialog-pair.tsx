@@ -44,12 +44,12 @@ export function DialogPair() {
       <box flexDirection={horizontal() ? "row" : "column"} alignItems={horizontal() ? "flex-start" : "center"} gap={2}>
         <box width={horizontal() ? 29 : "100%"} flexShrink={0} gap={1}>
           <text fg={theme.text.muted} wrapMode="word">
-            Open a link to connect. Links work once and expire in {value.minutes} minutes.
+            Abre un enlace para conectarte. Cada enlace sirve una vez y vence en {value.minutes} minutos.
           </text>
           <Show when={value.localhost}>
             {(url) => (
               <box>
-                <text fg={theme.text.muted}>This device</text>
+                <text fg={theme.text.muted}>Este dispositivo</text>
                 <Link href={url()} fg={theme.text.base}>
                   {url()}
                 </Link>
@@ -57,7 +57,7 @@ export function DialogPair() {
             )}
           </Show>
           <box>
-            <text fg={theme.text.muted}>Links</text>
+            <text fg={theme.text.muted}>Enlaces</text>
             <For each={value.links}>
               {(url) => (
                 <Link href={url} fg={theme.text.base}>
@@ -68,7 +68,7 @@ export function DialogPair() {
           </box>
           <Show when={value.loopback}>
             <text fg={theme.text.muted} wrapMode="word">
-              Run `capri service set hostname 0.0.0.0` to access the service remotely.
+              Ejecuta `capri service set hostname 0.0.0.0` para acceder al servicio de forma remota.
             </text>
           </Show>
         </box>
@@ -87,11 +87,11 @@ export function DialogPair() {
   }
 
   return (
-    <DialogLayout header={<DialogHeader title="Pair" />}>
+    <DialogLayout header={<DialogHeader title="Vincular" />}>
       <Show
         when={loadError()}
         fallback={
-          <Show when={info()} fallback={<text fg={theme.text.muted}>Loading server information…</text>}>
+          <Show when={info()} fallback={<text fg={theme.text.muted}>Cargando información del servidor…</text>}>
             <Show
               when={dimensions().height >= 36}
               fallback={
@@ -111,10 +111,10 @@ export function DialogPair() {
         {(error) => (
           <box>
             <text fg={theme.text.feedback.error.base} attributes={TextAttributes.BOLD}>
-              Could not load server information
+              No se pudo cargar la información del servidor
             </text>
             <text fg={theme.text.muted}>{errorMessage(error())}</text>
-            <text fg={theme.text.muted}>Close and reopen Pair to try again.</text>
+            <text fg={theme.text.muted}>Cierra y vuelve a abrir Vincular para reintentarlo.</text>
           </box>
         )}
       </Show>

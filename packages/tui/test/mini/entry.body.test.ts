@@ -92,7 +92,7 @@ describe("run entry body", () => {
     expect(reasoning).toEqual({
       type: "code",
       filetype: "markdown",
-      content: "_Thinking:_ plan next steps",
+      content: "_Thinking:_ plan next pasos",
     })
     expect(
       entryCanStream(
@@ -279,7 +279,7 @@ describe("run entry body", () => {
       ),
     ).toEqual({
       kind: "task",
-      title: "# Explore Subagent",
+      title: "# Explore Subagente",
       rows: ["Inspect reducer"],
       tail: "",
     })
@@ -360,7 +360,7 @@ describe("run entry body", () => {
           tool: "shell",
           phase: "start",
           toolState: "running",
-          text: "running shell",
+          text: "terminal en ejecución",
           state: {
             status: "running",
             input: {
@@ -427,7 +427,7 @@ describe("run entry body", () => {
       entryBody(
         commit({
           kind: "tool",
-          text: "running shell",
+          text: "terminal en ejecución",
           phase: "start",
           source: "tool",
           tool: "shell",
@@ -500,7 +500,7 @@ describe("run entry body", () => {
     })
   })
 
-  test("suppresses redundant patched rows when patch also created a file", () => {
+  test("suppresses redundant patched rows when patch also created a archivo", () => {
     expect(
       entryBody(
         toolCommit({

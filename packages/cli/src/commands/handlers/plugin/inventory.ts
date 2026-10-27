@@ -93,7 +93,7 @@ export function format(items: readonly Item[]) {
         runtime,
         ...rows.map(
           (item) =>
-            `  ${item.name}${item.version ? ` ${item.version}` : ""} (${item.error ? "check failed" : item.outdated ? "update available" : "current"})`,
+            `  ${item.name}${item.version ? ` ${item.version}` : ""} (${item.error ? "check failed" : item.outdated ? "actualización disponible" : "current"})`,
         ),
       ]
     })

@@ -25,8 +25,8 @@ test("renders account management with an uncategorized add row and marks the act
     const frame = fixture.app.captureCharFrame()
     const lines = frame.split("\n")
 
-    expect(frame.indexOf("Add account")).toBeLessThan(frame.indexOf("Connected accounts"))
-    expect(frame.indexOf("Connected accounts")).toBeLessThan(frame.indexOf("Personal"))
+    expect(frame.indexOf("Añadir cuenta")).toBeLessThan(frame.indexOf("Cuentas conectadas"))
+    expect(frame.indexOf("Cuentas conectadas")).toBeLessThan(frame.indexOf("Personal"))
     expect(frame.indexOf("Personal")).toBeLessThan(frame.indexOf("Work"))
     expect(lines.find((line) => line.includes("Personal"))).toContain("\u25cf")
     expect(lines.find((line) => line.includes("Work"))).not.toContain("\u25cf")
@@ -41,7 +41,7 @@ test("opens the key connection prompt from the initially focused add account row
 
   try {
     fixture.app.mockInput.pressEnter()
-    await fixture.app.waitForFrame((frame) => frame.includes("API key") && !frame.includes("Connected accounts"))
+    await fixture.app.waitForFrame((frame) => frame.includes("API key") && !frame.includes("Cuentas conectadas"))
 
     expect(fixture.requests).toEqual([])
   } finally {
@@ -84,7 +84,7 @@ test("switches the selected account with enter and keeps the reactive account ma
 
     await fixture.app.waitForFrame((frame) => {
       const line = frame.split("\n").find((entry) => entry.includes("Work"))
-      return frame.includes("Connected accounts") && line?.includes("\u25cf") === true
+      return frame.includes("Cuentas conectadas") && line?.includes("\u25cf") === true
     })
 
     expect(fixture.requests).toEqual([{ method: "POST", path: "/api/credential/cred_work/activate" }])
@@ -129,7 +129,7 @@ test("renames the selected account through a prefilled prompt and reopens the ac
 
     await fixture.app.mockInput.typeText(" Account")
     fixture.app.mockInput.pressEnter()
-    await fixture.app.waitForFrame((frame) => frame.includes("Connected accounts") && frame.includes("Work Account"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Cuentas conectadas") && frame.includes("Work Account"))
 
     expect(fixture.requests).toEqual([
       { method: "PATCH", path: "/api/credential/cred_work", body: { label: "Work Account" } },
@@ -151,20 +151,20 @@ test("requires delete confirmation and preserves the account manager when anothe
     expect(fixture.requests).toEqual([])
 
     fixture.app.mockInput.pressKey("d", { ctrl: true })
-    await fixture.app.waitForFrame((frame) => frame.includes("Connected accounts") && !frame.includes("Work"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Cuentas conectadas") && !frame.includes("Work"))
 
     expect(fixture.requests).toEqual([{ method: "DELETE", path: "/api/credential/cred_work" }])
     expect(fixture.accounts).toEqual([{ type: "credential", method: "key", id: "cred_personal", label: "Personal" }])
     expect(fixture.reads.model).toBe(0)
     expect(fixture.reads.provider).toBe(0)
-    expect(fixture.app.captureCharFrame()).toContain("Add account")
+    expect(fixture.app.captureCharFrame()).toContain("Añadir cuenta")
     expect(fixture.app.captureCharFrame()).toContain("Personal")
   } finally {
     fixture.app.renderer.destroy()
   }
 })
 
-test("renames the account label rather than its delete-confirmation message", async () => {
+test("renames the account label rather than its delete-confirmation mensaje", async () => {
   const fixture = await renderIntegration()
 
   try {
@@ -208,8 +208,8 @@ test("hides account rename and delete actions while the add account row is selec
   const fixture = await renderIntegration()
 
   try {
-    expect(fixture.app.captureCharFrame()).not.toContain("rename")
-    expect(fixture.app.captureCharFrame()).not.toContain("delete")
+    expect(fixture.app.captureCharFrame()).not.toContain("cambiar nombre")
+    expect(fixture.app.captureCharFrame()).not.toContain("eliminar")
 
     fixture.app.mockInput.pressKey("r", { ctrl: true })
     fixture.app.mockInput.pressKey("d", { ctrl: true })
@@ -217,13 +217,13 @@ test("hides account rename and delete actions while the add account row is selec
 
     expect(fixture.requests).toEqual([])
     expect(fixture.app.renderer.currentFocusedEditor).toBeInstanceOf(InputRenderable)
-    expect(fixture.app.captureCharFrame()).toContain("Connected accounts")
+    expect(fixture.app.captureCharFrame()).toContain("Cuentas conectadas")
 
     fixture.app.mockInput.pressArrow("down")
-    await fixture.app.waitForFrame((frame) => frame.includes("rename") && frame.includes("delete"))
+    await fixture.app.waitForFrame((frame) => frame.includes("cambiar nombre") && frame.includes("eliminar"))
 
     fixture.app.mockInput.pressArrow("up")
-    await fixture.app.waitForFrame((frame) => !frame.includes("rename") && !frame.includes("delete"))
+    await fixture.app.waitForFrame((frame) => !frame.includes("cambiar nombre") && !frame.includes("eliminar"))
   } finally {
     fixture.app.renderer.destroy()
   }
@@ -383,7 +383,7 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
 
   app.renderer.start()
   await app.waitForFrame(
-    (frame) => frame.includes("Add account") && frame.includes("Personal") && frame.includes("Work"),
+    (frame) => frame.includes("Añadir cuenta") && frame.includes("Personal") && frame.includes("Work"),
   )
   await app.waitFor(() => app.renderer.currentFocusedEditor instanceof InputRenderable)
 

@@ -21,7 +21,7 @@ const logout = Effect.fn("cli.auth.logout.run")(function* (input: {
   credential?: string
 }) {
   if (!input.target)
-    yield* requireInteractive("Pass an integration ID or name when running without an interactive terminal")
+    yield* requireInteractive("Indica un ID o nombre de integración si no hay terminal interactiva")
   if (!input.credential)
     yield* requireInteractive("Pass a credential ID or label when running without an interactive terminal")
   intro("Log out of an account")
@@ -35,5 +35,5 @@ const logout = Effect.fn("cli.auth.logout.run")(function* (input: {
     Effect.tap(() => Effect.sync(() => progress.stop(`Removed account from ${integration.name}`))),
     Effect.tapCause(() => Effect.sync(() => progress.stop("Failed to remove credential", 1))),
   )
-  outro("Done")
+  outro("Terminado")
 })

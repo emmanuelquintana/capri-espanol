@@ -479,7 +479,7 @@ export async function startWire(options: WireOptions = {}) {
       }
       const timer = setTimeout(() => {
         cleanup()
-        reject(new Error(`timed out waiting for ${description}`))
+        reject(new Error(`timed out waiting para ${description}`))
       }, timeout)
       const cleanup = () => {
         clearTimeout(timer)
@@ -629,7 +629,7 @@ function startServer(options: WireOptions, changed: () => void) {
     return session
   }
   const notFound = (sessionID: string) =>
-    Response.json({ _tag: "SessionNotFoundError", sessionID, message: "session not found" }, { status: 404 })
+    Response.json({ _tag: "SessionNotFoundError", sessionID, message: "no se encontró la sesión" }, { status: 404 })
   const noContent = () => new Response(null, { status: 204 })
 
   // Handlers record facts synchronously before awaiting hooks, so waiters can observe a held request.

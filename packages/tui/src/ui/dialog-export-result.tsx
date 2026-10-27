@@ -31,7 +31,7 @@ export function DialogExportResult(props: { path: string; onClose?: () => void }
     commands: [
       {
         bind: "return",
-        title: "Close export result",
+        title: "Cerrar resultado de exportación",
         group: "Dialog",
         run: close,
       },
@@ -41,19 +41,19 @@ export function DialogExportResult(props: { path: string; onClose?: () => void }
   Keymap.createLayer(() => ({
     mode: "modal",
     enabled: newDesigns(),
-    commands: [{ bind: "c", title: "Copy export path", group: "Dialog", run: copy }],
+    commands: [{ bind: "c", title: "Copiar ruta de exportación", group: "Dialog", run: copy }],
   }))
 
   return (
     <DialogLayout
       footerGap={2}
-      header={<DialogHeader title="Session exported" onClose={close} />}
+      header={<DialogHeader title="Sesión exportada" onClose={close} />}
       footer={{
         actions: {
           primary: [
             copied()
               ? { title: "copied", key: "✓", color: theme.text.feedback.success.base, onTrigger: copy }
-              : { title: "copy path", key: "c", onTrigger: copy },
+              : { title: "copiar ruta", key: "c", onTrigger: copy },
           ],
         },
       }}
@@ -65,14 +65,14 @@ export function DialogExportResult(props: { path: string; onClose?: () => void }
             backgroundColor={theme.background.action.primary.focused}
             onMouseUp={close}
           >
-            <text fg={theme.text.action.primary.focused}>Close</text>
+            <text fg={theme.text.action.primary.focused}>Cerrar</text>
           </box>
         </box>
       }
     >
       <Show when={newDesigns()} fallback={<text fg={theme.text.base}>{props.path}</text>}>
         <text fg={theme.text.base}>
-          Saved to <span style={{ fg: theme.text.muted, underline: true }}>{props.path}</span>
+          Guardado en <span style={{ fg: theme.text.muted, underline: true }}>{props.path}</span>
         </text>
       </Show>
     </DialogLayout>

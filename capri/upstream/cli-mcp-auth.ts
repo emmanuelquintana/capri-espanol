@@ -31,7 +31,7 @@ const authenticate = Effect.fn("cli.mcp.auth.run")(function* (name?: string) {
     log.info(
       `Remote MCP servers support OAuth by default. Add one with \`capri mcp add\` or in opencode.json:\n${exampleConfig}`,
     )
-    outro("Done")
+    outro("Terminado")
     return
   }
 
@@ -52,10 +52,10 @@ const authenticate = Effect.fn("cli.mcp.auth.run")(function* (name?: string) {
     if (status === "needs_auth") log.warn(`${integration.name} has expired credentials. Re-authenticating...`)
     if (status !== "needs_auth" && process.stdin.isTTY && process.stdout.isTTY) {
       const again = yield* prompt<boolean>(() =>
-        confirm({ message: `${integration.name} already has valid credentials. Re-authenticate?` }),
+        confirm({ message: `${integration.name} ya tiene credenciales válidas. ¿Volver a autenticar?` }),
       )
       if (!again) {
-        outro("Cancelled")
+        outro("Cancelado")
         return
       }
     }
@@ -71,7 +71,7 @@ const authenticate = Effect.fn("cli.mcp.auth.run")(function* (name?: string) {
     (connection) => request((signal) => client.credential.remove({ credentialID: connection.id }, { signal })),
     { discard: true },
   )
-  outro("Done")
+  outro("Terminado")
 })
 
 const exampleConfig = `

@@ -15,6 +15,6 @@ export default Runtime.handler(
       try: (signal) => client.location.reload({ signal }),
       catch: (cause) => cause,
     })
-    process.stdout.write("Configuration reloaded" + EOL)
+    process.stdout.write("Configuración recargada" + EOL)
   }),
 )

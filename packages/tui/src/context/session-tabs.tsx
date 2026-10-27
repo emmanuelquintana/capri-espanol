@@ -191,7 +191,7 @@ export const { use: useSessionTabs, provider: SessionTabsProvider } = createSimp
                 title: title(sessionID),
                 state: "blocked",
                 kind: session.attention,
-                message: session.attention === "permission" ? "Permission needs input" : "Input needs response",
+                message: session.attention === "permission" ? "Se necesita responder una solicitud de permiso" : "Se necesita una respuesta",
               },
             ]
           if (session.busy) return [{ id: sessionID, title: title(sessionID), state: "working" }]

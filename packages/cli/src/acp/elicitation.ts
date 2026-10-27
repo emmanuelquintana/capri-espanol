@@ -140,7 +140,7 @@ function properties(field: InputField): Array<[string, ElicitationPropertySchema
         oneOf: options(field),
         default: field.default,
       }
-      return field.custom ? [[field.key, select], other(field, "Type your own answer")] : [[field.key, select]]
+      return field.custom ? [[field.key, select], other(field, "Escribe tu respuesta")] : [[field.key, select]]
     }
     case "multiselect": {
       const select: ElicitationPropertySchema = {

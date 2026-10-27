@@ -25,7 +25,7 @@ export const resolve = Effect.fn("cli.server-connection.resolve")(function* (arg
   const server = args.server ?? Option.getOrUndefined(serverFlag)
   const standalone = args.standalone ?? Option.getOrElse(standaloneFlag, () => false)
   if (server !== undefined && standalone)
-    return yield* Effect.fail(new Error("--server and --standalone cannot be combined"))
+    return yield* Effect.fail(new Error("No se pueden combinar --server y --standalone"))
   if (server !== undefined) {
     const password = yield* Env.password
     const endpoint = {
@@ -84,7 +84,7 @@ const resolveManaged = Effect.fnUntraced(function* (options: EnsureOptions, mism
   if (compatible !== undefined) return compatible
   const existing = yield* Service.discover({ ...options, version: undefined })
   if (existing !== undefined)
-    return yield* Effect.fail(new Error("Background server version does not match this client"))
+    return yield* Effect.fail(new Error("La versión del servidor no coincide con este cliente"))
   return yield* Service.ensure(options)
 })
 
@@ -92,14 +92,14 @@ function connectError(endpoint: Endpoint, cause: unknown) {
   if (isUnauthorizedError(cause)) {
     return new Error(
       endpoint.auth === undefined
-        ? `Server at ${endpoint.url} requires a password; set OPENCODE_PASSWORD`
-        : `Server at ${endpoint.url} rejected the password`,
+        ? `Server at ${endpoint.url} requiere una contraseña; configura OPENCODE_PASSWORD`
+        : `Server at ${endpoint.url} rechazó la contraseña`,
       { cause },
     )
   }
   if (cause instanceof ClientError && cause.reason === "Transport")
     return new Error(`Could not reach server at ${endpoint.url}`, { cause })
-  return new Error(`Server at ${endpoint.url} did not provide a compatible V2 health response`, { cause })
+  return new Error(`Server at ${endpoint.url} no proporcionó una respuesta de estado V2 compatible`, { cause })
 }
 
 export * as ServerConnection from "./server-connection"

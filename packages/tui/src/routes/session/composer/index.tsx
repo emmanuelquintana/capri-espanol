@@ -74,10 +74,10 @@ export function Composer(props: ComposerProps) {
     enabled: () => props.open,
     priority: 1,
     commands: [
-      { bind: "left", title: "Previous tab", group: "Composer", run: () => switchTab(-1) },
-      { bind: "right", title: "Next tab", group: "Composer", run: () => switchTab(1) },
-      { bind: "escape", title: "Close composer", group: "Composer", run: close },
-      { bind: "ctrl+c", title: "Close composer", group: "Composer", run: close },
+      { bind: "left", title: "Pestaña anterior", group: "Composer", run: () => switchTab(-1) },
+      { bind: "right", title: "Pestaña siguiente", group: "Composer", run: () => switchTab(1) },
+      { bind: "escape", title: "Cerrar panel de mensajes", group: "Composer", run: close },
+      { bind: "ctrl+c", title: "Cerrar panel de mensajes", group: "Composer", run: close },
     ],
   }))
 
@@ -143,7 +143,7 @@ export function Composer(props: ComposerProps) {
               <Show when={tabList().length > 1}>
                 <text>
                   <span style={{ fg: theme.text.base }}>
-                    <b>tabs</b>{" "}
+                    <b>pestañas</b>{" "}
                   </span>
                   <span style={{ fg: theme.text.muted }}>←/→</span>
                 </text>

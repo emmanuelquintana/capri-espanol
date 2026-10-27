@@ -3,7 +3,7 @@ export function errorDetails(input: { title: string; error: string; context?: st
     input.title,
     ...(input.context ? [input.context] : []),
     `Error: ${input.error}`,
-    ...(input.diagnosticRef ? [`Reference: ${input.diagnosticRef}`] : []),
+    ...(input.diagnosticRef ? [`Referencia: ${input.diagnosticRef}`] : []),
   ].join("\n")
   return {
     text,

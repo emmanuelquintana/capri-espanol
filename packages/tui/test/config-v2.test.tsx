@@ -110,13 +110,13 @@ test("shows the new session location default in settings", () => {
 
 test("shows the TPS default in session settings", () => {
   const setting = settings.find((setting) => setting.path.join(".") === "session.tps")
-  expect(setting?.category).toBe("Session")
+  expect(setting?.category).toBe("Sesión")
   expect(setting?.default).toBe(true)
 })
 
 test("shows transcript verbosity in session settings", () => {
   expect(settings.find((setting) => setting.path.join(".") === "session.verbosity")).toMatchObject({
-    category: "Session",
+    category: "Sesión",
     default: "medium",
     values: ["low", "medium", "high"],
   })
@@ -124,8 +124,8 @@ test("shows transcript verbosity in session settings", () => {
 
 test("names tool grouping explicitly in settings", () => {
   expect(settings.find((setting) => setting.path.join(".") === "session.grouping")).toMatchObject({
-    title: "Tool grouping",
-    category: "Session",
+    title: "Agrupación de herramientas",
+    category: "Sesión",
     default: "auto",
     values: ["none", "auto"],
   })
@@ -282,7 +282,7 @@ test("uses ctrl+z for input undo when terminal suspend is unavailable", () => {
 })
 
 test("keeps turn token usage inside developer tools", () => {
-  expect(settings.find((setting) => setting.path.join(".") === "debug.devtools")?.title).toBe("Developer tools")
+  expect(settings.find((setting) => setting.path.join(".") === "debug.devtools")?.title).toBe("Herramientas de desarrollo")
   expect(settings.some((setting) => setting.path.join(".") === "debug.turn_tokens")).toBe(false)
 })
 

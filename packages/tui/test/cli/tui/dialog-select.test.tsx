@@ -290,7 +290,7 @@ test("ctrl+c clears a dialog text selection before closing the dialog", async ()
 
 test("renders the complete truncated footer within the option row", async () => {
   await using tmp = await tmpdir()
-  const title = "Project"
+  const title = "Proyecto"
   const footer = truncateFilePath(
     "/tmp/opencode/projects/a-very-long-project-directory/distinctive-tail.tsx",
     dialogSelectContentWidth(dialogWidth("medium")) - stringWidth(title),
@@ -385,12 +385,12 @@ test("renders one gap before an empty state", async () => {
   )
 
   try {
-    await app.waitForFrame((frame) => frame.includes("No items available"))
+    await app.waitForFrame((frame) => frame.includes("No hay elementos disponibles"))
     const lines = app
       .captureCharFrame()
       .split("\n")
       .map((line) => line.trim())
-    expect(lines.indexOf("No items available") - lines.indexOf("Search")).toBe(2)
+    expect(lines.indexOf("No hay elementos disponibles") - lines.indexOf("Buscar")).toBe(2)
   } finally {
     app.renderer.destroy()
   }
@@ -409,7 +409,7 @@ test("footer actions run when filtering leaves no selected row", async () => {
 
   try {
     for (const key of "missing") app.mockInput.pressKey(key)
-    await app.waitForFrame((frame) => frame.includes("No results found"))
+    await app.waitForFrame((frame) => frame.includes("No se encontraron resultados"))
 
     app.mockInput.pressKey("d", { ctrl: true })
     const frame = app.captureCharFrame().split("\n")
@@ -470,7 +470,7 @@ test("selects a repopulated option after removing the only option", async () => 
 
   try {
     select.replaceOptions([])
-    await select.app.waitForFrame((frame) => frame.includes("No items available"))
+    await select.app.waitForFrame((frame) => frame.includes("No hay elementos disponibles"))
     select.app.mockInput.pressEnter()
     expect(select.selected).toEqual([])
 
@@ -496,7 +496,7 @@ test("keeps the cursor index while options are temporarily empty", async () => {
     select.app.mockInput.pressArrow("down")
     await select.app.waitFor(() => select.moved.at(-1) === "third")
     select.replaceOptions([])
-    await select.app.waitForFrame((frame) => frame.includes("No items available"))
+    await select.app.waitForFrame((frame) => frame.includes("No hay elementos disponibles"))
 
     select.replaceOptions(options)
     await select.app.waitForFrame((frame) => frame.includes("third"))
@@ -604,8 +604,8 @@ test("shows no-match and still closes after a flat filter goes empty", async () 
   const select = await mountSelect(
     tmp.path,
     [
-      { title: "models.dev", value: "models.dev", category: "Projects" },
-      { title: "opencode2", value: "opencode2", category: "Projects" },
+      { title: "models.dev", value: "models.dev", category: "Proyectos" },
+      { title: "opencode2", value: "opencode2", category: "Proyectos" },
     ],
     undefined,
     undefined,
@@ -617,11 +617,11 @@ test("shows no-match and still closes after a flat filter goes empty", async () 
     await select.app.mockInput.typeText("models")
     await select.app.waitForFrame((frame) => frame.includes("models.dev") && !frame.includes("opencode2"))
     await select.app.mockInput.typeText(" missing")
-    await select.app.waitForFrame((frame) => frame.includes("No results found"))
+    await select.app.waitForFrame((frame) => frame.includes("No se encontraron resultados"))
     expect(select.app.captureCharFrame()).not.toContain("models.dev")
 
     select.app.mockInput.pressEscape()
-    await select.app.waitForFrame((frame) => !frame.includes("Mutable options") && !frame.includes("No results found"))
+    await select.app.waitForFrame((frame) => !frame.includes("Mutable options") && !frame.includes("No se encontraron resultados"))
   } finally {
     select.app.renderer.destroy()
   }

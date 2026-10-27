@@ -6,7 +6,7 @@ import path from "node:path"
 import { ReadStream } from "node:tty"
 import { OPENCODE_VERSION } from "./version"
 
-export const INTERACTIVE_INPUT_ERROR = "capri mini requires a controlling terminal for input"
+export const INTERACTIVE_INPUT_ERROR = "capri mini requiere una terminal de control para la entrada"
 
 export type InteractiveStdin = {
   stdin: NodeJS.ReadStream

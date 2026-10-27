@@ -59,7 +59,7 @@ export class CatalogNotReadyError extends Schema.TaggedError<CatalogNotReadyErro
   reason: Schema.Literals(["models", "agents"]),
 }) {
   override get message() {
-    return this.reason === "models" ? "No models are available" : "No primary agents are available"
+    return this.reason === "models" ? "No hay modelos disponibles" : "No hay agentes principales disponibles"
   }
 }
 
@@ -88,7 +88,7 @@ export type Failure = Error | RequestError | CatalogError
 export function toRequestError(error: Error): RequestError {
   switch (error._tag) {
     case "ACPSessionNotFoundError":
-      return RequestError.invalidParams({ sessionId: error.sessionId }, `session not found: ${error.sessionId}`)
+      return RequestError.invalidParams({ sessionId: error.sessionId }, `no se encontró la sesión: ${error.sessionId}`)
     case "ACPSessionDirectoryMismatchError":
       return RequestError.invalidParams(
         { sessionId: error.sessionId, cwd: error.cwd },
@@ -99,7 +99,7 @@ export function toRequestError(error: Error): RequestError {
     case "ACPInvalidModelError":
       return RequestError.invalidParams(
         { providerId: error.providerId, modelId: error.modelId },
-        `model not found: ${error.modelId}`,
+        `no se encontró el modelo: ${error.modelId}`,
       )
     case "ACPInvalidEffortError":
       return RequestError.invalidParams({ effort: error.effort }, `effort not found: ${error.effort}`)
@@ -125,7 +125,7 @@ export function toRequestError(error: Error): RequestError {
         error.safeMessage,
       )
     case "ACPServerUnavailableError":
-      return RequestError.internalError({ errorName: "ServerUnavailable" }, "Capri server is unavailable")
+      return RequestError.internalError({ errorName: "ServerUnavailable" }, "El servidor de Capri no está disponible")
   }
   const exhaustive: never = error
   return exhaustive
@@ -133,7 +133,7 @@ export function toRequestError(error: Error): RequestError {
 
 export function fromUnknown(error: unknown) {
   const errorName = error instanceof Error ? error.name : undefined
-  return new ServiceFailureError({ safeMessage: "Internal service failure", errorName })
+  return new ServiceFailureError({ safeMessage: "Fallo interno del servicio", errorName })
 }
 
 export * as ACPError from "./error"

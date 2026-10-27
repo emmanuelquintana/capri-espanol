@@ -71,9 +71,9 @@ describe("acp permissions over the wire", () => {
         rawInput: { command: "printf hello", cwd: "/workspace" },
       },
       options: [
-        { optionId: "once", kind: "allow_once", name: "Allow once" },
-        { optionId: "always", kind: "allow_always", name: "Always allow" },
-        { optionId: "reject", kind: "reject_once", name: "Reject" },
+        { optionId: "once", kind: "allow_once", name: "Permitir" },
+        { optionId: "always", kind: "allow_always", name: "Siempre" },
+        { optionId: "reject", kind: "reject_once", name: "Rechazar" },
       ],
     })
     expect(acp.permissions[1]).toMatchObject({

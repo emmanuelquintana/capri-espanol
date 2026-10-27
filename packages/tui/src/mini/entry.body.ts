@@ -90,7 +90,7 @@ function monoBody(body: RunEntryBody): RunEntryBody {
   if (snapshot.kind === "diff") {
     return textBody(
       snapshot.items
-        .map((item) => `${item.title}\n${item.diff.trim() || `-${item.deletions ?? 0} lines`}`)
+        .map((item) => `${item.title}\n${item.diff.trim() || `-${item.deletions ?? 0} líneas`}`)
         .join("\n\n"),
     )
   }
@@ -98,7 +98,7 @@ function monoBody(body: RunEntryBody): RunEntryBody {
     return textBody([snapshot.title, ...snapshot.rows, snapshot.tail].filter(Boolean).join("\n"))
   }
   return textBody(
-    ["# Questions", ...snapshot.items.flatMap((item) => [item.question, item.answer]), snapshot.tail]
+    ["# Preguntas", ...snapshot.items.flatMap((item) => [item.question, item.answer]), snapshot.tail]
       .filter(Boolean)
       .join("\n"),
   )

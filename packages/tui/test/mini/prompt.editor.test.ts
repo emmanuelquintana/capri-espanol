@@ -6,7 +6,7 @@ import type { RunPromptPart } from "../../src/mini/types"
 describe("run prompt editor helpers", () => {
   test("strips the local /editor command from the initial editor text", () => {
     expect(resolveEditorSlashValue("/editor")).toBe("")
-    expect(resolveEditorSlashValue("/editor draft message")).toBe("draft message")
+    expect(resolveEditorSlashValue("/editor draft mensaje")).toBe("draft mensaje")
     expect(resolveEditorSlashValue("/editor first line\nsecond line")).toBe("first line\nsecond line")
   })
 

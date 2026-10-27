@@ -48,7 +48,7 @@ test("sidebar omits context before usage is available", async () => {
 
   try {
     await app.renderOnce()
-    expect(app.captureCharFrame()).not.toContain("Context")
+    expect(app.captureCharFrame()).not.toContain("Contexto")
     expect(app.captureCharFrame()).not.toContain("Not measured")
   } finally {
     app.renderer.destroy()
@@ -63,7 +63,7 @@ test("sidebar shows available context usage", async () => {
 
   try {
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Context")
+    expect(app.captureCharFrame()).toContain("Contexto")
     expect(app.captureCharFrame()).toContain("1,234 tokens")
   } finally {
     app.renderer.destroy()
@@ -78,8 +78,8 @@ test("sidebar shows the allowance a subscription covered", async () => {
 
   try {
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Context")
-    expect(app.captureCharFrame()).toContain("$0.42 allowance used")
+    expect(app.captureCharFrame()).toContain("Contexto")
+    expect(app.captureCharFrame()).toContain("$0.42 del límite utilizado")
     expect(app.captureCharFrame()).not.toContain("spent")
   } finally {
     app.renderer.destroy()

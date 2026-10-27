@@ -12,10 +12,10 @@ export const chooseIntegration = Effect.fn("cli.auth.account.integration")(funct
   const configured = integrations.filter((integration) =>
     integration.connections.some((connection) => connection.type === "credential"),
   )
-  if (configured.length === 0) return yield* Effect.fail(new Error("No stored credentials found"))
+  if (configured.length === 0) return yield* Effect.fail(new Error("No se encontraron credenciales guardadas"))
   const id = yield* prompt<string>(() =>
     autocomplete({
-      message: "Select integration",
+      message: "Seleccionar integración",
       maxItems: 8,
       options: configured.map((integration) => ({
         value: integration.id,
@@ -62,11 +62,11 @@ export const chooseCredential = Effect.fn("cli.auth.account.credential")(functio
   }
   return yield* prompt<string>(() =>
     autocomplete({
-      message: `Select ${integration.name} account to ${action}`,
+      message: `Seleccionar ${integration.name} cuenta para ${action}`,
       maxItems: 8,
       options: credentials.map((credential, index) => ({
         value: credential.id,
-        label: index === 0 ? `${credential.label} (active)` : credential.label,
+        label: index === 0 ? `${credential.label} (activa)` : credential.label,
         hint: credential.id,
       })),
     }),

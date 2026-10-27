@@ -105,7 +105,7 @@ test("an expanded group spends the mounting budget that older rows used", async 
       .split("\n")
       .findIndex((line) => line.includes("Explored: 100 reads"))
     await setup.mockMouse.click(6, header)
-    await setup.waitForFrame((frame) => frame.includes("Read 99.ts"))
+    await setup.waitForFrame((frame) => frame.includes("Leer 99.ts"))
     await setup.waitForVisualIdle({ quietFrames: 3 })
     // Expanded: the group's 101 rendered entries exceed the 40-entry tail on their own.
     expect(mounted("user-29")).toBe(false)
@@ -124,7 +124,7 @@ test("an expanded group spends the mounting budget that older rows used", async 
     )
     await setup.waitForVisualIdle({ quietFrames: 3 })
     setup.mockInput.pressKey("l", { ctrl: true, shift: true })
-    await setup.waitForFrame((frame) => !frame.includes("Read 99.ts") && frame.includes("Explored: 100 reads"))
+    await setup.waitForFrame((frame) => !frame.includes("Leer 99.ts") && frame.includes("Explored: 100 reads"))
     await setup.waitForVisualIdle({ quietFrames: 3 })
     expect(mounted("user-18")).toBe(true)
     expect(mounted("user-17")).toBe(false)

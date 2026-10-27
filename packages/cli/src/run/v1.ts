@@ -32,7 +32,7 @@ export function runV1Bridge(input: V1RunCommandInput) {
   try {
     process.chdir(local)
   } catch {
-    reportRunError(input, `Failed to change directory to ${local}`)
+    reportRunError(input, `No se pudo cambiar al directorio ${local}`)
     return Promise.resolve()
   }
 

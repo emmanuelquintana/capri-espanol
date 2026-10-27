@@ -55,17 +55,17 @@ export function DialogErrorDetails(props: {
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "escape", title: "Back", group: "Dialog", run: props.onBack },
-      { bind: "c", title: "Copy details", group: "Dialog", run: copy },
-      { bind: "i", title: "Investigate error", group: "Dialog", run: investigate },
+      { bind: "escape", title: "Volver", group: "Dialog", run: props.onBack },
+      { bind: "c", title: "Copiar detalles", group: "Dialog", run: copy },
+      { bind: "i", title: "Investigar error", group: "Dialog", run: investigate },
     ],
   }))
 
   const actions = () => [
-    { title: "investigate", key: "i", onTrigger: investigate },
+    { title: "investigar", key: "i", onTrigger: investigate },
     copied()
-      ? { title: "✓ copied", color: theme.text.feedback.success.base, onTrigger: copy }
-      : { title: "copy details", key: "c", onTrigger: copy },
+      ? { title: "✓ copiado", color: theme.text.feedback.success.base, onTrigger: copy }
+      : { title: "copiar detalles", key: "c", onTrigger: copy },
   ]
 
   useKeyboard((event) => {
@@ -109,7 +109,7 @@ export function DialogErrorDetails(props: {
         </box>
       }
       footer={{ actions: { primary: actions() } }}
-      legacyFooter={<DialogFooter actions={{ secondary: actions(), primary: [{ title: "scroll", key: "↑/↓" }] }} />}
+      legacyFooter={<DialogFooter actions={{ secondary: actions(), primary: [{ title: "desplazamiento", key: "↑/↓" }] }} />}
     >
       <scrollbox
         ref={(element: ScrollBoxRenderable) => (scroll = element)}
@@ -123,7 +123,7 @@ export function DialogErrorDetails(props: {
         </text>
       </scrollbox>
       <Show when={props.diagnosticRef}>
-        <text fg={theme.text.muted}>Reference: {props.diagnosticRef}</text>
+        <text fg={theme.text.muted}>Referencia: {props.diagnosticRef}</text>
       </Show>
     </DialogLayout>
   )

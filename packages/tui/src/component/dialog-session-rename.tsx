@@ -11,8 +11,8 @@ export function DialogSessionRename(props: { sessionID: string; currentTitle?: s
 
   return (
     <DialogPrompt
-      title="Rename session"
-      placeholder="Session title"
+      title="Cambiar nombre de la sesión"
+      placeholder="Título de la sesión"
       value={props.currentTitle}
       onConfirm={(value) => {
         const title = value.trim()
@@ -22,7 +22,7 @@ export function DialogSessionRename(props: { sessionID: string; currentTitle?: s
           .then(() => dialog.clear())
           .catch((error) =>
             toast.show({
-              message: `Failed to rename session: ${errorMessage(error)}`,
+              message: `No se pudo cambiar el nombre de la sesión: ${errorMessage(error)}`,
               variant: "error",
               duration: 5000,
             }),

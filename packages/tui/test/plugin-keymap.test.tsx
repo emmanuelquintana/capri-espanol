@@ -41,7 +41,7 @@ test("setup layers before and after await reach keyboard, palette, and slash acr
   setup.mockInput.pressKey("g", { ctrl: true })
   setup.mockInput.pressKey("F9")
   await search(setup, "Setup check")
-  await setup.waitForFrame((frame) => frame.includes("No results found"))
+  await setup.waitForFrame((frame) => frame.includes("No se encontraron resultados"))
   expect(setup.captureCharFrame()).not.toContain("Setup keymap ran 4")
   expect(setup.captureCharFrame()).not.toContain("Sync keymap ran 2")
   setup.mockInput.pressEscape()
@@ -57,7 +57,7 @@ test("setup layers before and after await reach keyboard, palette, and slash acr
   await setup.waitForFrame((frame) => frame.includes("Sync keymap ran 1"))
 })
 
-test("a component layer ends when its component unmounts while the plugin stays active", async () => {
+test("a component layer ends when its component unmounts while the plugin stays activo", async () => {
   await using plugin = await copyPlugin("setup-keymap")
   await using setup = await createAppFixture({ config: { animations: false, plugins: [plugin.directory] } })
   await setup.ready
@@ -102,7 +102,7 @@ test("a component layer ends with its activation on reload while the component s
   expect(setup.captureCharFrame()).not.toContain("Dialog keymap ran 2")
 })
 
-test("failed setup reports batched layer errors and disposes earlier and later setup layers", async () => {
+test("error setup reports batched layer errors and disposes earlier and later setup layers", async () => {
   await using plugin = await copyPlugin("setup-keymap")
   await using setup = await createAppFixture({
     config: { animations: false, plugins: [{ package: plugin.directory, options: { fail: true } }] },
@@ -111,7 +111,7 @@ test("failed setup reports batched layer errors and disposes earlier and later s
   await setup.waitForFrame((frame) => frame.includes("ctrl+p commands"))
 
   await openPlugin(setup)
-  await setup.waitForFrame((frame) => frame.includes("view error"))
+  await setup.waitForFrame((frame) => frame.includes("ver error"))
   setup.mockInput.pressKey(" ")
   await setup.waitForFrame((frame) => frame.includes("Palette commands require an ID"))
   setup.mockInput.pressEscape()
@@ -128,7 +128,7 @@ test("failed setup reports batched layer errors and disposes earlier and later s
 
 async function search(setup: Fixture, query: string) {
   setup.mockInput.pressKey("p", { ctrl: true })
-  await setup.waitForFrame((frame) => frame.includes("Commands"))
+  await setup.waitForFrame((frame) => frame.includes("Comandos"))
   await setup.waitFor(() => setup.renderer.currentFocusedEditor instanceof InputRenderable)
   await setup.mockInput.typeText(query)
 }

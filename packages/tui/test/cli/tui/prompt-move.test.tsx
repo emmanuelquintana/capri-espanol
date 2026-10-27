@@ -92,7 +92,7 @@ test.each([false, true])("selecting a workspace opens Home without moving a sess
   const fixture = await renderMove({ directory: clone, home })
   try {
     await fixture.move.open()
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
     await fixture.app.mockInput.typeText("linked")
     await fixture.app.waitForFrame((frame) => frame.includes(linked) && !frame.includes(clone))
@@ -114,7 +114,7 @@ test("removal sends project ownership and the destination without a configuratio
   const fixture = await renderMove({ directory: clone, home: true })
   try {
     await fixture.move.open()
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
     await fixture.app.mockInput.typeText("linked")
     await fixture.app.waitForFrame((frame) => frame.includes(linked) && !frame.includes(clone))
@@ -135,7 +135,7 @@ test("refresh explicitly scans the project and preserves the worktree filter", a
   try {
     await fixture.move.open()
     await fixture.app.waitFor(() => fixture.reads.refresh.length === 1)
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
     await fixture.app.mockInput.typeText("linked")
     await fixture.app.waitForFrame((frame) => frame.includes(linked) && !frame.includes(clone))
@@ -153,7 +153,7 @@ test.each([false, true])("Ctrl+M moves only an existing session (home=%s)", asyn
   const fixture = await renderMove({ directory: clone, home })
   try {
     await fixture.move.open()
-    const frame = await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    const frame = await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     expect(frame).toContain("new ctrl+a")
     expect(frame.includes("move ctrl+m")).toBe(!home)
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
@@ -179,9 +179,9 @@ test.each([false, true])("Ctrl+M moves only an existing session (home=%s)", asyn
 test("choosing a directory recovers the session when its location is unavailable", async () => {
   const fixture = await renderMove({ directory: clone, unavailable: "location", showMissingLocation: true })
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Session location unavailable"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Ubicación de la sesión no disponible"))
     fixture.app.mockInput.pressEnter()
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
     await fixture.app.mockInput.typeText("linked")
     await fixture.app.waitForFrame((frame) => frame.includes(linked) && !frame.includes(main))
@@ -199,11 +199,11 @@ test("choosing a directory recovers the session when its location is unavailable
 test("creating a worktree recovers the session without reading its removed location", async () => {
   const fixture = await renderMove({ directory: clone, unavailable: "location", showMissingLocation: true })
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Session location unavailable"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Ubicación de la sesión no disponible"))
     fixture.app.mockInput.pressEnter()
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     fixture.app.mockInput.pressKey("a", { ctrl: true })
-    await fixture.app.waitForFrame((frame) => frame.includes("Name worktree"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Nombrar árbol de trabajo"))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof TextareaRenderable)
     await fixture.app.mockInput.typeText("fresh")
     fixture.app.mockInput.pressEnter()
@@ -218,12 +218,12 @@ test("creating a worktree recovers the session without reading its removed locat
   }
 })
 
-test("failed recovery does not navigate away from the session", async () => {
+test("error recovery does not navigate away from the session", async () => {
   const fixture = await renderMove({ directory: clone, unavailable: "location", showMissingLocation: true, moveFails: true })
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Session location unavailable"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Ubicación de la sesión no disponible"))
     fixture.app.mockInput.pressEnter()
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktrees") && frame.includes(linked))
+    await fixture.app.waitForFrame((frame) => frame.includes("Árboles de trabajo") && frame.includes(linked))
     await fixture.app.waitFor(() => fixture.app.renderer.currentFocusedEditor instanceof InputRenderable)
     await fixture.app.mockInput.typeText("linked")
     await fixture.app.waitForFrame((frame) => frame.includes(linked) && !frame.includes(main))
@@ -232,7 +232,7 @@ test("failed recovery does not navigate away from the session", async () => {
 
     expect(fixture.moves).toEqual([{ directory: linked }])
     expect(fixture.route.data).toEqual({ type: "session", sessionID: "ses_clone" })
-    expect(fixture.toast.currentToast).toMatchObject({ title: "Failed to move session", variant: "error" })
+    expect(fixture.toast.currentToast).toMatchObject({ title: "No se pudo mover la sesión", variant: "error" })
   } finally {
     fixture.app.renderer.destroy()
   }
@@ -248,7 +248,7 @@ test.each([
 
     expect(fixture.requests).toEqual([])
     expect(fixture.moves).toEqual([])
-    expect(fixture.toast.currentToast).toMatchObject({ title: "Creating workspace failed", variant: "error" })
+    expect(fixture.toast.currentToast).toMatchObject({ title: "No se pudo crear el espacio de trabajo", variant: "error" })
     expect(fixture.move.creating()).toBe(false)
   } finally {
     fixture.app.renderer.destroy()
@@ -271,7 +271,7 @@ test("does not open creation when the selected Home location lookup fails", asyn
     expect(fixture.requests).toEqual([])
     expect(fixture.moves).toEqual([])
     expect(fixture.toast.currentToast).toMatchObject({
-      message: "Unable to determine current project",
+      message: "No se puede determinar el proyecto actual",
       variant: "error",
     })
   } finally {
@@ -427,10 +427,10 @@ async function renderMove(input: {
     async create() {
       await move.open()
       const frame = await app.waitForFrame(
-        (frame) => frame.includes("Worktrees") && (frame.includes(clone) || frame.includes(launch)),
+        (frame) => frame.includes("Árboles de trabajo") && (frame.includes(clone) || frame.includes(launch)),
       )
       app.mockInput.pressKey("a", { ctrl: true })
-      await app.waitForFrame((frame) => frame.includes("Name worktree"))
+      await app.waitForFrame((frame) => frame.includes("Nombrar árbol de trabajo"))
       await app.waitFor(() => app.renderer.currentFocusedEditor instanceof TextareaRenderable)
       await app.mockInput.typeText("fresh")
       app.mockInput.pressEnter()

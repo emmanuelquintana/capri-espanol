@@ -59,7 +59,7 @@ export function DialogSessionList() {
       try {
         if (!data.location.info(location)) await data.location.sync(location)
         const current = data.location.info(location)
-        if (!current) throw new Error("Location unavailable")
+        if (!current) throw new Error("Ubicación no disponible")
         const response = await client.api.session.list({
           ...(allProjects
             ? {}
@@ -111,14 +111,14 @@ export function DialogSessionList() {
   const searchState = createMemo(() => {
     const query = filter().trim()
     if (query !== search().trim() || searchResults.loading)
-      return { message: query ? "Searching sessions…" : "Loading sessions…", error: false }
+      return { message: query ? "Buscando sesiones…" : "Cargando sesiones…", error: false }
     const result = searchResults()
     if (result?.query === query && result.error)
       return {
-        message: query ? "Could not search sessions. Change the search to try again." : "Could not load sessions.",
+        message: query ? "No se pudieron buscar sesiones. Cambia la búsqueda para reintentar." : "No se pudieron cargar las sesiones.",
         error: true,
       }
-    return { message: query ? "No sessions found" : "No sessions available", error: false }
+    return { message: query ? "No se encontraron sesiones" : "No hay sesiones disponibles", error: false }
   })
 
   const quickSwitchHint = createMemo(() => {
@@ -164,7 +164,7 @@ export function DialogSessionList() {
       const attention = sessionTabs.status(session.id).attention
       return {
         title: deleting
-          ? `Press ${shortcuts.get("session.delete")} again to confirm`
+          ? `Pulsa ${shortcuts.get("session.delete")} otra vez para confirmar`
           : withTimestampedFallback(session),
         value: session.id,
         category,
@@ -196,20 +196,20 @@ export function DialogSessionList() {
 
   return (
     <DialogSelect
-      title="Sessions"
+      title="Sesiones"
       titleView={
         <box flexDirection="row">
           <text fg={theme.text.base} attributes={TextAttributes.BOLD}>
-            Sessions
+            Sesiones
           </text>
           <Show when={!allProjects() && currentProjectName()}>
-            <text fg={theme.text.muted}> for {currentProjectName()}</text>
+            <text fg={theme.text.muted}> para {currentProjectName()}</text>
           </Show>
         </box>
       }
       searchInTitle
       titlePlaceholder={
-        !allProjects() && currentProjectName() ? `Search sessions in ${currentProjectName()}` : "Search sessions"
+        !allProjects() && currentProjectName() ? `Search sessions in ${currentProjectName()}` : "Buscar sesiones"
       }
       options={options()}
       skipFilter={true}
@@ -221,7 +221,7 @@ export function DialogSessionList() {
       bindings={[
         {
           bind: "ctrl+a",
-          title: allProjects() ? "Show current directory sessions" : "Show all project sessions",
+          title: allProjects() ? "Mostrar sesiones del directorio actual" : "Mostrar todas las sesiones del proyecto",
           group: "Dialog",
           run: () => {
             void updatePrefs((draft) => {
@@ -252,7 +252,7 @@ export function DialogSessionList() {
       actions={[
         {
           command: "session.pin.toggle",
-          title: "pin/unpin",
+          title: "fijar/desfijar",
           hidden: sessionTabs.enabled(),
           onTrigger: (option) => local.session.togglePin(option.value),
         },
@@ -276,7 +276,7 @@ export function DialogSessionList() {
               .catch((error) => {
                 setToDelete(undefined)
                 toast.show({
-                  message: `Failed to delete session: ${errorMessage(error)}`,
+                  message: `No se pudo eliminar la sesión: ${errorMessage(error)}`,
                   variant: "error",
                   duration: 5000,
                 })
@@ -292,7 +292,7 @@ export function DialogSessionList() {
       ]}
       footerHints={[
         ...(newDesigns() ? [] : quickSwitchFooterHints()),
-        { title: allProjects() ? "current directory" : "all projects", label: "ctrl+a", side: "right" },
+        { title: allProjects() ? "directorio actual" : "todos los proyectos", label: "ctrl+a", side: "right" },
       ]}
     />
   )

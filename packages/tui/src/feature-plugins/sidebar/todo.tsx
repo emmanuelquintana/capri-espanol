@@ -33,9 +33,9 @@ export function SidebarTodo(props: { context: Plugin.Context; sessionID: string 
             <text fg={theme.text.base}>{view.open ? "▼" : "▶"}</text>
           </Show>
           <text fg={theme.text.base}>
-            <b>Todo</b>
+            <b>Pendientes</b>
             <Show when={list().length > 2 && !view.open}>
-              <span style={{ fg: theme.text.muted }}> ({remaining()} remaining)</span>
+              <span style={{ fg: theme.text.muted }}> ({remaining()} pendientes)</span>
             </Show>
           </text>
         </box>

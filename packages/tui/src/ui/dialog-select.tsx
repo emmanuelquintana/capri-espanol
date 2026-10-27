@@ -19,6 +19,7 @@ import {
   type DialogContext,
 } from "./dialog"
 import { Locale } from "../util/locale"
+import { spanishLabel } from "../util/spanish"
 import { getScrollAcceleration } from "../util/scroll"
 import { useConfig, useNewDesigns } from "../config"
 import { moveSelection, reconcileSelection } from "./select-controller"
@@ -477,7 +478,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
       commands: [
         {
           id: "dialog.select.prev",
-          title: "Previous item",
+          title: "Elemento anterior",
           group: "Dialog",
           run() {
             move(-1)
@@ -485,7 +486,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.next",
-          title: "Next item",
+          title: "Elemento siguiente",
           group: "Dialog",
           run() {
             move(1)
@@ -493,7 +494,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.page_up",
-          title: "Page up",
+          title: "Subir página",
           group: "Dialog",
           run() {
             move(-10)
@@ -501,7 +502,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.page_down",
-          title: "Page down",
+          title: "Bajar página",
           group: "Dialog",
           run() {
             move(10)
@@ -509,7 +510,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.home",
-          title: "First item",
+          title: "Primer elemento",
           group: "Dialog",
           run() {
             if (props.locked) return
@@ -518,7 +519,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.end",
-          title: "Last item",
+          title: "Último elemento",
           group: "Dialog",
           run() {
             if (props.locked) return
@@ -527,7 +528,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
         },
         {
           id: "dialog.select.submit",
-          title: "Select item",
+          title: "Seleccionar elemento",
           group: "Dialog",
           run: submit,
         },
@@ -544,7 +545,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
           ? [
               {
                 bind: "escape",
-                title: "Back",
+                title: "Volver",
                 group: "Dialog",
                 run: () => {
                   if (renderer.getSelection()) {
@@ -560,13 +561,13 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
           ? [
               {
                 bind: "alt+up",
-                title: "Previous section",
+                title: "Sección anterior",
                 group: "Dialog",
                 run: () => moveSection(-1),
               },
               {
                 bind: "alt+down",
-                title: "Next section",
+                title: "Sección siguiente",
                 group: "Dialog",
                 run: () => moveSection(1),
               },
@@ -676,7 +677,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
           r.focus()
         }, 1)
       }}
-      placeholder={(searchInTitle() ? props.titlePlaceholder : undefined) ?? props.placeholder ?? "Search"}
+      placeholder={(searchInTitle() ? props.titlePlaceholder : undefined) ?? props.placeholder ?? "Buscar"}
       placeholderColor={newDesigns() ? theme.text.faint : theme.text.muted}
     />
   )
@@ -740,14 +741,14 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
               fallback={
                 props.emptyView ?? (
                   <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-                    <text fg={theme.text.muted}>No items available</text>
+                    <text fg={theme.text.muted}>No hay elementos disponibles</text>
                   </box>
                 )
               }
             >
               {props.noMatchView ?? (
                 <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-                  <text fg={theme.text.muted}>No results found</text>
+                  <text fg={theme.text.muted}>No se encontraron resultados</text>
                 </box>
               )}
             </Show>
@@ -874,7 +875,7 @@ function DialogSelectCategory(props: { title: string; first: boolean }) {
   return (
     <box paddingTop={props.first ? 0 : 1} paddingLeft={DIALOG_LIST_INSET - (newDesigns() ? 0 : 1)}>
       <text fg={newDesigns() ? theme.text.faint : theme.hue.accent[200]} attributes={TextAttributes.BOLD}>
-        {props.title}
+        {spanishLabel(props.title)}
       </text>
     </box>
   )

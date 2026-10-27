@@ -175,10 +175,10 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
       return {
         title,
         titleView: isRemoving ? (
-          <span style={{ fg: theme.text.feedback.error.base }}>Deleting {item.location}</span>
+          <span style={{ fg: theme.text.feedback.error.base }}>Eliminando {item.location}</span>
         ) : deleting ? (
           <span style={{ fg: theme.text.action.destructive.base }}>
-            Press {shortcuts.get("dialog.move_session.delete")} again to confirm
+            Pulsa {shortcuts.get("dialog.move_session.delete")} de nuevo para confirmar
           </span>
         ) : suffix ? (
           <>
@@ -192,7 +192,7 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
           directory: item.location,
           subdirectory: item.location !== item.root.directory,
         } as const,
-        category: item.root.directory === current ? "Current" : "Other",
+        category: item.root.directory === current ? "Actual" : "Otro",
         titleWidth,
         truncateTitle: "left" as const,
       }
@@ -258,8 +258,8 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
           .status({ location: { directory: selected.directory } })
           .catch(() => undefined)
         const choice = await DialogWorkspaceFileChanges.show(dialog, status?.data ?? [], {
-          title: "Delete worktree?",
-          message: "This worktree has file changes. Do you want to delete it anyway?",
+          title: "¿Eliminar árbol de trabajo?",
+          message: "Este árbol de trabajo tiene cambios. ¿Quieres eliminarlo de todos modos?",
           confirm: { title: "delete", key: "d" },
         })
         if (choice !== "yes") {
@@ -279,7 +279,7 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
         if (forcedError) {
           toast.show({
             variant: "error",
-            title: "Failed to delete worktree",
+            title: "No se pudo eliminar el árbol de trabajo",
             message: errorMessage(forcedError),
           })
           reopen()
@@ -293,7 +293,7 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
       }
       toast.show({
         variant: "error",
-        title: "Failed to delete worktree",
+        title: "No se pudo eliminar el árbol de trabajo",
         message: errorMessage(error),
       })
       return
@@ -325,11 +325,11 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
   return (
     <box minHeight={showError() ? 5 : fullHeight()}>
       <DialogSelect
-        title="Worktrees"
+        title="Árboles de trabajo"
         titleView={
           <box flexDirection="row" gap={1}>
             <text fg={theme.text.base} attributes={TextAttributes.BOLD}>
-              Worktrees
+              Árboles de trabajo
             </text>
             <Show when={working() || directories.loading || loadedProject.loading}>
               <Spinner />
@@ -343,24 +343,24 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
           showError() ? (
             <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
               <text fg={theme.text.feedback.error.base} attributes={TextAttributes.BOLD}>
-                Could not load worktrees
+                No se pudieron cargar los árboles de trabajo
               </text>
               <text fg={theme.text.muted}>{errorMessage(loadError())}</text>
-              <text fg={theme.text.muted}>Close and reopen Worktrees to try again.</text>
+              <text fg={theme.text.muted}>Cierra y vuelve a abrir Árboles de trabajo para reintentarlo.</text>
             </box>
           ) : directories.loading || loadedProject.loading ? (
             <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-              <text fg={theme.text.muted}>Loading worktrees…</text>
+              <text fg={theme.text.muted}>Cargando árboles de trabajo…</text>
             </box>
           ) : (
             <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-              <text fg={theme.text.muted}>No worktrees available</text>
+              <text fg={theme.text.muted}>No hay árboles de trabajo disponibles</text>
             </box>
           )
         }
         noMatchView={
           <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-            <text fg={theme.text.muted}>No worktrees found</text>
+            <text fg={theme.text.muted}>No se encontraron árboles de trabajo</text>
           </box>
         }
         locked={showError() || directories.loading || loadedProject.loading || Boolean(removing())}
@@ -394,7 +394,7 @@ export function DialogWorkspaces(props: DialogWorkspacesProps) {
                 },
                 {
                   command: "dialog.move_session.refresh",
-                  title: "refresh",
+                  title: "actualizar",
                   selection: "none",
                   onTrigger: () => void refresh().catch(toast.error),
                 },

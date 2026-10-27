@@ -14,7 +14,7 @@ describe("util.model", () => {
 
   test("includes the selected variant in model switch notices", () => {
     expect(switchLabel({ providerID: "anthropic", id: "sonnet", variant: "thinking" })).toBe(
-      "Switched model to anthropic/sonnet/thinking",
+      "Modelo cambiado a anthropic/sonnet/thinking",
     )
   })
 
@@ -24,26 +24,26 @@ describe("util.model", () => {
       { providerID: "anthropic", id: "sonnet", name: "Claude Sonnet" },
     ]
     expect(switchLabel({ providerID: "openai", id: "gpt-5.5-fast", variant: "high" }, models)).toBe(
-      "Switched model to GPT-5.5 Fast (high)",
+      "Modelo cambiado a GPT-5.5 Fast (high)",
     )
-    expect(switchLabel({ providerID: "anthropic", id: "sonnet" }, models)).toBe("Switched model to Claude Sonnet")
+    expect(switchLabel({ providerID: "anthropic", id: "sonnet" }, models)).toBe("Modelo cambiado a Claude Sonnet")
     expect(switchLabel({ providerID: "anthropic", id: "sonnet", variant: "default" }, models)).toBe(
-      "Switched model to Claude Sonnet",
+      "Modelo cambiado a Claude Sonnet",
     )
     expect(switchLabel({ providerID: "removed", id: "gone", variant: "high" }, models)).toBe(
-      "Switched model to removed/gone/high",
+      "Modelo cambiado a removed/gone/high",
     )
   })
 
   test("distinguishes variant-only switches from model switches", () => {
     const previous = { providerID: "openai", id: "gpt-5.5", variant: "medium" }
 
-    expect(switchLabel({ ...previous, variant: "high" }, undefined, previous)).toBe("Switched variant to high")
+    expect(switchLabel({ ...previous, variant: "high" }, undefined, previous)).toBe("Variante cambiada a high")
     expect(switchLabel({ providerID: "openai", id: "gpt-5.5" }, undefined, previous)).toBe(
-      "Switched variant to default",
+      "Variante cambiada a default",
     )
     expect(switchLabel({ providerID: "anthropic", id: "sonnet", variant: "high" }, undefined, previous)).toBe(
-      "Switched model to anthropic/sonnet/high",
+      "Modelo cambiado a anthropic/sonnet/high",
     )
   })
 })

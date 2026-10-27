@@ -23,19 +23,19 @@ export const openUrl = Effect.fn("cli.prompt.open-url")(function* (url: string) 
 
 export function handlePromptErrors<A, E, R>(effect: Effect.Effect<A, E, R>) {
   return effect.pipe(
-    Effect.onInterrupt(() => Effect.sync(() => cancel("Cancelled"))),
+    Effect.onInterrupt(() => Effect.sync(() => cancel("Cancelado"))),
     Effect.catchIf(
       (error) => error === cancelled,
       () =>
         Effect.sync(() => {
-          cancel("Cancelled")
+          cancel("Cancelado")
           process.exitCode = 130
         }),
     ),
     Effect.catch((error) =>
       Effect.sync(() => {
         log.error(errorMessage(error))
-        outro("Failed")
+        outro("Falló")
         process.exitCode = 1
       }),
     ),

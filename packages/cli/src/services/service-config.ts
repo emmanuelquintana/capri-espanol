@@ -272,7 +272,7 @@ export const set = Effect.fn("cli.service-config.set")(function* (key: string, v
     }
     case "port": {
       const port = Number(value)
-      if (!Number.isInteger(port) || port < 1 || port > 65_535) throw new Error("Port must be between 1 and 65535")
+      if (!Number.isInteger(port) || port < 1 || port > 65_535) throw new Error("El puerto debe estar entre 1 y 65535")
       yield* Service.stop(yield* options())
       yield* write({ ...(yield* read()), port })
       return

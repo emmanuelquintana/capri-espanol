@@ -45,7 +45,7 @@ const FAMILY_LIST_LIMIT = 100
 const FAMILY_DISCOVERY_CONCURRENCY = 8
 const BLOCKER_RETRY_INITIAL_MS = 50
 const BLOCKER_RETRY_MAX_MS = 2_000
-const FALLBACK_LABEL = "Subagent"
+const FALLBACK_LABEL = "Subagente"
 
 type V2Event = EventSubscribeOutput
 
@@ -63,7 +63,7 @@ export function toolCommit(
   const partial = status === "error" && phase === "progress" && value !== undefined
   const text =
     status === "running" || partial
-      ? (value ?? (part.name === "subagent" ? "running subagent" : `running ${part.name}`))
+      ? (value ?? (part.name === "subagent" ? "subagente en ejecución" : `running ${part.name}`))
       : status === "completed"
         ? (value ?? output)
         : status === "error"

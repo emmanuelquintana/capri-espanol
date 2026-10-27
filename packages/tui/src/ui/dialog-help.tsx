@@ -10,14 +10,14 @@ export function DialogHelp() {
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "return", title: "Close help", group: "Dialog", run: () => dialog.clear() },
-      { bind: "escape", title: "Close help", group: "Dialog", run: () => dialog.clear() },
+      { bind: "return", title: "Cerrar ayuda", group: "Dialog", run: () => dialog.clear() },
+      { bind: "escape", title: "Cerrar ayuda", group: "Dialog", run: () => dialog.clear() },
     ],
   }))
 
   return (
     <DialogLayout
-      header={<DialogHeader title="Help" closeLabel="esc/enter" />}
+      header={<DialogHeader title="Ayuda" closeLabel="esc/enter" />}
       footer={{ actions: { primary: [{ title: "ok", key: "enter", onTrigger: () => dialog.clear() }] } }}
       legacyFooter={
         <box flexDirection="row" justifyContent="flex-end">
@@ -33,7 +33,7 @@ export function DialogHelp() {
       }
     >
       <text fg={theme.text.muted}>
-        Press {shortcuts.get("command.palette.show")} to see all available actions and commands in any context.
+        Pulsa {shortcuts.get("command.palette.show")} para ver las acciones y los comandos disponibles en cualquier contexto.
       </text>
     </DialogLayout>
   )

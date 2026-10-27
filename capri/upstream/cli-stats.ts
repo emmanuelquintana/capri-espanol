@@ -44,7 +44,7 @@ const handler = Effect.fn("cli.stats")(function* (input: Runtime.Input<typeof Co
     ? JSON.stringify(stats, null, 2)
     : renderStats(stats, {
         label: range.label,
-        scope: project === undefined ? "all projects" : project === "." ? "current project" : "selected project",
+        scope: project === undefined ? "todos los proyectos" : project === "." ? "current project" : "selected project",
         models: input.models || input.full,
         tools: input.tools || input.full,
         cost: input.cost || input.full,
@@ -141,14 +141,14 @@ export function renderStats(stats: SessionStatsInfo, options: RenderOptions) {
 function statsRange(input: { days?: number; year?: number; all: boolean }) {
   const now = new Date()
   const to = now.getTime() + 1
-  if (input.all) return { from: undefined, to, label: "all time" }
+  if (input.all) return { from: undefined, to, label: "todo el historial" }
   if (input.days !== undefined) {
     const from = new Date(now.getFullYear(), now.getMonth(), now.getDate())
     from.setDate(from.getDate() - Math.max(0, input.days - 1))
     return {
       from: from.getTime(),
       to,
-      label: input.days === 0 || input.days === 1 ? "today" : `last ${input.days} days`,
+      label: input.days === 0 || input.days === 1 ? "hoy" : `últimos ${input.days} días`,
     }
   }
   const year = input.year ?? now.getFullYear()
@@ -176,7 +176,7 @@ function renderActivity(
   const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
   return [
     style(
-      calendar.clipped ? `activity · last ${calendar.weeks.length} weeks` : "activity",
+      calendar.clipped ? `activity · last ${calendar.weeks.length} semanas` : "activity",
       `1;${colors.primary}`,
       color,
     ),

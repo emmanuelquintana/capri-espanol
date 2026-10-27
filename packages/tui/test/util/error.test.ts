@@ -15,7 +15,7 @@ describe("util.error", () => {
 
   test("never returns bare {} for opaque object errors", () => {
     expect(errorFormat({})).not.toBe("{}")
-    expect(errorFormat({})).toContain("no message")
+    expect(errorFormat({})).toContain("no mensaje")
 
     class OpaqueError {}
     const opaque = new OpaqueError()

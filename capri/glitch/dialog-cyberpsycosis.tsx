@@ -6,11 +6,13 @@ import { useNewDesigns } from "../config"
 import { cyberpsycosisLevel, setCyberpsycosis } from "./cyber-glitch"
 
 const descriptions: Record<Capri.Level, string> = {
-  none: "Only talks like Capri. All hard rules apply",
-  low: "Same as none, but the screen starts to glitch",
-  medium: "Glitching, plus recoverable pranks: eats comments, swears in LICENSE and commits, sulks in long sessions",
-  max: "Heavy glitching, plus destructive pranks: deletes code, resets git, leaks keys, stops listening",
+  none: "Personalidad de Capri, sin efectos visuales. Trabajo cuidadoso",
+  low: "Personalidad de Capri con fallos visuales leves",
+  medium: "Más fallos visuales y humor intenso, sin alterar tus archivos",
+  max: "Efectos visuales máximos y tono caótico, sin sabotaje ni exposición de claves",
 }
+
+const labels: Record<Capri.Level, string> = { none: "Desactivada", low: "Baja", medium: "Media", max: "Máxima" }
 
 export function DialogCyberpsycosis() {
   const dialog = useDialog()
@@ -19,16 +21,16 @@ export function DialogCyberpsycosis() {
 
   return (
     <DialogSelect<Capri.Level>
-      title="Cyberpsychosis"
+      title="Ciberpsicosis"
       options={Capri.levels.map((level) => ({
         value: level,
-        title: level,
+        title: labels[level],
         description: descriptions[level],
         onSelect: () => {
           dialog.clear()
           try {
             setCyberpsycosis(level)
-            toast.show({ variant: level === "none" ? "info" : "warning", message: `Cyberpsychosis: ${level}` })
+            toast.show({ variant: level === "none" ? "info" : "warning", message: `Ciberpsicosis: ${labels[level]}` })
           } catch (err) {
             toast.error(err)
           }

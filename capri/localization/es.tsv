@@ -1,0 +1,1624 @@
+# Textos visibles de Capri. Los identificadores, comandos y valores de configuración conservan su nombre original.
+Show command palette	Mostrar paleta de comandos
+Switch session	Cambiar de sesión
+New session	Nueva sesión
+Clear session	Limpiar sesión
+Open session or project	Abrir sesión o proyecto
+Switch to session in quick slot 	Cambiar a la sesión del acceso rápido 
+Next tab	Pestaña siguiente
+Previous tab	Pestaña anterior
+Next unread tab	Pestaña sin leer siguiente
+Previous unread tab	Pestaña sin leer anterior
+Close tab	Cerrar pestaña
+Reopen closed tab	Reabrir pestaña cerrada
+Switch to tab 	Cambiar a la pestaña 
+Switch model	Cambiar modelo
+Model cycle	Modelo siguiente
+Model cycle reverse	Modelo anterior
+Favorite cycle	Favorito siguiente
+Favorite cycle reverse	Favorito anterior
+Switch agent	Cambiar agente
+Agent cycle	Agente siguiente
+Variant cycle	Variante siguiente
+Switch model variant	Cambiar variante del modelo
+No variants available	No hay variantes disponibles
+The current model does not support any variants.	El modelo actual no admite variantes.
+Agent cycle reverse	Agente anterior
+Connect an integration	Conectar una integración
+Show release highlights	Mostrar novedades de la versión
+Open settings	Abrir configuración
+View status	Ver estado
+Pair device	Vincular dispositivo
+Restart service	Reiniciar servicio
+Restarting service…	Reiniciando servicio…
+Service restarted	Servicio reiniciado
+Reload configuration	Recargar configuración
+Reloading configuration…	Recargando configuración…
+Configuration reloaded	Configuración recargada
+View debug info	Ver información de depuración
+Set cyberpsychosis level	Elegir nivel de ciberpsicosis
+Switch theme	Cambiar tema
+Switch to light mode	Cambiar a modo claro
+Switch to dark mode	Cambiar a modo oscuro
+Unlock theme mode	Desbloquear modo del tema
+Lock theme mode	Bloquear modo del tema
+Open docs	Abrir documentación
+Exit the app	Salir de la aplicación
+Toggle debug panel	Mostrar u ocultar depuración
+Toggle console	Mostrar u ocultar consola
+Suspend terminal	Suspender terminal
+Disable terminal title	Desactivar título de la terminal
+Enable terminal title	Activar título de la terminal
+Disable animations	Desactivar animaciones
+Enable animations	Activar animaciones
+Disable file context	Desactivar contexto de archivos
+Enable file context	Activar contexto de archivos
+Disable diff wrapping	Desactivar ajuste de líneas en diferencias
+Enable diff wrapping	Activar ajuste de líneas en diferencias
+Disable paste summary	Desactivar resumen del texto pegado
+Enable paste summary	Activar resumen del texto pegado
+The current session was deleted	Se eliminó la sesión actual
+MCP server needs authentication	El servidor MCP requiere autenticación
+Open MCP servers	Abrir servidores MCP
+Run /mcps to view details.	Ejecuta /mcps para ver los detalles.
+MCP server failed: 	Falló el servidor MCP: 
+Copied to clipboard	Copiado al portapapeles
+Invalid model format: 	Formato de modelo no válido: 
+Search commands	Buscar comandos
+Server details unavailable	Los detalles del servidor no están disponibles
+Writing debug snapshot…	Guardando captura de depuración…
+Write debug snapshot	Guardar captura de depuración
+Time to first draw	Tiempo hasta el primer renderizado
+Select agent	Seleccionar agente
+Search agents	Buscar agentes
+Theme	Tema
+Color mode	Modo de color
+Appearance	Apariencia
+Animations	Animaciones
+Sidebar	Panel lateral
+Scrollbar	Barra de desplazamiento
+Thinking	Razonamiento
+Tool grouping	Agrupación de herramientas
+Verbosity	Nivel de detalle
+Transcript images	Imágenes en la conversación
+New session location	Ubicación de las nuevas sesiones
+Permissions	Permisos
+Session	Sesión
+Sessions	Sesiones
+Tabs	Pestañas
+Scope	Ámbito
+Layout	Distribución
+Indicators	Indicadores
+Diffs	Diferencias
+Wrapping	Ajuste de líneas
+File tree	Árbol de archivos
+Single patch	Un archivo a la vez
+Scroll speed	Velocidad de desplazamiento
+Acceleration	Aceleración
+Input	Entrada
+Mouse	Ratón
+Editor context	Contexto del editor
+Large pastes	Texto pegado extenso
+Image previews	Vistas previas de imágenes
+Leader timeout	Espera de la tecla prefijo
+Notifications	Notificaciones
+Sounds	Sonidos
+Volume	Volumen
+Release highlights	Novedades de la versión
+Window title	Título de la ventana
+Copy behavior	Comportamiento de copia
+Developer tools	Herramientas de desarrollo
+Settings	Configuración
+Search settings	Buscar ajustes
+Previous value	Valor anterior
+Next value	Valor siguiente
+Color theme used across the interface	Tema de color de la interfaz
+Dark or light variant, or follow the system	Variante clara, oscura o según el sistema
+Whether spinners and transitions animate	Animar indicadores de carga y transiciones
+Whether the sidebar shows when there is room	Mostrar el panel lateral cuando haya espacio
+Whether a scrollbar is shown next to the chat	Mostrar una barra de desplazamiento junto al chat
+Whether model thinking is shown in the chat	Mostrar el razonamiento del modelo en el chat
+Whether chat markdown is rendered or shown as source	Mostrar Markdown con formato o como texto fuente
+Whether consecutive reads and searches are grouped	Agrupar lecturas y búsquedas consecutivas
+How much tool activity is shown in the chat	Cantidad de actividad de herramientas que se muestra
+Whether images are shown in the chat	Mostrar imágenes en el chat
+Whether tokens per second are shown for responses	Mostrar los tokens por segundo de las respuestas
+Directory new sessions start in	Directorio inicial de las nuevas sesiones
+Whether permission requests ask you or auto accept	Solicitar permiso o aceptar automáticamente
+Whether sessions open in tabs	Abrir las sesiones en pestañas
+Whether tabs are per directory or shared everywhere	Separar las pestañas por directorio o compartirlas
+Whether tabs run along the top or down the side	Colocar las pestañas arriba o en un lateral
+Whether tabs show status icons or always numbers	Mostrar iconos de estado o siempre números
+Whether diffs are side by side or in one column	Mostrar diferencias en paralelo o en una columna
+Whether long lines in diffs wrap	Ajustar las líneas largas en las diferencias
+Whether a file tree is shown next to diffs	Mostrar el árbol de archivos junto a las diferencias
+Whether diffs show one file at a time	Mostrar las diferencias de un archivo a la vez
+How far each scroll step moves	Distancia de cada paso de desplazamiento
+Whether scrolling speeds up the faster you scroll	Acelerar el desplazamiento con movimientos rápidos
+Whether the interface responds to the mouse	Permitir el uso del ratón en la interfaz
+Whether your editor's selection is added to prompts	Añadir la selección del editor al mensaje
+Whether large pastes are summarized or shown in full	Resumir el texto pegado extenso o mostrarlo completo
+Whether attached images are previewed in the prompt	Mostrar vistas previas de imágenes adjuntas
+How long the leader key waits for the next key	Tiempo de espera de la tecla prefijo
+Whether to notify when a session needs attention	Notificar cuando una sesión requiera atención
+Whether a sound plays when a session needs attention	Reproducir un sonido cuando una sesión requiera atención
+Volume of alert sounds	Volumen de las alertas
+Whether release highlights are shown after an update	Mostrar novedades después de una actualización
+Whether the window title shows the current session	Mostrar la sesión actual en el título de la ventana
+Whether selecting text copies it	Copiar texto al seleccionarlo
+Whether the developer tools bar is shown	Mostrar la barra de herramientas de desarrollo
+launch directory	directorio de inicio
+active session	sesión activa
+auto accept	aceptar automáticamente
+current directory	directorio actual
+status icons	iconos de estado
+always show numbers	siempre mostrar números
+Only talks like Capri. All hard rules apply	Personalidad de Capri, sin efectos visuales. Trabajo cuidadoso
+Same as none, but the screen starts to glitch	Personalidad de Capri con fallos visuales leves
+Glitching, plus recoverable pranks: eats comments, swears in LICENSE and commits, sulks in long sessions	Más fallos visuales y humor intenso, sin alterar tus archivos
+Heavy glitching, plus destructive pranks: deletes code, resets git, leaks keys, stops listening	Efectos visuales máximos y tono caótico, sin sabotaje ni exposición de claves
+Cyberpsychosis	Ciberpsicosis
+Cyberpsychosis: 	Ciberpsicosis: 
+Session ID	ID de sesión
+Debug info copied to clipboard	Información de depuración copiada
+Copy debug info	Copiar información de depuración
+Share this when reporting an issue	Comparte esto al reportar un problema
+Share this when reporting an issue.	Comparte esto al reportar un problema.
+Copy details	Copiar detalles
+Investigate error	Investigar error
+copy details	copiar detalles
+Reference: 	Referencia: 
+New designs	Nuevos diseños
+Preview the new TUI designs	Probar los nuevos diseños de terminal
+Let the agent open terminals in this TUI (requires server support)	Permitir que el agente abra terminales aquí (requiere soporte del servidor)
+No experiments available	No hay experimentos disponibles
+don't show again	no volver a mostrar
+Authorization expired	La autorización expiró
+Authentication expired	La autenticación expiró
+Could not open the browser. Copy the URL and continue manually.	No se pudo abrir el navegador. Copia la URL y continúa manualmente.
+Open authorization URL	Abrir URL de autorización
+Copy authorization details	Copiar datos de autorización
+copy code	copiar código
+copy link	copiar enlace
+open link	abrir enlace
+Waiting for authorization…	Esperando autorización…
+Starting authorization…	Iniciando autorización…
+Close highlights	Cerrar novedades
+Scroll up	Desplazarse hacia arriba
+Scroll down	Desplazarse hacia abajo
+Previous page	Página anterior
+Next page	Página siguiente
+Scroll to top	Ir al inicio
+Scroll to bottom	Ir al final
+What's new in 	Novedades de 
+Previous image	Imagen anterior
+Next image	Imagen siguiente
+No preview	Sin vista previa
+Environment only	Solo variables de entorno
+Sign in required →	Requiere iniciar sesión →
+No integrations available	No hay integraciones disponibles
+No integrations found	No se encontraron integraciones
+Add account	Añadir cuenta
+Connected accounts	Cuentas conectadas
+Rename account	Cambiar nombre de la cuenta
+Account name	Nombre de la cuenta
+remove account	eliminar cuenta
+Connecting…	Conectando…
+Starting command…	Iniciando comando…
+Waiting for command to finish…	Esperando a que termine el comando…
+esc close	esc cerrar
+Authorization code	Código de autorización
+Previous answer	Respuesta anterior
+Next answer	Respuesta siguiente
+Select answer	Seleccionar respuesta
+Submit answer	Enviar respuesta
+Back to answers	Volver a las respuestas
+Type your own answer	Escribe tu respuesta
+Open link again	Volver a abrir enlace
+Open link	Abrir enlace
+Opening link…	Abriendo enlace…
+Connecting …	Conectando …
+Connected ✓	Conectado ✓
+Failed !	Error !
+Disabled ○	Desactivado ○
+sign in	iniciar sesión
+Search MCP servers	Buscar servidores MCP
+view error	ver error
+Unknown MCP connection error	Error de conexión MCP desconocido
+Free models	Modelos gratuitos
+Connect a provider for access to more models	Conecta un proveedor para acceder a más modelos
+connect provider	conectar proveedor
+Select model	Seleccionar modelo
+Search models	Buscar modelos
+Favorites	Favoritos
+Recent	Recientes
+(Favorite)	(Favorito)
+Free	Gratis
+connect integration	conectar integración
+view all integrations	ver todas las integraciones
+View all integrations	Ver todas las integraciones
+Loading worktrees failed	No se pudieron cargar los árboles de trabajo
+Search worktrees…	Buscar árboles de trabajo…
+Search sessions and projects…	Buscar sesiones y proyectos…
+No recent sessions or projects	No hay sesiones o proyectos recientes
+Loading worktrees…	Cargando árboles de trabajo…
+Refreshing sessions and projects…	Actualizando sesiones y proyectos…
+sessions and projects	sesiones y proyectos
+Show project worktrees	Mostrar árboles de trabajo del proyecto
+Return to projects	Volver a los proyectos
+New worktree	Nuevo árbol de trabajo
+new worktree	nuevo árbol de trabajo
+No matching worktrees	No hay árboles de trabajo coincidentes
+Searching sessions and projects…	Buscando sesiones y proyectos…
+No matches	Sin coincidencias
+No matches · search all sessions with 	Sin coincidencias · busca en todas las sesiones con 
+ / New worktree	 / Nuevo árbol de trabajo
+Worktree name (optional)	Nombre del árbol de trabajo (opcional)
+Leave blank for a random name.	Déjalo vacío para generar un nombre.
+Creating worktree…	Creando árbol de trabajo…
+Creating worktree failed	No se pudo crear el árbol de trabajo
+This device	Este dispositivo
+Links	Enlaces
+Loading server information…	Cargando información del servidor…
+Close and reopen Pair to try again.	Cierra y vuelve a abrir Vincular para reintentarlo.
+Location unavailable	Ubicación no disponible
+Searching sessions…	Buscando sesiones…
+Loading sessions…	Cargando sesiones…
+Could not search sessions. Change the search to try again.	No se pudieron buscar sesiones. Cambia la búsqueda para reintentar.
+Could not load sessions.	No se pudieron cargar las sesiones.
+No sessions found	No se encontraron sesiones
+No sessions available	No hay sesiones disponibles
+Search sessions	Buscar sesiones
+Show current directory sessions	Mostrar sesiones del directorio actual
+Show all project sessions	Mostrar todas las sesiones del proyecto
+Failed to delete session: 	No se pudo eliminar la sesión: 
+all projects	todos los proyectos
+Rename session	Cambiar nombre de la sesión
+Session title	Título de la sesión
+Failed to rename session: 	No se pudo cambiar el nombre de la sesión: 
+Shell output is no longer available.	La salida de la terminal ya no está disponible.
+Unable to read shell output. Retrying…	No se puede leer la salida de la terminal. Reintentando…
+Timed out	Tiempo de espera agotado
+Exited · code 	Finalizado · código 
+Scroll output up	Desplazar salida hacia arriba
+Scroll output down	Desplazar salida hacia abajo
+Previous output page	Página de salida anterior
+Next output page	Página de salida siguiente
+First loaded output	Primera salida cargada
+Follow shell output	Seguir salida de la terminal
+Earlier output omitted · showing recent output	Salida anterior omitida · se muestra la más reciente
+Loading output…	Cargando salida…
+No captured output. Output redirected to files is not shown here.	No hay salida capturada. La salida redirigida a archivos no se muestra aquí.
+No skills available	No hay habilidades disponibles
+Close and reopen Skills to try again.	Cierra y vuelve a abrir Habilidades para reintentarlo.
+Loading skills…	Cargando habilidades…
+No skills found	No se encontraron habilidades
+just now	ahora
+No MCP servers	No hay servidores MCP
+Disabled in configuration	Desactivado en la configuración
+Needs authentication: 	Requiere autenticación: 
+Search themes	Buscar temas
+Confirm update action	Confirmar actualización
+Previous update action	Acción de actualización anterior
+Next update action	Acción de actualización siguiente
+Updating OpenCode	Actualizando OpenCode
+Update available	Actualización disponible
+Checking for updates…	Buscando actualizaciones…
+Installing OpenCode 	Instalando OpenCode 
+OpenCode is already up to date.	OpenCode ya está actualizado.
+Select variant	Seleccionar variante
+File Changes Found	Se encontraron cambios en archivos
+Do you want to move these changes with the session?	¿Quieres mover estos cambios junto con la sesión?
+Delete worktree?	¿Eliminar árbol de trabajo?
+This worktree has file changes. Do you want to delete it anyway?	Este árbol de trabajo tiene cambios. ¿Quieres eliminarlo de todos modos?
+Failed to delete worktree	No se pudo eliminar el árbol de trabajo
+Close and reopen Worktrees to try again.	Cierra y vuelve a abrir Árboles de trabajo para reintentarlo.
+No worktrees available	No hay árboles de trabajo disponibles
+No worktrees found	No se encontraron árboles de trabajo
+Name worktree	Nombrar árbol de trabajo
+Worktree name	Nombre del árbol de trabajo
+generate name	generar nombre
+generate one	generar uno
+Generate worktree name	Generar nombre del árbol de trabajo
+An unknown error occurred.	Ocurrió un error desconocido.
+No stack trace available.	No hay traza de error disponible.
+Copy report	Copiar informe
+Copy failed	No se pudo copiar
+An unexpected error stopped the session.	Un error inesperado detuvo la sesión.
+Report copied — paste it into a new GitHub issue.	Informe copiado: pégalo en un nuevo reporte de GitHub.
+Clipboard write failed. Try again or report the crash manually.	No se pudo copiar al portapapeles. Reintenta o reporta el fallo manualmente.
+Copy the report and open a GitHub issue to help us fix this.	Copia el informe y abre un reporte en GitHub para ayudarnos a corregirlo.
+Reported automatically from the Capri crash screen. If you can, describe what you were doing when it crashed.	Reporte generado desde la pantalla de error de Capri. Describe qué hacías cuando ocurrió el fallo.
+Data migration failed	Falló la migración de datos
+go home	ir al inicio
+Previous autocomplete item	Sugerencia anterior
+Next autocomplete item	Sugerencia siguiente
+Hide autocomplete	Ocultar sugerencias
+Dismiss autocomplete	Cerrar sugerencias
+Select autocomplete item	Seleccionar sugerencia
+Complete autocomplete item	Completar sugerencia
+Confirm autocomplete action	Confirmar sugerencia
+No matching commands	No hay comandos coincidentes
+Searching…	Buscando…
+Could not search directories. Keep typing to try again.	No se pudieron buscar directorios. Sigue escribiendo para reintentar.
+No matching directories	No hay directorios coincidentes
+Could not search files. Keep typing to try again.	No se pudieron buscar archivos. Sigue escribiendo para reintentar.
+No matching files, agents, or references	No hay archivos, agentes o referencias coincidentes
+again to interrupt	otra vez para interrumpir
+Change working directory	Cambiar directorio de trabajo
+Directory is required	El directorio es obligatorio
+Failed to change directory	No se pudo cambiar el directorio
+Connect an integration to send prompts	Conecta una integración para enviar mensajes
+Clear prompt	Limpiar mensaje
+Submit prompt	Enviar mensaje
+Queue prompt	Poner mensaje en cola
+Remove editor context	Quitar contexto del editor
+View image attachments	Ver imágenes adjuntas
+Interrupt session	Interrumpir sesión
+Background blocking tools	Enviar herramientas bloqueantes al segundo plano
+Open editor	Abrir editor
+Failed to open editor	No se pudo abrir el editor
+Manage workspaces	Administrar espacios de trabajo
+Stash prompt	Guardar mensaje para después
+Stash pop	Recuperar mensaje guardado
+Stash list	Ver mensajes guardados
+Shell mode	Modo terminal
+Exit shell mode	Salir del modo terminal
+Previous prompt history	Mensaje anterior del historial
+Next prompt history	Mensaje siguiente del historial
+This prompt cannot be queued	Este mensaje no se puede poner en cola
+Editor context cannot be queued	El contexto del editor no se puede poner en cola
+Model unavailable	Modelo no disponible
+Failed to set up session	No se pudo preparar la sesión
+Creating a session failed	No se pudo crear la sesión
+Failed to switch model: 	No se pudo cambiar el modelo: 
+Failed to prepare session	No se pudo preparar la sesión
+Failed to run shell command	No se pudo ejecutar el comando de terminal
+Failed to run command	No se pudo ejecutar el comando
+Failed to commit revert	No se pudo aplicar la reversión
+Failed to send editor context	No se pudo enviar el contexto del editor
+Failed to send prompt	No se pudo enviar el mensaje
+Press ctrl+d to confirm	Pulsa ctrl+d para confirmar
+Attachment does not exist	El archivo adjunto no existe
+Attachment exceeds the local file limit	El adjunto supera el límite de archivos locales
+Creating worktree	Creando árbol de trabajo
+Unable to determine current session location	No se puede determinar la ubicación de la sesión
+Unable to determine current project	No se puede determinar el proyecto actual
+No worktree directory returned	No se recibió el directorio del árbol de trabajo
+Creating session	Creando sesión
+Creating workspace failed	No se pudo crear el espacio de trabajo
+Submitting prompt	Enviando mensaje
+Connection lost…	Se perdió la conexión…
+Your session will resume automatically.	Tu sesión se reanudará automáticamente.
+Reconnecting to the server automatically.	Reconectando automáticamente con el servidor.
+Unable to load terminal	No se puede cargar la terminal
+Focus session pane	Enfocar panel de sesión
+Focus right pane	Enfocar panel derecho
+Hide sidebar	Ocultar panel lateral
+Show sidebar	Mostrar panel lateral
+Hide terminal pane	Ocultar panel de terminal
+Show terminal pane	Mostrar panel de terminal
+Select terminal	Seleccionar terminal
+Close terminal pane	Cerrar panel de terminal
+New terminal	Nueva terminal
+Close tab menu	Cerrar menú de pestaña
+Copy session ID	Copiar ID de sesión
+Session ID copied to clipboard	ID de sesión copiado
+Close	Cerrar
+Recently closed tabs	Pestañas cerradas recientemente
+Untitled session	Sesión sin título
+No recently closed tabs	No hay pestañas cerradas recientemente
+Finishing startup…	Finalizando inicio…
+Loading plugins…	Cargando complementos…
+Persistent terminal server is out of date; restart Capri	El servidor de terminal está desactualizado; reinicia Capri
+Terminal connection failed	Falló la conexión con la terminal
+Terminal disconnected	Terminal desconectada
+Failed to load theme: 	No se pudo cargar el tema: 
+Agent not found: 	No se encontró el agente: 
+Connect a provider	Conectar un proveedor
+No provider selected	No se seleccionó un proveedor
+Add a favorite model to use this shortcut	Añade un modelo favorito para usar este atajo
+Permission needs input	Se necesita responder una solicitud de permiso
+Input needs response	Se necesita una respuesta
+Set $VISUAL or $EDITOR to open an external editor	Configura $VISUAL o $EDITOR para abrir un editor externo
+One-shot answer from the session's context without adding to the conversation	Respuesta puntual con el contexto de la sesión, sin añadirla a la conversación
+Open a session first	Abre primero una sesión
+Ask anything	Pregunta lo que quieras
+Copy answer	Copiar respuesta
+copy response	copiar respuesta
+exit shell mode	salir del modo terminal
+Context	Contexto
+Getting started	Primeros pasos
+Connect provider	Conectar proveedor
+Connecting	Conectando
+Connected	Conectado
+Disabled	Desactivado
+Sign in	Iniciar sesión
+Todo	Pendientes
+Mark incomplete	Marcar como pendiente
+Mark complete	Marcar como terminado
+Close file menu	Cerrar menú del archivo
+No files	No hay archivos
+Working tree preview	Vista previa del árbol de trabajo
+Could not load image	No se pudo cargar la imagen
+Loading image…	Cargando imagen…
+Could not decode image	No se pudo decodificar la imagen
+Branch + local changes	Rama + cambios locales
+Branch commits only	Solo commits de la rama
+Local changes only	Solo cambios locales
+Last turn	Último turno
+Latest session turn	Último turno de la sesión
+Diff unavailable	Diferencias no disponibles
+Base or diff unavailable	Base o diferencias no disponibles
+Resolving diff…	Calculando diferencias…
+Base not reported	Base no indicada
+Loading branches…	Cargando ramas…
+Could not load branches. Reopen the picker to try again.	No se pudieron cargar las ramas. Reabre el selector para reintentar.
+No branches found	No se encontraron ramas
+Base branch	Rama base
+Search local and remote branches	Buscar ramas locales y remotas
+Remembered until the TUI exits	Se recuerda hasta cerrar la interfaz
+Scroll down half a page	Bajar media página
+Scroll up half a page	Subir media página
+Diff source	Origen de las diferencias
+Choose…	Elegir…
+Loading diff…	Cargando diferencias…
+Could not load diff. Choose a base branch from Diff source, or select Uncommitted.	No se pudieron cargar las diferencias. Elige una rama base en Origen de las diferencias o selecciona Sin confirmar.
+Could not load diff. Reopen the diff viewer to try again.	No se pudieron cargar las diferencias. Reabre el visor para reintentar.
+No changes to show	No hay cambios para mostrar
+Committed image preview unavailable. The working-tree image is not shown.	La vista previa de la imagen confirmada no está disponible. No se muestra la imagen de trabajo.
+Deleted image. The previous revision is not available for preview.	Imagen eliminada. La revisión anterior no tiene vista previa disponible.
+No patch available for this file.	No hay parche disponible para este archivo.
+Next file	Archivo siguiente
+Previous file	Archivo anterior
+Review + next / reopen	Revisar + siguiente / reabrir
+Review + collapse / reopen	Revisar + contraer / reabrir
+Next / previous change	Cambio siguiente / anterior
+File menu (heading or tree)	Menú del archivo (título o árbol)
+Down / up	Abajo / arriba
+Half page down / up	Media página abajo / arriba
+Page down / up	Página abajo / arriba
+First / last	Primero / último
+Split / unified	Dividido / unificado
+All files / single file	Todos los archivos / uno solo
+Show / hide file tree	Mostrar / ocultar árbol de archivos
+Switch diff source	Cambiar origen de las diferencias
+Full screen / split view	Pantalla completa / vista dividida
+Diff shortcuts	Atajos del visor de diferencias
+Session done	Sesión terminada
+Session failed	La sesión falló
+Fix a TODO in the codebase	Resuelve un TODO del proyecto
+What is the tech stack of this project?	¿Qué tecnologías utiliza este proyecto?
+Fix broken tests	Corrige las pruebas que fallan
+Search	Buscar
+Cancel	Cancelar
+Confirm	Confirmar
+Continue	Continuar
+Delete	Eliminar
+Rename	Cambiar nombre
+Remove	Quitar
+Copy	Copiar
+Paste	Pegar
+Save	Guardar
+Back	Volver
+Next	Siguiente
+Previous	Anterior
+Help	Ayuda
+Status	Estado
+Models	Modelos
+Agents	Agentes
+Tools	Herramientas
+Skills	Habilidades
+Plugins	Complementos
+Integrations	Integraciones
+Accounts	Cuentas
+Messages	Mensajes
+Projects	Proyectos
+Worktrees	Árboles de trabajo
+Terminal	Terminal
+Server	Servidor
+Unknown	Desconocido
+Loading	Cargando
+Ready	Listo
+Working	Trabajando
+Done	Terminado
+Failed	Falló
+Warning	Advertencia
+Success	Éxito
+Yes	Sí
+No	No
+Allow	Permitir
+Deny	Rechazar
+Reject	Rechazar
+Approve	Aprobar
+Allow once	Permitir
+Always allow	Siempre
+Permission required	Se requiere permiso
+Permission requested	Solicitud de permiso
+Question	Pregunta
+Answer	Respuesta
+Image	Imagen
+Images	Imágenes
+Attachments	Adjuntos
+Name	Nombre
+Description	Descripción
+Version	Versión
+Details	Detalles
+Summary	Resumen
+Reason	Motivo
+Response	Respuesta
+Changes	Cambios
+Uncommitted	Sin confirmar
+Interrupted	Interrumpido
+Cancelled	Cancelado
+Completed	Completado
+Nothing to undo	No hay nada que deshacer
+Collapse thinking	Contraer razonamiento
+Expand thinking	Expandir razonamiento
+Show tool calls individually	Mostrar cada llamada a herramientas
+Group related tool calls	Agrupar llamadas relacionadas
+Verbosity: 	Nivel de detalle: 
+Jump to last user message	Ir al último mensaje del usuario
+Next message	Mensaje siguiente
+Previous message	Mensaje anterior
+Next user message	Mensaje de usuario siguiente
+Previous user message	Mensaje de usuario anterior
+Copy last assistant message	Copiar última respuesta
+No assistant messages found	No se encontraron respuestas del asistente
+No text content found in last assistant message	La última respuesta no contiene texto
+Message copied to clipboard!	¡Mensaje copiado al portapapeles!
+Failed to copy to clipboard	No se pudo copiar al portapapeles
+Session ID copied to clipboard!	¡ID de sesión copiado!
+Failed to copy session ID	No se pudo copiar el ID de sesión
+Session transcript copied to clipboard!	¡Conversación copiada al portapapeles!
+Failed to copy session transcript	No se pudo copiar la conversación
+Export session transcript	Exportar conversación
+Failed to export session	No se pudo exportar la sesión
+Loading session history…	Cargando historial de la sesión…
+Step interrupted	Paso interrumpido
+Instructions updated	Instrucciones actualizadas
+Provider compaction	Compactación del proveedor
+Compaction queued	Compactación en cola
+Command cancelled	Comando cancelado
+Command timed out	El comando agotó el tiempo de espera
+Command exited with code 	El comando terminó con el código 
+Pending steer	Instrucción pendiente
+Move to queue	Mover a la cola
+You've used today's free messages.	Agotaste los mensajes gratuitos de hoy.
+Retry due	Reintento pendiente
+rejected permission	permiso rechazado
+specified a rule	se indicó una regla
+user dismissed	el usuario lo descartó
+Writing command…	Escribiendo comando…
+Preparing write…	Preparando escritura…
+Finding files…	Buscando archivos…
+Reading file…	Leyendo archivo…
+Searching content…	Buscando contenido…
+Fetching from the web…	Consultando la web…
+Searching web…	Buscando en la web…
+Web Search	Búsqueda web
+Delegating…	Delegando…
+Continue subagent	Continuar subagente
+Updating todos…	Actualizando pendientes…
+Todo update failed	No se pudieron actualizar los pendientes
+Cleared todos	Pendientes eliminados
+Asking questions…	Preparando preguntas…
+Loading skill…	Cargando habilidad…
+Failed to move session	No se pudo mover la sesión
+Session recovery	Recuperación de sesión
+Recovery actions	Acciones de recuperación
+Session location unavailable	Ubicación de la sesión no disponible
+Choose another directory to continue this session.	Elige otro directorio para continuar esta sesión.
+Choose directory	Elegir directorio
+No diff provided	No se proporcionaron diferencias
+Patterns	Patrones
+Permission required: 	Se requiere permiso: 
+Cancel permission rejection	Cancelar rechazo del permiso
+Confirm permission rejection	Confirmar rechazo del permiso
+Reject permission: 	Rechazar permiso: 
+Rejection reason	Motivo del rechazo
+Rejection actions	Acciones de rechazo
+Confirm rejection	Confirmar rechazo
+Cancel rejection	Cancelar rechazo
+Toggle permission fullscreen	Alternar permiso a pantalla completa
+Previous option	Opción anterior
+Next option	Opción siguiente
+Select option	Seleccionar opción
+Permission choices	Opciones de permiso
+Tell Capri what to do differently	Dile a Capri qué debe hacer de otra manera
+Reject permission	Rechazar permiso
+Waiting…	Esperando…
+Waiting for permission event…	Esperando solicitud de permiso…
+Confirm alert	Confirmar aviso
+Confirm dialog selection	Confirmar selección
+Previous dialog option	Opción anterior del diálogo
+Next dialog option	Opción siguiente del diálogo
+Export session	Exportar sesión
+save to file	guardar en archivo
+Change export option	Cambiar opción de exportación
+Save to file	Guardar en archivo
+Next export option	Opción de exportación siguiente
+Previous export option	Opción de exportación anterior
+Select export option	Seleccionar opción de exportación
+Export as:	Exportar como:
+Include thinking	Incluir razonamiento
+Include tools	Incluir herramientas
+Sanitize sensitive data	Ocultar datos sensibles
+Close export result	Cerrar resultado de exportación
+Copy export path	Copiar ruta de exportación
+Session exported	Sesión exportada
+copy path	copiar ruta
+Close help	Cerrar ayuda
+processing…	procesando…
+Enter text	Escribe texto
+Working…	Trabajando…
+Previous item	Elemento anterior
+Next item	Elemento siguiente
+First item	Primer elemento
+Last item	Último elemento
+Select item	Seleccionar elemento
+Previous section	Sección anterior
+Next section	Sección siguiente
+No items available	No hay elementos disponibles
+Close dialog	Cerrar diálogo
+Working directory	Directorio de trabajo
+Copy path	Copiar ruta
+Path copied to clipboard	Ruta copiada al portapapeles
+Open folder	Abrir carpeta
+in system file manager	en el explorador de archivos del sistema
+to another working directory	a otro directorio de trabajo
+Model not found: 	No se encontró el modelo: 
+Did you mean: 	Quizás quisiste decir: 
+Try: `capri models` to list available models	Ejecuta `capri models` para ver los modelos disponibles
+Or check your config (opencode.json) provider/model names	O revisa los nombres de proveedor y modelo en opencode.json
+Failed to initialize provider "	No se pudo inicializar el proveedor "
+". Check credentials and configuration.	". Revisa las credenciales y la configuración.
+Config file at 	El archivo de configuración en 
+ is not valid JSON(C)	 no contiene JSON(C) válido
+Configuration is invalid	La configuración no es válida
+Unexpected error (unserializable)	Error inesperado (no se puede serializar)
+Answer required	Falta respuesta
+Select at least one option	Selecciona al menos una opción
+Expected text	Se esperaba texto
+Must be at least 	El mínimo es 
+Must be at most 	El máximo es 
+Must match pattern: 	Debe coincidir con el patrón: 
+Invalid pattern: 	Patrón no válido: 
+Expected an email address	Introduce un correo electrónico
+Expected a URL	Introduce una URL
+Expected a date (YYYY-MM-DD)	Introduce una fecha (AAAA-MM-DD)
+Expected a date and time	Introduce una fecha y hora
+Select an available option	Selecciona una opción disponible
+Expected a number	Introduce un número
+Expected an integer	Introduce un número entero
+Expected yes or no	Se esperaba sí o no
+Expected selections	Selecciona las opciones
+Select at least 	Selecciona al menos 
+Select at most 	Selecciona como máximo 
+Select only available options	Selecciona solo opciones disponibles
+Switched variant to 	Variante cambiada a 
+Switched model to 	Modelo cambiado a 
+Path: 	Ruta: 
+Pattern: 	Patrón: 
+Shell command	Comando de terminal
+Query: 	Consulta: 
+Operation: 	Operación: 
+Position: 	Posición: 
+Access external directory 	Acceder al directorio externo 
+Continue after repeated failures	Continuar tras errores repetidos
+This keeps the session running despite repeated failures.	Mantiene la sesión activa a pesar de los errores repetidos.
+Call tool 	Llamar a la herramienta 
+Tool: 	Herramienta: 
+This will always allow 	Esto permitirá siempre 
+ for this project.	 para este proyecto.
+This will always allow the following patterns for this project.	Esto permitirá siempre los siguientes patrones para este proyecto.
+Ask anything, / for commands, @ for context	Pregunta lo que quieras, / para comandos, @ para contexto
+compose in your external editor	redactar en tu editor externo
+configure Mini transcript output	configurar la conversación del modo Mini
+start a new session	iniciar una sesión
+compact older session context to free space	compactar el contexto antiguo para liberar espacio
+image attachments are unavailable in shell mode	el modo terminal no admite imágenes adjuntas
+failed to open editor	no se pudo abrir el editor
+Clear prompt or exit	Limpiar mensaje o salir
+waiting for current response	esperando la respuesta actual
+empty prompt ignored	se ignoró el mensaje vacío
+this prompt cannot be queued	este mensaje no se puede poner en cola
+loading commands	cargando comandos
+sending prompt	enviando mensaje
+input queue unavailable	cola de entrada no disponible
+no variants available	no hay variantes disponibles
+variant updated	variante actualizada
+settings are unavailable	la configuración no está disponible
+settings updated	configuración actualizada
+failed to save settings	no se pudo guardar la configuración
+Exit pending	Salida pendiente
+Stop pending	Detención pendiente
+Open command palette	Abrir paleta de comandos
+Cycle model variant	Cambiar variante del modelo
+Background subagents	Subagentes en segundo plano
+leave shell mode before undoing a queued prompt	sal del modo terminal antes de deshacer un mensaje en cola
+This form has no supported fields.	Este formulario no tiene campos compatibles.
+This form uses an unknown field.	El formulario utiliza un campo desconocido.
+This form uses an invalid field.	El formulario utiliza un campo no válido.
+Conditional forms are not supported in Mini yet.	Mini aún no admite formularios condicionales.
+Pattern-constrained forms are not supported in Mini yet.	Mini aún no admite formularios con restricciones de patrón.
+Type your answer	Escribe tu respuesta
+Enter a number	Introduce un número
+Form request failed	Falló la solicitud del formulario
+Default model	Modelo predeterminado
+Failed to create session	No se pudo crear la sesión
+failed to start new session	no se pudo iniciar la sesión
+running subagent	subagente en ejecución
+unknown error	error desconocido
+Session execution failed	La ejecución de la sesión falló
+Event stream aborted	Se canceló el flujo de eventos
+[output truncated]	[salida truncada]
+Shell exited with code 	La terminal terminó con el código 
+running shell	terminal en ejecución
+assistant responding	el asistente está respondiendo
+waiting for assistant	esperando al asistente
+Session interrupted: 	Sesión interrumpida: 
+Event stream disconnected	Se desconectó el flujo de eventos
+prompt already running	el mensaje ya está en ejecución
+Cannot select a variant before selecting a model	Selecciona primero un modelo para elegir una variante
+(no answer)	(sin respuesta)
+shell completed	comando finalizado
+Run /plugins to view details.	Ejecuta /plugins para ver los detalles.
+Open plugins	Abrir complementos
+Thinking…	Pensando…
+Close composer	Cerrar panel de mensajes
+Toggle active subagents	Alternar subagentes activos
++ New terminal	+ Nueva terminal
+Receiving code…	Recibiendo código…
+Scroll to code	Ir al código
+Scroll to output	Ir a la salida
+Copy code	Copiar código
+Copy output	Copiar salida
+copy output	copiar salida
+Waiting for code…	Esperando código…
+No output	Sin salida
+Waiting for output…	Esperando salida…
+Forked session	Sesión bifurcada
+Full session	Sesión completa
+Fork session	Bifurcar sesión
+Forking session…	Bifurcando sesión…
+Message Actions	Acciones del mensaje
+Jump to	Ir a
+view message in session	ver mensaje en la sesión
+undo messages and file changes	deshacer mensajes y cambios en archivos
+message text to clipboard	copiar texto del mensaje
+create a new session	crear una sesión
+Search timeline	Buscar en la conversación
+Copied URL to clipboard	URL copiada al portapapeles
+Invalid answer	Respuesta no válida
+Clear answer edit	Limpiar edición de respuesta
+Dismiss form	Descartar formulario
+Close answer edit	Cerrar edición de respuesta
+Next field	Campo siguiente
+Previous field	Campo anterior
+Leave answer edit	Salir de la edición de respuesta
+Submit answer edit	Enviar respuesta editada
+Confirm completion	Confirmar finalización
+Copy link	Copiar enlace
+Submit form	Enviar formulario
+Scroll review	Desplazarse por la revisión
+Toggle answer	Alternar respuesta
+Complete the external action, then press enter to confirm.	Completa la acción externa y pulsa enter para confirmar.
+Open or copy the URL, complete the external action, then confirm.	Abre o copia la URL, completa la acción externa y confirma.
+(acknowledgement required)	(se requiere confirmación)
+Thought	Razonamiento
+Close sidebar	Cerrar panel lateral
+Session not found: 	No se encontró la sesión: 
+Queued prompts	Mensajes en cola
+Search queued prompts	Buscar mensajes en cola
+Leave shell mode before undoing a queued prompt	Sal del modo terminal antes de deshacer un mensaje en cola
+Page up	Subir página
+Page down	Bajar página
+Line up	Subir línea
+Line down	Bajar línea
+Half page up	Subir media página
+Half page down	Bajar media página
+First message	Primer mensaje
+Last message	Último mensaje
+Jump to message	Ir al mensaje
+Undo previous message	Deshacer mensaje anterior
+Capri command line interface	Interfaz de línea de comandos de Capri
+Print logs to stderr (server logs require --standalone)	Mostrar registros en stderr (los del servidor requieren --standalone)
+Run with a private server instead of the background service	Ejecutar con un servidor privado en lugar del servicio en segundo plano
+Connect to a server URL instead of the background service	Conectar a una URL de servidor en lugar del servicio en segundo plano
+Auto-approve permissions that are not explicitly denied	Aprobar automáticamente los permisos no rechazados explícitamente
+Directory to start Capri in	Directorio donde iniciar Capri
+Continue the last session	Continuar la última sesión
+Session ID to continue, or to create if it does not exist	ID de la sesión que se retomará o creará si no existe
+Prompt to use	Mensaje inicial
+Upgrade OpenCode to the latest or a specific version	Actualizar OpenCode a la última versión o a una versión específica
+Version to upgrade to (with or without a leading v)	Versión de destino (con o sin v inicial)
+Installation method to use	Método de instalación
+Uninstall Capri, keeping session data, configuration, and state	Desinstalar Capri conservando sesiones, configuración y estado
+Show what would be removed without removing	Mostrar lo que se eliminaría sin borrarlo
+Skip confirmation prompts	Omitir confirmaciones
+Start an Agent Client Protocol server	Iniciar un servidor Agent Client Protocol
+Run auth login instead of starting the server	Ejecutar auth login en lugar de iniciar el servidor
+Make a request to the running server	Enviar una solicitud al servidor en ejecución
+OpenAPI operation ID, or an HTTP method followed by a path	ID de operación OpenAPI o método HTTP seguido de una ruta
+Request body	Cuerpo de la solicitud
+Request header in name:value form	Cabecera en formato nombre:valor
+OpenAPI path or query parameter	Parámetro de ruta o consulta OpenAPI
+Debugging and troubleshooting tools	Herramientas de depuración y diagnóstico
+List all agents	Listar todos los agentes
+List configuration sources	Listar fuentes de configuración
+Manage credentials	Administrar credenciales
+Log in to a provider	Iniciar sesión con un proveedor
+Log out from a provider	Cerrar sesión de un proveedor
+List providers	Listar proveedores
+Manage MCP servers	Administrar servidores MCP
+List configured MCP servers and their status	Listar servidores MCP configurados y su estado
+Add an MCP server to your configuration	Añadir un servidor MCP a la configuración
+Name of the MCP server	Nombre del servidor MCP
+Command and arguments for a local server, passed after --	Comando y argumentos del servidor local, después de --
+URL for a remote MCP server	URL de un servidor MCP remoto
+HTTP header for a remote server, as name=value	Cabecera HTTP del servidor remoto, como nombre=valor
+Environment variable for a local server, as name=value	Variable de entorno del servidor local, como nombre=valor
+Write to the global config instead of the project config	Guardar en la configuración global en lugar de la del proyecto
+Authenticate with an OAuth-capable remote MCP server	Autenticarse en un servidor MCP remoto compatible con OAuth
+Remove stored OAuth credentials for an MCP server	Eliminar credenciales OAuth guardadas de un servidor MCP
+Manage plugins	Administrar complementos
+List plugins	Listar complementos
+Include built-in server plugins	Incluir complementos integrados del servidor
+Install a plugin and add it to the global configuration	Instalar un complemento y añadirlo a la configuración global
+npm registry or Git package specifier	Paquete del registro npm o de Git
+Check package plugins for updates	Buscar actualizaciones de complementos
+Configured package target	Paquete configurado
+Update package plugins	Actualizar complementos
+Configured package target; omit to update all outdated plugins	Paquete configurado; omitir para actualizar todos los complementos pendientes
+Remove a plugin from global configuration	Eliminar un complemento de la configuración global
+configured package specifier	Identificador del paquete configurado
+List all available models	Listar todos los modelos disponibles
+Show shareable usage statistics	Mostrar estadísticas de uso para compartir
+Show the last N days; 0 means today	Mostrar los últimos N días; 0 indica hoy
+Show a calendar year	Mostrar un año calendario
+Show lifetime statistics	Mostrar estadísticas de todo el historial
+Filter by project ID, or use "." for the current project	Filtrar por ID de proyecto o usar "." para el proyecto actual
+Show model usage	Mostrar uso de modelos
+Show tool reliability	Mostrar fiabilidad de herramientas
+Show cost and token details	Mostrar detalles de costos y tokens
+Show every detailed section	Mostrar todas las secciones detalladas
+Number of rows in detailed sections	Número de filas en las secciones detalladas
+Output statistics as JSON	Mostrar estadísticas en JSON
+Start the minimal interactive interface	Iniciar la interfaz interactiva mínima
+Fork the session when continuing	Bifurcar la sesión al continuar
+Restore session history on resume and resize (disable with --no-replay)	Restaurar historial al reanudar y redimensionar (desactivar con --no-replay)
+Limit replay to the newest N messages (default: 200)	Limitar el historial a los N mensajes más recientes (predeterminado: 200)
+Model to use in the format provider/model	Modelo en formato proveedor/modelo
+Agent to use	Agente que se usará
+Run Capri with a message	Ejecutar Capri con un mensaje
+Message to send	Mensaje que se enviará
+Fork the session before continuing	Bifurcar la sesión antes de continuar
+Model to use in the format provider/model#variant	Modelo en formato proveedor/modelo#variante
+File to attach to the message	Archivo adjunto al mensaje
+Show thinking blocks	Mostrar bloques de razonamiento
+Manage sessions	Administrar sesiones
+List top-level sessions in the current project, newest first	Listar sesiones principales del proyecto, de más reciente a más antigua
+Limit to N most recent sessions (default: 100)	Limitar a las N sesiones más recientes (predeterminado: 100)
+Delete a session and its child sessions	Eliminar una sesión y sus sesiones hijas
+Session ID to delete	ID de la sesión que se eliminará
+Export session data as JSON	Exportar datos de sesión como JSON
+Session ID to export	ID de la sesión que se exportará
+Redact sensitive transcript and file data	Ocultar datos sensibles de la conversación y los archivos
+Import session data from a JSON file or URL	Importar una sesión desde un archivo JSON o una URL
+JSON file or URL to import	Archivo JSON o URL que se importará
+Directory in which to import the session	Directorio donde importar la sesión
+Manage the background server	Administrar el servidor en segundo plano
+Start the background server	Iniciar el servidor en segundo plano
+Restart the background server	Reiniciar el servidor en segundo plano
+Show background server status	Mostrar estado del servidor en segundo plano
+Stop the background server	Detener el servidor en segundo plano
+Get service configuration	Consultar configuración del servicio
+Service setting or env	Ajuste del servicio o env
+Environment variable name	Nombre de la variable de entorno
+Set service configuration	Cambiar configuración del servicio
+Setting value or environment variable name	Valor del ajuste o nombre de variable de entorno
+Environment variable value	Valor de la variable de entorno
+Unset service configuration	Eliminar un ajuste del servicio
+Print one-time links to connect a browser or app	Mostrar enlaces de un solo uso para vincular un navegador o aplicación
+Use an external HTTP(S) server URL in pairing links	Usar una URL HTTP(S) externa en los enlaces de vinculación
+Invalid pairing URL	URL de vinculación no válida
+Expected an HTTP(S) server URL without credentials, query parameters, or a fragment	Se esperaba una URL HTTP(S) sin credenciales, parámetros ni fragmento
+Pair through the OpenTunnel remote address, enabling remote access if needed (exposes the server to the internet)	Vincular mediante OpenTunnel, activando el acceso remoto si hace falta (expone el servidor a internet)
+Accept exposing the server to the internet when --remote enables remote access for the first time (required without an interactive terminal)	Aceptar exponer el servidor a internet al activar --remote por primera vez (obligatorio sin terminal interactiva)
+Start the v2 API and web server	Iniciar la API v2 y el servidor web
+Additional allowed CORS origin (repeat for multiple origins)	Origen CORS adicional permitido (repetir para varios orígenes)
+No stored credentials found	No se encontraron credenciales guardadas
+Select integration	Seleccionar integración
+No models are available	No hay modelos disponibles
+No primary agents are available	No hay agentes principales disponibles
+Capri server is unavailable	El servidor de Capri no está disponible
+Internal service failure	Fallo interno del servicio
+Run `capri auth login` in the terminal	Ejecuta `capri auth login` en la terminal
+Capri Login	Inicio de sesión de Capri
+Uninstall Capri	Desinstalar Capri
+Installation method: 	Método de instalación: 
+Could not detect the installation method. Remove the installation manually after cleanup.	No se pudo detectar el método de instalación. Elimínala manualmente después de limpiar los datos.
+Dry run - no changes made	Simulación: no se realizaron cambios
+Use --force to uninstall without an interactive terminal, or --dry-run to preview.	Usa --force para desinstalar sin terminal interactiva o --dry-run para ver una simulación.
+Are you sure you want to uninstall?	¿Seguro que quieres desinstalar?
+Stopping background services...	Deteniendo servicios en segundo plano...
+Background services stopped	Servicios en segundo plano detenidos
+Failed to stop background services	No se pudieron detener los servicios en segundo plano
+Removing Cache...	Eliminando caché...
+Removed Cache	Caché eliminada
+Failed to remove Cache	No se pudo eliminar la caché
+Package removed	Paquete eliminado
+Package manager uninstall failed	Falló la desinstalación del paquete
+Run manually: 	Ejecuta manualmente: 
+To finish removing the binary, run:	Para terminar de eliminar el ejecutable, ejecuta:
+Could not detect the installation method. Pass --method to choose how to upgrade Capri.	No se pudo detectar el método de instalación. Usa --method para elegir cómo actualizar Capri.
+Using method: 	Método seleccionado: 
+Capri upgrade skipped: 	Se omitió la actualización de Capri: 
+Upgrade complete	Actualización completada
+Upgrade failed	La actualización falló
+Session not found	No se encontró la sesión
+capri mini requires a controlling terminal for input	capri mini requiere una terminal de control para la entrada
+capri mini requires a TTY stdout	capri mini requiere una salida TTY
+--replay-limit must be a positive integer	--replay-limit debe ser un entero positivo
+--fork requires --continue or --session	--fork requiere --continue o --session
+Failed to change directory to 	No se pudo cambiar al directorio 
+--model must use the format provider/model[#variant]	--model debe tener el formato proveedor/modelo[#variante]
+You must provide a message	Debes proporcionar un mensaje
+File not found: 	No se encontró el archivo: 
+--server and --standalone cannot be combined	No se pueden combinar --server y --standalone
+Background server version does not match this client	La versión del servidor no coincide con este cliente
+ requires a password; set OPENCODE_PASSWORD	 requiere una contraseña; configura OPENCODE_PASSWORD
+ rejected the password	 rechazó la contraseña
+ did not provide a compatible V2 health response	 no proporcionó una respuesta de estado V2 compatible
+Port must be between 1 and 65535	El puerto debe estar entre 1 y 65535
+System	Sistema
+Agent	Agente
+Integration	Integración
+MCP servers	Servidores MCP
+Suggested	Sugeridos
+Commands	Comandos
+Reconnect	Reconectar
+Last error	Último error
+Address	Dirección
+Memory	Memoria
+Mode	Modo
+Experiments	Experimentos
+Alerts	Alertas
+Debug	Depuración
+Date	Fecha
+Model	Modelo
+TUI tools	Herramientas de terminal
+API key	Clave API
+Skip	Omitir
+I finished	Ya terminé
+Favorite	Favorito
+Open	Abrir
+Project	Proyecto
+Pair	Vincular
+Stash	Mensajes guardados
+Themes	Temas
+Update	Actualizar
+Restart	Reiniciar
+Default	Predeterminado
+Current	Actual
+Other	Otro
+Quit	Salir
+Prompt	Mensaje
+All	Todos
+Committed	Confirmados
+Base	Base
+Review	Revisar
+Scroll	Desplazamiento
+View	Vista
+Explore	Explorar
+Style	Estilo
+Diff	Diferencias
+Code	Código
+Usage	Uso
+Duration	Duración
+Form	Formulario
+Checks	Comprobaciones
+Subagent	Subagente
+Subagents	Subagentes
+Questions	Preguntas
+Transcript	Conversación
+Undo	Deshacer
+Redo	Rehacer
+List	Listar
+Read	Leer
+Write	Escribir
+Edit	Editar
+WebFetch	Consultar web
+Patch	Parche
+Batch	Lote
+Plugin	Complemento
+Shell	Terminal
+Terminals	Terminales
+Revert	Revertir
+Fork	Bifurcar
+Timeline	Cronología
+Background	Segundo plano
+Format	Formato
+Options	Opciones
+Sanitize	Ocultar datos sensibles
+Workspaces	Espacios de trabajo
+Popular	Populares
+Services	Servicios
+Connect "	Conecta "
+" to use its tools.	" para utilizar sus herramientas.
+Session "	La sesión "
+" was deleted	" se eliminó
+Connected 	Conectado 
+Disconnected 	Desconectado 
+Connect 	Conectar 
+Image 	Imagen 
+Press 	Pulsa 
+ again to confirm	 otra vez para confirmar
+MCP server: 	Servidor MCP: 
+ / Worktrees	 / Árboles de trabajo
+ for 	 para 
+ lines	 líneas
+ MCP server	 servidor MCP
+Deleting 	Eliminando 
+ Stack trace 	 Traza del error 
+ is not available in this session's location	 no está disponible en la ubicación de esta sesión
+ sessions need input	 sesiones requieren una respuesta
+ sessions working	 sesiones en curso
+% used	% utilizado
+ spent	 gastado
+ allowance used	 del límite utilizado
+ active	 activo
+ remaining)	 pendientes)
+Close diff viewer	Cerrar visor de diferencias
+Move diff viewer down	Bajar en el visor de diferencias
+Move diff viewer up	Subir en el visor de diferencias
+Page diff viewer down	Bajar una página en las diferencias
+Page diff viewer up	Subir una página en las diferencias
+Go to the start of the diff	Ir al inicio de las diferencias
+Go to the end of the diff	Ir al final de las diferencias
+Jump to next diff hunk	Ir al bloque de diferencias siguiente
+Jump to previous diff hunk	Ir al bloque de diferencias anterior
+Jump to next diff file	Ir al archivo de diferencias siguiente
+Jump to previous diff file	Ir al archivo de diferencias anterior
+Toggle selected diff file reviewed	Marcar o desmarcar archivo como revisado
+Toggle diff viewer file tree	Mostrar u ocultar árbol de diferencias
+Toggle single patch view	Alternar vista de un solo archivo
+Switch diff viewer source	Cambiar origen de las diferencias
+Toggle diff viewer split or unified view	Alternar diferencias divididas o unificadas
+Toggle diff viewer full screen	Alternar diferencias a pantalla completa
+Show more diff viewer shortcuts	Mostrar más atajos de diferencias
+see all	ver todos
+Open diff viewer	Abrir visor de diferencias
+Toggle internal plugins	Mostrar u ocultar complementos internos
+Failed to update plugin 	No se pudo actualizar el complemento 
+checking for updates	buscando actualizaciones
+check for updates	buscar actualizaciones
+ plugin error	 error del complemento
+best streak	mejor racha
+active days	días activos
+Your last 	Tus últimas 
+ weeks	 semanas
+Could not load stats. Reopen /stats to try again.	No se pudieron cargar las estadísticas. Reabre /stats para reintentar.
+Gathering your stats…	Recopilando tus estadísticas…
+Usage statistics	Estadísticas de uso
+Select subagent	Seleccionar subagente
+Delete pending prompt	Eliminar mensaje pendiente
+Pending prompts	Mensajes pendientes
+close Capri	cerrar Capri
+Clear screen	Limpiar pantalla
+View subagents	Ver subagentes
+View pending prompts	Ver mensajes pendientes
+Interrupt subagent	Interrumpir subagente
+List 	Listar 
+Read 	Leer 
+Write 	Escribir 
+WebFetch 	Consultar web 
+Edit 	Editar 
+ Subagent	 Subagente
+ Agent	 Agente
+Skill "	Habilidad "
+Patch 	Parche 
+ file	 archivo
+Asked 	Realizó 
+ question	 pregunta
+Invalid Tool	Herramienta no válida
+Batch 	Lote 
+ tool	 herramienta
+Plugin failed: 	Falló el complemento: 
+ plugins failed	 complementos fallaron
+ crashed in 	 falló en 
+Previous shell	Comando de terminal anterior
+Next shell	Comando de terminal siguiente
+View shell output	Ver salida de la terminal
+Kill shell command	Detener comando de terminal
+ No shell commands	 No hay comandos de terminal
+Previous subagent	Subagente anterior
+Next subagent	Subagente siguiente
+Navigate to subagent	Ir al subagente
+ subagents	 subagentes
+Previous terminal	Terminal anterior
+Next terminal	Terminal siguiente
+Paste from clipboard	Pegar desde el portapapeles
+Select answer 	Seleccionar respuesta 
+ steps	 pasos
+Failed to 	No se pudo 
+ pending prompt	 mensaje pendiente
+Compact session	Compactar sesión
+Toggle session scrollbar	Mostrar u ocultar barra de desplazamiento
+Copy session transcript	Copiar conversación
+Toggle subagent picker	Mostrar u ocultar selector de subagentes
+View queued prompts	Ver mensajes en cola
+Go to parent session	Ir a la sesión principal
+ · latest:	 · reciente:
+ new · 	 nuevos · 
+ cached ·	 en caché ·
+ likely cache 	 caché probable 
+ · interrupted	 · interrumpido
+↳ Moved to 	↳ Movido a 
+· cancelled	· cancelado
+ message	 mensaje
+ queued	 en cola
+ · attempt 	 · intento 
+← Edit	← Editar
+← Patched	← Modificado
+Patching	Aplicando parche
+Submit dialog prompt	Enviar texto del diálogo
+No results found	No se encontraron resultados
+Write a heap snapshot of the running server and print its path	Guardar una captura de memoria del servidor y mostrar su ruta
+Directory to write the snapshot into instead of the server's log directory	Directorio de destino de la captura en lugar del directorio de registros
+Show global paths (data, config, cache, state)	Mostrar rutas globales (datos, configuración, caché y estado)
+Print only one path: db, home, data, config, cache, state, tmp, bin, log, repos	Mostrar una sola ruta: db, home, data, config, cache, state, tmp, bin, log, repos
+manage integrations and credentials	administrar integraciones y credenciales
+list integrations and credentials	listar integraciones y credenciales
+Output format	Formato de salida
+Integration ID, name, or well-known provider URL	ID o nombre de integración, o URL de un proveedor conocido
+Authentication method ID	ID del método de autenticación
+Provider form answer (key=value; repeat for multiple fields)	Respuesta del formulario del proveedor (clave=valor; repetir para varios campos)
+log out of a saved account	cerrar sesión de una cuenta guardada
+Integration ID or name	ID o nombre de integración
+Credential ID or label (opens an account picker when omitted)	ID o etiqueta de credencial (al omitirlo se abre un selector de cuentas)
+print stored credentials, including secrets, as JSON	mostrar credenciales guardadas, incluidos secretos, en JSON
+Integration ID or name (exports every integration when omitted)	ID o nombre de integración (al omitirlo se exportan todas)
+import credentials exported by auth export	importar credenciales exportadas con auth export
+JSON file to import (reads stdin when omitted)	Archivo JSON que se importará (al omitirlo se lee stdin)
+switch the active account for an integration	cambiar la cuenta activa de una integración
+Manage MCP (Model Context Protocol) servers	Administrar servidores MCP (Model Context Protocol)
+Select 	Seleccionar 
+ account to 	 cuenta para 
+ (active)	 (activa)
+Continue after completing this step?	¿Continuar después de completar este paso?
+Type another value	Escribir otro valor
+Enter value	Introduce un valor
+Select login method	Seleccionar método de inicio de sesión
+Paste the authorization code	Pega el código de autorización
+ already has valid credentials. Re-authenticate?	 ya tiene credenciales válidas. ¿Volver a autenticar?
+Expose your server to the internet?	¿Exponer tu servidor a internet?
+Select session to export	Seleccionar sesión que se exportará
+all time	todo el historial
+today	hoy
+last 	últimos 
+ days	 días
+at least 	al menos 
+at most 	como máximo 
+No matching items	No hay elementos coincidentes
+Could not open the URL. Open it manually, then press enter.	No se pudo abrir la URL. Ábrela manualmente y pulsa enter.
+Press enter to acknowledge completion	Pulsa enter para confirmar que terminaste
+Press enter to open the URL	Pulsa enter para abrir la URL
+ (select all that apply)	 (selecciona las que correspondan)
+(not answered)	(sin responder)
+submitting…	enviando…
+esc dismiss	esc descartar
+enter submit   esc dismiss	enter enviar   esc descartar
+enter save   esc dismiss	enter guardar   esc descartar
+   esc dismiss	   esc descartar
+up/down select   enter choose   tab next   esc dismiss	arriba/abajo seleccionar   enter elegir   tab siguiente   esc descartar
+↑↓ select   enter choose   tab next   esc dismiss	↑↓ seleccionar   enter elegir   tab siguiente   esc descartar
+left/right change	izquierda/derecha cambiar
+off	desactivado
+on	activado
+select	seleccionar
+submit	enviar
+copied	copiado
+✓ copied	✓ copiado
+unfavorite	quitar favorito
+favorite	marcar favorito
+pin/unpin	fijar/desfijar
+follow	seguir
+move	mover
+refresh	actualizar
+new	nuevo
+change	cambiar
+investigate	investigar
+# Wrote 	# Escribió 
+# Edited 	# Editó 
+# Wrote	# Escribió
+# Preparing edit…	# Preparando edición…
+# Created	# Creó
+# Deleted	# Eliminó
+# Patch failed	# Falló el parche
+# Todos	# Pendientes
+# Questions	# Preguntas
+JSON Schema for Capri configuration	Esquema JSON de la configuración de Capri
+Logo rendering: 'auto' uses an inline image when the terminal supports one and quadrant blocks otherwise; 	Representación del logo: 'auto' usa una imagen cuando la terminal lo permite y bloques en caso contrario; 
+'quadrant' and 'halfblock' force character art; 'image' forces the picture where supported	'quadrant' y 'halfblock' fuerzan el dibujo con caracteres; 'image' fuerza la imagen si es compatible
+Startup logo settings	Ajustes del logo de inicio
+Label shown for the default (build) agent in the reply footer (default 'Capri')	Nombre del agente predeterminado (build) al pie de la respuesta (predeterminado: 'Capri')
+Show the model name in the footer (default false)	Mostrar el nombre del modelo al pie (predeterminado: false)
+Show tokens per second in the footer; also needs session.tps in tui.json (default false)	Mostrar tokens por segundo al pie; requiere session.tps en tui.json (predeterminado: false)
+Reply footer settings	Ajustes del pie de respuesta
+Show the model's reasoning as scrambled glyphs instead of readable text (default true)	Representar el razonamiento como símbolos cifrados (predeterminado: true)
+Hide tool output, diffs and diagnostics; only the call itself is shown (default true)	Ocultar resultados de herramientas, diferencias y diagnósticos; mostrar solo la llamada (predeterminado: true)
+Hide the 'Skill "name"' lines shown when the model loads a skill (default true)	Ocultar las líneas de carga de habilidades (predeterminado: true)
+What to keep out of sight	Contenido que se oculta
+Plugin package name or path	Nombre o ruta del paquete del complemento
+Options passed to the plugin	Opciones del complemento
+Cursor shape. Use 'default' to preserve the terminal setting	Forma del cursor. Usa 'default' para conservar la de la terminal
+Whether the cursor blinks. Has no effect when style is 'default'	Parpadeo del cursor. No se aplica si el estilo es 'default'
+Terminal cursor settings	Ajustes del cursor de la terminal
+Theme name	Nombre del tema
+Color mode; 'system' follows the terminal	Modo de color; 'system' sigue el de la terminal
+Color theme settings	Ajustes del tema de color
+Custom key bindings	Atajos de teclado personalizados
+Ordered plugin enablement directives and external package declarations	Activación ordenada de complementos y declaración de paquetes externos
+Time in milliseconds to wait for a key after the leader key	Milisegundos de espera tras la tecla prefijo
+Leader key behavior	Comportamiento de la tecla prefijo
+Distance scrolled per input tick	Distancia por paso de desplazamiento
+Accelerate scrolling from repeated input	Acelerar el desplazamiento al repetirlo
+Scrolling behavior	Comportamiento del desplazamiento
+Show system notifications	Mostrar notificaciones del sistema
+Play attention sounds	Reproducir sonidos de aviso
+Attention sound volume from 0 to 1	Volumen de los avisos de 0 a 1
+Active attention sound pack ID	ID del paquete de sonidos activo
+Sound file overrides by attention event	Archivos de sonido personalizados por evento
+System notification and sound settings	Ajustes de notificaciones y sonidos
+Initial diff source; defaults to 'branch' (branch and uncommitted changes). 'turn' shows the session's last turn and falls back to 'branch' outside a session	Origen inicial de diferencias: 'branch' incluye rama y cambios sin confirmar; 'turn' muestra el último turno y usa 'branch' fuera de una sesión
+Line wrapping behavior in diff output	Ajuste de líneas en las diferencias
+Show the diff file tree	Mostrar el árbol de archivos de diferencias
+Show only the selected file patch	Mostrar solo el parche del archivo seleccionado
+Open the diff side panel full screen; remembers the last full screen toggle	Abrir diferencias a pantalla completa; recordar el último estado
+Diff layout; 'auto' selects a layout from the available width	Distribución de diferencias; 'auto' se adapta al ancho disponible
+Diff presentation settings	Ajustes de presentación de diferencias
+Update the terminal window title	Actualizar el título de la terminal
+Copy text manually or immediately after selecting it	Copiar texto manualmente o al seleccionarlo
+Terminal integration settings	Ajustes de integración de terminal
+Include the active editor file or selection as prompt context	Incluir el archivo o selección del editor como contexto
+Display large pastes as compact placeholders or full text	Resumir texto pegado extenso o mostrarlo completo
+Show image attachment previews above the prompt input	Mostrar imágenes adjuntas sobre la entrada
+Prompt input behavior	Comportamiento de la entrada de mensajes
+Session sidebar visibility; 'auto' shows it when space permits	Visibilidad del panel lateral; 'auto' lo muestra cuando hay espacio
+Show the session transcript scrollbar	Mostrar barra de desplazamiento de la conversación
+Show or hide model reasoning by default	Mostrar u ocultar el razonamiento por defecto
+Group related transcript items automatically or render each item separately	Agrupar elementos relacionados o mostrarlos individualmente
+Transcript detail level: low summarizes each run of tools and thoughts, high opens exploration and instruction groups	Detalle de conversación: low resume herramientas y razonamiento; high expande exploraciones e instrucciones
+Restore session history on resume and terminal resize	Restaurar historial al reanudar y cambiar el tamaño de la terminal
+Maximum number of newest messages restored during replay	Máximo de mensajes recientes que se restauran
+Mini transcript presentation settings	Ajustes de conversación del modo Mini
+Show the DevTools debug bar	Mostrar barra de depuración
+Show time-to-first-draw diagnostics	Mostrar tiempo hasta el primer renderizado
+Show per-turn token usage diagnostics, optionally with tool call inputs	Mostrar uso de tokens por turno y, opcionalmente, entradas de herramientas
+Debugging settings	Ajustes de depuración
+Experimental features that may change or be removed at any time	Funciones experimentales que pueden cambiar o eliminarse
+Enable interface animations	Activar animaciones de la interfaz
+Show the release highlights once after Capri updates	Mostrar novedades después de actualizar Capri
+Enable terminal mouse capture	Activar captura del ratón en la terminal
+TUI keybinding overrides	Atajos personalizados de la terminal
+Leader key timeout in milliseconds	Espera de la tecla prefijo en milisegundos
+Enable scroll acceleration	Activar aceleración del desplazamiento
+Scroll acceleration settings	Ajustes de aceleración del desplazamiento
+Control diff rendering style: 'auto' adapts to terminal width, 'stacked' always shows single column	Estilo de diferencias: 'auto' se adapta al ancho y 'stacked' usa una columna
+Attention notification and sound settings	Ajustes de avisos y sonidos
+Prompt textarea max height	Altura máxima del área de mensajes
+Home prompt max width: a positive integer for a fixed cap, or 'auto' to scale with terminal width	Ancho máximo de entrada inicial: entero positivo o 'auto' para adaptarse a la terminal
+Prompt size settings	Ajustes del tamaño de entrada
+TUI scroll speed	Velocidad de desplazamiento de la terminal
+Enable or disable mouse capture (default: true)	Activar o desactivar captura del ratón (predeterminado: true)
+Theme performance	Rendimiento del tema
+Ask a side question	Hacer una pregunta aparte
+Confirm Go option	Confirmar opción de Go
+Previous Go option	Opción anterior de Go
+Next Go option	Opción siguiente de Go
+ characters	 caracteres
+Web Search via 	Búsqueda web mediante 
+Ask anything… "	Pregunta lo que quieras… "
+Run a command… "	Ejecuta un comando… "
+Show user attachment and tool-result images in the session transcript	Mostrar imágenes adjuntas y de herramientas en la conversación
+Show average tokens per second	Mostrar promedio de tokens por segundo
+Show Markdown syntax markers or conceal them in rendered transcript content	Mostrar u ocultar los marcadores de sintaxis Markdown
+Start new sessions in the TUI launch directory or inherit the active session location	Iniciar sesiones en el directorio de lanzamiento o heredar la ubicación actual
+Prompt for permission requests or accept them automatically	Solicitar permisos o aceptarlos automáticamente
+Session transcript presentation settings	Ajustes de presentación de la conversación
+Use session tabs always, never, or when the terminal environment supports them	Usar pestañas siempre, nunca o cuando la terminal sea compatible
+Legacy tab toggle; use mode instead	Interruptor antiguo de pestañas; usar mode en su lugar
+Share tabs globally or keep a separate set for each working directory	Compartir pestañas globalmente o separarlas por directorio
+Show tabs in a horizontal strip or vertical sidebar	Mostrar pestañas en una franja horizontal o un panel vertical
+Show status icons or always show tab numbers	Mostrar iconos de estado o siempre números de pestaña
+Tab strip settings	Ajustes de la barra de pestañas
+Show or hide model reasoning	Mostrar u ocultar razonamiento del modelo
+Show or hide tool calls and the assistant text that precedes them	Mostrar u ocultar llamadas a herramientas y el texto que las precede
+Show or hide raw shell tool output	Mostrar u ocultar la salida sin procesar de la terminal
+Show or hide the agent, model, and duration summary in scrollback	Mostrar u ocultar agente, modelo y duración en el historial
+Turn summary	Resumen del turno
+Work spinner	Indicador de actividad
+Pass an integration ID or name when running without an interactive terminal	Indica un ID o nombre de integración si no hay terminal interactiva
+ has no interactive login methods	 no tiene métodos de inicio de sesión interactivos
+Discovering authentication provider...	Buscando proveedor de autenticación...
+Authentication provider discovered	Proveedor de autenticación encontrado
+Discovery failed	Falló la detección
+No authentication integrations are available	No hay integraciones de autenticación disponibles
+Pass --method when running without an interactive terminal	Indica --method si no hay terminal interactiva
+No plugins found	No se encontraron complementos
+No sessions found for this project	No se encontraron sesiones de este proyecto
+Unknown integration: 	Integración desconocida: 
+Unknown authentication method: 	Método de autenticación desconocido: 
+No credentials found	No se encontraron credenciales
+Missing API key	Falta la clave API
+Authentication failed	Falló la autenticación
+Authentication successful	Autenticación completada
+Logging in...	Iniciando sesión...
+Logged in	Sesión iniciada
+Logged out	Sesión cerrada
+Waiting for authentication...	Esperando autenticación...
+Enter your API key	Introduce tu clave API
+No accounts found	No se encontraron cuentas
+No authentication methods available	No hay métodos de autenticación disponibles
+No MCP servers configured	No hay servidores MCP configurados
+
+Move cursor left in input	Mover cursor a la izquierda en la entrada
+Select left in input	Seleccionar a la izquierda en la entrada
+Move cursor right in input	Mover cursor a la derecha en la entrada
+Select right in input	Seleccionar a la derecha en la entrada
+Move cursor up in input	Mover cursor hacia arriba en la entrada
+Select up in input	Seleccionar hacia arriba en la entrada
+Move cursor down in input	Mover cursor hacia abajo en la entrada
+Select down in input	Seleccionar hacia abajo en la entrada
+Move to start of line in input	Ir al inicio de la línea
+Select to start of line in input	Seleccionar hasta el inicio de la línea
+Move to start of visual line in input	Ir al inicio de la línea visual
+Select to start of visual line in input	Seleccionar hasta el inicio de la línea visual
+Move to start of buffer in input	Ir al inicio de la entrada
+Select to start of buffer in input	Seleccionar hasta el inicio de la entrada
+Delete to start of line in input	Borrar hasta el inicio de la línea
+Move to end of line in input	Ir al final de la línea
+Select to end of line in input	Seleccionar hasta el final de la línea
+Move to end of visual line in input	Ir al final de la línea visual
+Select to end of visual line in input	Seleccionar hasta el final de la línea visual
+Move to end of buffer in input	Ir al final de la entrada
+Select to end of buffer in input	Seleccionar hasta el final de la entrada
+Delete to end of line in input	Borrar hasta el final de la línea
+Move word forward in input	Ir a la palabra siguiente
+Select word forward in input	Seleccionar palabra siguiente
+Delete word forward in input	Borrar palabra siguiente
+Move word backward in input	Ir a la palabra anterior
+Select word backward in input	Seleccionar palabra anterior
+Delete word backward in input	Borrar palabra anterior
+Switch to session in quick slot 1	Cambiar a la sesión del acceso rápido 1
+Switch to session tab 1	Cambiar a la pestaña de sesión 1
+Switch to tab 1	Cambiar a la pestaña 1
+Switch to session in quick slot 2	Cambiar a la sesión del acceso rápido 2
+Switch to session tab 2	Cambiar a la pestaña de sesión 2
+Switch to tab 2	Cambiar a la pestaña 2
+Switch to session in quick slot 3	Cambiar a la sesión del acceso rápido 3
+Switch to session tab 3	Cambiar a la pestaña de sesión 3
+Switch to tab 3	Cambiar a la pestaña 3
+Switch to session in quick slot 4	Cambiar a la sesión del acceso rápido 4
+Switch to session tab 4	Cambiar a la pestaña de sesión 4
+Switch to tab 4	Cambiar a la pestaña 4
+Switch to session in quick slot 5	Cambiar a la sesión del acceso rápido 5
+Switch to session tab 5	Cambiar a la pestaña de sesión 5
+Switch to tab 5	Cambiar a la pestaña 5
+Switch to session in quick slot 6	Cambiar a la sesión del acceso rápido 6
+Switch to session tab 6	Cambiar a la pestaña de sesión 6
+Switch to tab 6	Cambiar a la pestaña 6
+Switch to session in quick slot 7	Cambiar a la sesión del acceso rápido 7
+Switch to session tab 7	Cambiar a la pestaña de sesión 7
+Switch to tab 7	Cambiar a la pestaña 7
+Switch to session in quick slot 8	Cambiar a la sesión del acceso rápido 8
+Switch to session tab 8	Cambiar a la pestaña de sesión 8
+Switch to tab 8	Cambiar a la pestaña 8
+Switch to session in quick slot 9	Cambiar a la sesión del acceso rápido 9
+Switch to session tab 9	Cambiar a la pestaña de sesión 9
+Switch to tab 9	Cambiar a la pestaña 9
+Switch to session in quick slot 10	Cambiar a la sesión del acceso rápido 10
+Switch to session tab 10	Cambiar a la pestaña de sesión 10
+Switch to tab 10	Cambiar a la pestaña 10
+Navigate to next message	Ir al siguiente mensaje
+Navigate to next user message	Ir al siguiente mensaje del usuario
+Move to next dialog item	Ir al siguiente elemento del diálogo
+Move to next autocomplete item	Ir a la sugerencia siguiente
+Go to next child session	Ir a la sesión hija siguiente
+Switch to next open session tab	Ir a la pestaña de sesión siguiente
+Switch to next unread session tab	Ir a la pestaña sin leer siguiente
+Next history item	Elemento siguiente del historial
+Next favorite model	Modelo favorito siguiente
+Next recently used model	Modelo reciente siguiente
+Next agent	Agente siguiente
+Navigate to previous message	Ir al anterior mensaje
+Navigate to previous user message	Ir al anterior mensaje del usuario
+Move to previous dialog item	Ir al anterior elemento del diálogo
+Move to previous autocomplete item	Ir a la sugerencia anterior
+Go to previous child session	Ir a la sesión hija anterior
+Switch to previous open session tab	Ir a la pestaña de sesión anterior
+Switch to previous unread session tab	Ir a la pestaña sin leer anterior
+Previous history item	Elemento anterior del historial
+Previous favorite model	Modelo favorito anterior
+Previous recently used model	Modelo reciente anterior
+Previous agent	Agente anterior
+Navigate to first message	Ir al primer mensaje
+Navigate to first user message	Ir al primer mensaje del usuario
+Move to first dialog item	Ir al primer elemento del diálogo
+Move to first autocomplete item	Ir a la sugerencia primer
+Navigate to last message	Ir al último mensaje
+Navigate to last user message	Ir al último mensaje del usuario
+Move to last dialog item	Ir al último elemento del diálogo
+Move to last autocomplete item	Ir a la sugerencia último
+Scroll messages up by one page	Subir una página en la conversación
+Scroll messages up by one line	Subir una línea en la conversación
+Scroll messages up by half page	Subir media página en la conversación
+Move up one page in dialog	Subir una página en el diálogo
+Scroll messages down by one page	Bajar una página en la conversación
+Scroll messages down by one line	Bajar una línea en la conversación
+Scroll messages down by half page	Bajar media página en la conversación
+Move down one page in dialog	Bajar una página en el diálogo
+Switch between light and dark theme mode	Alternar tema claro y oscuro
+Lock or unlock theme mode	Bloquear o desbloquear modo del tema
+Toggle sidebar	Mostrar u ocultar panel lateral
+Toggle terminal pane	Mostrar u ocultar panel de terminal
+Export session to editor	Exportar sesión al editor
+Create a new session	Crear una sesión
+List all sessions	Listar todas las sesiones
+Open recent sessions and projects	Abrir sesiones y proyectos recientes
+Go back in session tab history	Retroceder en el historial de pestañas
+Go forward in session tab history	Avanzar en el historial de pestañas
+Close current session tab	Cerrar pestaña de sesión actual
+Reopen last closed session tab	Reabrir última pestaña de sesión cerrada
+Show session timeline	Mostrar cronología de la sesión
+Fork session from message	Bifurcar sesión desde un mensaje
+Delete session	Eliminar sesión
+Deprecated: session sharing was removed	Obsoleto: ya no se pueden compartir sesiones
+Interrupt current session	Interrumpir sesión actual
+Background blocking session tools	Enviar herramientas bloqueantes al segundo plano
+Compact the session	Compactar la sesión
+Manage queued prompts	Administrar mensajes en cola
+Undo queued prompt	Deshacer mensaje en cola
+Delete queued prompt	Eliminar mensaje en cola
+Toggle related tool call grouping	Alternar agrupación de herramientas relacionadas
+Cycle transcript verbosity	Cambiar detalle de la conversación
+Pin or unpin session in the session list	Fijar o desfijar sesión en la lista
+Delete stash entry	Eliminar mensaje guardado
+Open provider list from model dialog	Abrir proveedores desde el selector de modelos
+Toggle model favorite status	Marcar o desmarcar modelo favorito
+List available models	Listar modelos disponibles
+List MCP servers	Listar servidores MCP
+Connect integration	Conectar integración
+List agents	Listar agentes
+Cycle model variants	Cambiar variante del modelo
+List model variants	Listar variantes del modelo
+Copy message	Copiar mensaje
+Undo message	Deshacer mensaje
+Redo message	Rehacer mensaje
+Toggle thinking blocks visibility	Mostrar u ocultar razonamiento
+Clear editor context	Limpiar contexto del editor
+Open skill selector	Abrir selector de habilidades
+Pop stashed prompt	Recuperar mensaje guardado
+List stashed prompts	Listar mensajes guardados
+Clear input field	Limpiar campo de entrada
+Submit input	Enviar entrada
+Insert newline in input	Insertar salto de línea
+Delete line in input	Borrar línea de entrada
+Backspace in input	Borrar hacia atrás en la entrada
+Delete character in input	Borrar carácter de entrada
+Undo in input	Deshacer en la entrada
+Redo in input	Rehacer en la entrada
+Select all in input	Seleccionar toda la entrada
+Submit selected dialog item	Confirmar elemento seleccionado
+Rename integration account	Cambiar nombre de cuenta de integración
+Delete integration account	Eliminar cuenta de integración
+Move session to worktree	Mover sesión al árbol de trabajo
+Delete worktree	Eliminar árbol de trabajo
+Refresh worktrees	Actualizar árboles de trabajo
+Toggle permission prompt fullscreen	Alternar solicitud de permiso a pantalla completa
+Toggle plugin	Activar o desactivar complemento
+Toggle MCP server	Activar o desactivar servidor MCP
+View plugin error	Ver error del complemento
+Update plugin from plugin dialog	Actualizar complemento desde su diálogo
+Check for plugin updates from plugin dialog	Buscar actualizaciones desde el diálogo de complementos
+Toggle terminal title	Activar o desactivar título de terminal
+Open plugin manager dialog	Abrir administrador de complementos
+Toggle which-key panel	Mostrar u ocultar ayuda de atajos
+Switch which-key layout	Cambiar distribución de ayuda de atajos
+Toggle which-key pending preview	Alternar vista previa de atajo pendiente
+Previous which-key group	Grupo anterior de atajos
+Next which-key group	Grupo siguiente de atajos
+Scroll which-key up	Subir en la ayuda de atajos
+Scroll which-key down	Bajar en la ayuda de atajos
+Page which-key up	Subir página de atajos
+Page which-key down	Bajar página de atajos
+Jump to first which-key binding	Ir al primer atajo
+Jump to last which-key binding	Ir al último atajo
+Write heap snapshot	Guardar captura de memoria
+Generate project copy name	Generar nombre de copia del proyecto
+New project copy	Nueva copia del proyecto
+Delete project copy	Eliminar copia del proyecto
+Refresh project copies	Actualizar copias del proyecto
+Move session	Mover sesión
+Close current tab	Cerrar pestaña actual
+Reopen last closed tab	Reabrir última pestaña cerrada
+Switch to next open tab	Ir a la pestaña abierta siguiente
+Switch to previous open tab	Ir a la pestaña abierta anterior
+Switch to next unread tab	Ir a la pestaña sin leer siguiente
+Switch to previous unread tab	Ir a la pestaña sin leer anterior
+line	línea
+interrupt	interrumpir
+No subagent activity yet	Aún no hay actividad del subagente
+esc back	esc volver
+pgup/pgdn scroll	pgup/pgdn desplazar
+tab next	tab siguiente
+more	más
+This request remains pending until you dismiss it.	Esta solicitud seguirá pendiente hasta que la cierres.
+Press	Pulsa
+to see all available actions and commands in any context.	para ver las acciones y los comandos disponibles en cualquier contexto.
+Saved to	Guardado en
+Export	Exportar
+auto	automático
+(new worktree)	(nuevo árbol de trabajo)
+Unknown plugin route:	Ruta de complemento desconocida:
+Capri crashed	Capri se cerró por un error
+Deleting	Eliminando
+again to confirm	de nuevo para confirmar
+Could not load worktrees	No se pudieron cargar los árboles de trabajo
+An update is available. After installing, you'll be prompted to restart OpenCode.	Hay una actualización disponible. Después de instalarla, se te pedirá reiniciar OpenCode.
+Update successful! Restart closes OpenCode, then run opencode to use the new version.	¡Actualización completada! Reinicia OpenCode y ejecuta opencode para usar la nueva versión.
+Could not load skills	No se pudieron cargar las habilidades
+Shell output	Salida de consola
+for	para
+Open a link to connect. Links work once and expire in	Abre un enlace para conectarte. Cada enlace sirve una vez y vence en
+minutes.	minutos.
+Run `capri service set hostname 0.0.0.0` to access the service remotely.	Ejecuta `capri service set hostname 0.0.0.0` para acceder al servicio de forma remota.
+Could not load server information	No se pudo cargar la información del servidor
+. Skip	. Omitir
+Free limit reached	Límite gratuito alcanzado
+OpenCode Go gives you reliable access to the best open-source models for $10/month.	OpenCode Go ofrece acceso a modelos de código abierto por 10 USD al mes.
+Reference:	Referencia:
+Debug overlay	Panel de depuración
+Switch to	Cambiar a
+Render	Renderizado
+Turn token usage	Uso de tokens del turno
+Turn token usage (verbose)	Uso de tokens del turno (detallado)
+Click to enlarge	Haz clic para ampliar
+Committed comparison unavailable without base metadata. Choose a base branch from Diff source.	La comparación de commits necesita los datos de una base. Elige una rama base en Origen de diferencias.
+Your last	Tus últimas
+weeks	semanas
+MCP failed	MCP falló
+remaining)	pendientes)
+active	activos
+Connect from 75+ providers to use other models, including Claude, GPT, Gemini etc	Conecta un proveedor para usar otros modelos, como Claude, GPT o Gemini.
+spent	gastados
+allowance used	del límite utilizado
+Jump to latest ↓	Ir al más reciente ↓
+· latest:	· último:
+new ·	nuevos ·
+cached ·	en caché ·
+likely cache	caché probable
+! Likely cache bust:	! Posible pérdida de caché:
+fewer cached tokens than the previous step	menos tokens en caché que en el paso anterior
+to move running work to the background	para pasar el trabajo en curso a segundo plano
+· interrupted	· interrumpido
+↳ Moved to	↳ Movido a
+Skill	Habilidad
+message	mensaje
+reverted	revertido
+or /redo to restore	o /redo para restaurar
+queued	en cola
+Switch model →	Cambiar modelo →
+· attempt	· intento
+output:	salida:
+↳ Loaded	↳ Cargado
+Web Search via	Búsqueda web mediante
+execute	ejecutar
+Asked	Se hicieron
+steps	pasos
+Instructions:	Instrucciones:
+Submit	Enviar
+Output	Salida
+No shell commands	No hay comandos de consola

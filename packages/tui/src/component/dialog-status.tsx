@@ -15,11 +15,11 @@ export function DialogStatus() {
     return theme.text.muted
   }
   return (
-    <DialogLayout header={<DialogHeader title="Status" />}>
-      <Show when={mcp().length > 0} fallback={<text fg={theme.text.base}>No MCP servers</text>}>
+    <DialogLayout header={<DialogHeader title="Estado" />}>
+      <Show when={mcp().length > 0} fallback={<text fg={theme.text.base}>No hay servidores MCP</text>}>
         <box>
           <text fg={theme.text.base}>
-            {mcp().length} MCP server{mcp().length === 1 ? "" : "s"}
+            {mcp().length} servidor{mcp().length === 1 ? "" : "s"} MCP
           </text>
           <For each={mcp()}>
             {(item) => (
@@ -31,11 +31,11 @@ export function DialogStatus() {
                   <b>{item.name}</b>{" "}
                   <span style={{ fg: theme.text.muted }}>
                     <Switch fallback={item.status.status}>
-                      <Match when={item.status.status === "connected"}>Connected</Match>
+                      <Match when={item.status.status === "connected"}>Conectado</Match>
                       <Match when={item.status.status === "failed" && item.status}>{(val) => val().error}</Match>
-                      <Match when={item.status.status === "disabled"}>Disabled in configuration</Match>
+                      <Match when={item.status.status === "disabled"}>Desactivado en la configuración</Match>
                       <Match when={item.status.status === "needs_auth" && item.status}>
-                        {(val) => `Needs authentication: ${val().error}`}
+                        {(val) => `Requiere autenticación: ${val().error}`}
                       </Match>
                     </Switch>
                   </span>

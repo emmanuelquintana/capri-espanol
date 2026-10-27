@@ -210,7 +210,7 @@ test("inactive custom forms cannot intercept a peer using the same form mode", a
     expect(panes.submissions).toHaveLength(1)
     expect(panes.peer.plainText).toContain("typed")
     expect(panes.peer.plainText).toContain("pasted")
-    expect(panes.app.captureCharFrame()).toContain("Type your own answer")
+    expect(panes.app.captureCharFrame()).toContain("Escribe tu respuesta")
     expect(panes.replies).toEqual([])
     pop()
 
@@ -256,7 +256,7 @@ test("permission rejection text keeps its draft and regains focus when its scope
   try {
     panes.setActive(true)
     panes.app.mockInput.pressEscape()
-    await panes.app.waitForFrame((frame) => frame.includes("Reject permission"))
+    await panes.app.waitForFrame((frame) => frame.includes("Rechazar permiso"))
     const input = panes.app.renderer.currentFocusedEditor
     expect(input).not.toBeNull()
     await panes.app.mockInput.typeText("choose another command")

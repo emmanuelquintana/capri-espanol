@@ -55,7 +55,7 @@ test.each<Route>([{ type: "home" }, { type: "session", sessionID: "parent" }])(
   (route) => {
     const harness = setup(route)
     harness.toast.show({ sessionID: "other", message: "done" })
-    expect(harness.shown[0]).toMatchObject({ title: "Other session", action: { label: "Open" } })
+    expect(harness.shown[0]).toMatchObject({ title: "Other session", action: { label: "Abrir" } })
     harness.shown[0].action?.run()
     expect(harness.navigated).toEqual([{ type: "session", sessionID: "other" }])
   },

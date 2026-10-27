@@ -107,7 +107,7 @@ async function renderComposer(
   function AppExit() {
     Keymap.createLayer(() => ({
       mode: "global",
-      commands: [{ id: "app.exit", title: "Exit", group: "System", run: () => {} }],
+      commands: [{ id: "app.exit", title: "Exit", group: "Sistema", run: () => {} }],
     }))
     Keymap.createLayer(() => ({ bindings: ["app.exit"] }))
     return null
@@ -197,7 +197,7 @@ test("the inactive subagent filter only changes with its toggle", async () => {
     expect(composer.route()).toMatchObject({ type: "session", sessionID: "child-c" })
     await composer.app.renderOnce()
     expect(composer.app.captureCharFrame()).toContain("Third")
-    expect(composer.app.captureCharFrame()).toContain("show active")
+    expect(composer.app.captureCharFrame()).toContain("show activo")
     expect(composer.app.captureCharFrame()).not.toContain("First")
 
     composer.app.mockInput.pressKey("a", { ctrl: true })

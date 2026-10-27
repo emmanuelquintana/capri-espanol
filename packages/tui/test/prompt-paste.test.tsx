@@ -7,7 +7,7 @@ test("the prompt keeps pasted control characters and drops escape sequences", as
   takeDraft(undefined)
   await using setup = await createAppFixture()
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
   await setup.mockInput.typeText("x")
   await setup.waitForFrame((frame) => frame.includes("x"))
   await setup.mockInput.pasteBracketedText("a\fb\u001b[31mc\u0000d")

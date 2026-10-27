@@ -121,7 +121,7 @@ export function DiffViewerFileTree(props: DiffViewerFileTreeProps) {
               <text />
             </Match>
             <Match when={props.files.length === 0}>
-              <text fg={theme.text.muted}>No files</text>
+              <text fg={theme.text.muted}>No hay archivos</text>
             </Match>
             <Match when={props.files.length > 0}>
               <box flexShrink={0} gap={list() ? 1 : 0}>

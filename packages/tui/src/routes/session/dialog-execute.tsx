@@ -67,13 +67,13 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
   })
   const status = createMemo(() => {
     const state = props.part.state
-    if (state.status === "streaming") return "Receiving code…"
+    if (state.status === "streaming") return "Recibiendo código…"
     if (state.status === "running") return "Running"
     const duration = props.part.time.completed
       ? ` · ${Locale.duration(props.part.time.completed - (props.part.time.ran ?? props.part.time.created))}`
       : ""
-    if (failed()) return `Failed${duration}`
-    return `Completed${duration}`
+    if (failed()) return `Falló${duration}`
+    return `Completado${duration}`
   })
 
   const copy = (kind: "code" | "output") => {
@@ -88,24 +88,24 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "up", title: "Scroll up", group: "Execute", run: () => scroll?.scrollBy(-1) },
-      { bind: "down", title: "Scroll down", group: "Execute", run: () => scroll?.scrollBy(1) },
-      { bind: "pageup", title: "Previous page", group: "Execute", run: () => scroll?.scrollBy(-maxHeight()) },
-      { bind: "pagedown", title: "Next page", group: "Execute", run: () => scroll?.scrollBy(maxHeight()) },
-      { bind: "home", title: "Scroll to code", group: "Execute", run: () => scroll?.scrollTo(0) },
-      { bind: "end", title: "Scroll to output", group: "Execute", run: () => scroll?.scrollTo(Infinity) },
-      { bind: "c", title: "Copy code", group: "Execute", run: () => copy("code") },
-      { bind: "o", title: "Copy output", group: "Execute", run: () => copy("output") },
+      { bind: "up", title: "Desplazarse hacia arriba", group: "Execute", run: () => scroll?.scrollBy(-1) },
+      { bind: "down", title: "Desplazarse hacia abajo", group: "Execute", run: () => scroll?.scrollBy(1) },
+      { bind: "pageup", title: "Página anterior", group: "Execute", run: () => scroll?.scrollBy(-maxHeight()) },
+      { bind: "pagedown", title: "Página siguiente", group: "Execute", run: () => scroll?.scrollBy(maxHeight()) },
+      { bind: "home", title: "Ir al código", group: "Execute", run: () => scroll?.scrollTo(0) },
+      { bind: "end", title: "Ir a la salida", group: "Execute", run: () => scroll?.scrollTo(Infinity) },
+      { bind: "c", title: "Copiar código", group: "Execute", run: () => copy("code") },
+      { bind: "o", title: "Copiar salida", group: "Execute", run: () => copy("output") },
     ],
   }))
 
   const copyActions = () => [
     copied() === "code"
-      ? { title: "✓ copied", color: theme.text.feedback.success.base, onTrigger: () => copy("code") }
-      : { title: "copy code", key: "c", onTrigger: () => copy("code") },
+      ? { title: "✓ copiado", color: theme.text.feedback.success.base, onTrigger: () => copy("code") }
+      : { title: "copiar código", key: "c", onTrigger: () => copy("code") },
     copied() === "output"
-      ? { title: "✓ copied", color: theme.text.feedback.success.base, onTrigger: () => copy("output") }
-      : { title: "copy output", key: "o", onTrigger: () => copy("output") },
+      ? { title: "✓ copiado", color: theme.text.feedback.success.base, onTrigger: () => copy("output") }
+      : { title: "copiar salida", key: "o", onTrigger: () => copy("output") },
   ]
 
   return (
@@ -115,7 +115,7 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
           gap={2}
           titleView={
             <text fg={theme.text.base} attributes={TextAttributes.BOLD} flexGrow={1}>
-              execute
+              ejecutar
             </text>
           }
         >
@@ -127,9 +127,9 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
         <DialogFooter
           actions={{
             secondary: [
-              { title: "scroll", key: "↑/↓" },
+              { title: "desplazamiento", key: "↑/↓" },
               ...copyActions(),
-              { title: "back", key: "esc", onTrigger: () => dialog.clear() },
+              { title: "volver", key: "esc", onTrigger: () => dialog.clear() },
             ],
           }}
         />
@@ -148,15 +148,15 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
           <box gap={1} paddingLeft={DIALOG_INSET} paddingRight={DIALOG_INSET} paddingTop={1} paddingBottom={1}>
             <box>
               <text fg={contentTheme.text.muted} attributes={TextAttributes.BOLD}>
-                Code
+                Código
               </text>
-              <Show when={code()} fallback={<text fg={contentTheme.text.muted}>Waiting for code…</text>}>
+              <Show when={code()} fallback={<text fg={contentTheme.text.muted}>Esperando código…</text>}>
                 {(value) => <GutteredCode content={value()} filetype="typescript" digits={digits()} />}
               </Show>
             </box>
             <box>
               <text fg={contentTheme.text.muted} attributes={TextAttributes.BOLD}>
-                Output
+                Salida
               </text>
               <Show
                 when={highlighted()}
@@ -171,7 +171,7 @@ export function DialogExecute(props: { part: SessionMessageAssistantTool }) {
                     }
                     wrapMode="word"
                   >
-                    {text() ?? (props.part.state.status === "completed" ? "No output" : "Waiting for output…")}
+                    {text() ?? (props.part.state.status === "completed" ? "Sin salida" : "Esperando salida…")}
                   </text>
                 }
               >

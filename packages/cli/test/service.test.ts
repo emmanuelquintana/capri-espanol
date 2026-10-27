@@ -267,7 +267,7 @@ test("preview registration migration never moves stable discovery", async () => 
   }
 })
 
-it.effect("deleting a managed service registration stops its owner", () =>
+it.effect("eliminando a managed service registration stops its owner", () =>
   Effect.gen(function* () {
     const service = yield* registered()
     yield* service.fileSystem.remove(service.file)
@@ -299,7 +299,7 @@ it.effect("replacing a managed service registration stops its owner and preserve
 )
 
 // Real process: a server whose boot failed must still be watching its registration.
-test("deleting a failed service registration stops its owner", async () => {
+test("eliminando a failed service registration stops its owner", async () => {
   const service = await startManagedService("opencode-service-failed-delete-", true)
   try {
     await waitForFailed(service.info)

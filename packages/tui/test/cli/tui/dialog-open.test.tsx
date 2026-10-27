@@ -79,7 +79,7 @@ test("finds and opens an exact session ID outside the recent list", async () => 
   })
 
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Search sessions and projects"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Buscar sesiones y proyectos"))
     await fixture.app.mockInput.typeText(sessionID)
     await fixture.app.waitForFrame((frame) => frame.includes("TUI plugin slot API v2"))
 
@@ -181,7 +181,7 @@ test("shows only canonical projects while retaining sessions from other director
 
   try {
     const frame = await fixture.app.waitForFrame(
-      (value) => value.includes("Standalone session") && value.includes("feature-branch") && value.includes("Projects"),
+      (value) => value.includes("Standalone session") && value.includes("feature-branch") && value.includes("Proyectos"),
     )
     expect(frame).toContain("standalone-notes")
     expect(frame).toContain("OpenCode · feature-branch")
@@ -231,7 +231,7 @@ test("keeps nested Git session directories out of projects and in their session 
 
   try {
     const frame = await fixture.app.waitForFrame(
-      (value) => value.includes("Improve dashboard") && value.includes("Projects"),
+      (value) => value.includes("Improve dashboard") && value.includes("Proyectos"),
     )
     expect(frame).toContain("OpenCode · dashboard")
     expect(frame).not.toContain("browse directories")
@@ -290,7 +290,7 @@ test("loads Git worktrees only when drilling into the canonical project", async 
       (frame) => frame.includes("other-branch") && frame.includes("ctrl+n"),
     )
     expect(requests).toBe(1)
-    expect(worktrees).toContain("Worktrees")
+    expect(worktrees).toContain("Árboles de trabajo")
     expect(worktrees).toContain("●")
     expect(worktrees.indexOf("OpenCode")).toBeLessThan(worktrees.indexOf("current-branch"))
     expect(worktrees.indexOf("current-branch")).toBeLessThan(worktrees.indexOf("other-branch"))
@@ -344,7 +344,7 @@ test("does not show or trigger worktree navigation for non-Git and global direct
     fixture.app.mockInput.pressArrow("down")
     fixture.app.mockInput.pressArrow("right")
     await fixture.app.renderOnce()
-    expect(fixture.app.captureCharFrame()).toContain("Search sessions and projects")
+    expect(fixture.app.captureCharFrame()).toContain("Buscar sesiones y proyectos")
     expect(requests).toBe(0)
   } finally {
     await fixture.dispose()
@@ -380,7 +380,7 @@ test("does not show the previous project's worktrees while loading another proje
     await fixture.app.mockInput.typeText("Beta")
     fixture.app.mockInput.pressArrow("right")
     const loading = await fixture.app.waitForFrame(
-      (frame) => frame.includes("Beta / Worktrees") && frame.includes("Loading worktrees"),
+      (frame) => frame.includes("Beta / Árboles de trabajo") && frame.includes("Cargando árboles de trabajo"),
     )
     expect(loading).not.toContain("alpha-checkout")
     pending.resolve(json([{ directory: "/tmp/opencode/beta-checkout", strategy: "git" }]))
@@ -441,9 +441,9 @@ test.each(["", "search-ui"])("creates a worktree named '%s' by project and opens
     await fixture.app.mockInput.typeText("unmatched-search")
     const filtered = await fixture.app.waitForFrame((frame) => frame.includes("unmatched-search"))
     expect(filtered).toContain("ctrl+n")
-    expect(filtered).toContain("No matching worktrees")
+    expect(filtered).toContain("No hay árboles de trabajo coincidentes")
     fixture.app.mockInput.pressKey("n", { ctrl: true })
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktree name (optional)"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Nombre del árbol de trabajo (opcional)"))
     const prompt = fixture.app.captureCharFrame().split("\n")
     const row = prompt.findIndex((line) => line.includes("Leave blank"))
     const column = prompt[row]!.indexOf("Leave") + 1
@@ -452,7 +452,7 @@ test.each(["", "search-ui"])("creates a worktree named '%s' by project and opens
     await fixture.app.waitFor(() => fixture.app.renderer.getSelection()?.getSelectedText() === "Leave")
     fixture.app.mockInput.pressEscape()
     await fixture.app.waitFor(() => !fixture.app.renderer.getSelection())
-    expect(fixture.app.captureCharFrame()).toContain("Worktree name (optional)")
+    expect(fixture.app.captureCharFrame()).toContain("Nombre del árbol de trabajo (opcional)")
     fixture.app.mockInput.pressEscape()
     const restored = await fixture.app.waitForFrame(
       (frame) => frame.includes("unmatched-search") && frame.includes("ctrl+n"),
@@ -460,7 +460,7 @@ test.each(["", "search-ui"])("creates a worktree named '%s' by project and opens
     expect(restored).toContain("unmatched-search")
     expect(payload).toBeUndefined()
     fixture.app.mockInput.pressKey("n", { ctrl: true })
-    await fixture.app.waitForFrame((frame) => frame.includes("Worktree name (optional)"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Nombre del árbol de trabajo (opcional)"))
     if (name) await fixture.app.mockInput.typeText(name)
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitFor(() => fixture.route.data.type === "home")
@@ -499,8 +499,8 @@ test("shows projects while sessions refresh and preserves the selected project",
   })
 
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Second project") && frame.includes("Refreshing"))
-    expect(fixture.app.captureCharFrame()).toContain("Search sessions and projects")
+    await fixture.app.waitForFrame((frame) => frame.includes("Second project") && frame.includes("Actualizando"))
+    expect(fixture.app.captureCharFrame()).toContain("Buscar sesiones y proyectos")
     fixture.app.mockInput.pressArrow("down")
 
     resolveSessions(
@@ -560,7 +560,7 @@ test.each([false, true])("keeps a filtered selection visible after refresh with 
       .map((span) => span.text)
       .join("")
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Second shared project") && frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Second shared project") && frame.includes("Actualizando"))
     await fixture.app.mockInput.typeText("shared")
     await fixture.app.waitForFrame(() => selectedTitle().includes("First shared project"))
     fixture.app.mockInput.pressArrow("down")
@@ -577,7 +577,7 @@ test.each([false, true])("keeps a filtered selection visible after refresh with 
         cursor: {},
       }),
     )
-    await fixture.app.waitForFrame((frame) => frame.includes("Open") && !frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Abrir") && !frame.includes("Actualizando"))
     // Selection reveal runs on FRAME; the following paint must show the selected row.
     const frame = once(fixture.app.renderer, CliRenderEvents.FRAME)
     fixture.app.renderer.requestRender()
@@ -621,7 +621,7 @@ test("sessions remain selectable while projects are still loading", async () => 
     return undefined
   })
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && frame.includes("Actualizando"))
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitFor(() => fixture.route.data.type === "session")
     expect(fixture.route.data).toEqual({ type: "session", sessionID: recentSession.id })
@@ -643,7 +643,7 @@ test("shows hydrated sessions immediately without waiting for either read", asyn
     ({ data }) => data.session.remember(recentSession),
   )
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && frame.includes("Actualizando"))
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitFor(() => fixture.route.data.type === "session")
     expect(fixture.route.data).toEqual({ type: "session", sessionID: recentSession.id })
@@ -659,7 +659,7 @@ test("keeps an uncached moved session in the first successful refresh", async ()
   const destination = { directory: "/fixture/destination" }
   const fixture = await renderOpen((url) => (url.pathname === "/api/session" ? response.promise : undefined))
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Actualizando"))
     fixture.emit({
       id: "evt_uncached_move",
       created: 3,
@@ -685,7 +685,7 @@ test("keeps an uncached moved session in the first successful refresh", async ()
         cursor: {},
       }),
     )
-    await fixture.app.waitForFrame((frame) => frame.includes(recentSession.title) && !frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes(recentSession.title) && !frame.includes("Actualizando"))
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitFor(() => fixture.route.data.type === "session")
     expect(fixture.route.data).toEqual({ type: "session", sessionID: recentSession.id })
@@ -706,11 +706,11 @@ test("keeps the previous recent list usable when reopening fails to refresh", as
     return undefined
   })
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && !frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Recent session") && !frame.includes("Actualizando"))
     fixture.app.mockInput.pressEscape()
     await fixture.app.waitForFrame((frame) => !frame.includes("Recent session"))
     fixture.open()
-    await fixture.app.waitForFrame((frame) => frame.includes("Could not refresh sessions"))
+    await fixture.app.waitForFrame((frame) => frame.includes("No se pudieron actualizar sesiones"))
     expect(fixture.app.captureCharFrame()).toContain("Recent session")
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitFor(() => fixture.route.data.type === "session")
@@ -730,15 +730,15 @@ test("shows an initial loading shell instead of reporting an empty list", async 
   })
   try {
     await fixture.app.waitForFrame(
-      (frame) => frame.includes("Search sessions and projects") && frame.includes("Refreshing"),
+      (frame) => frame.includes("Buscar sesiones y proyectos") && frame.includes("Actualizando"),
     )
-    expect(fixture.app.captureCharFrame()).not.toContain("No items available")
+    expect(fixture.app.captureCharFrame()).not.toContain("No hay elementos disponibles")
     await fixture.app.mockInput.typeText("missing")
-    await fixture.app.waitForFrame((frame) => frame.includes("Searching sessions and projects"))
-    expect(fixture.app.captureCharFrame()).not.toContain("No matches")
+    await fixture.app.waitForFrame((frame) => frame.includes("Buscando sesiones y proyectos"))
+    expect(fixture.app.captureCharFrame()).not.toContain("Sin coincidencias")
     sessions.resolve(json({ data: [], cursor: {} }))
     projects.resolve(json([]))
-    await fixture.app.waitForFrame((frame) => frame.includes("No matches") && !frame.includes("Refreshing"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Sin coincidencias") && !frame.includes("Actualizando"))
   } finally {
     sessions.resolve(json({ data: [], cursor: {} }))
     projects.resolve(json([]))
@@ -930,10 +930,10 @@ test("surfaces sessions awaiting permissions or questions at the top with attent
     const frame = await fixture.app.waitForFrame(
       (value) =>
         value.includes("! Old session awaiting permission") &&
-        value.includes("? Parent awaiting question") &&
+        value.includes("? Parent awaiting pregunta") &&
         value.includes("Recent session 1"),
     )
-    expect(frame.indexOf("? Parent awaiting question")).toBeLessThan(
+    expect(frame.indexOf("? Parent awaiting pregunta")).toBeLessThan(
       frame.indexOf("! Old session awaiting permission"),
     )
     expect(frame.indexOf("! Old session awaiting permission")).toBeLessThan(frame.indexOf("Recent session 1"))

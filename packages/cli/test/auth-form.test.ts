@@ -76,22 +76,22 @@ const invalidAnswers: { fields: FormFields | undefined; supplied: string[]; erro
     supplied: ["host=example.com"],
     error: "Form field is not active: host",
   },
-  { fields: [{ type: "integer", key: "count" }], supplied: ["count=1.5"], error: "Expected an integer" },
+  { fields: [{ type: "integer", key: "count" }], supplied: ["count=1.5"], error: "Introduce un número entero" },
   { fields: [{ type: "boolean", key: "enabled" }], supplied: ["enabled=yes"], error: "Expected a JSON value" },
   {
     fields: [{ type: "string", key: "server", format: "uri", hidden: true }],
     supplied: ["server=not a URL"],
-    error: "Expected a URL",
+    error: "Introduce una URL",
   },
   {
     fields: [{ type: "string", key: "required", hidden: true, required: true }],
     supplied: [],
-    error: "Answer required",
+    error: "Falta respuesta",
   },
   {
     fields: [{ type: "multiselect", key: "scopes", options: [{ value: "read", label: "Read" }] }],
     supplied: ['scopes=["write"]'],
-    error: "Select only available options",
+    error: "Selecciona solo opciones disponibles",
   },
   {
     fields: [{ type: "external", key: "approve", url: "https://example.com" }],

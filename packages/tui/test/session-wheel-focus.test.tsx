@@ -91,7 +91,7 @@ test
   try {
     await setup.waitForFrame((frame) => frame.includes("History message 0019"))
     await setup.mockInput.typeText("/terminal")
-    await setup.waitForFrame((frame) => frame.includes("New terminal"))
+    await setup.waitForFrame((frame) => frame.includes("Nueva terminal"))
     setup.mockInput.pressEnter()
     await setup.waitForFrame((frame) => frame.includes("Terminal line 99"))
     setup.mockInput.pressKey("x", { ctrl: true })

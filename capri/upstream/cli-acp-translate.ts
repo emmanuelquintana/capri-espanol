@@ -181,7 +181,7 @@ export function abandon(state: TurnState, ctx: TurnContext): Folded {
             input: tool.input,
             metadata: tool.metadata,
             content: [],
-            error: "Cancelled",
+            error: "Cancelado",
             cwd: ctx.cwd,
           }),
         }),

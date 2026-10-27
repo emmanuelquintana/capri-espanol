@@ -7,14 +7,14 @@ describe("Mini tool presentation", () => {
     expect(
       toolOutputText("shell", [
         { type: "text", text: "mini-output\n" },
-        { type: "text", text: "Command exited with code 0." },
+        { type: "text", text: "El comando terminó con el código 0." },
       ]),
     ).toBe("mini-output\n")
 
     expect(
       toolOutputText("shell", [
         { type: "text", text: "" },
-        { type: "text", text: "Command exited with code 0." },
+        { type: "text", text: "El comando terminó con el código 0." },
       ]),
     ).toBe("")
   })

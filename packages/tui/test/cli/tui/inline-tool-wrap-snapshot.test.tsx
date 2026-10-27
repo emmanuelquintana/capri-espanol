@@ -74,7 +74,7 @@ function Fixture(props: { errorExpanded?: boolean }) {
 
 function FailedPendingToolFixture() {
   return (
-    <InlineToolRow icon="%" complete={false} pending="Preparing patch…" failed={true} failure="Patch failed">
+    <InlineToolRow icon="%" complete={false} pending="Preparing patch…" failed={true} failure="Parche failed">
       Patch
     </InlineToolRow>
   )
@@ -82,7 +82,7 @@ function FailedPendingToolFixture() {
 
 function FailedCompleteToolFixture() {
   return (
-    <InlineToolRow icon="→" complete={true} pending="Reading file…" failed={true} failure="Read failed">
+    <InlineToolRow icon="→" complete={true} pending="Leyendo archivo…" failed={true} failure="Leer failed">
       Read src/index.ts
     </InlineToolRow>
   )
@@ -137,14 +137,14 @@ describe("TUI inline tool wrapping", () => {
 
   test("replaces pending copy when a tool fails before completion", async () => {
     const frame = await renderFrame(() => <FailedPendingToolFixture />, { width: 72, height: 3 })
-    expect(frame).toContain("Patch failed")
+    expect(frame).toContain("Parche failed")
     expect(frame).not.toContain("Preparing patch")
   })
 
   test("preserves useful completed copy when a tool fails", async () => {
     const frame = await renderFrame(() => <FailedCompleteToolFixture />, { width: 72, height: 3 })
-    expect(frame).toContain("Read src/index.ts")
-    expect(frame).not.toContain("Read failed")
+    expect(frame).toContain("Leer src/index.ts")
+    expect(frame).not.toContain("Leer failed")
   })
 
   test("aligns switch reminders with instruction reminders", async () => {

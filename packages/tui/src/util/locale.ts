@@ -1,18 +1,18 @@
 import { stringWidth } from "./string-width"
 
 export function titlecase(str: string) {
-  return str.replace(/\b\w/g, (c) => c.toUpperCase())
+  return str.replace(/(^|\s)(\p{L})/gu, (_, space, letter) => space + letter.toLocaleUpperCase("es-MX"))
 }
 
 export function time(input: number): string {
   const date = new Date(input)
-  return date.toLocaleTimeString(undefined, { timeStyle: "short" })
+  return date.toLocaleTimeString("es-MX", { timeStyle: "short" })
 }
 
 export function datetime(input: number): string {
   const date = new Date(input)
   const localTime = time(input)
-  const localDate = date.toLocaleDateString()
+  const localDate = date.toLocaleDateString("es-MX")
   return `${localTime} · ${localDate}`
 }
 

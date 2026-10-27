@@ -45,7 +45,7 @@ export function summarizeActivity(
 
 /** Status for a running item, independent of its details, so it doesn't flicker as they arrive. */
 export function busyLabel(part: Item["part"]) {
-  if (part.type === "reasoning") return "Thinking…"
+  if (part.type === "reasoning") return "Pensando…"
   const name = canonicalToolName(part.name)
   const noun = name === "shell" ? "command" : name === "execute" ? "code" : name
   return `${part.state.status === "streaming" ? "Preparing" : "Running"} ${noun}…`

@@ -378,7 +378,7 @@ describe("V2 mini transport", () => {
       durable: durable("ses_1"),
       data: { sessionID: "ses_1", inboxID: pending.id },
     })
-    while (!ui.events.some((event) => event.type === "stream.patch" && event.patch.status === "waiting for assistant"))
+    while (!ui.events.some((event) => event.type === "stream.patch" && event.patch.status === "esperando al asistente"))
       await Bun.sleep(0)
     messages.push({ id: pending.id, type: "user", ...pending.payload, time: { created: 1 } })
     if (first === "projection") {
@@ -2502,7 +2502,7 @@ describe("V2 mini transport", () => {
     await transport.close()
   })
 
-  test("scopes text and reasoning ordinals by assistant message", async () => {
+  test("scopes text and reasoning ordinals by assistant mensaje", async () => {
     const events = feed()
     events.push(connected())
     const client = sdk({ streams: [events] })
@@ -2714,7 +2714,7 @@ describe("V2 mini transport", () => {
 
     const commits = ui.commits.filter((item) => item.part?.id === "call_progress")
     expect(commits.map((item) => [item.phase, item.text, item.toolState])).toEqual([
-      ["start", "running shell", "running"],
+      ["start", "terminal en ejecución", "running"],
       ["progress", "partial", "running"],
       ["final", "boom", "error"],
     ])
@@ -3102,7 +3102,7 @@ describe("V2 mini transport", () => {
         shell: { command: "ls" },
       },
     ])
-    expect(ui.events).toContainEqual({ type: "stream.patch", patch: { phase: "running", status: "running shell" } })
+    expect(ui.events).toContainEqual({ type: "stream.patch", patch: { phase: "running", status: "terminal en ejecución" } })
     await transport.close()
   })
 
@@ -3404,7 +3404,7 @@ describe("V2 mini transport", () => {
     await Bun.sleep(0)
 
     expect(ui.commits).toContainEqual(
-      expect.objectContaining({ toolState: "error", toolError: "Shell exited with code 7" }),
+      expect.objectContaining({ toolState: "error", toolError: "La terminal terminó con el código 7" }),
     )
     expect(ui.commits).toContainEqual(expect.objectContaining({ text: "partial\n[output truncated]" }))
     await transport.close()
@@ -3724,7 +3724,7 @@ describe("V2 mini transport", () => {
     expect(states().at(-1)?.tabs).toMatchObject([
       {
         sessionID: "ses_child_failed",
-        label: "Explore",
+        label: "Explorar",
         description: "Inspect failure",
       },
     ])
@@ -3784,7 +3784,7 @@ describe("V2 mini transport", () => {
     expect(states().at(-1)?.tabs).toMatchObject([
       {
         sessionID: "ses_child_progress",
-        label: "Explore",
+        label: "Explorar",
         description: "Inspect progress",
         status: "running",
         background: undefined,
@@ -3977,7 +3977,7 @@ describe("V2 mini transport", () => {
     while (!states().some((state) => state.details.ses_child?.commits.some((item) => item.text === "task prompt")))
       await Bun.sleep(0)
     expect(states().at(-1)?.tabs).toMatchObject([
-      { sessionID: "ses_child", label: "Explore", title: "Find files", status: "running" },
+      { sessionID: "ses_child", label: "Explorar", title: "Find files", status: "running" },
     ])
 
     expect(
@@ -4644,7 +4644,7 @@ describe("V2 mini transport", () => {
     expect(states.at(-1)?.tabs).toMatchObject([
       {
         sessionID: "ses_child_old",
-        label: "Explore",
+        label: "Explorar",
         title: "Earlier subagent",
         status: "completed",
       },
@@ -4694,7 +4694,7 @@ describe("V2 mini transport", () => {
     expect(states.at(-1)?.tabs).toMatchObject([
       {
         sessionID: "ses_child",
-        label: "Explore",
+        label: "Explorar",
         description: "Find things",
         status: "completed",
       },

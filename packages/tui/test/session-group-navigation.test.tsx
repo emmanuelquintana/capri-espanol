@@ -16,7 +16,7 @@ whenThinkingShown.each([
   [120, 30],
   [80, 0],
 ])(
-  "restores exact part/group anchors at width %s with %s trailing lines",
+  "restores exact part/group anchors at width %s with %s trailing líneas",
   async (width, lines) => {
     await using state = await tmpdir()
     const setup = await createTestRenderer({ width, height: 30, kittyKeyboard: true })

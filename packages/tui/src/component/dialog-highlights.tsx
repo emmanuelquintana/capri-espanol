@@ -22,23 +22,23 @@ export function DialogHighlights(props: { version: string; items: ReadonlyArray<
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "return", title: "Close highlights", group: "Dialog", run: () => dialog.clear() },
-      ...["up", "k"].map((bind) => ({ bind, title: "Scroll up", group: "Dialog", run: () => scroll?.scrollBy(-1) })),
-      ...["down", "j"].map((bind) => ({ bind, title: "Scroll down", group: "Dialog", run: () => scroll?.scrollBy(1) })),
-      { bind: "pageup", title: "Previous page", group: "Dialog", run: () => scroll?.scrollBy(-maxHeight()) },
-      { bind: "pagedown", title: "Next page", group: "Dialog", run: () => scroll?.scrollBy(maxHeight()) },
-      { bind: "home", title: "Scroll to top", group: "Dialog", run: () => scroll?.scrollTo(0) },
-      { bind: "end", title: "Scroll to bottom", group: "Dialog", run: () => scroll?.scrollTo(Infinity) },
+      { bind: "return", title: "Cerrar novedades", group: "Dialog", run: () => dialog.clear() },
+      ...["up", "k"].map((bind) => ({ bind, title: "Desplazarse hacia arriba", group: "Dialog", run: () => scroll?.scrollBy(-1) })),
+      ...["down", "j"].map((bind) => ({ bind, title: "Desplazarse hacia abajo", group: "Dialog", run: () => scroll?.scrollBy(1) })),
+      { bind: "pageup", title: "Página anterior", group: "Dialog", run: () => scroll?.scrollBy(-maxHeight()) },
+      { bind: "pagedown", title: "Página siguiente", group: "Dialog", run: () => scroll?.scrollBy(maxHeight()) },
+      { bind: "home", title: "Ir al inicio", group: "Dialog", run: () => scroll?.scrollTo(0) },
+      { bind: "end", title: "Ir al final", group: "Dialog", run: () => scroll?.scrollTo(Infinity) },
     ],
   }))
 
   return (
     <DialogLayout
-      header={<DialogHeader title={`What's new in ${props.version}`} />}
+      header={<DialogHeader title={`Novedades de ${props.version}`} />}
       footer={{ actions: { primary: [{ title: "ok", key: "enter", onTrigger: () => dialog.clear() }] } }}
       legacyFooter={
         <box flexDirection="row" justifyContent="space-between" alignItems="center">
-          <DialogFooter actions={{ secondary: [{ title: "scroll", key: "↑/↓" }] }} />
+          <DialogFooter actions={{ secondary: [{ title: "desplazamiento", key: "↑/↓" }] }} />
           <box
             paddingLeft={3}
             paddingRight={3}

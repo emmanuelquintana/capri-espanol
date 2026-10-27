@@ -222,7 +222,7 @@ describe("acp prompt turns over the wire", () => {
     await acp.initialize()
     const session = await acp.newSession(dir.path)
 
-    await acp.prompt(session.sessionId, "edit the files")
+    await acp.prompt(session.sessionId, "editar the files")
 
     const completed = (id: string) =>
       turnUpdates(acp.updates).find(
@@ -271,7 +271,7 @@ describe("acp prompt turns over the wire", () => {
       sessionUpdate: "available_commands_update",
       availableCommands: [
         { name: "review", description: "Review changes" },
-        { name: "compact", description: "Compact the session" },
+        { name: "compact", description: "Compactar la sesión" },
       ],
     })
   })
@@ -327,7 +327,7 @@ describe("acp prompt turns over the wire", () => {
           { type: "image", data: "", mimeType: "image/png" },
         ]),
       ),
-    ).toMatchObject({ code: -32602, message: expect.stringContaining("image content has no data or uri") })
+    ).toMatchObject({ code: -32602, message: expect.stringContaining("imagen content has no data or uri") })
     expect(acp.server.submissions).toHaveLength(2)
   })
 
@@ -482,7 +482,7 @@ describe("acp prompt turns over the wire", () => {
         sessionUpdate: "tool_call_update",
         toolCallId: "call_stuck",
         status: "failed",
-        rawOutput: expect.objectContaining({ error: "Cancelled" }),
+        rawOutput: expect.objectContaining({ error: "Cancelado" }),
       }),
     )
     expect(before.filter((update) => update.sessionUpdate.startsWith("compaction_"))).toEqual([

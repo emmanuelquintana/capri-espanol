@@ -82,7 +82,7 @@ for (const width of [40, 100]) {
 
     try {
       app.renderer.start()
-      await app.waitForFrame((frame) => frame.includes("Reference: err_a1b2c3d4"))
+      await app.waitForFrame((frame) => frame.includes("Referencia: err_a1b2c3d4"))
       const lines = app.captureCharFrame().split("\n")
       const heading = lines.find((line) => line.includes("Server plugin error"))
       expect(heading).toContain("esc")
@@ -90,13 +90,13 @@ for (const width of [40, 100]) {
       expect(lines.join("\n")).not.toContain("very-long-temporary-directory")
       const message = lines.find((line) => line.includes("Plugin failed to load"))
       const reference = lines.find((line) => line.includes("Reference:"))
-      expect(message?.indexOf("Plugin")).toBe(reference?.indexOf("Reference:"))
+      expect(message?.indexOf("Complemento")).toBe(reference?.indexOf("Reference:"))
       expect(lines.filter((line) => line.trim()).length).toBeLessThanOrEqual(6)
 
       app.mockInput.pressKey("c")
       await app.waitFor(() => copied.length === 1)
       expect(copied[0]).toContain(source)
-      expect(copied[0]).toContain("Reference: err_a1b2c3d4")
+      expect(copied[0]).toContain("Referencia: err_a1b2c3d4")
       app.mockInput.pressKey("i")
       await app.waitFor(() => route?.data.type === "home" && !!route.data.prompt)
       const current = route?.data

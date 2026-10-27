@@ -19,24 +19,24 @@ export function useWorkingDirectoryActions(input: { directory: () => string | un
     if (!directory) return
     dialog.replace(() => (
       <DialogSelect
-        title="Working directory"
+        title="Directorio de trabajo"
         renderFilter={false}
         options={[
           {
-            title: "Copy path",
+            title: "Copiar ruta",
             value: "location.copy",
             description: directory,
             onSelect: (dialog) => {
               void clipboard.write(directory).then(() => {
                 dialog.clear()
-                toast.show({ message: "Path copied to clipboard", variant: "info" })
+                toast.show({ message: "Ruta copiada al portapapeles", variant: "info" })
               }, toast.error)
             },
           },
           {
-            title: "Open folder",
+            title: "Abrir carpeta",
             value: "location.open",
-            description: "in system file manager",
+            description: "en el explorador de archivos del sistema",
             onSelect: (dialog) => {
               dialog.clear()
               void openPath(directory).catch(toast.error)
@@ -45,9 +45,9 @@ export function useWorkingDirectoryActions(input: { directory: () => string | un
           ...(input.onMove
             ? [
                 {
-                  title: "Workspaces",
+                  title: "Espacios de trabajo",
                   value: "session.move",
-                  description: "to another working directory",
+                  description: "a otro directorio de trabajo",
                   onSelect: () => void input.onMove?.(),
                 },
               ]

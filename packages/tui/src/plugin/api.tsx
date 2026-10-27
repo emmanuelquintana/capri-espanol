@@ -126,7 +126,7 @@ export function createPluginContext(input: {
       host.toast.show({
         ...toast,
         title: toast.title ?? host.data.session.get(sessionID)?.title,
-        action: { label: "Open", run: () => host.route.navigate({ type: "session", sessionID }) },
+        action: { label: "Abrir", run: () => host.route.navigate({ type: "session", sessionID }) },
       })
     },
   }

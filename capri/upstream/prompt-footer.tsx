@@ -24,7 +24,7 @@ export function PromptFooter(props: {
     const count = props.context.data.session
       .family(props.sessionID)
       .filter((id) => id !== props.sessionID && props.context.data.session.status(id) === "running").length
-    return count ? `${count} subagent${count === 1 ? "" : "s"}` : undefined
+    return count ? `${count} subagente${count === 1 ? "" : "s"}` : undefined
   })
   const shells = createMemo(() => {
     if (!props.sessionID) return 0
@@ -108,7 +108,7 @@ export function PromptFooter(props: {
             flexShrink={0}
           >
             {shortcut("command.palette.show")}{" "}
-            <span style={interactive() ? { fg: props.context.theme.text.muted } : {}}>commands</span>
+            <span style={interactive() ? { fg: props.context.theme.text.muted } : {}}>comandos</span>
           </text>
         </Show>
       </Match>
@@ -116,7 +116,7 @@ export function PromptFooter(props: {
         <text fg={props.context.theme.text.base} flexShrink={0}>
           esc{" "}
           <span style={{ fg: props.context.theme.text.muted }}>
-            {dimensions().width < 44 ? "shell" : "exit shell mode"}
+            {dimensions().width < 44 ? "shell" : "salir del modo terminal"}
           </span>
         </text>
       </Match>

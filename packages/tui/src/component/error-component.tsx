@@ -41,8 +41,8 @@ export function ErrorComponent(props: { error: Error; reset: () => void; mode?: 
         success: "#7fd88f",
       }
 
-  const message = props.error.message || "An unknown error occurred."
-  const stack = props.error.stack || "No stack trace available."
+  const message = props.error.message || "Ocurrió un error desconocido."
+  const stack = props.error.stack || "No hay traza de error disponible."
   const issueURL = buildIssueURL(message, stack, app.version)
 
   const copyReport = () => {
@@ -55,12 +55,12 @@ export function ErrorComponent(props: { error: Error; reset: () => void; mode?: 
   const actions = [
     {
       key: "c",
-      label: () => ({ idle: "Copy report", copied: "✓ Copied", failed: "Copy failed" })[copyState()],
+      label: () => ({ idle: "Copiar informe", copied: "✓ Copied", failed: "No se pudo copiar" })[copyState()],
       copy: true,
       onUse: copyReport,
     },
-    { key: "r", label: () => "Restart", onUse: props.reset },
-    { key: "q", label: () => "Quit", onUse: () => exit() },
+    { key: "r", label: () => "Reiniciar", onUse: props.reset },
+    { key: "q", label: () => "Salir", onUse: () => exit() },
   ]
   const [selected, setSelected] = createSignal(0)
   const move = (delta: number) => setSelected((prev) => (prev + delta + actions.length) % actions.length)
@@ -117,10 +117,10 @@ export function ErrorComponent(props: { error: Error; reset: () => void; mode?: 
         {/* Headline */}
         <box flexDirection="column" alignItems="center" flexShrink={0}>
           <text attributes={TextAttributes.BOLD} fg={colors.text}>
-            Capri crashed
+            Capri se cerró por un error
           </text>
           <Show when={showSubtext()}>
-            <text fg={colors.muted}>An unexpected error stopped the session.</text>
+            <text fg={colors.muted}>Un error inesperado detuvo la sesión.</text>
           </Show>
         </box>
 
@@ -184,7 +184,7 @@ export function ErrorComponent(props: { error: Error; reset: () => void; mode?: 
           border
           borderStyle="rounded"
           borderColor={colors.borderSubtle}
-          title=" Stack trace "
+          title=" Traza del error "
           titleColor={colors.muted}
           bottomTitle=" ↑↓ scroll "
           bottomTitleAlignment="right"
@@ -205,10 +205,10 @@ export function ErrorComponent(props: { error: Error; reset: () => void; mode?: 
           <box flexDirection="column" alignItems="center" flexShrink={0}>
             <text fg={colors.muted}>
               {copyState() === "copied"
-                ? "Report copied — paste it into a new GitHub issue."
+                ? "Informe copiado: pégalo en un nuevo reporte de GitHub."
                 : copyState() === "failed"
-                  ? "Clipboard write failed. Try again or report the crash manually."
-                  : "Copy the report and open a GitHub issue to help us fix this."}
+                  ? "No se pudo copiar al portapapeles. Reintenta o reporta el fallo manualmente."
+                  : "Copia el informe y abre un reporte en GitHub para ayudarnos a corregirlo."}
             </text>
             <text fg={colors.muted}>Capri {app.version}</text>
           </box>
@@ -229,7 +229,7 @@ function buildIssueURL(message: string, stack: string, version: string) {
   url.searchParams.set("terminal", describeTerminal())
   url.searchParams.set(
     "reproduce",
-    "Reported automatically from the Capri crash screen. If you can, describe what you were doing when it crashed.",
+    "Reporte generado desde la pantalla de error de Capri. Describe qué hacías cuando ocurrió el fallo.",
   )
 
   // Budget the stack against the fully URL-encoded length (not the raw length) so

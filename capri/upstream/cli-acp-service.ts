@@ -106,14 +106,14 @@ export function make(input: {
     initialize: Effect.fnUntraced(function* (params) {
       yield* Ref.set(input.capabilities, ACPCapabilities.parse(params.clientCapabilities))
       const authMethod: AuthMethod = {
-        description: "Run `capri auth login` in the terminal",
+        description: "Ejecuta `capri auth login` en la terminal",
         name: "Login with opencode",
         id: AuthMethodID,
         ...(params.clientCapabilities?.auth?.terminal ? { type: "terminal" as const, args: ["--login"] } : {}),
       }
       if (params.clientCapabilities?._meta?.["terminal-auth"] === true) {
         authMethod._meta = {
-          "terminal-auth": { command: "opencode", args: ["auth", "login"], label: "Capri Login" },
+          "terminal-auth": { command: "opencode", args: ["auth", "login"], label: "Inicio de sesión de Capri" },
         }
       }
       return {

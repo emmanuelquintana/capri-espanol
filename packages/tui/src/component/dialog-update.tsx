@@ -47,13 +47,13 @@ export function DialogUpdate(props: {
     if (type === "installing") return []
     const confirm =
       type === "available"
-        ? { label: "Update", run: props.install }
+        ? { label: "Actualizar", run: props.install }
         : type === "installed"
-          ? { label: "Restart", run: props.restart }
+          ? { label: "Reiniciar", run: props.restart }
           : undefined
     return [
       {
-        label: "Skip",
+        label: "Omitir",
         run: () => {
           props.skip()
           dialog.clear()
@@ -70,13 +70,13 @@ export function DialogUpdate(props: {
     commands: [
       {
         bind: "return",
-        title: "Confirm update action",
+        title: "Confirmar actualización",
         group: "Dialog",
         run: () => void buttons()[newDesigns() ? buttons().length - 1 : active()]?.run(),
       },
       ...(newDesigns() ? [] : ["left", "right", "tab", "shift+tab"]).map((bind) => ({
         bind,
-        title: bind === "left" || bind === "shift+tab" ? "Previous update action" : "Next update action",
+        title: bind === "left" || bind === "shift+tab" ? "Acción de actualización anterior" : "Acción de actualización siguiente",
         group: "Dialog",
         run: () => {
           const count = buttons().length
@@ -92,10 +92,10 @@ export function DialogUpdate(props: {
         <DialogHeader
           title={
             state().type === "installing"
-              ? "Updating OpenCode"
+              ? "Actualizando OpenCode"
               : state().type === "available" || state().type === "failed"
-                ? "Update available"
-                : "Update"
+                ? "Actualización disponible"
+                : "Actualizar"
           }
         />
       }
@@ -133,25 +133,25 @@ export function DialogUpdate(props: {
         {(current) => (
           <Switch>
             <Match when={current.type === "checking"}>
-              <Spinner shimmer={theme.text.base}>Checking for updates…</Spinner>
+              <Spinner shimmer={theme.text.base}>Buscando actualizaciones…</Spinner>
             </Match>
             <Match when={current.type === "available"}>
               <text fg={theme.text.muted}>
-                An update is available. After installing, you'll be prompted to restart OpenCode.
+                Hay una actualización disponible. Después de instalarla, se te pedirá reiniciar OpenCode.
               </text>
             </Match>
             <Match when={current.type === "installing"}>
               <Spinner shimmer={theme.text.base}>
-                {current.type === "installing" ? `Installing OpenCode ${current.version}…` : ""}
+                {current.type === "installing" ? `Instalando OpenCode ${current.version}…` : ""}
               </Spinner>
             </Match>
             <Match when={current.type === "installed"}>
               <text fg={theme.text.muted} wrapMode="word">
-                Update successful! Restart closes OpenCode, then run opencode to use the new version.
+                ¡Actualización completada! Reinicia OpenCode y ejecuta opencode para usar la nueva versión.
               </text>
             </Match>
             <Match when={current.type === "current"}>
-              <text fg={theme.text.muted}>OpenCode is already up to date.</text>
+              <text fg={theme.text.muted}>OpenCode ya está actualizado.</text>
             </Match>
             <Match when={current.type === "unavailable"}>
               <text fg={theme.text.muted} wrapMode="word">

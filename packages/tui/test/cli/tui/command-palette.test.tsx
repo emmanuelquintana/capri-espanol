@@ -32,14 +32,14 @@ test("searches settings globally and opens the matching setting", async () => {
         {
           id: "session.new",
           title: "New session",
-          group: "Session",
+          group: "Sesión",
           palette: true,
           run() {},
         },
         {
           id: "model.list",
           title: "Switch model",
-          group: "Agent",
+          group: "Agente",
           palette: true,
           run() {},
         },
@@ -71,13 +71,13 @@ test("searches settings globally and opens the matching setting", async () => {
 
   try {
     await app.waitForFrame((frame) => frame.includes("New session"))
-    expect(app.captureCharFrame()).not.toContain("Animations")
+    expect(app.captureCharFrame()).not.toContain("Animaciones")
     await app.waitFor(() => app.renderer.currentFocusedEditor instanceof InputRenderable)
 
     app.mockInput.pressArrow("down")
-    for (const key of "image preview") app.mockInput.pressKey(key)
+    for (const key of "vistas previas") app.mockInput.pressKey(key)
     app.mockInput.pressEnter()
-    await app.waitForFrame((frame) => frame.includes("Settings") && frame.includes("Image previews"))
+    await app.waitForFrame((frame) => frame.includes("Configuración") && frame.includes("Vistas previas de imágenes"))
     app.mockInput.pressEnter()
     await app.waitFor(() => current.prompt?.image_preview === true)
   } finally {

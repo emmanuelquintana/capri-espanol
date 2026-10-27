@@ -2,7 +2,7 @@
 # Capri installer (Linux). Installs the binary as `capri`, seeds ~/.config/capri/capri.json and installs Capri's skills.
 set -euo pipefail
 APP=capri
-REPO=seanyih/Capri
+REPO=emmanuelquintana/capri-espanol
 
 MUTED='\033[0;2m'
 RED='\033[0;31m'
@@ -12,17 +12,17 @@ NC='\033[0m'
 
 usage() {
     cat <<USAGE
-Capri Installer
+Instalador de Capri en español
 
-Usage: install [options]
+Uso: install [opciones]
 
-Options:
-    -h, --help              Display this help message
-    -v, --version <tag>     Install a specific release (e.g., v0.1.0)
-    -b, --binary <path>     Install from a local binary instead of downloading
-        --no-modify-path    Don't modify shell config files (.zshrc, .bashrc, etc.)
+Opciones:
+    -h, --help              Mostrar esta ayuda
+    -v, --version <tag>     Versión de referencia de las habilidades (requiere --binary)
+    -b, --binary <path>     Instalar un ejecutable local de esta edición
+        --no-modify-path    No modificar la configuración de la terminal (.zshrc, .bashrc, etc.)
 
-Examples:
+Ejemplos:
     curl -fsSL https://raw.githubusercontent.com/$REPO/main/install | bash
     curl -fsSL https://raw.githubusercontent.com/$REPO/main/install | bash -s -- --version v0.1.0
     ./install --binary packages/cli/dist/cli-linux-x64/bin/opencode
@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
                 requested_version="$2"
                 shift 2
             else
-                echo -e "${RED}Error: --version requires a version argument${NC}"
+                echo -e "${RED}Error: --version requiere una versión${NC}"
                 exit 1
             fi
             ;;
@@ -53,7 +53,7 @@ while [[ $# -gt 0 ]]; do
                 binary_path="$2"
                 shift 2
             else
-                echo -e "${RED}Error: --binary requires a path argument${NC}"
+                echo -e "${RED}Error: --binary requiere una ruta${NC}"
                 exit 1
             fi
             ;;
@@ -62,14 +62,19 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         *)
-            echo -e "${MAGENTA}Warning: Unknown option '$1'${NC}" >&2
+            echo -e "${MAGENTA}Advertencia: opción desconocida '$1'${NC}" >&2
             shift
             ;;
     esac
 done
 
+if [ -z "$binary_path" ]; then
+    echo "Esta edición en español requiere un ejecutable local. Compila el proyecto y usa --binary (consulta README.md)." >&2
+    exit 1
+fi
+
 if [ "$(uname -s)" != "Linux" ]; then
-    echo -e "${RED}Capri only ships for Linux right now. Build from source instead (see the README).${NC}"
+    echo -e "${RED}Este instalador requiere Linux. Consulta README.md para compilar en tu plataforma.${NC}"
     exit 1
 fi
 
@@ -78,7 +83,7 @@ mkdir -p "$INSTALL_DIR"
 
 if [ -n "$binary_path" ]; then
     if [ ! -f "$binary_path" ]; then
-        echo -e "${RED}Error: Binary not found at ${binary_path}${NC}"
+        echo -e "${RED}Error: no se encontró el ejecutable en ${binary_path}${NC}"
         exit 1
     fi
 else
@@ -87,7 +92,7 @@ else
         x86_64) arch="x64" ;;
         aarch64|arm64) arch="arm64" ;;
         *)
-            echo -e "${RED}Unsupported architecture: $arch${NC}"
+            echo -e "${RED}Arquitectura no compatible: $arch${NC}"
             exit 1
             ;;
     esac
@@ -124,14 +129,14 @@ install_binary() {
 }
 
 if [ -n "$binary_path" ]; then
-    echo -e "\n${MUTED}Jacking in from: ${NC}$binary_path"
+    echo -e "\n${MUTED}Conectando desde: ${NC}$binary_path"
     install_binary "$binary_path"
 else
-    echo -e "\n${MUTED}Downloading ${NC}$filename ${MUTED}from ${NC}github.com/$REPO"
+    echo -e "\n${MUTED}Descargando ${NC}$filename ${MUTED}from ${NC}github.com/$REPO"
     tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/capri_install.XXXXXX")
     trap 'rm -rf "$tmp_dir"' EXIT
     if ! curl -fL -# -o "$tmp_dir/$filename" "$url"; then
-        echo -e "${RED}Download failed: $url${NC}"
+        echo -e "${RED}Falló la descarga: $url${NC}"
         echo -e "${MUTED}No release for $target yet? Build from source (see the README) and use --binary.${NC}"
         exit 1
     fi
@@ -149,17 +154,17 @@ CONFIG_DIR=$XDG_CONFIG_HOME/capri
 CONFIG_FILE=$CONFIG_DIR/capri.json
 mkdir -p "$CONFIG_DIR"
 if [ -e "$CONFIG_FILE" ]; then
-    echo -e "${MUTED}Keeping your existing ${NC}$CONFIG_FILE"
+    echo -e "${MUTED}Se conserva el archivo existente ${NC}$CONFIG_FILE"
 else
     cat > "$CONFIG_FILE" <<'CONFIG'
 {
-  // Capri settings (jsonc). Restart Capri to apply changes.
-  // Env vars override these per launch: CAPRI_LOGO, CAPRI_CYBERPSYCOSIS.
+  // Ajustes de Capri (jsonc). Reinicia Capri para aplicar los cambios.
+  // Variables de entorno que tienen prioridad al iniciar: CAPRI_LOGO, CAPRI_CYBERPSYCOSIS.
 
   // none | low | medium | max. Also switchable in the TUI with /cyberpsycosis.
   "cyberpsycosis": "none",
 
-  // Screen glitch rate multiplier: 1 = normal, 0 = off, 2 = double (max 10).
+  // Intensidad de los efectos: 1 = normal, 0 = desactivados, 2 = doble (máximo 10).
   "glitchProbability": 1,
 
   "logo": {
@@ -168,25 +173,25 @@ else
   },
 
   "hide": {
-    // Show the model's reasoning as scrambled glyphs.
+    // Representar el razonamiento del modelo como símbolos cifrados.
     "thinking": true,
-    // Hide tool output, diffs and diagnostics.
+    // Ocultar resultados de herramientas, diferencias y diagnósticos.
     "toolResults": true,
-    // Hide the lines that show a skill being loaded.
+    // Ocultar las líneas de carga de habilidades.
     "skills": true
   },
 
   "footer": {
-    // Label for the default agent in the reply footer.
+    // Nombre del agente predeterminado al pie de la respuesta.
     "name": "Capri",
-    // Show the model name in the footer and prompt box.
+    // Mostrar el modelo al pie y en la entrada de mensajes.
     "model": false,
-    // Show tokens per second (also needs session.tps in tui.json).
+    // Mostrar tokens por segundo (requiere session.tps en tui.json).
     "tps": false
   }
 }
 CONFIG
-    echo -e "${MUTED}Wrote default settings to ${NC}$CONFIG_FILE"
+    echo -e "${MUTED}Se guardó la configuración inicial en ${NC}$CONFIG_FILE"
 fi
 
 # Capri skills go in the global skills dir, so they work from any project. They are Capri's own, so a rerun refreshes
@@ -215,9 +220,9 @@ install_skills() {
     done
 }
 if install_skills; then
-    echo -e "${MUTED}Installed skills to ${NC}$SKILLS_DIR"
+    echo -e "${MUTED}Habilidades instaladas en ${NC}$SKILLS_DIR"
 else
-    echo -e "${MAGENTA}Warning: could not install Capri skills (offline?). Capri works without them.${NC}" >&2
+    echo -e "${MAGENTA}Advertencia: no se pudieron instalar las habilidades de Capri. Comprueba la conexión. Capri funciona sin ellas.${NC}" >&2
 fi
 
 path_added=false
@@ -226,14 +231,14 @@ add_to_path() {
     local command=$2
 
     if grep -Fxq "$command" "$config_file"; then
-        echo -e "Command already exists in $config_file, skipping write."
+        echo -e "El comando ya existe en $config_file, no se modificará."
     elif [[ -w $config_file ]]; then
         echo -e "\n# capri" >> "$config_file"
         echo "$command" >> "$config_file"
         path_added=true
         echo -e "${MUTED}Added ${NC}capri ${MUTED}to \$PATH in ${NC}$config_file"
     else
-        echo -e "Manually add the directory to $config_file (or similar):"
+        echo -e "Añade manualmente el directorio a $config_file (o un archivo equivalente):"
         echo -e "  $command"
     fi
 }
@@ -274,13 +279,13 @@ if [[ "$no_modify_path" != "true" && ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
 fi
 
 echo -e ""
-echo -e "${MAGENTA} Capri is online. Wake up, netrunner.${NC}"
+echo -e "${MAGENTA} Capri está en línea. Despierta, netrunner.${NC}"
 echo -e ""
 if [[ $path_added == "true" ]]; then
-    echo -e "exec \$SHELL   ${MUTED}# Reload PATH (or open a new terminal)${NC}"
+    echo -e "exec \$SHELL   ${MUTED}# Recargar PATH (o abrir una terminal nueva)${NC}"
 fi
-echo -e "cd <project>  ${MUTED}# Open directory${NC}"
-echo -e "capri         ${MUTED}# Jack in${NC}"
+echo -e "cd <project>  ${MUTED}# Abrir directorio${NC}"
+echo -e "capri         ${MUTED}# Conectar${NC}"
 echo -e ""
-echo -e "${MUTED}Settings: ${NC}$CONFIG_FILE"
+echo -e "${MUTED}Configuración: ${NC}$CONFIG_FILE"
 echo -e ""

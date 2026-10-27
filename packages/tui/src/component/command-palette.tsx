@@ -3,6 +3,7 @@ import { DialogSelect, type DialogSelectRef } from "../ui/dialog-select"
 import { type DialogContext } from "../ui/dialog"
 import { COMMAND_PALETTE_COMMAND, Keymap, type KeymapCommand } from "../context/keymap"
 import { DialogConfig, settingID, settings } from "./dialog-config"
+import { spanishLabel } from "../util/spanish"
 
 function isSuggestedPaletteCommand(command: KeymapCommand) {
   const suggested = command.suggested
@@ -23,7 +24,7 @@ export function CommandPaletteDialog() {
         description: command.description,
         category: command.group,
         searchText: [command.id, command.description].filter(Boolean).join(" "),
-        searchFooter: [command.group, footer].filter(Boolean).join(" · "),
+        searchFooter: [command.group ? spanishLabel(command.group) : undefined, footer].filter(Boolean).join(" · "),
         footer,
         value: command.id,
         suggested: isSuggestedPaletteCommand(command),
@@ -38,7 +39,7 @@ export function CommandPaletteDialog() {
     title: setting.title,
     category: setting.category,
     searchText: setting.keywords?.join(" "),
-    searchFooter: `Settings · ${setting.category}`,
+    searchFooter: `Configuración · ${setting.category}`,
     value: `setting:${settingID(setting)}`,
     onSelect: (dialog: DialogContext) => {
       dialog.replace(() => <DialogConfig current={settingID(setting)} />)
@@ -54,7 +55,7 @@ export function CommandPaletteDialog() {
         .map((option) => ({
           ...option,
           value: `suggested:${option.value}`,
-          category: "Suggested",
+          category: "Sugeridos",
         })),
       ...options(),
     ]
@@ -63,9 +64,9 @@ export function CommandPaletteDialog() {
   return (
     <DialogSelect
       ref={(value) => (ref = value)}
-      title="Commands"
+      title="Comandos"
       searchInTitle
-      titlePlaceholder="Search commands"
+      titlePlaceholder="Buscar comandos"
       options={list()}
       flat={true}
       filterThreshold={0.7}

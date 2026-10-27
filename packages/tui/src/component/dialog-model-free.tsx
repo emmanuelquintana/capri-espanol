@@ -52,13 +52,13 @@ export function DialogFreeModels(props: {
 
   return (
     <DialogSelect
-      title="Free models"
-      description="Connect a provider for access to more models"
+      title="Modelos gratuitos"
+      description="Conecta un proveedor para acceder a más modelos"
       options={options()}
       actions={[
         {
           command: "model.dialog.provider",
-          title: "connect provider",
+          title: "conectar proveedor",
           selection: "none",
           onTrigger: props.onConnect,
         },

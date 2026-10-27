@@ -93,7 +93,7 @@ function ToastSurface(props: {
         </Show>
         <Show when={props.pending}>
           <text fg={theme.text.muted} marginTop={1}>
-            +{props.pending} more
+            +{props.pending} más
           </text>
         </Show>
       </box>

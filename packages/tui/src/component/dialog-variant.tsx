@@ -12,7 +12,7 @@ export function DialogVariant() {
   const options = createMemo(() => [
     {
       value: "default",
-      title: "Default",
+      title: "Predeterminado",
       onSelect: () => {
         dialog.clear()
         local.model.variant.set(undefined)
@@ -34,7 +34,7 @@ export function DialogVariant() {
   return (
     <DialogSelect<string>
       options={options()}
-      title={"Select variant"}
+      title={"Seleccionar variante"}
       renderFilter={!newDesigns()}
       current={local.model.variant.current() ?? "default"}
       flat={true}

@@ -7,9 +7,9 @@ export function statsMetrics(stats: SessionStatsInfo) {
       label: "tokens",
       value: TokenUsage.total(stats.tokens),
     },
-    { label: "best streak", value: stats.streak },
-    { label: "active days", value: stats.activeDays },
-    { label: "sessions", value: stats.sessions },
+    { label: "mejor racha", value: stats.streak },
+    { label: "días activos", value: stats.activeDays },
+    { label: "sesiones", value: stats.sessions },
   ]
 }
 

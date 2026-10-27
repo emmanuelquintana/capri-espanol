@@ -276,7 +276,7 @@ export class RunFooter implements FooterApi {
       const agent = currentAgent()
       if (agent) return agent.name
       const selected = selectedAgentID()
-      return selected ? Locale.titlecase(selected) : "Default"
+      return selected ? Locale.titlecase(selected) : "Predeterminado"
     }
     const [currentModel, setCurrentModel] = createSignal<RunInput["model"]>(options.model)
     this.currentModel = currentModel
@@ -804,7 +804,7 @@ export class RunFooter implements FooterApi {
     }
 
     if (this.prompts.size === 0) {
-      this.setNotice("input queue unavailable")
+      this.setNotice("cola de entrada no disponible")
       return false
     }
 
@@ -836,12 +836,12 @@ export class RunFooter implements FooterApi {
   private handleCycle = (): void => {
     const result = this.options.onCycleVariant?.()
     if (!result) {
-      this.setNotice("no variants available")
+      this.setNotice("no hay variantes disponibles")
       return
     }
 
     this.applySelectionResult(result)
-    if (result.status === undefined) this.setNotice("variant updated")
+    if (result.status === undefined) this.setNotice("variante actualizada")
   }
 
   private handleModelSelect = (model: NonNullable<RunInput["model"]>): void => {
@@ -910,7 +910,7 @@ export class RunFooter implements FooterApi {
 
   private handleMiniSettingChange = async (change: MiniSettingChange): Promise<void> => {
     if (!this.options.miniSettings.update) {
-      this.setNotice("settings are unavailable")
+      this.setNotice("la configuración no está disponible")
       return
     }
 
@@ -919,7 +919,7 @@ export class RunFooter implements FooterApi {
       if (this.isClosed) return
       if (settings.mono === this.miniSettings().mono) {
         this.setMiniSettings(settings)
-        this.setNotice("settings updated")
+        this.setNotice("configuración actualizada")
         return
       }
       const theme = await resolveRunTheme(this.renderer, this.options.tuiConfig.theme, settings.mono)
@@ -937,9 +937,9 @@ export class RunFooter implements FooterApi {
         })
       })
       await this.flushing
-      this.setNotice("settings updated")
+      this.setNotice("configuración actualizada")
     } catch (error) {
-      this.setNotice("failed to save settings")
+      this.setNotice("no se pudo guardar la configuración")
       throw error
     }
   }

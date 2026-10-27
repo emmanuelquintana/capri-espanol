@@ -29,34 +29,34 @@ export function usePromptMove(input: { projectID: () => string | undefined; sess
 
   async function create(name: string) {
     setCreating(true)
-    setProgress("Creating worktree")
+    setProgress("Creando árbol de trabajo")
     try {
       const sessionID = input.sessionID()
       const session = sessionID ? await resolveSession(sessionID) : undefined
-      if (sessionID && !session) throw new Error("Unable to determine current session location")
+      if (sessionID && !session) throw new Error("No se puede determinar la ubicación de la sesión")
       const location = session?.location ?? homeLocation()
       if (!data.location.info(location)) await data.location.syncInfo(location)
       const project = data.location.info(location)?.project
-      if (!project) throw new Error("Unable to determine current project")
+      if (!project) throw new Error("No se puede determinar el proyecto actual")
       const result = await client.api.worktree.create({
         projectID: project.id,
         name,
       })
       const directory = result.directory
-      if (!directory) throw new Error("No worktree directory returned")
+      if (!directory) throw new Error("No se recibió el directorio del árbol de trabajo")
 
       // Seed the location store before optimistic session creation mounts the
       // destination. A raw read initializes the server location but leaves the
       // optimistic session without its project until the create request echoes.
       await data.location.syncInfo({ directory })
 
-      setProgress("Creating session")
+      setProgress("Creando sesión")
       return directory
     } catch (err) {
       setDestination(undefined)
       setProgress(undefined)
       setCreating(false)
-      toast.show({ title: "Creating workspace failed", message: errorMessage(err), variant: "error" })
+      toast.show({ title: "No se pudo crear el espacio de trabajo", message: errorMessage(err), variant: "error" })
       return
     }
   }
@@ -64,7 +64,7 @@ export function usePromptMove(input: { projectID: () => string | undefined; sess
   async function open() {
     const projectID = await resolveProjectID()
     if (!projectID) {
-      toast.show({ message: "Unable to determine current project", variant: "error" })
+      toast.show({ message: "No se puede determinar el proyecto actual", variant: "error" })
       return
     }
     const sessionID = input.sessionID()
@@ -144,7 +144,7 @@ export function usePromptMove(input: { projectID: () => string | undefined; sess
   }
 
   function startSubmit() {
-    if (progress()) setProgress("Submitting prompt")
+    if (progress()) setProgress("Enviando mensaje")
   }
 
   function finishSubmit() {

@@ -146,13 +146,13 @@ const permissionNotification: AttentionNotifyOptions = {
 }
 
 describe("internal notifications TUI plugin", () => {
-  test("shows execution failures as session-scoped toasts without needing an assistant message", async () => {
+  test("shows execution failures as session-scoped toasts without needing an assistant mensaje", async () => {
     const harness = await setup()
     harness.emit(executionStarted("started"))
     harness.emit(executionFailed("failed"))
     harness.emit(executionFailed("duplicate"))
     expect(harness.toasts).toEqual([
-      { sessionID: "session", title: "Session failed", message: "boom", variant: "error" },
+      { sessionID: "session", title: "La sesión falló", message: "boom", variant: "error" },
     ])
     harness.emit(executionStarted("retry"))
     harness.emit(executionFailed("failed-again"))
@@ -178,7 +178,7 @@ describe("internal notifications TUI plugin", () => {
       const harness = await setup(route)
       harness.emit(executionFailed("failed"))
       expect(harness.toasts).toEqual([
-        { sessionID: "session", title: "Session failed", message: "boom", variant: "error" },
+        { sessionID: "session", title: "La sesión falló", message: "boom", variant: "error" },
       ])
       expect(harness.notifications).toHaveLength(1)
     },
@@ -252,13 +252,13 @@ describe("internal notifications TUI plugin", () => {
     expect(harness.notifications).toEqual([
       {
         title: "Demo session",
-        message: "Session done",
+        message: "Sesión terminada",
         notification: { when: "blurred" },
         sound: { name: "done", when: "always" },
       },
       {
         title: "Demo session",
-        message: "Session done",
+        message: "Sesión terminada",
         notification: { when: "blurred" },
         sound: { name: "done", when: "always" },
       },
@@ -286,7 +286,7 @@ describe("internal notifications TUI plugin", () => {
       },
       {
         title: "Subagent session",
-        message: "Session done",
+        message: "Sesión terminada",
         notification: false,
         sound: { name: "subagent_done", when: "always" },
       },

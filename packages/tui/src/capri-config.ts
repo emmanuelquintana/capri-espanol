@@ -13,40 +13,40 @@ export const LogoStyle = Schema.Literals(["auto", "image", "quadrant", "halfbloc
 export type LogoStyle = Schema.Schema.Type<typeof LogoStyle>
 
 export const Info = Schema.Struct({
-  $schema: Schema.optional(Schema.String).annotate({ description: "JSON Schema for Capri configuration" }),
+  $schema: Schema.optional(Schema.String).annotate({ description: "Esquema JSON de la configuración de Capri" }),
   logo: Schema.optional(
     Schema.Struct({
       style: Schema.optional(LogoStyle).annotate({
         description:
-          "Logo rendering: 'auto' uses an inline image when the terminal supports one and quadrant blocks otherwise; " +
-          "'quadrant' and 'halfblock' force character art; 'image' forces the picture where supported",
+          "Representación del logo: 'auto' usa una imagen cuando la terminal lo permite y bloques en caso contrario; " +
+          "'quadrant' y 'halfblock' fuerzan el dibujo con caracteres; 'image' fuerza la imagen si es compatible",
       }),
     }),
-  ).annotate({ description: "Startup logo settings" }),
+  ).annotate({ description: "Ajustes del logo de inicio" }),
   footer: Schema.optional(
     Schema.Struct({
       name: Schema.optional(Schema.String).annotate({
-        description: "Label shown for the default (build) agent in the reply footer (default 'Capri')",
+        description: "Nombre del agente predeterminado (build) al pie de la respuesta (predeterminado: 'Capri')",
       }),
-      model: Schema.optional(Schema.Boolean).annotate({ description: "Show the model name in the footer (default false)" }),
+      model: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar el nombre del modelo al pie (predeterminado: false)" }),
       tps: Schema.optional(Schema.Boolean).annotate({
-        description: "Show tokens per second in the footer; also needs session.tps in tui.json (default false)",
+        description: "Mostrar tokens por segundo al pie; requiere session.tps en tui.json (predeterminado: false)",
       }),
     }),
-  ).annotate({ description: "Reply footer settings" }),
+  ).annotate({ description: "Ajustes del pie de respuesta" }),
   hide: Schema.optional(
     Schema.Struct({
       thinking: Schema.optional(Schema.Boolean).annotate({
-        description: "Show the model's reasoning as scrambled glyphs instead of readable text (default true)",
+        description: "Representar el razonamiento como símbolos cifrados (predeterminado: true)",
       }),
       toolResults: Schema.optional(Schema.Boolean).annotate({
-        description: "Hide tool output, diffs and diagnostics; only the call itself is shown (default true)",
+        description: "Ocultar resultados de herramientas, diferencias y diagnósticos; mostrar solo la llamada (predeterminado: true)",
       }),
       skills: Schema.optional(Schema.Boolean).annotate({
-        description: "Hide the 'Skill \"name\"' lines shown when the model loads a skill (default true)",
+        description: "Ocultar las líneas de carga de habilidades (predeterminado: true)",
       }),
     }),
-  ).annotate({ description: "What to keep out of sight" }),
+  ).annotate({ description: "Contenido que se oculta" }),
 })
 export type Info = Schema.Schema.Type<typeof Info>
 

@@ -21,7 +21,7 @@ const switchAccount = Effect.fn("cli.auth.switch.run")(function* (input: {
   credential?: string
 }) {
   if (!input.target)
-    yield* requireInteractive("Pass an integration ID or name when running without an interactive terminal")
+    yield* requireInteractive("Indica un ID o nombre de integración si no hay terminal interactiva")
   if (!input.credential)
     yield* requireInteractive("Pass a credential ID or label when running without an interactive terminal")
   intro("Switch account")
@@ -35,5 +35,5 @@ const switchAccount = Effect.fn("cli.auth.switch.run")(function* (input: {
     Effect.tap(() => Effect.sync(() => progress.stop(`Switched account for ${integration.name}`))),
     Effect.tapCause(() => Effect.sync(() => progress.stop("Failed to switch account", 1))),
   )
-  outro("Done")
+  outro("Terminado")
 })

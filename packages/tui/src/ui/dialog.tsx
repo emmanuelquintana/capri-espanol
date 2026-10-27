@@ -348,7 +348,7 @@ function init() {
     commands: [
       {
         bind: "escape",
-        title: "Close dialog",
+        title: "Cerrar diálogo",
         group: "Dialog",
         run: () => {
           if (renderer.getSelection()) {
@@ -363,7 +363,7 @@ function init() {
       },
       {
         bind: "ctrl+c",
-        title: "Close dialog",
+        title: "Cerrar diálogo",
         group: "Dialog",
         run: () => {
           if (renderer.getSelection()) {

@@ -42,8 +42,8 @@ describe("stats rendering", () => {
     expect(output).toMatch(/Mo .*(?:\r?\n){2}Tu/)
     expect(output).toMatch(/Su .*(?:\r?\n){2}   less/)
     expect(output).toContain("less ·░▒▓█ more")
-    expect(output).toContain("2 sessions · 1 subagent")
-    expect(output).toContain("80.0% tool success · 2 active days · best streak 2 days")
+    expect(output).toContain("2 sessions · 1 subagente")
+    expect(output).toContain("80.0% tool success · 2 active days · best streak 2 días")
     expect(output).not.toContain("private_tool")
     expect(output).not.toContain("$12.34")
   })
@@ -96,7 +96,7 @@ describe("stats rendering", () => {
       options({ models: true, tools: true, limit: 1 }),
     )
     expect(output).toContain("+1 more model")
-    expect(output).toContain("+1 more tool")
+    expect(output).toContain("+1 more herramienta")
   })
 
   test("uses the OpenCode palette in color mode", () => {
@@ -132,7 +132,7 @@ describe("stats rendering", () => {
       { ...stats, range: { from: Date.UTC(2020, 0, 1), to: Date.UTC(2026, 0, 8) } },
       options({ width: 20 }),
     )
-    expect(output).toContain("activity · last 16 weeks")
+    expect(output).toContain("activity · last 16 semanas")
   })
 })
 
@@ -159,7 +159,7 @@ describe("stats requests", () => {
 function options(input: Partial<Parameters<typeof renderStats>[1]> = {}): Parameters<typeof renderStats>[1] {
   return {
     label: "2026 so far",
-    scope: "all projects",
+    scope: "todos los proyectos",
     models: false,
     tools: false,
     cost: false,

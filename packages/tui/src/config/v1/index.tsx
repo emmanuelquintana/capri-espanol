@@ -20,15 +20,15 @@ export const PluginSpec = Schema.Union([Schema.String, Schema.mutable(Schema.Tup
 
 export const LeaderTimeoutDefault = 2000
 export const LeaderTimeout = Schema.Int.check(Schema.isGreaterThan(0)).annotate({
-  description: "Leader key timeout in milliseconds",
+  description: "Espera de la tecla prefijo en milisegundos",
 })
 
 export const ScrollSpeed = Schema.Number.check(Schema.isGreaterThanOrEqualTo(0.001))
 export const ScrollAcceleration = Schema.Struct({
-  enabled: Schema.Boolean.annotate({ description: "Enable scroll acceleration" }),
-}).annotate({ description: "Scroll acceleration settings" })
+  enabled: Schema.Boolean.annotate({ description: "Activar aceleración del desplazamiento" }),
+}).annotate({ description: "Ajustes de aceleración del desplazamiento" })
 export const DiffStyle = Schema.Literals(["auto", "stacked"]).annotate({
-  description: "Control diff rendering style: 'auto' adapts to terminal width, 'stacked' always shows single column",
+  description: "Estilo de diferencias: 'auto' se adapta al ancho y 'stacked' usa una columna",
 })
 
 export const AttentionSounds = Schema.Record(AttentionSoundName, Schema.optionalKey(Schema.String))
@@ -40,24 +40,24 @@ export const Attention = Schema.Struct({
   volume: Schema.optional(Schema.Number.check(Schema.isGreaterThanOrEqualTo(0), Schema.isLessThanOrEqualTo(1))),
   sound_pack: Schema.optional(Schema.String),
   sounds: Schema.optional(AttentionSounds),
-}).annotate({ description: "Attention notification and sound settings" })
+}).annotate({ description: "Ajustes de avisos y sonidos" })
 
 export const Cursor = Schema.Struct({
   style: Schema.optional(Schema.Literals(["block", "underline", "line", "default"])).annotate({
-    description: "Cursor shape. Use 'default' to preserve the terminal setting",
+    description: "Forma del cursor. Usa 'default' para conservar la de la terminal",
   }),
   blinking: Schema.optional(Schema.Boolean).annotate({
-    description: "Whether the cursor blinks. Has no effect when style is 'default'",
+    description: "Parpadeo del cursor. No se aplica si el estilo es 'default'",
   }),
-}).annotate({ description: "Terminal cursor settings" })
+}).annotate({ description: "Ajustes del cursor de la terminal" })
 
 const PromptSize = Schema.Int.check(Schema.isGreaterThan(0))
 export const Prompt = Schema.Struct({
-  max_height: Schema.optional(PromptSize).annotate({ description: "Prompt textarea max height" }),
+  max_height: Schema.optional(PromptSize).annotate({ description: "Altura máxima del área de mensajes" }),
   max_width: Schema.optional(Schema.Union([PromptSize, Schema.Literal("auto")])).annotate({
-    description: "Home prompt max width: a positive integer for a fixed cap, or 'auto' to scale with terminal width",
+    description: "Ancho máximo de entrada inicial: entero positivo o 'auto' para adaptarse a la terminal",
   }),
-}).annotate({ description: "Prompt size settings" })
+}).annotate({ description: "Ajustes del tamaño de entrada" })
 
 export const Info = Schema.Struct({
   $schema: Schema.optional(Schema.String),
@@ -68,10 +68,10 @@ export const Info = Schema.Struct({
   leader_timeout: Schema.optional(LeaderTimeout),
   attention: Schema.optional(Attention),
   prompt: Schema.optional(Prompt),
-  scroll_speed: Schema.optional(ScrollSpeed).annotate({ description: "TUI scroll speed" }),
+  scroll_speed: Schema.optional(ScrollSpeed).annotate({ description: "Velocidad de desplazamiento de la terminal" }),
   scroll_acceleration: Schema.optional(ScrollAcceleration),
   diff_style: Schema.optional(DiffStyle),
-  mouse: Schema.optional(Schema.Boolean).annotate({ description: "Enable or disable mouse capture (default: true)" }),
+  mouse: Schema.optional(Schema.Boolean).annotate({ description: "Activar o desactivar captura del ratón (predeterminado: true)" }),
   cursor: Schema.optional(Cursor),
 })
 export type Info = Schema.Schema.Type<typeof Info>

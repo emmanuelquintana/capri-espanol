@@ -38,21 +38,21 @@ export default Plugin.define({
         return
       }
       const session = context.data.session.get(sessionID)
-      notify(context, sessionID, "Session done", session?.parentID ? "subagent_done" : "done")
+      notify(context, sessionID, "Sesión terminada", session?.parentID ? "subagent_done" : "done")
     }
 
     const dispose = [
       context.data.on("form.created", (event) => {
         if (forms.has(event.data.form.id)) return
         forms.add(event.data.form.id)
-        notify(context, event.data.form.sessionID, "Input needs response", "question", event.data.form.title)
+        notify(context, event.data.form.sessionID, "Se necesita una respuesta", "question", event.data.form.title)
       }),
       context.data.on("form.replied", (event) => forms.delete(event.data.id)),
       context.data.on("form.cancelled", (event) => forms.delete(event.data.id)),
       context.data.on("permission.asked", (event) => {
         if (permissions.has(event.data.id)) return
         permissions.add(event.data.id)
-        notify(context, event.data.sessionID, "Permission needs input", "permission")
+        notify(context, event.data.sessionID, "Se necesita responder una solicitud de permiso", "permission")
       }),
       context.data.on("permission.replied", (event) => permissions.delete(event.data.requestID)),
       context.data.on("session.execution.started", (event) => started(event.data.sessionID)),
@@ -70,7 +70,7 @@ export default Plugin.define({
           notify(context, sessionID, event.data.error.message, "error")
           context.ui.toast.show({
             sessionID,
-            title: "Session failed",
+            title: "La sesión falló",
             message: event.data.error.message,
             variant: "error",
           })

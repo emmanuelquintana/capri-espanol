@@ -14,7 +14,7 @@ function getRelativeTime(timestamp: number): string {
   const hours = Math.floor(minutes / 60)
   const days = Math.floor(hours / 24)
 
-  if (seconds < 60) return "just now"
+  if (seconds < 60) return "ahora"
   if (minutes < 60) return `${minutes}m ago`
   if (hours < 24) return `${hours}h ago`
   if (days < 7) return `${days}d ago`
@@ -43,13 +43,13 @@ export function DialogStash(props: { onSelect: (entry: StashEntry) => void }) {
         const lineCount = (entry.prompt.text.match(/\n/g)?.length ?? 0) + 1
         return {
           title: isDeleting
-            ? `Press ${shortcuts.get("stash.delete")} again to confirm`
+            ? `Pulsa ${shortcuts.get("stash.delete")} otra vez para confirmar`
             : getStashPreview(entry.prompt.text),
           bg: isDeleting ? theme.background.action.destructive.focused : undefined,
           fg: isDeleting ? theme.text.action.destructive.focused : undefined,
           value: index,
           description: getRelativeTime(entry.timestamp),
-          footer: lineCount > 1 ? `~${lineCount} lines` : undefined,
+          footer: lineCount > 1 ? `~${lineCount} líneas` : undefined,
         }
       })
       .toReversed()
@@ -57,7 +57,7 @@ export function DialogStash(props: { onSelect: (entry: StashEntry) => void }) {
 
   return (
     <DialogSelect
-      title="Stash"
+      title="Mensajes guardados"
       options={options()}
       onMove={() => {
         setToDelete(undefined)

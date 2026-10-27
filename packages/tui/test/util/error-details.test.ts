@@ -19,7 +19,7 @@ test("copy and investigation include the plugin context and matching log referen
 
 test("errors without a reference still have useful copy and investigation text", () => {
   const result = errorDetails({ title: "MCP server: example", error: "Connection refused" })
-  expect(result.text).toBe("MCP server: example\nError: Connection refused")
+  expect(result.text).toBe("Servidor MCP: example\nError: Connection refused")
   expect(result.prompt).toContain(result.text)
   expect(result.prompt).not.toContain("matching reference")
   expect(result.text).not.toContain("undefined")

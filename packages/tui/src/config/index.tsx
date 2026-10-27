@@ -47,9 +47,9 @@ export type MiniWorkSpinner = Schema.Schema.Type<typeof MiniWorkSpinner>
 export const Plugin = Schema.Union([
   Schema.String,
   Schema.Struct({
-    package: Schema.String.annotate({ description: "Plugin package name or path" }),
+    package: Schema.String.annotate({ description: "Nombre o ruta del paquete del complemento" }),
     options: Schema.optional(Schema.Record(Schema.String, Schema.Any)).annotate({
-      description: "Options passed to the plugin",
+      description: "Opciones del complemento",
     }),
   }),
 ])
@@ -59,161 +59,161 @@ export type DiffSource = Schema.Schema.Type<typeof DiffSource>
 
 export const Cursor = Schema.Struct({
   style: Schema.optional(Schema.Literals(["block", "underline", "line", "default"])).annotate({
-    description: "Cursor shape. Use 'default' to preserve the terminal setting",
+    description: "Forma del cursor. Usa 'default' para conservar la de la terminal",
   }),
   blinking: Schema.optional(Schema.Boolean).annotate({
-    description: "Whether the cursor blinks. Has no effect when style is 'default'",
+    description: "Parpadeo del cursor. No se aplica si el estilo es 'default'",
   }),
-}).annotate({ description: "Terminal cursor settings" })
+}).annotate({ description: "Ajustes del cursor de la terminal" })
 
 export const Info = Schema.Struct({
   theme: Schema.optional(
     Schema.Struct({
-      name: Schema.optional(Schema.String).annotate({ description: "Theme name" }),
+      name: Schema.optional(Schema.String).annotate({ description: "Nombre del tema" }),
       mode: Schema.optional(Schema.Literals(["system", "dark", "light"])).annotate({
-        description: "Color mode; 'system' follows the terminal",
+        description: "Modo de color; 'system' sigue el de la terminal",
       }),
     }),
-  ).annotate({ description: "Color theme settings" }),
-  keybinds: Schema.optional(TuiKeybind.KeybindOverrides).annotate({ description: "Custom key bindings" }),
+  ).annotate({ description: "Ajustes del tema de color" }),
+  keybinds: Schema.optional(TuiKeybind.KeybindOverrides).annotate({ description: "Atajos de teclado personalizados" }),
   plugins: Schema.optional(Schema.Array(Plugin)).annotate({
-    description: "Ordered plugin enablement directives and external package declarations",
+    description: "Activación ordenada de complementos y declaración de paquetes externos",
   }),
   leader: Schema.optional(
     Schema.Struct({
       timeout: Schema.optional(Schema.Int.check(Schema.isGreaterThan(0))).annotate({
-        description: "Time in milliseconds to wait for a key after the leader key",
+        description: "Milisegundos de espera tras la tecla prefijo",
       }),
     }),
-  ).annotate({ description: "Leader key behavior" }),
+  ).annotate({ description: "Comportamiento de la tecla prefijo" }),
   scroll: Schema.optional(
     Schema.Struct({
       speed: Schema.optional(Schema.Finite.check(Schema.isGreaterThanOrEqualTo(0.001))).annotate({
-        description: "Distance scrolled per input tick",
+        description: "Distancia por paso de desplazamiento",
       }),
       acceleration: Schema.optional(Schema.Boolean).annotate({
-        description: "Accelerate scrolling from repeated input",
+        description: "Acelerar el desplazamiento al repetirlo",
       }),
     }),
-  ).annotate({ description: "Scrolling behavior" }),
+  ).annotate({ description: "Comportamiento del desplazamiento" }),
   attention: Schema.optional(
     Schema.Struct({
-      notifications: Schema.optional(Schema.Boolean).annotate({ description: "Show system notifications" }),
-      sound: Schema.optional(Schema.Boolean).annotate({ description: "Play attention sounds" }),
+      notifications: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar notificaciones del sistema" }),
+      sound: Schema.optional(Schema.Boolean).annotate({ description: "Reproducir sonidos de aviso" }),
       volume: Schema.optional(
         Schema.Finite.check(Schema.isGreaterThanOrEqualTo(0), Schema.isLessThanOrEqualTo(1)),
-      ).annotate({ description: "Attention sound volume from 0 to 1" }),
-      sound_pack: Schema.optional(Schema.String).annotate({ description: "Active attention sound pack ID" }),
+      ).annotate({ description: "Volumen de los avisos de 0 a 1" }),
+      sound_pack: Schema.optional(Schema.String).annotate({ description: "ID del paquete de sonidos activo" }),
       sounds: Schema.optional(Schema.Record(AttentionSoundName, Schema.optionalKey(Schema.String))).annotate({
-        description: "Sound file overrides by attention event",
+        description: "Archivos de sonido personalizados por evento",
       }),
     }),
-  ).annotate({ description: "System notification and sound settings" }),
+  ).annotate({ description: "Ajustes de notificaciones y sonidos" }),
   diffs: Schema.optional(
     Schema.Struct({
       source: Schema.optional(DiffSource).annotate({
         description:
-          "Initial diff source; defaults to 'branch' (branch and uncommitted changes). 'turn' shows the session's last turn and falls back to 'branch' outside a session",
+          "Origen inicial de diferencias: 'branch' incluye rama y cambios sin confirmar; 'turn' muestra el último turno y usa 'branch' fuera de una sesión",
       }),
       wrap: Schema.optional(Schema.Literals(["word", "none"])).annotate({
-        description: "Line wrapping behavior in diff output",
+        description: "Ajuste de líneas en las diferencias",
       }),
-      tree: Schema.optional(Schema.Boolean).annotate({ description: "Show the diff file tree" }),
-      single: Schema.optional(Schema.Boolean).annotate({ description: "Show only the selected file patch" }),
+      tree: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar el árbol de archivos de diferencias" }),
+      single: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar solo el parche del archivo seleccionado" }),
       fullscreen: Schema.optional(Schema.Boolean).annotate({
-        description: "Open the diff side panel full screen; remembers the last full screen toggle",
+        description: "Abrir diferencias a pantalla completa; recordar el último estado",
       }),
       view: Schema.optional(Schema.Literals(["auto", "split", "unified"])).annotate({
-        description: "Diff layout; 'auto' selects a layout from the available width",
+        description: "Distribución de diferencias; 'auto' se adapta al ancho disponible",
       }),
     }),
-  ).annotate({ description: "Diff presentation settings" }),
+  ).annotate({ description: "Ajustes de presentación de diferencias" }),
   terminal: Schema.optional(
     Schema.Struct({
-      title: Schema.optional(Schema.Boolean).annotate({ description: "Update the terminal window title" }),
+      title: Schema.optional(Schema.Boolean).annotate({ description: "Actualizar el título de la terminal" }),
       copy: Schema.optional(Schema.Literals(["manual", "select"])).annotate({
-        description: "Copy text manually or immediately after selecting it",
+        description: "Copiar texto manualmente o al seleccionarlo",
       }),
     }),
-  ).annotate({ description: "Terminal integration settings" }),
+  ).annotate({ description: "Ajustes de integración de terminal" }),
   prompt: Schema.optional(
     Schema.Struct({
       editor: Schema.optional(Schema.Boolean).annotate({
-        description: "Include the active editor file or selection as prompt context",
+        description: "Incluir el archivo o selección del editor como contexto",
       }),
       paste: Schema.optional(Schema.Literals(["compact", "full"])).annotate({
-        description: "Display large pastes as compact placeholders or full text",
+        description: "Resumir texto pegado extenso o mostrarlo completo",
       }),
       image_preview: Schema.optional(Schema.Boolean).annotate({
-        description: "Show image attachment previews above the prompt input",
+        description: "Mostrar imágenes adjuntas sobre la entrada",
       }),
     }),
-  ).annotate({ description: "Prompt input behavior" }),
+  ).annotate({ description: "Comportamiento de la entrada de mensajes" }),
   session: Schema.optional(
     Schema.Struct({
       sidebar: Schema.optional(Schema.Literals(["auto", "hide"])).annotate({
-        description: "Session sidebar visibility; 'auto' shows it when space permits",
+        description: "Visibilidad del panel lateral; 'auto' lo muestra cuando hay espacio",
       }),
-      scrollbar: Schema.optional(Schema.Boolean).annotate({ description: "Show the session transcript scrollbar" }),
+      scrollbar: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar barra de desplazamiento de la conversación" }),
       thinking: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
-        description: "Show or hide model reasoning by default",
+        description: "Mostrar u ocultar el razonamiento por defecto",
       }),
       grouping: Schema.optional(Schema.Literals(["auto", "none"])).annotate({
-        description: "Group related transcript items automatically or render each item separately",
+        description: "Agrupar elementos relacionados o mostrarlos individualmente",
       }),
       verbosity: Schema.optional(Schema.Literals(["low", "medium", "high"])).annotate({
         description:
-          "Transcript detail level: low summarizes each run of tools and thoughts, high opens exploration and instruction groups",
+          "Detalle de conversación: low resume herramientas y razonamiento; high expande exploraciones e instrucciones",
       }),
       image_preview: Schema.optional(Schema.Boolean).annotate({
-        description: "Show user attachment and tool-result images in the session transcript",
+        description: "Mostrar imágenes adjuntas y de herramientas en la conversación",
       }),
       tps: Schema.optional(Schema.Boolean).annotate({
-        description: "Show average tokens per second",
+        description: "Mostrar promedio de tokens por segundo",
       }),
       markdown: Schema.optional(Schema.Literals(["source", "rendered"])).annotate({
-        description: "Show Markdown syntax markers or conceal them in rendered transcript content",
+        description: "Mostrar u ocultar los marcadores de sintaxis Markdown",
       }),
       new_location: Schema.optional(Schema.Literals(["launch", "inherit"])).annotate({
-        description: "Start new sessions in the TUI launch directory or inherit the active session location",
+        description: "Iniciar sesiones en el directorio de lanzamiento o heredar la ubicación actual",
       }),
       permissions: Schema.optional(Schema.Literals(["prompt", "autoaccept"])).annotate({
-        description: "Prompt for permission requests or accept them automatically",
+        description: "Solicitar permisos o aceptarlos automáticamente",
       }),
     }),
-  ).annotate({ description: "Session transcript presentation settings" }),
+  ).annotate({ description: "Ajustes de presentación de la conversación" }),
   tabs: Schema.optional(
     Schema.Struct({
       mode: Schema.optional(Schema.Literals(["auto", "on", "off"])).annotate({
-        description: "Use session tabs always, never, or when the terminal environment supports them",
+        description: "Usar pestañas siempre, nunca o cuando la terminal sea compatible",
       }),
       enabled: Schema.optional(Schema.Boolean).annotate({
-        description: "Legacy tab toggle; use mode instead",
+        description: "Interruptor antiguo de pestañas; usar mode en su lugar",
       }),
       scope: Schema.optional(Schema.Literals(["global", "cwd"])).annotate({
-        description: "Share tabs globally or keep a separate set for each working directory",
+        description: "Compartir pestañas globalmente o separarlas por directorio",
       }),
       layout: Schema.optional(Schema.Literals(["horizontal", "vertical"])).annotate({
-        description: "Show tabs in a horizontal strip or vertical sidebar",
+        description: "Mostrar pestañas en una franja horizontal o un panel vertical",
       }),
       indicators: Schema.optional(Schema.Literals(["status", "numbers"])).annotate({
-        description: "Show status icons or always show tab numbers",
+        description: "Mostrar iconos de estado o siempre números de pestaña",
       }),
     }),
-  ).annotate({ description: "Tab strip settings" }),
+  ).annotate({ description: "Ajustes de la barra de pestañas" }),
   mini: Schema.optional(
     Schema.Struct({
       thinking: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
-        description: "Show or hide model reasoning",
+        description: "Mostrar u ocultar razonamiento del modelo",
       }),
       tools: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
-        description: "Show or hide tool calls and the assistant text that precedes them",
+        description: "Mostrar u ocultar llamadas a herramientas y el texto que las precede",
       }),
       shell_output: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
-        description: "Show or hide raw shell tool output",
+        description: "Mostrar u ocultar la salida sin procesar de la terminal",
       }),
       turn_summary: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
-        description: "Show or hide the agent, model, and duration summary in scrollback",
+        description: "Mostrar u ocultar agente, modelo y duración en el historial",
       }),
       footer: Schema.optional(Schema.Literals(["show", "hide"])).annotate({
         description: "Show or hide persistent activity, model, usage, and context details in the footer",
@@ -228,30 +228,30 @@ export const Info = Schema.Struct({
         description: "Use monochrome ASCII output",
       }),
       replay: Schema.optional(Schema.Boolean).annotate({
-        description: "Restore session history on resume and terminal resize",
+        description: "Restaurar historial al reanudar y cambiar el tamaño de la terminal",
       }),
       replay_limit: Schema.optional(Schema.Int.check(Schema.isGreaterThan(0))).annotate({
-        description: "Maximum number of newest messages restored during replay",
+        description: "Máximo de mensajes recientes que se restauran",
       }),
     }),
-  ).annotate({ description: "Mini transcript presentation settings" }),
+  ).annotate({ description: "Ajustes de conversación del modo Mini" }),
   debug: Schema.optional(
     Schema.Struct({
-      devtools: Schema.optional(Schema.Boolean).annotate({ description: "Show the DevTools debug bar" }),
-      timing: Schema.optional(Schema.Boolean).annotate({ description: "Show time-to-first-draw diagnostics" }),
+      devtools: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar barra de depuración" }),
+      timing: Schema.optional(Schema.Boolean).annotate({ description: "Mostrar tiempo hasta el primer renderizado" }),
       turn_tokens: Schema.optional(Schema.Union([Schema.Boolean, Schema.Literal("verbose")])).annotate({
-        description: "Show per-turn token usage diagnostics, optionally with tool call inputs",
+        description: "Mostrar uso de tokens por turno y, opcionalmente, entradas de herramientas",
       }),
     }),
-  ).annotate({ description: "Debugging settings" }),
+  ).annotate({ description: "Ajustes de depuración" }),
   experimental: Schema.optional(Schema.Record(Schema.String, Schema.Boolean)).annotate({
-    description: "Experimental features that may change or be removed at any time",
+    description: "Funciones experimentales que pueden cambiar o eliminarse",
   }),
-  animations: Schema.optional(Schema.Boolean).annotate({ description: "Enable interface animations" }),
+  animations: Schema.optional(Schema.Boolean).annotate({ description: "Activar animaciones de la interfaz" }),
   highlights: Schema.optional(Schema.Boolean).annotate({
-    description: "Show the release highlights once after Capri updates",
+    description: "Mostrar novedades después de actualizar Capri",
   }),
-  mouse: Schema.optional(Schema.Boolean).annotate({ description: "Enable terminal mouse capture" }),
+  mouse: Schema.optional(Schema.Boolean).annotate({ description: "Activar captura del ratón en la terminal" }),
   cursor: Schema.optional(Cursor),
 })
 export type Info = Schema.Schema.Type<typeof Info>

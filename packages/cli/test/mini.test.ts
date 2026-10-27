@@ -146,7 +146,7 @@ describe("mini command", () => {
     const result = await cli(["run", "--server", "http://127.0.0.1:1", "--", "--foo"])
 
     expect(result.exitCode).toBe(1)
-    expect(result.stderr).not.toContain("You must provide a message")
+    expect(result.stderr).not.toContain("Debes proporcionar un mensaje")
   })
 
   test("passes explicit selections to session creation without catalog preflight", async () => {
@@ -237,7 +237,7 @@ describe("mini command", () => {
     expect(result.stdout).toContain("--replay")
     expect(result.stdout).toContain("disable with --no-replay")
     expect(result.stdout).toContain("--replay-limit integer")
-    expect(result.stdout).toContain("Limit replay to the newest N messages (default: 200)")
+    expect(result.stdout).toContain("Limitar el historial a los N mensajes más recientes (predeterminado: 200)")
     expect(result.stdout).not.toContain("SUBCOMMANDS")
   })
 

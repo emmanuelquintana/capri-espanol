@@ -565,16 +565,16 @@ function App() {
       if (status.status === "needs_auth")
         toast.show({
           variant: "warning",
-          title: "MCP server needs authentication",
-          message: `Connect "${server.name}" to use its tools.`,
-          action: { label: "Open MCP servers", run: () => keymap.dispatch("mcp.list") },
+          title: "El servidor MCP requiere autenticación",
+          message: `Conecta "${server.name}" para utilizar sus herramientas.`,
+          action: { label: "Abrir servidores MCP", run: () => keymap.dispatch("mcp.list") },
         })
       else
         toast.show({
           variant: "error",
-          title: `MCP server failed: ${server.name}`,
-          message: "Run /mcps to view details.",
-          action: { label: "Open MCP servers", run: () => keymap.dispatch("mcp.list") },
+          title: `Falló el servidor MCP: ${server.name}`,
+          message: "Ejecuta /mcps para ver los detalles.",
+          action: { label: "Abrir servidores MCP", run: () => keymap.dispatch("mcp.list") },
         })
     }
   })
@@ -600,7 +600,7 @@ function App() {
 
     await clipboard
       .write(text)
-      .then(() => toast.show({ message: "Copied to clipboard", variant: "info" }))
+      .then(() => toast.show({ message: "Copiado al portapapeles", variant: "info" }))
       .catch(toast.error)
 
     renderer.clearSelection()
@@ -667,7 +667,7 @@ function App() {
         if (!providerID || !modelID)
           return toast.show({
             variant: "warning",
-            message: `Invalid model format: ${args.model}`,
+            message: `Formato de modelo no válido: ${args.model}`,
             duration: 3000,
           })
         local.model.set({ providerID, modelID }, { recent: true })
@@ -749,8 +749,8 @@ function App() {
     [
       {
         name: COMMAND_PALETTE_COMMAND,
-        title: "Show command palette",
-        category: "System",
+        title: "Mostrar paleta de comandos",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           dialog.replace(() => <CommandPaletteDialog />)
@@ -758,8 +758,8 @@ function App() {
       },
       {
         name: "session.list",
-        title: "Switch session",
-        category: "Session",
+        title: "Cambiar de sesión",
+        category: "Sesión",
         suggested: data.session.list().length > 0,
         slash: { name: "sessions", aliases: ["resume", "continue", "nightcity"] },
         run: () => {
@@ -768,9 +768,9 @@ function App() {
       },
       {
         name: "session.new",
-        title: "New session",
+        title: "Nueva sesión",
         suggested: route.data.type === "session",
-        category: "Session",
+        category: "Sesión",
         slash: { name: "new" },
         run: () => {
           const model = local.model.current()
@@ -795,8 +795,8 @@ function App() {
       },
       {
         name: "session.clear",
-        title: "Clear session",
-        category: "Session",
+        title: "Limpiar sesión",
+        category: "Sesión",
         slash: { name: "clear" },
         run: () => {
           const model = local.model.current()
@@ -822,8 +822,8 @@ function App() {
       },
       {
         name: "open.menu",
-        title: "Open session or project",
-        category: "Session",
+        title: "Abrir sesión o proyecto",
+        category: "Sesión",
         slash: { name: "open", aliases: ["projects", "project"] },
         run: () => {
           if (dialog.key === DialogOpenKey) return
@@ -835,71 +835,71 @@ function App() {
       },
       ...Array.from({ length: 9 }, (_, i) => ({
         name: `session.quick_switch.${i + 1}`,
-        title: `Switch to session in quick slot ${i + 1}`,
-        category: "Session",
+        title: `Cambiar a la sesión del acceso rápido ${i + 1}`,
+        category: "Sesión",
         palette: undefined,
         enabled: () => !sessionTabs.enabled(),
         run: () => local.session.quickSwitch(i + 1),
       })),
       {
         name: "session.tab.next",
-        title: "Next tab",
-        category: "Session",
+        title: "Pestaña siguiente",
+        category: "Sesión",
         palette: undefined,
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.cycle(1),
       },
       {
         name: "session.tab.previous",
-        title: "Previous tab",
-        category: "Session",
+        title: "Pestaña anterior",
+        category: "Sesión",
         palette: undefined,
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.cycle(-1),
       },
       {
         name: "session.tab.next_unread",
-        title: "Next unread tab",
-        category: "Session",
+        title: "Pestaña sin leer siguiente",
+        category: "Sesión",
         palette: undefined,
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.cycleUnread(1),
       },
       {
         name: "session.tab.previous_unread",
-        title: "Previous unread tab",
-        category: "Session",
+        title: "Pestaña sin leer anterior",
+        category: "Sesión",
         palette: undefined,
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.cycleUnread(-1),
       },
       {
         name: "session.tab.close",
-        title: "Close tab",
-        category: "Session",
+        title: "Cerrar pestaña",
+        category: "Sesión",
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.close(),
       },
       {
         name: "session.tab.reopen",
-        title: "Reopen closed tab",
-        category: "Session",
+        title: "Reabrir pestaña cerrada",
+        category: "Sesión",
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.reopen(),
       },
       ...Array.from({ length: 10 }, (_, i) => ({
         name: `session.tab.select.${i + 1}`,
-        title: `Switch to tab ${i + 1}`,
-        category: "Session",
+        title: `Cambiar a la pestaña ${i + 1}`,
+        category: "Sesión",
         palette: undefined,
         enabled: sessionTabs.enabled,
         run: () => sessionTabs.selectIndex(i),
       })),
       {
         name: "model.list",
-        title: "Switch model",
+        title: "Cambiar modelo",
         suggested: true,
-        category: "Agent",
+        category: "Agente",
         slash: { name: "models", aliases: ["chrome"] },
         run: () => {
           dialog.replace(() => <DialogModel />)
@@ -907,8 +907,8 @@ function App() {
       },
       {
         name: "model.cycle_recent",
-        title: "Model cycle",
-        category: "Agent",
+        title: "Modelo siguiente",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.model.cycle(1)
@@ -916,8 +916,8 @@ function App() {
       },
       {
         name: "model.cycle_recent_reverse",
-        title: "Model cycle reverse",
-        category: "Agent",
+        title: "Modelo anterior",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.model.cycle(-1)
@@ -925,8 +925,8 @@ function App() {
       },
       {
         name: "model.cycle_favorite",
-        title: "Favorite cycle",
-        category: "Agent",
+        title: "Favorito siguiente",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.model.cycleFavorite(1)
@@ -934,8 +934,8 @@ function App() {
       },
       {
         name: "model.cycle_favorite_reverse",
-        title: "Favorite cycle reverse",
-        category: "Agent",
+        title: "Favorito anterior",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.model.cycleFavorite(-1)
@@ -943,8 +943,8 @@ function App() {
       },
       {
         name: "agent.list",
-        title: "Switch agent",
-        category: "Agent",
+        title: "Cambiar agente",
+        category: "Agente",
         slash: { name: "agents" },
         run: () => {
           dialog.replace(() => <DialogAgent />)
@@ -952,8 +952,8 @@ function App() {
       },
       {
         name: "mcp.list",
-        title: "MCP servers",
-        category: "Agent",
+        title: "Servidores MCP",
+        category: "Agente",
         slash: { name: "mcps" },
         run: () => {
           dialog.replace(() => <DialogMcp />)
@@ -961,8 +961,8 @@ function App() {
       },
       {
         name: "agent.cycle",
-        title: "Agent cycle",
-        category: "Agent",
+        title: "Agente siguiente",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.agent.move(1)
@@ -970,23 +970,23 @@ function App() {
       },
       {
         name: "variant.cycle",
-        title: "Variant cycle",
-        category: "Agent",
+        title: "Variante siguiente",
+        category: "Agente",
         run: () => {
           local.model.variant.cycle()
         },
       },
       {
         name: "variant.list",
-        title: "Switch model variant",
-        category: "Agent",
+        title: "Cambiar variante del modelo",
+        category: "Agente",
         palette: local.model.variant.list().length === 0 ? undefined : (true as const),
         slash: { name: "variants", aliases: ["thinking", "effort"] },
         run: () => {
           if (local.model.variant.list().length === 0) {
             return toast.show({
-              title: "No variants available",
-              message: "The current model does not support any variants.",
+              title: "No hay variantes disponibles",
+              message: "El modelo actual no admite variantes.",
               variant: "info",
             })
           }
@@ -995,8 +995,8 @@ function App() {
       },
       {
         name: "agent.cycle.reverse",
-        title: "Agent cycle reverse",
-        category: "Agent",
+        title: "Agente anterior",
+        category: "Agente",
         palette: undefined,
         run: () => {
           local.agent.move(-1)
@@ -1004,7 +1004,7 @@ function App() {
       },
       {
         name: "provider.connect",
-        title: "Connect an integration",
+        title: "Conectar una integración",
         suggested: !connected(),
         slash: { name: "connect" },
         run: () => {
@@ -1014,162 +1014,162 @@ function App() {
             />
           ))
         },
-        category: "Integration",
+        category: "Integración",
       },
       ...(app.highlights?.length
         ? [
             {
               name: "opencode.highlights",
-              title: "Show release highlights",
+              title: "Mostrar novedades de la versión",
               slash: { name: "highlights" },
               run: () => dialog.replace(() => <DialogHighlights version={app.version} items={app.highlights ?? []} />),
-              category: "System",
+              category: "Sistema",
             },
           ]
         : []),
       {
         name: "opencode.settings",
-        title: "Open settings",
+        title: "Abrir configuración",
         suggested: true,
         slash: { name: "settings" },
         run: () => {
           dialog.replace(() => <DialogConfig />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "opencode.status",
-        title: "View status",
+        title: "Ver estado",
         slash: { name: "status" },
         run: () => {
           dialog.replace(() => <DialogStatus />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "server.pair",
-        title: "Pair device",
+        title: "Vincular dispositivo",
         slash: { name: "pair", aliases: ["web"] },
         run: () => {
           dialog.replace(() => <DialogPair />)
         },
-        category: "System",
+        category: "Sistema",
       },
       ...(client.restart
         ? [
             {
               name: "service.restart",
-              title: "Restart service",
+              title: "Reiniciar servicio",
               slash: { name: "restart" },
               run: async () => {
                 const restart = client.restart
                 if (!restart) return
                 dialog.clear()
-                toast.show({ variant: "info", message: "Restarting service…", duration: 30000 })
+                toast.show({ variant: "info", message: "Reiniciando servicio…", duration: 30000 })
                 // restart resolves once the replacement service is healthy; the
                 // event stream reattaches through the reconnect loop.
                 await restart()
-                  .then(() => toast.show({ variant: "success", message: "Service restarted" }))
+                  .then(() => toast.show({ variant: "success", message: "Servicio reiniciado" }))
                   .catch(toast.error)
               },
-              category: "System",
+              category: "Sistema",
             },
           ]
         : []),
       {
         name: "location.reload",
-        title: "Reload configuration",
+        title: "Recargar configuración",
         slash: { name: "reload" },
         run: async () => {
           dialog.clear()
-          toast.show({ variant: "info", message: "Reloading configuration…", duration: 30000 })
+          toast.show({ variant: "info", message: "Recargando configuración…", duration: 30000 })
           await client.api.location
             .reload()
             .then(() => {
-              toast.show({ variant: "success", message: "Configuration reloaded" })
+              toast.show({ variant: "success", message: "Configuración recargada" })
             })
             .catch(toast.error)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "opencode.debug",
-        title: "View debug info",
+        title: "Ver información de depuración",
         slash: { name: "debug" },
         run: () => {
           dialog.replace(() => <DialogDebug />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "capri.cyberpsycosis",
-        title: "Set cyberpsychosis level",
+        title: "Elegir nivel de ciberpsicosis",
         slash: { name: "cyberpsycosis" },
         run: () => {
           dialog.replace(() => <DialogCyberpsycosis />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "theme.switch",
-        title: "Switch theme",
+        title: "Cambiar tema",
         slash: { name: "themes" },
         run: () => {
           dialog.replace(() => <DialogThemeList />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "theme.switch_mode",
-        title: mode() === "dark" ? "Switch to light mode" : "Switch to dark mode",
+        title: mode() === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro",
         palette: undefined,
         enabled: () => supports(mode() === "dark" ? "light" : "dark"),
         run: () => {
           setMode(mode() === "dark" ? "light" : "dark")
           dialog.clear()
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "theme.mode.lock",
-        title: locked() ? "Unlock theme mode" : "Lock theme mode",
+        title: locked() ? "Desbloquear modo del tema" : "Bloquear modo del tema",
         palette: undefined,
         run: () => {
           if (locked()) unlock()
           else lock()
           dialog.clear()
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "help.show",
-        title: "Help",
+        title: "Ayuda",
         slash: { name: "help" },
         run: () => {
           dialog.replace(() => <DialogHelp />)
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "docs.open",
-        title: "Open docs",
+        title: "Abrir documentación",
         run: () => {
           openUrl("https://opencode.ai/v2/docs").catch(() => {})
           dialog.clear()
         },
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "app.exit",
-        title: "Exit the app",
+        title: "Salir de la aplicación",
         slash: { name: "exit", aliases: ["quit", "q"] },
         run: () => exit(),
-        category: "System",
+        category: "Sistema",
       },
       {
         name: "app.debug",
-        title: "Toggle debug panel",
-        category: "System",
+        title: "Mostrar u ocultar depuración",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           renderer.toggleDebugOverlay()
@@ -1178,8 +1178,8 @@ function App() {
       },
       {
         name: "app.console",
-        title: "Toggle console",
-        category: "System",
+        title: "Mostrar u ocultar consola",
+        category: "Sistema",
         run: () => {
           renderer.console.toggle()
           dialog.clear()
@@ -1187,8 +1187,8 @@ function App() {
       },
       {
         name: "terminal.suspend",
-        title: "Suspend terminal",
-        category: "System",
+        title: "Suspender terminal",
+        category: "Sistema",
         palette: undefined,
         enabled: process.platform !== "win32",
         run: async () => {
@@ -1199,8 +1199,8 @@ function App() {
       },
       {
         name: "terminal.title.toggle",
-        title: terminalTitleEnabled() ? "Disable terminal title" : "Enable terminal title",
-        category: "System",
+        title: terminalTitleEnabled() ? "Desactivar título de la terminal" : "Activar título de la terminal",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           const next = !terminalTitleEnabled()
@@ -1215,8 +1215,8 @@ function App() {
       },
       {
         name: "app.toggle.animations",
-        title: (config.data.animations ?? true) ? "Disable animations" : "Enable animations",
-        category: "System",
+        title: (config.data.animations ?? true) ? "Desactivar animaciones" : "Activar animaciones",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           void config
@@ -1229,8 +1229,8 @@ function App() {
       },
       {
         name: "app.toggle.file_context",
-        title: (config.data.prompt?.editor ?? true) ? "Disable file context" : "Enable file context",
-        category: "System",
+        title: (config.data.prompt?.editor ?? true) ? "Desactivar contexto de archivos" : "Activar contexto de archivos",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           void config
@@ -1243,8 +1243,8 @@ function App() {
       },
       {
         name: "app.toggle.diffwrap",
-        title: (config.data.diffs?.wrap ?? "word") === "word" ? "Disable diff wrapping" : "Enable diff wrapping",
-        category: "System",
+        title: (config.data.diffs?.wrap ?? "word") === "word" ? "Desactivar ajuste de líneas en diferencias" : "Activar ajuste de líneas en diferencias",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           void config
@@ -1260,8 +1260,8 @@ function App() {
       },
       {
         name: "app.toggle.paste_summary",
-        title: pasteSummaryEnabled() ? "Disable paste summary" : "Enable paste summary",
-        category: "System",
+        title: pasteSummaryEnabled() ? "Desactivar resumen del texto pegado" : "Activar resumen del texto pegado",
+        category: "Sistema",
         palette: undefined,
         run: () => {
           void config
@@ -1355,7 +1355,7 @@ function App() {
       route.navigate({ type: "home" })
       toast.show({
         variant: "info",
-        message: title ? `Session "${title}" was deleted` : "The current session was deleted",
+        message: title ? `La sesión "${title}" se eliminó` : "Se eliminó la sesión actual",
       })
     }
   })

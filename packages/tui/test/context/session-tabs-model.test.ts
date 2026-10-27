@@ -174,7 +174,7 @@ describe("session tabs", () => {
     expect(history.entries[history.index]).toBe("session-149")
   })
 
-  test("returns to the latest history entry when no tab is active", () => {
+  test("returns to the latest history entry when no tab is activo", () => {
     const tabs = ["a", "b"].map((sessionID) => ({ sessionID }))
     const history = ["a", "b"].reduce(recordSessionTabHistory, { entries: [], index: -1 })
 

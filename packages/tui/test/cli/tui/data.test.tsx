@@ -822,7 +822,7 @@ test("reconnects the event stream and resyncs active data", async () => {
     events.disconnect()
     await wait(() => client.connection.status() === "reconnecting")
     expect(client.connection.attempt()).toBe(1)
-    expect(client.connection.error()).toBe("Event stream disconnected")
+    expect(client.connection.error()).toBe("Se desconectó el flujo de eventos")
 
     await wait(() => requests.active === 2 && client.connection.status() === "connected", 4000)
     resolveActive(json({ data: { "session-new": { type: "running" } } }))

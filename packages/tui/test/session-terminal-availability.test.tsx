@@ -66,11 +66,11 @@ test.each([
     await setup.waitForVisualIdle()
     await setup.mockInput.typeText("/terminal")
     if (input.offered) {
-      await setup.waitForFrame((frame) => frame.includes("New terminal"))
+      await setup.waitForFrame((frame) => frame.includes("Nueva terminal"))
       return
     }
     await setup.waitForVisualIdle()
-    expect(setup.captureCharFrame()).not.toContain("New terminal")
+    expect(setup.captureCharFrame()).not.toContain("Nueva terminal")
     expect(requests).not.toContain(`/api/experimental/session/${session.id}/terminal`)
   } finally {
     setup.renderer.destroy()

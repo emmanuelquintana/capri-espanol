@@ -257,7 +257,7 @@ it.live("install failures expose stderr and process errors do not report success
     expect(error.message).toBe("registry denied access")
     const missing = yield* fixture(() => ({ error: new AppProcess.AppProcessError({ command: "npm" }) }))
     const unavailable = yield* missing.updater.upgrade("npm", "2.3.4").pipe(Effect.flip)
-    expect(unavailable.message).toBe("Failed to update with npm")
+    expect(unavailable.message).toBe("No se pudo update with npm")
     expect(failed.commands).toHaveLength(1)
     expect(missing.commands).toHaveLength(1)
   }),

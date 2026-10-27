@@ -672,7 +672,7 @@ export function Autocomplete(props: {
     commands: [
       {
         id: "prompt.autocomplete.prev",
-        title: "Previous autocomplete item",
+        title: "Sugerencia anterior",
         group: "Autocomplete",
         run() {
           move(-1)
@@ -680,7 +680,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.autocomplete.next",
-        title: "Next autocomplete item",
+        title: "Sugerencia siguiente",
         group: "Autocomplete",
         run() {
           move(1)
@@ -688,7 +688,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.autocomplete.hide",
-        title: "Hide autocomplete",
+        title: "Ocultar sugerencias",
         group: "Autocomplete",
         run() {
           hide()
@@ -696,7 +696,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.clear",
-        title: "Dismiss autocomplete",
+        title: "Cerrar sugerencias",
         group: "Autocomplete",
         run() {
           hide(true)
@@ -704,7 +704,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.autocomplete.select",
-        title: "Select autocomplete item",
+        title: "Seleccionar sugerencia",
         group: "Autocomplete",
         run() {
           select()
@@ -712,7 +712,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.autocomplete.complete",
-        title: "Complete autocomplete item",
+        title: "Completar sugerencia",
         group: "Autocomplete",
         run() {
           const selected = options()[store.selected]
@@ -726,7 +726,7 @@ export function Autocomplete(props: {
       },
       {
         id: "prompt.autocomplete.destructive",
-        title: "Confirm autocomplete action",
+        title: "Confirmar sugerencia",
         group: "Autocomplete",
         bind: "ctrl+d",
         run: triggerDestructive,
@@ -838,15 +838,15 @@ export function Autocomplete(props: {
   const scrollAcceleration = createMemo(() => getScrollAcceleration(config))
   const emptyMessage = createMemo(() => {
     const fileSearch = visibleFiles()
-    if (store.visible === "command") return "No matching commands"
+    if (store.visible === "command") return "No hay comandos coincidentes"
     if (store.visible === "directory") {
-      if (files.loading) return "Searching…"
-      if (fileSearch.failed) return "Could not search directories. Keep typing to try again."
-      return "No matching directories"
+      if (files.loading) return "Buscando…"
+      if (fileSearch.failed) return "No se pudieron buscar directorios. Sigue escribiendo para reintentar."
+      return "No hay directorios coincidentes"
     }
-    if (files.loading) return "Searching…"
-    if (fileSearch.failed) return "Could not search files. Keep typing to try again."
-    return "No matching files, agents, or references"
+    if (files.loading) return "Buscando…"
+    if (fileSearch.failed) return "No se pudieron buscar archivos. Sigue escribiendo para reintentar."
+    return "No hay archivos, agentes o referencias coincidentes"
   })
   const emptyError = createMemo(() => store.visible === "reference" && !files.loading && visibleFiles().failed)
   const labels = {

@@ -19,18 +19,18 @@ function statusError(status: McpServer["status"]) {
 
 function Status(props: { status: McpServer["status"]; loading: boolean }) {
   if (props.loading || props.status.status === "pending") {
-    return <>Connecting …</>
+    return <>Conectando …</>
   }
   if (props.status.status === "connected") {
-    return <span style={{ attributes: TextAttributes.BOLD }}>Connected ✓</span>
+    return <span style={{ attributes: TextAttributes.BOLD }}>Conectado ✓</span>
   }
   if (props.status.status === "failed") {
-    return <>Failed !</>
+    return <>Error !</>
   }
   if (props.status.status === "needs_auth") {
-    return <>Sign in required →</>
+    return <>Requiere iniciar sesión →</>
   }
-  return <>Disabled ○</>
+  return <>Desactivado ○</>
 }
 
 export function DialogMcp(props: { initialServer?: string; details?: boolean } = {}) {
@@ -86,7 +86,7 @@ export function DialogMcp(props: { initialServer?: string; details?: boolean } =
     const status = focusedServer()?.status.status
     if (status === "connected") return "disconnect"
     if (status === "failed") return "retry"
-    if (status === "needs_auth") return "sign in"
+    if (status === "needs_auth") return "iniciar sesión"
     return "connect"
   })
 
@@ -137,9 +137,9 @@ export function DialogMcp(props: { initialServer?: string; details?: boolean } =
         when={detail()}
         fallback={
           <DialogSelect
-            title="MCP servers"
+            title="Servidores MCP"
             searchInTitle
-            titlePlaceholder="Search MCP servers"
+            titlePlaceholder="Buscar servidores MCP"
             options={options()}
             preserveSelection
             onMove={(option) => setFocused(option.value as string)}
@@ -154,14 +154,14 @@ export function DialogMcp(props: { initialServer?: string; details?: boolean } =
                 },
               },
             ]}
-            footerHints={focusedError() ? [{ title: "view error", label: "enter", group: "primary" }] : []}
+            footerHints={focusedError() ? [{ title: "ver error", label: "enter", group: "primary" }] : []}
           />
         }
       >
         {(server) => (
           <DialogErrorDetails
-            title={`MCP server: ${server().name}`}
-            error={statusError(server().status) ?? "Unknown MCP connection error"}
+            title={`Servidor MCP: ${server().name}`}
+            error={statusError(server().status) ?? "Error de conexión MCP desconocido"}
             context={`Status: ${server().status.status}\nConfiguration: mcp.servers.${server().name}${
               server().integrationID ? `\nIntegration: ${server().integrationID}` : ""
             }`}

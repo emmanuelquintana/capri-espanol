@@ -417,14 +417,14 @@ export function RunCommandMenuBody(props: {
     const session: CommandEntry[] = [
       {
         action: "editor",
-        category: "Session",
-        display: "Open editor",
+        category: "Sesión",
+        display: "Abrir editor",
         footer: "/editor",
         keywords: "editor compose draft external editor",
       },
       {
         action: "status",
-        category: "Session",
+        category: "Sesión",
         display: "Show status",
         keywords: "status activity model context usage footer",
       },
@@ -432,10 +432,10 @@ export function RunCommandMenuBody(props: {
         ? [
             {
               action: "subagent" as const,
-              category: "Session",
-              display: "View subagents",
+              category: "Sesión",
+              display: "Ver subagentes",
               footer:
-                activeSubagentCount() > 0 ? `${activeSubagentCount()} active` : `${props.subagents().length} recent`,
+                activeSubagentCount() > 0 ? `${activeSubagentCount()} activo` : `${props.subagents().length} recent`,
               keywords: props
                 .subagents()
                 .map((item) => `${item.label} ${item.description} ${item.title ?? ""}`)
@@ -445,17 +445,17 @@ export function RunCommandMenuBody(props: {
         : []),
       {
         action: "slash",
-        category: "Session",
+        category: "Sesión",
         name: "compact",
-        display: "Compact session",
+        display: "Compactar sesión",
         footer: "/compact",
         keywords: "compact session context",
       },
       {
         action: "slash",
-        category: "Session",
+        category: "Sesión",
         name: "new",
-        display: "New session",
+        display: "Nueva sesión",
         footer: "/new",
         keywords: "new session clear",
       },
@@ -463,20 +463,20 @@ export function RunCommandMenuBody(props: {
     const agent: CommandEntry[] = [
       {
         action: "agent",
-        category: "Agent",
-        display: "Switch agent",
+        category: "Agente",
+        display: "Cambiar agente",
       },
       {
         action: "model",
-        category: "Agent",
-        display: "Switch model",
+        category: "Agente",
+        display: "Cambiar modelo",
       },
       ...(props.queued().length > 0
         ? [
             {
               action: "queued" as const,
-              category: "Agent",
-              display: "View pending prompts",
+              category: "Agente",
+              display: "Ver mensajes pendientes",
               footer: `${props.queued().length} pending`,
               keywords: props
                 .queued()
@@ -487,17 +487,17 @@ export function RunCommandMenuBody(props: {
         : []),
       {
         action: "variant.cycle",
-        category: "Agent",
-        display: "Variant cycle",
+        category: "Agente",
+        display: "Variante siguiente",
         footer: props.variantCycle,
-        keywords: "variant cycle",
+        keywords: "variante siguiente",
       },
       ...(props.variants().length > 0
         ? [
             {
               action: "variant.list" as const,
-              category: "Agent",
-              display: "Switch model variant",
+              category: "Agente",
+              display: "Cambiar variante del modelo",
               keywords: `variant variants ${props.variants().join(" ")}`,
             },
           ]
@@ -508,19 +508,19 @@ export function RunCommandMenuBody(props: {
       ...agent,
       {
         action: "clear",
-        category: "System",
-        display: "Clear screen",
+        category: "Sistema",
+        display: "Limpiar pantalla",
         footer: props.clearShortcut,
         keywords: "clear screen cls redraw",
       },
       {
         action: "settings",
-        category: "System",
-        display: "Settings",
+        category: "Sistema",
+        display: "Configuración",
         footer: "/settings",
         keywords: "/settings settings preferences configuration",
       },
-      { action: "exit", category: "System", display: "Exit", footer: "/exit", keywords: "/exit exit" },
+      { action: "exit", category: "Sistema", display: "Exit", footer: "/exit", keywords: "/exit exit" },
     ]
   })
   const pick = (item: CommandEntry) => {
@@ -595,13 +595,13 @@ export function RunCommandMenuBody(props: {
 
   return (
     <PanelShell
-      title="Commands"
+      title="Comandos"
       layout={controller.layout()}
       countVisible={false}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -615,7 +615,7 @@ export function RunCommandMenuBody(props: {
         rows={controller.menu.limit}
         limit={controller.menu.limit()}
         compact={controller.layout().compact}
-        empty="No results found"
+        empty="No se encontraron resultados"
         border={false}
         paddingLeft={panelPad(props.mono)}
         paddingRight={panelPad(props.mono)}
@@ -661,12 +661,12 @@ export function RunAgentSelectBody(props: {
 
   return (
     <PanelShell
-      title="Select agent"
+      title="Seleccionar agente"
       layout={controller.layout()}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -703,40 +703,40 @@ export function RunSettingsBody(props: {
   const [saving, setSaving] = createSignal<SettingEntry["key"]>()
   const entries = createMemo<SettingEntry[]>(() => [
     {
-      category: "Transcript",
-      display: "Verbosity",
+      category: "Conversación",
+      display: "Nivel de detalle",
       footer: saving() === "verbosity" ? "saving" : verbosityLabel(matchMiniVerbosity(props.settings())),
       footerTone: saving() === "verbosity" ? "running" : "selection",
       keywords: `verbosity quiet default everything custom noise ${verbosityLabel(matchMiniVerbosity(props.settings()))}`,
       key: "verbosity",
     },
     {
-      category: "Transcript",
-      display: "Thinking",
+      category: "Conversación",
+      display: "Razonamiento",
       footer: saving() === "thinking" ? "saving" : props.settings().thinking,
       footerTone: saving() === "thinking" ? "running" : "selection",
       keywords: `thinking reasoning ${props.settings().thinking}`,
       key: "thinking",
     },
     {
-      category: "Transcript",
-      display: "Tools",
+      category: "Conversación",
+      display: "Herramientas",
       footer: saving() === "tools" ? "saving" : props.settings().tools,
       footerTone: saving() === "tools" ? "running" : "selection",
       keywords: `tools files skills activity work steps intermediate ${props.settings().tools}`,
       key: "tools",
     },
     {
-      category: "Transcript",
-      display: "Shell",
+      category: "Conversación",
+      display: "Terminal",
       footer: saving() === "shell_output" ? "saving" : props.settings().shell_output,
       footerTone: saving() === "shell_output" ? "running" : "selection",
       keywords: `shell tool command output ${props.settings().shell_output}`,
       key: "shell_output",
     },
     {
-      category: "Transcript",
-      display: "Turn summary",
+      category: "Conversación",
+      display: "Resumen del turno",
       footer: saving() === "turn_summary" ? "saving" : props.settings().turn_summary,
       footerTone: saving() === "turn_summary" ? "running" : "selection",
       keywords: `turn summary agent model duration ${props.settings().turn_summary}`,
@@ -768,7 +768,7 @@ export function RunSettingsBody(props: {
     },
     {
       category: "Terminal",
-      display: "Work spinner",
+      display: "Indicador de actividad",
       icon: (color) => (
         <OneCellSpinner
           animation={props.mono ? SEED_MONO : WORK_SPINNERS[props.settings().work_spinner]}
@@ -826,17 +826,17 @@ export function RunSettingsBody(props: {
 
   return (
     <PanelShell
-      title="Settings"
+      title="Configuración"
       layout={controller.layout()}
       countVisible={false}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
-      hint="left/right change"
+      hint="izquierda/derecha cambiar"
       mono={props.mono}
     >
       <RunFooterMenu
@@ -911,12 +911,12 @@ export function RunSubagentSelectBody(props: {
 
   return (
     <PanelShell
-      title="Select subagent"
+      title="Seleccionar subagente"
       layout={controller.layout()}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -977,7 +977,7 @@ export function RunQueuedPromptSelectBody(props: {
     commands: [
       {
         id: "queued_prompt.undo",
-        title: "Undo",
+        title: "Deshacer",
         group: "Prompt",
         run() {
           const item = controller.items()[controller.menu.selected()]
@@ -987,7 +987,7 @@ export function RunQueuedPromptSelectBody(props: {
       },
       {
         id: "queued_prompt.delete",
-        title: "Delete pending prompt",
+        title: "Eliminar mensaje pendiente",
         group: "Prompt",
         run() {
           const item = controller.items()[controller.menu.selected()]
@@ -1000,12 +1000,12 @@ export function RunQueuedPromptSelectBody(props: {
 
   return (
     <PanelShell
-      title="Pending prompts"
+      title="Mensajes pendientes"
       layout={controller.layout()}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -1049,7 +1049,7 @@ export function RunVariantSelectBody(props: {
   const entries = createMemo<VariantEntry[]>(() => [
     {
       category: "",
-      display: "Default",
+      display: "Predeterminado",
       footer: props.current() === undefined ? "current" : undefined,
       footerTone: "selection",
       keywords: "default",
@@ -1076,12 +1076,12 @@ export function RunVariantSelectBody(props: {
 
   return (
     <PanelShell
-      title="Select variant"
+      title="Seleccionar variante"
       layout={controller.layout()}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -1095,7 +1095,7 @@ export function RunVariantSelectBody(props: {
         rows={controller.menu.limit}
         limit={controller.menu.limit()}
         compact={controller.layout().compact}
-        empty="No results found"
+        empty="No se encontraron resultados"
         border={false}
         paddingLeft={panelPad(props.mono)}
         paddingRight={panelPad(props.mono)}
@@ -1167,12 +1167,12 @@ export function RunModelSelectBody(props: {
 
   return (
     <PanelShell
-      title="Select model"
+      title="Seleccionar modelo"
       layout={controller.layout()}
       query={controller.query()}
       count={controller.items().length}
       total={entries().length}
-      placeholder="Search"
+      placeholder="Buscar"
       theme={props.theme}
       inputRef={controller.inputRef}
       onQuery={controller.setQuery}
@@ -1192,7 +1192,7 @@ export function RunModelSelectBody(props: {
         rows={controller.menu.limit}
         limit={controller.menu.limit()}
         compact={controller.layout().compact}
-        empty={props.providers() ? "No results found" : "Models loading"}
+        empty={props.providers() ? "No se encontraron resultados" : "Models loading"}
         border={false}
         paddingLeft={panelPad(props.mono)}
         paddingRight={panelPad(props.mono)}

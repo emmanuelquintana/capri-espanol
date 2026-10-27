@@ -126,7 +126,7 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
     void (current.active ? props.plugins.deactivate(current.id) : props.plugins.activate(current.id))
       .then((ok) => {
         if (ok) return
-        props.context.ui.toast.show({ variant: "error", message: `Failed to update plugin ${current.id}` })
+        props.context.ui.toast.show({ variant: "error", message: `No se pudo actualizar el complemento ${current.id}` })
       })
       .catch((cause) => {
         props.context.ui.toast.show({
@@ -182,14 +182,14 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
         when={detail()}
         fallback={
           <DialogSelect
-            title="Plugins"
+            title="Complementos"
             options={options()}
             locked={locked()}
             preserveSelection={true}
             bindings={[
               {
                 bind: "ctrl+a",
-                title: "Toggle internal plugins",
+                title: "Mostrar u ocultar complementos internos",
                 group: "Plugins",
                 run: () => {
                   setShowInternal((value) => !value)
@@ -198,7 +198,7 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
             ]}
             footerHints={[
               ...(pluginError(focusedEntry()) && !focusedTui()
-                ? [{ title: "view error", label: "enter", group: "primary" as const }]
+                ? [{ title: "ver error", label: "enter", group: "primary" as const }]
                 : []),
               { title: `${showInternal() ? "hide" : "show"} internal`, label: "ctrl+a" },
             ]}
@@ -215,7 +215,7 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
             }}
             actions={[
               {
-                title: checking() ? "checking for updates" : "check for updates",
+                title: checking() ? "buscando actualizaciones" : "buscar actualizaciones",
                 command: "dialog.plugins.check",
                 selection: "none",
                 hidden: !entries().some(
@@ -225,7 +225,7 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
                 onTrigger: check,
               },
               {
-                title: "view error",
+                title: "ver error",
                 command: "dialog.plugins.error",
                 hidden: !pluginError(focusedTui()),
                 onTrigger: (option) => {
@@ -253,7 +253,7 @@ export function PluginsDialog(props: { context: Plugin.Context; plugins: ReturnT
       >
         {(entry) => (
           <DialogErrorDetails
-            title={`${entry().runtime === "tui" ? "TUI" : "Server"} plugin error`}
+            title={`${entry().runtime === "tui" ? "TUI" : "Server"} error del complemento`}
             source={pluginSource(entry(), props.context)}
             error={pluginError(entry()) ?? "Unknown plugin error"}
             diagnosticRef={pluginErrorRef(entry())}
@@ -307,7 +307,7 @@ function footer(entry: Entry) {
     ...(entry.runtime === "server" && entry.plugin.source.type === "package" && entry.plugin.source.version
       ? [displayVersion(entry.plugin.source.version)]
       : []),
-    ...(outdated(entry) ? ["update available"] : []),
+    ...(outdated(entry) ? ["actualización disponible"] : []),
   ]
   return details.length ? details.join(", ") : undefined
 }
@@ -332,7 +332,7 @@ function Commands(props: { context: Plugin.Context }) {
     commands: [
       {
         id: "plugins.list",
-        title: "Plugins",
+        title: "Complementos",
         group: "System",
         slash: { name: "plugins" },
         palette: true,

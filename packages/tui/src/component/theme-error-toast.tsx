@@ -10,7 +10,7 @@ export function ThemeErrorToast() {
     themes.onError(({ name, error }) =>
       toast.show({
         variant: "error",
-        title: `Failed to load theme: ${name}`,
+        title: `No se pudo cargar el tema: ${name}`,
         message: error.message,
       }),
     ),

@@ -18,19 +18,19 @@ test("shimmer text paints its masked content", async () => {
 
 test("title shimmer paints while pending and through the rename wipe", async () => {
   const clock = new ManualClock()
-  const [title, setTitle] = createSignal("Untitled session")
+  const [title, setTitle] = createSignal("Sesión sin título")
   const [pending, setPending] = createSignal(true)
   await using app = await testRender(
     () => <title_shimmer content={title()} rename={{ title: title(), pending: pending() }} />,
     { width: 30, height: 2, clock },
   )
   await app.renderOnce()
-  expect(app.captureCharFrame()).toContain("Untitled session")
+  expect(app.captureCharFrame()).toContain("Sesión sin título")
 
   setTitle("Generated title")
   setPending(false)
   await app.renderOnce()
-  expect(app.captureCharFrame()).toContain("Untitled session")
+  expect(app.captureCharFrame()).toContain("Sesión sin título")
   clock.advance(500)
   await app.renderOnce()
   expect(app.captureCharFrame()).toContain("Generated title")

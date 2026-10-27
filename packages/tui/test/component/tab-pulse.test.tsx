@@ -13,7 +13,7 @@ import {
 } from "../../src/component/tab-pulse"
 import { tint } from "../../src/theme/color"
 
-test("a disabled pulse stays idle when it becomes active", async () => {
+test("a disabled pulse stays idle when it becomes activo", async () => {
   const background = RGBA.fromHex("#101010")
   const [active, setActive] = createSignal(false)
   const app = await testRender(

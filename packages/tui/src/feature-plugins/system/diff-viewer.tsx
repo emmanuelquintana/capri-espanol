@@ -78,10 +78,10 @@ function storedView(value: unknown): DiffView | undefined {
 }
 
 const DIFF_SOURCES = {
-  branch: { label: "All", description: "Branch + local changes" },
-  committed: { label: "Committed", description: "Branch commits only" },
-  working: { label: "Uncommitted", description: "Local changes only" },
-  turn: { label: "Last turn", description: "Latest session turn" },
+  branch: { label: "Todos", description: "Rama + cambios locales" },
+  committed: { label: "Confirmados", description: "Solo commits de la rama" },
+  working: { label: "Sin confirmar", description: "Solo cambios locales" },
+  turn: { label: "Último turno", description: "Último turno de la sesión" },
 } satisfies Record<DiffMode, { label: string; description: string }>
 
 const VCS_SOURCES = ["branch", "committed", "working"] as const
@@ -182,12 +182,12 @@ function DiffViewer(props: {
   }
   const result = () => (diff.error || diff.loading ? undefined : diff())
   const sourceDetail = () => {
-    if (mode() === "turn") return diff.error ? "Diff unavailable" : undefined
+    if (mode() === "turn") return diff.error ? "Diferencias no disponibles" : undefined
     if (mode() === "working") return "vs HEAD"
-    if (diff.error) return "Base or diff unavailable"
-    if (!result()) return "Resolving diff…"
+    if (diff.error) return "Base o diferencias no disponibles"
+    if (!result()) return "Calculando diferencias…"
     const base = result()?.base
-    if (!base) return "Base not reported"
+    if (!base) return "Base no indicada"
     return `vs ${base.name}`
   }
   return (
@@ -271,24 +271,24 @@ function DiffBaseDialog(props: {
     <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
       <text fg={branches.error ? theme.text.feedback.error.base : theme.text.muted}>
         {branches.loading
-          ? "Loading branches…"
+          ? "Cargando ramas…"
           : branches.error
-            ? "Could not load branches. Reopen the picker to try again."
-            : "No branches found"}
+            ? "No se pudieron cargar las ramas. Reabre el selector para reintentar."
+            : "No se encontraron ramas"}
       </text>
     </box>
   )
 
   return (
     <DialogSelect
-      title="Base branch"
-      placeholder="Search local and remote branches"
+      title="Rama base"
+      placeholder="Buscar ramas locales y remotas"
       skipFilter
       current={props.current?.replace(/^refs\/(heads|remotes)\//, "")}
       onFilter={setSearch}
       emptyView={<Empty />}
       noMatchView={<Empty />}
-      footer={<text fg={theme.text.muted}>Remembered until the TUI exits</text>}
+      footer={<text fg={theme.text.muted}>Se recuerda hasta cerrar la interfaz</text>}
       options={(branches.loading || branches.error ? [] : (branches()?.data ?? [])).map((name) => ({
         title: name,
         value: name,
@@ -588,13 +588,13 @@ export function DiffViewerContent(props: {
   const commands: KeymapCommand[] = [
     {
       id: "diff.close",
-      title: "Close diff viewer",
+      title: "Cerrar visor de diferencias",
       group: "VCS",
       run: close,
     },
     {
       id: "diff.down",
-      title: "Move diff viewer down",
+      title: "Bajar en el visor de diferencias",
       group: "VCS",
       run() {
         clearPatchSelection()
@@ -603,7 +603,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.up",
-      title: "Move diff viewer up",
+      title: "Subir en el visor de diferencias",
       group: "VCS",
       run() {
         clearPatchSelection()
@@ -612,31 +612,31 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.page.down",
-      title: "Page diff viewer down",
+      title: "Bajar una página en las diferencias",
       group: "VCS",
       run: () => scrollPage(1, 1),
     },
     {
       id: "diff.page.up",
-      title: "Page diff viewer up",
+      title: "Subir una página en las diferencias",
       group: "VCS",
       run: () => scrollPage(-1, 1),
     },
     {
       id: "diff.half_page.down",
-      title: "Scroll down half a page",
+      title: "Bajar media página",
       group: "VCS",
       run: () => scrollPage(1, 2),
     },
     {
       id: "diff.half_page.up",
-      title: "Scroll up half a page",
+      title: "Subir media página",
       group: "VCS",
       run: () => scrollPage(-1, 2),
     },
     {
       id: "diff.first",
-      title: "Go to the start of the diff",
+      title: "Ir al inicio de las diferencias",
       group: "VCS",
       run() {
         clearPatchSelection()
@@ -645,7 +645,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.last",
-      title: "Go to the end of the diff",
+      title: "Ir al final de las diferencias",
       group: "VCS",
       run() {
         clearPatchSelection()
@@ -654,7 +654,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.next_hunk",
-      title: "Jump to next diff hunk",
+      title: "Ir al bloque de diferencias siguiente",
       group: "VCS",
       run() {
         jumpRelativeHunk(1)
@@ -662,7 +662,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.previous_hunk",
-      title: "Jump to previous diff hunk",
+      title: "Ir al bloque de diferencias anterior",
       group: "VCS",
       run() {
         jumpRelativeHunk(-1)
@@ -670,7 +670,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.next_file",
-      title: "Jump to next diff file",
+      title: "Ir al archivo de diferencias siguiente",
       group: "VCS",
       run() {
         jumpRelativePatchFile(1)
@@ -678,7 +678,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.previous_file",
-      title: "Jump to previous diff file",
+      title: "Ir al archivo de diferencias anterior",
       group: "VCS",
       run() {
         jumpRelativePatchFile(-1)
@@ -686,7 +686,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.mark_reviewed",
-      title: "Toggle selected diff file reviewed",
+      title: "Marcar o desmarcar archivo como revisado",
       group: "VCS",
       run() {
         const fileIndex = selectedFileIndex() ?? currentPatchFileIndex()
@@ -696,7 +696,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.toggle_file_tree",
-      title: "Toggle diff viewer file tree",
+      title: "Mostrar u ocultar árbol de diferencias",
       group: "VCS",
       enabled: () => !compact(),
       run() {
@@ -708,7 +708,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.single_patch",
-      title: "Toggle single patch view",
+      title: "Alternar vista de un solo archivo",
       group: "VCS",
       run() {
         setSelectedHunk(undefined)
@@ -730,7 +730,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.switch_source",
-      title: "Switch diff viewer source",
+      title: "Cambiar origen de las diferencias",
       group: "VCS",
       run() {
         openSwitchDiffDialog()
@@ -738,7 +738,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.toggle_view",
-      title: "Toggle diff viewer split or unified view",
+      title: "Alternar diferencias divididas o unificadas",
       group: "VCS",
       run() {
         if (!splitAvailable()) return
@@ -750,7 +750,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.toggle_fullscreen",
-      title: "Toggle diff viewer full screen",
+      title: "Alternar diferencias a pantalla completa",
       group: "VCS",
       enabled: () => props.panel !== undefined,
       run: () => {
@@ -765,7 +765,7 @@ export function DiffViewerContent(props: {
     },
     {
       id: "diff.help",
-      title: "Show more diff viewer shortcuts",
+      title: "Mostrar más atajos de diferencias",
       group: "VCS",
       run() {
         openHelpDialog()
@@ -774,7 +774,7 @@ export function DiffViewerContent(props: {
     // Specific diff bindings take precedence over app.exit's Ctrl+D binding.
     {
       id: "app.exit",
-      title: "Close diff viewer",
+      title: "Cerrar visor de diferencias",
       group: "VCS",
       run: close,
     },
@@ -783,7 +783,7 @@ export function DiffViewerContent(props: {
   const openSwitchDiffDialog = () => {
     dialog.show(() => (
       <DialogSelect<DiffMode | "base">
-        title="Diff source"
+        title="Origen de las diferencias"
         skipFilter={true}
         renderFilter={false}
         current={mode()}
@@ -804,7 +804,7 @@ export function DiffViewerContent(props: {
                   title: "Base",
                   titleView: "Base".padEnd(11),
                   value: "base" as const,
-                  description: props.sourceBase?.name ?? "Choose…",
+                  description: props.sourceBase?.name ?? "Elegir…",
                   onSelect: props.onChooseBase,
                 },
               ]
@@ -905,28 +905,28 @@ export function DiffViewerContent(props: {
         <Switch>
           <Match when={props.loading}>
             <box flexGrow={1} padding={2} paddingTop={compact() ? 1 : 2}>
-              <text fg={theme.text.muted}>Loading diff…</text>
+              <text fg={theme.text.muted}>Cargando diferencias…</text>
             </box>
           </Match>
           <Match when={!props.loading && props.error}>
             <box flexGrow={1} padding={2} paddingTop={compact() ? 1 : 2}>
               <text fg={theme.text.feedback.error.base}>
                 {!props.sourceBase && needsBase(mode())
-                  ? "Could not load diff. Choose a base branch from Diff source, or select Uncommitted."
-                  : "Could not load diff. Reopen the diff viewer to try again."}
+                  ? "No se pudieron cargar las diferencias. Elige una rama base en Origen de las diferencias o selecciona Sin confirmar."
+                  : "No se pudieron cargar las diferencias. Reabre el visor para reintentar."}
               </text>
             </box>
           </Match>
           <Match when={!props.loading && props.unavailable}>
             <box flexGrow={1} padding={2} paddingTop={compact() ? 1 : 2}>
               <text fg={theme.text.muted}>
-                Committed comparison unavailable without base metadata. Choose a base branch from Diff source.
+                La comparación de commits necesita los datos de una base. Elige una rama base en Origen de diferencias.
               </text>
             </box>
           </Match>
           <Match when={!props.loading && files().length === 0}>
             <box flexGrow={1} padding={2} paddingTop={compact() ? 1 : 2}>
-              <text fg={theme.text.muted}>No changes to show</text>
+              <text fg={theme.text.muted}>No hay cambios para mostrar</text>
             </box>
           </Match>
           <Match when={!props.loading}>
@@ -1041,7 +1041,7 @@ export function DiffViewerContent(props: {
                                   ✓
                                 </text>
                               </Show>
-                              <Show when={!image()} fallback={<text fg={theme.text.muted}>Image</text>}>
+                              <Show when={!image()} fallback={<text fg={theme.text.muted}>Imagen</text>}>
                                 <text flexShrink={0} fg={reviewed() ? theme.text.muted : theme.diff.text.added}>
                                   +{entry.file.additions}
                                 </text>
@@ -1067,10 +1067,10 @@ export function DiffViewerContent(props: {
                                   >
                                     <text fg={theme.text.muted}>
                                       {mode() === "committed" && image()
-                                        ? "Committed image preview unavailable. The working-tree image is not shown."
+                                        ? "La vista previa de la imagen confirmada no está disponible. No se muestra la imagen de trabajo."
                                         : entry.file.status === "deleted" && image()
-                                          ? "Deleted image. The previous revision is not available for preview."
-                                          : "No patch available for this file."}
+                                          ? "Imagen eliminada. La revisión anterior no tiene vista previa disponible."
+                                          : "No hay parche disponible para este archivo."}
                                     </text>
                                   </box>
                                 }
@@ -1161,7 +1161,7 @@ export function DiffViewerContent(props: {
               <span style={focused() ? { fg: theme.text.muted } : {}}>{docked() ? " focus prompt" : " close"}</span>
             </text>
             <box flexShrink={0}>
-              <HelpShortcut label="see all" muted={!focused()} />
+              <HelpShortcut label="ver todos" muted={!focused()} />
             </box>
           </box>
           <Show when={docked()}>
@@ -1225,38 +1225,38 @@ function DiffViewerHelpDialog(props: { context: Plugin.Context; single: boolean;
         .join(" / ")
   const groups = [
     {
-      title: "Review",
+      title: "Revisar",
       rows: [
-        { shortcut: () => props.context.keymap.shortcuts("diff.next_file").join(" / "), label: "Next file" },
-        { shortcut: () => props.context.keymap.shortcuts("diff.previous_file").join(" / "), label: "Previous file" },
+        { shortcut: () => props.context.keymap.shortcuts("diff.next_file").join(" / "), label: "Archivo siguiente" },
+        { shortcut: () => props.context.keymap.shortcuts("diff.previous_file").join(" / "), label: "Archivo anterior" },
         {
           shortcut: shortcut("diff.mark_reviewed"),
-          label: props.single ? "Review + next / reopen" : "Review + collapse / reopen",
+          label: props.single ? "Revisar + siguiente / reabrir" : "Revisar + contraer / reabrir",
         },
-        { shortcut: shortcut("diff.next_hunk", "diff.previous_hunk"), label: "Next / previous change" },
-        { shortcut: () => "right-click", label: "File menu (heading or tree)" },
+        { shortcut: shortcut("diff.next_hunk", "diff.previous_hunk"), label: "Cambio siguiente / anterior" },
+        { shortcut: () => "right-click", label: "Menú del archivo (título o árbol)" },
       ],
     },
     {
-      title: "Scroll",
+      title: "Desplazamiento",
       rows: [
-        { shortcut: shortcut("diff.down", "diff.up"), label: "Down / up" },
-        { shortcut: shortcut("diff.half_page.down", "diff.half_page.up"), label: "Half page down / up" },
-        { shortcut: shortcut("diff.page.down", "diff.page.up"), label: "Page down / up" },
-        { shortcut: shortcut("diff.first", "diff.last"), label: "First / last" },
+        { shortcut: shortcut("diff.down", "diff.up"), label: "Abajo / arriba" },
+        { shortcut: shortcut("diff.half_page.down", "diff.half_page.up"), label: "Media página abajo / arriba" },
+        { shortcut: shortcut("diff.page.down", "diff.page.up"), label: "Página abajo / arriba" },
+        { shortcut: shortcut("diff.first", "diff.last"), label: "Primero / último" },
       ],
     },
     {
-      title: "View",
+      title: "Vista",
       rows: [
-        { shortcut: shortcut("diff.toggle_view"), label: "Split / unified" },
-        { shortcut: shortcut("diff.single_patch"), label: "All files / single file" },
-        ...(props.tree ? [{ shortcut: shortcut("diff.toggle_file_tree"), label: "Show / hide file tree" }] : []),
-        { shortcut: shortcut("diff.switch_source"), label: "Switch diff source" },
+        { shortcut: shortcut("diff.toggle_view"), label: "Dividido / unificado" },
+        { shortcut: shortcut("diff.single_patch"), label: "Todos los archivos / uno solo" },
+        ...(props.tree ? [{ shortcut: shortcut("diff.toggle_file_tree"), label: "Mostrar / ocultar árbol de archivos" }] : []),
+        { shortcut: shortcut("diff.switch_source"), label: "Cambiar origen de las diferencias" },
         ...(props.fullscreen
-          ? [{ shortcut: shortcut("diff.toggle_fullscreen"), label: "Full screen / split view" }]
+          ? [{ shortcut: shortcut("diff.toggle_fullscreen"), label: "Pantalla completa / vista dividida" }]
           : []),
-        { shortcut: () => props.context.keymap.shortcuts("diff.close").join(" / "), label: "Close diff viewer" },
+        { shortcut: () => props.context.keymap.shortcuts("diff.close").join(" / "), label: "Cerrar visor de diferencias" },
       ],
     },
   ]
@@ -1264,7 +1264,7 @@ function DiffViewerHelpDialog(props: { context: Plugin.Context; single: boolean;
   return (
     <DialogLayout
       header={
-        <DialogHeader title="Diff shortcuts" closeLabel="esc close" onClose={() => props.context.ui.dialog.clear()} />
+        <DialogHeader title="Atajos del visor de diferencias" closeLabel="esc cerrar" onClose={() => props.context.ui.dialog.clear()} />
       }
     >
       <scrollbox
@@ -1315,7 +1315,7 @@ function Commands(props: { context: Plugin.Context }) {
     commands: [
       {
         id: "diff.open",
-        title: "Open diff viewer",
+        title: "Abrir visor de diferencias",
         slash: { name: "diff" },
         group: "VCS",
         palette: true,

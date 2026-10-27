@@ -102,7 +102,7 @@ describe("run permission shared", () => {
         }),
       ),
     ).toMatchObject({
-      title: "Shell command",
+      title: "Comando de terminal",
       lines: ["$ git status --short"],
     })
 
@@ -114,17 +114,17 @@ describe("run permission shared", () => {
         }),
       ),
     ).toMatchObject({
-      title: "Access external directory /tmp/work",
+      title: "Acceder al directorio externo /tmp/work",
       lines: ["- /tmp/work/**/*.ts", "- /tmp/work/**/*.tsx"],
     })
 
     expect(permissionInfo(req({ action: "doom_loop" }))).toMatchObject({
-      title: "Continue after repeated failures",
+      title: "Continuar tras errores repetidos",
     })
 
     expect(permissionInfo(req({ action: "custom_tool" }))).toMatchObject({
-      title: "Call tool custom_tool",
-      lines: ["Tool: custom_tool"],
+      title: "Llamar a la herramienta custom_tool",
+      lines: ["Herramienta: custom_tool"],
     })
   })
 
@@ -147,8 +147,8 @@ describe("run permission shared", () => {
         }),
       ),
     ).toMatchObject({
-      title: 'Web Search via Parallel "current releases"',
-      lines: ["Query: current releases"],
+      title: "Búsqueda web mediante Parallel \"current releases\"",
+      lines: ["Consulta: current releases"],
     })
   })
 
@@ -169,12 +169,12 @@ describe("run permission shared", () => {
       ),
     })
     expect(permissionInfo(request)).toMatchObject({
-      title: "Edit src/index.ts",
+      title: "Editar src/index.ts",
       diff: undefined,
       patch,
     })
     expect(permissionInfo(request, undefined, true)).toMatchObject({
-      title: "Edit src/index.ts",
+      title: "Editar src/index.ts",
       lines: [patch],
       diff: undefined,
       patch: undefined,
@@ -183,11 +183,11 @@ describe("run permission shared", () => {
 
   test("formats always-allow copy for wildcard and explicit patterns", () => {
     expect(permissionAlwaysLines(req({ action: "bash", save: ["*"] }))).toEqual([
-      "This will always allow bash for this project.",
+      "Esto permitirá siempre bash para este proyecto.",
     ])
 
     expect(permissionAlwaysLines(req({ save: ["src/**/*.ts", "src/**/*.tsx"] }))).toEqual([
-      "This will always allow the following patterns for this project.",
+      "Esto permitirá siempre los siguientes patrones para este proyecto.",
       "- src/**/*.ts",
       "- src/**/*.tsx",
     ])

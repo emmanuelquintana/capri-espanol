@@ -139,7 +139,7 @@ export function PromptInterruptStatus(props: {
     <text fg={props.armed ? armedColor() : props.text} wrapMode="none" truncate flexShrink={1}>
       esc{" "}
       <span style={{ fg: props.armed ? armedColor() : props.subdued }}>
-        {props.armed ? "again to interrupt" : "interrupt"}
+        {props.armed ? "otra vez para interrumpir" : "interrupt"}
       </span>
     </text>
   )
@@ -267,7 +267,7 @@ export function Prompt(props: PromptProps) {
     commands: [
       {
         id: "session.cd",
-        title: "Change working directory",
+        title: "Cambiar directorio de trabajo",
         slash: { name: "cd", arguments: true },
         run: async (input) => {
           if (input?.trim().toLowerCase() === "moon") {
@@ -275,7 +275,7 @@ export function Prompt(props: PromptProps) {
             return
           }
           if (!input?.trim()) {
-            toast.show({ message: "Directory is required", variant: "error" })
+            toast.show({ message: "El directorio es obligatorio", variant: "error" })
             return
           }
           const sessionID = props.sessionID
@@ -291,7 +291,7 @@ export function Prompt(props: PromptProps) {
           if (!sessionID) {
             setPendingDirectory(directory)
             const location = await client.api.location.get({ location: { directory } }).catch((error) => {
-              toast.show({ title: "Failed to change directory", message: errorMessage(error), variant: "error" })
+              toast.show({ title: "No se pudo cambiar el directorio", message: errorMessage(error), variant: "error" })
               return undefined
             })
             if (!location) {
@@ -308,7 +308,7 @@ export function Prompt(props: PromptProps) {
             (error) => error,
           )
           if (error) {
-            toast.show({ title: "Failed to change directory", message: errorMessage(error), variant: "error" })
+            toast.show({ title: "No se pudo cambiar el directorio", message: errorMessage(error), variant: "error" })
             return
           }
           if (sourceProjectID) directoryRecents.touch(sourceProjectID, directory)
@@ -322,7 +322,7 @@ export function Prompt(props: PromptProps) {
   function promptModelWarning() {
     toast.show({
       variant: "warning",
-      message: "Connect an integration to send prompts",
+      message: "Conecta una integración para enviar mensajes",
       duration: 3000,
     })
     if (!connected()) {
@@ -423,9 +423,9 @@ export function Prompt(props: PromptProps) {
   const promptCommands = createMemo(() =>
     [
       {
-        title: "Clear prompt",
+        title: "Limpiar mensaje",
         name: "prompt.clear",
-        category: "Prompt",
+        category: "Mensaje",
         palette: undefined,
         run: () => {
           clearPrompt()
@@ -433,9 +433,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Submit prompt",
+        title: "Enviar mensaje",
         name: "prompt.submit",
-        category: "Prompt",
+        category: "Mensaje",
         palette: undefined,
         run: async (_input: string | undefined, event?: KeyEvent) => {
           event?.preventDefault()
@@ -448,9 +448,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Queue prompt",
+        title: "Poner mensaje en cola",
         name: "prompt.queue",
-        category: "Prompt",
+        category: "Mensaje",
         run: async (_input: string | undefined, event?: KeyEvent) => {
           event?.preventDefault()
           event?.stopPropagation()
@@ -462,9 +462,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Remove editor context",
+        title: "Quitar contexto del editor",
         name: "prompt.editor_context.clear",
-        category: "Prompt",
+        category: "Mensaje",
         enabled: Boolean(editorContext()),
         run: () => {
           dismissEditorContext()
@@ -472,9 +472,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Paste",
+        title: "Pegar",
         name: "prompt.paste",
-        category: "Prompt",
+        category: "Mensaje",
         palette: undefined,
         run: (_input: string | undefined, event?: KeyEvent) => {
           event?.preventDefault()
@@ -496,16 +496,16 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "View image attachments",
+        title: "Ver imágenes adjuntas",
         name: "prompt.images.view",
-        category: "Prompt",
+        category: "Mensaje",
         enabled: imageAttachments().length > 0,
         run: () => openImagePreview(0),
       },
       {
-        title: "Interrupt session",
+        title: "Interrumpir sesión",
         name: "session.interrupt",
-        category: "Session",
+        category: "Sesión",
         palette: undefined,
         enabled: status() === "running",
         run: () => {
@@ -535,9 +535,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Background blocking tools",
+        title: "Enviar herramientas bloqueantes al segundo plano",
         name: "session.background",
-        category: "Session",
+        category: "Sesión",
         palette: undefined,
         enabled: status() === "running",
         run: () => {
@@ -552,8 +552,8 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Open editor",
-        category: "Session",
+        title: "Abrir editor",
+        category: "Sesión",
         name: "prompt.editor",
         slash: { name: "editor" },
         run: async () => {
@@ -569,7 +569,7 @@ export function Prompt(props: PromptProps) {
               data.location.default().directory ||
               paths.cwd,
           }).catch((error) => {
-            toast.show({ title: "Failed to open editor", message: errorMessage(error), variant: "error" })
+            toast.show({ title: "No se pudo abrir el editor", message: errorMessage(error), variant: "error" })
           })
           if (!content) return
           const normalized = normalizePromptContent(content)
@@ -585,9 +585,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Skills",
+        title: "Habilidades",
         name: "prompt.skills",
-        category: "Prompt",
+        category: "Mensaje",
         slash: { name: "skills", aliases: ["quickhacks"] },
         run: () => {
           dialog.replace(() => (
@@ -624,10 +624,10 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Manage workspaces",
-        desc: "Manage workspaces",
+        title: "Administrar espacios de trabajo",
+        desc: "Administrar espacios de trabajo",
         name: "session.move",
-        category: "Session",
+        category: "Sesión",
         slash: { name: "worktrees" },
         run: () => {
           move.open()
@@ -885,9 +885,9 @@ export function Prompt(props: PromptProps) {
   const stashCommands = createMemo(() =>
     [
       {
-        title: "Stash prompt",
+        title: "Guardar mensaje para después",
         name: "prompt.stash",
-        category: "Prompt",
+        category: "Mensaje",
         enabled: !!store.prompt.text,
         run: () => {
           if (!store.prompt.text) return
@@ -897,9 +897,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Stash pop",
+        title: "Recuperar mensaje guardado",
         name: "prompt.stash.pop",
-        category: "Prompt",
+        category: "Mensaje",
         enabled: stash.list().length > 0,
         run: () => {
           const entry = stash.pop()
@@ -913,9 +913,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Stash list",
+        title: "Ver mensajes guardados",
         name: "prompt.stash.list",
-        category: "Prompt",
+        category: "Mensaje",
         enabled: stash.list().length > 0,
         run: () => {
           dialog.replace(() => (
@@ -980,7 +980,7 @@ export function Prompt(props: PromptProps) {
       commands: [
         {
           bind: "!",
-          title: "Shell mode",
+          title: "Modo terminal",
           group: "Prompt",
           run: () => {
             setStore("placeholder", randomIndex(shell().length))
@@ -997,10 +997,10 @@ export function Prompt(props: PromptProps) {
       target: inputTarget,
       enabled: inputTarget() !== undefined && !disabled() && store.mode === "shell",
       commands: [
-        { bind: "escape", title: "Exit shell mode", group: "Prompt", run: () => setStore("mode", "normal") },
+        { bind: "escape", title: "Salir del modo terminal", group: "Prompt", run: () => setStore("mode", "normal") },
         {
           bind: "ctrl+c",
-          title: "Exit shell mode",
+          title: "Salir del modo terminal",
           group: "Prompt",
           enabled: () => store.prompt.text === "",
           run: () => setStore("mode", "normal"),
@@ -1017,7 +1017,7 @@ export function Prompt(props: PromptProps) {
         return inputTarget() !== undefined && !disabled() && store.mode === "shell" && input?.visualCursor.offset === 0
       })(),
       commands: [
-        { bind: "backspace", title: "Exit shell mode", group: "Prompt", run: () => setStore("mode", "normal") },
+        { bind: "backspace", title: "Salir del modo terminal", group: "Prompt", run: () => setStore("mode", "normal") },
       ],
     }
   })
@@ -1033,7 +1033,7 @@ export function Prompt(props: PromptProps) {
       commands: [
         {
           id: "prompt.history.previous",
-          title: "Previous prompt history",
+          title: "Mensaje anterior del historial",
           group: "Prompt",
           run() {
             if (input.cursorOffset !== 0) {
@@ -1069,7 +1069,7 @@ export function Prompt(props: PromptProps) {
       commands: [
         {
           id: "prompt.history.next",
-          title: "Next prompt history",
+          title: "Mensaje siguiente del historial",
           group: "Prompt",
           run() {
             const end = measure(input.plainText)
@@ -1143,7 +1143,7 @@ export function Prompt(props: PromptProps) {
     )
     const slash = argumentSlash(inputText, keymapCommands())
     if (delivery === "queue" && (store.mode === "shell" || exitWord || slash)) {
-      toast.show({ message: "This prompt cannot be queued", variant: "warning" })
+      toast.show({ message: "Este mensaje no se puede poner en cola", variant: "warning" })
       return false
     }
     if (exitWord) {
@@ -1162,7 +1162,7 @@ export function Prompt(props: PromptProps) {
     const editorSelection = editorContext()
     const pendingEditorSelection = editorSelection && editor.labelState() === "pending" ? editorSelection : undefined
     if (delivery === "queue" && pendingEditorSelection) {
-      toast.show({ message: "Editor context cannot be queued", variant: "warning" })
+      toast.show({ message: "El contexto del editor no se puede poner en cola", variant: "warning" })
       return false
     }
     const agent = local.agent.current()
@@ -1175,8 +1175,8 @@ export function Prompt(props: PromptProps) {
     const usesModel = !props.sessionID || store.mode !== "shell"
     if (usesModel && !local.model.available(selection)) {
       toast.show({
-        title: "Model unavailable",
-        message: `${selection.providerID}/${selection.modelID} is not available in this session's location`,
+        title: "Modelo no disponible",
+        message: `${selection.providerID}/${selection.modelID} no está disponible en la ubicación de esta sesión`,
         variant: "warning",
       })
       return false
@@ -1260,7 +1260,7 @@ export function Prompt(props: PromptProps) {
         }),
         recover: (error) => {
           toast.show({
-            title: data.session.get(created.id) ? "Failed to set up session" : "Creating a session failed",
+            title: data.session.get(created.id) ? "No se pudo preparar la sesión" : "No se pudo crear la sesión",
             message: errorMessage(error),
             variant: "error",
           })
@@ -1296,7 +1296,7 @@ export function Prompt(props: PromptProps) {
       const cancelCommit = local.model.trackSessionCommit(target, model, agent.id)
       return client.api.session.switchModel({ sessionID: target, model }).catch((error) => {
         cancelCommit()
-        throw new Error(`Failed to switch model: ${errorMessage(error)}`, { cause: error })
+        throw new Error(`No se pudo cambiar el modelo: ${errorMessage(error)}`, { cause: error })
       })
     }
     const commitSelection = async () => {
@@ -1306,7 +1306,7 @@ export function Prompt(props: PromptProps) {
     if (!trimmed) {
       // Blank Enter in an existing session commits the composer's agent and
       // model selection, then hands off to the route (queued prompt promotion).
-      await attempt("Failed to prepare session", async () => {
+      await attempt("No se pudo preparar la sesión", async () => {
         await commitSelection()
         await props.onEmptySubmit?.()
       })
@@ -1317,7 +1317,7 @@ export function Prompt(props: PromptProps) {
       move.startSubmit()
       const send = () => client.api.session.shell({ sessionID: target, command: inputText })
       void (newSession ? newSession.gate.then(send) : send()).catch((error) =>
-        newSession ? newSession.recover(error) : fail("Failed to run shell command", error),
+        newSession ? newSession.recover(error) : fail("No se pudo ejecutar el comando de terminal", error),
       )
       setStore("mode", "normal")
     } else if (slashHead && isCommand) {
@@ -1336,17 +1336,17 @@ export function Prompt(props: PromptProps) {
         })
       }
       void (newSession ? newSession.gate.then(send) : send()).catch((error) =>
-        newSession ? newSession.recover(error) : fail("Failed to run command", error),
+        newSession ? newSession.recover(error) : fail("No se pudo ejecutar el comando", error),
       )
     } else {
       move.startSubmit()
-      if (!(await attempt("Failed to prepare session", prepareAgent))) return true
+      if (!(await attempt("No se pudo preparar la sesión", prepareAgent))) return true
       // Revert must settle before optimistic admission: its committed echo
       // splices every local row at or after the boundary, which would include
       // a freshly admitted prompt.
       if (
         session?.revert &&
-        !(await attempt("Failed to commit revert", () => client.api.session.revert.commit({ sessionID: target })))
+        !(await attempt("No se pudo aplicar la reversión", () => client.api.session.revert.commit({ sessionID: target })))
       )
         return false
       if (pendingEditorSelection) {
@@ -1360,7 +1360,7 @@ export function Prompt(props: PromptProps) {
         // Fold into the setup gate so the context still admits before the
         // user prompt once the session exists.
         if (newSession) newSession.gate = newSession.gate.then(send)
-        else if (!(await attempt("Failed to send editor context", send))) return false
+        else if (!(await attempt("No se pudo enviar el contexto del editor", send))) return false
       }
       // The data layer admits optimistically: the prompt renders immediately
       // and rolls back if the server rejects it, so submission does not wait
@@ -1380,7 +1380,7 @@ export function Prompt(props: PromptProps) {
           // the server makes an unchanged selection a no-op.
           prepare: commitModel,
         })
-        .catch((error) => (newSession ? newSession.recover(error) : fail("Failed to send prompt", error)))
+        .catch((error) => (newSession ? newSession.recover(error) : fail("No se pudo enviar el mensaje", error)))
       if (pendingEditorSelection) editor.markSelectionSent()
     }
 
@@ -1580,7 +1580,7 @@ export function Prompt(props: PromptProps) {
     if (store.mode === "shell") return theme.text.action.primary.selected
     return promptDisplay().agentColor ?? theme.border.base
   })
-  const agentLabel = createMemo(() => (store.mode === "shell" ? "Shell" : promptDisplay().agentLabel))
+  const agentLabel = createMemo(() => (store.mode === "shell" ? "Terminal" : promptDisplay().agentLabel))
   const animateMetadata = !revealedPromptMetadata.has(local)
   const metadataAnimationsEnabled = () => animationsEnabled() && animateMetadata
   const agentMetaAlpha = createFadeIn(() => !!agentLabel(), metadataAnimationsEnabled)
@@ -1606,10 +1606,10 @@ export function Prompt(props: PromptProps) {
     const value = (() => {
       if (store.mode === "shell") {
         if (!shell().length) return undefined
-        return `Run a command… "${shell()[store.placeholder % shell().length]}"`
+        return `Ejecuta un comando… "${shell()[store.placeholder % shell().length]}"`
       }
       if (!list().length) return undefined
-      return `Ask anything… "${list()[store.placeholder % list().length]}"`
+      return `Pregunta lo que quieras… "${list()[store.placeholder % list().length]}"`
     })()
     if (!value) return undefined
     const width = dimensions().width < 44 ? dimensions().width - 5 : Math.min(75, dimensions().width - 4) - 5
@@ -1715,7 +1715,7 @@ export function Prompt(props: PromptProps) {
                           when={!failed()}
                           fallback={
                             <box width="100%" height="100%" alignItems="center" justifyContent="center">
-                              <text fg={theme.text.muted}>No preview</text>
+                              <text fg={theme.text.muted}>Sin vista previa</text>
                             </box>
                           }
                         >
@@ -1748,7 +1748,7 @@ export function Prompt(props: PromptProps) {
                     }}
                   >
                     <text fg={theme.text.muted} wrapMode="none" truncate>
-                      +{imageAttachments().length - visibleImageAttachments().length} more
+                      +{imageAttachments().length - visibleImageAttachments().length} más
                     </text>
                   </box>
                 </Show>
@@ -1928,7 +1928,7 @@ export function Prompt(props: PromptProps) {
                   <Match when={move.pendingNew()}>
                     <box paddingLeft={3} height={1} minHeight={0} flexShrink={1}>
                       <text fg={theme.hue.accent[500]} wrapMode="none" truncate>
-                        (new worktree)
+                        (nuevo árbol de trabajo)
                       </text>
                     </box>
                   </Match>
@@ -1991,7 +1991,7 @@ export function Prompt(props: PromptProps) {
               absolute: item.directory,
               destructive: {
                 id: item.directory,
-                confirm: "Press ctrl+d to confirm",
+                confirm: "Pulsa ctrl+d para confirmar",
                 run: () => directoryRecents.remove(projectID, item.directory),
               },
             }

@@ -30,7 +30,7 @@ describe("run footer width", () => {
         status: { text: "ctrl+shift+alt+i stop", expanded: "ctrl+shift+alt+i interrupt" },
         work: [
           { id: "queued", key: "ctrl+x q", label: "12 queued" },
-          { id: "subagents", key: mono ? "down" : "\u2193", label: "2 sub", expanded: "2 subagents" },
+          { id: "subagents", key: mono ? "down" : "\u2193", label: "2 sub", expanded: "2 subagentes" },
           { id: "background", key: "ctrl+b", label: "bg", expanded: "background" },
         ],
       },

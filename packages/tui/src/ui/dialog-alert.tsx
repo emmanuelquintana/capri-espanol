@@ -22,7 +22,7 @@ export function DialogAlert(props: DialogAlertProps) {
     commands: [
       {
         bind: "return",
-        title: "Confirm alert",
+        title: "Confirmar aviso",
         group: "Dialog",
         run: confirm,
       },

@@ -18,7 +18,7 @@ import { FadeInText } from "../component/fade-in-text"
 
 let once = false
 const placeholder = {
-  normal: ["Fix a TODO in the codebase", "What is the tech stack of this project?", "Fix broken tests"],
+  normal: ["Resuelve un TODO del proyecto", "¿Qué tecnologías utiliza este proyecto?", "Corrige las pruebas que fallan"],
   shell: ["ls -la", "git status", "pwd"],
 }
 

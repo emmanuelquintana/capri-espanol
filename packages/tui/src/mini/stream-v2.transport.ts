@@ -174,7 +174,7 @@ export function formatUnknownError(error: unknown): string {
     const tag = "_tag" in error ? error._tag : undefined
     if (typeof tag === "string" && tag.trim()) return tag
   }
-  return "unknown error"
+  return "error desconocido"
 }
 
 function sessionID(event: RunV2Event) {
@@ -191,7 +191,7 @@ function globalForm(form: FormInfo, location: LocationRef): MiniFormRequest {
 }
 
 function errorMessage(error: { message?: string; _tag?: string }) {
-  return error.message || error._tag || "Session execution failed"
+  return error.message || error._tag || "La ejecución de la sesión falló"
 }
 
 function pendingPrompt(item: SessionInboxInfo): PendingPrompt | undefined {
@@ -220,11 +220,11 @@ function wait(delay: number, signal: AbortSignal) {
 }
 
 function nextEvent(stream: AsyncIterator<RunV2Event>, signal: AbortSignal) {
-  if (signal.aborted) return Promise.reject(signal.reason ?? new Error("Event stream aborted"))
+  if (signal.aborted) return Promise.reject(signal.reason ?? new Error("Se canceló el flujo de eventos"))
   return new Promise<IteratorResult<RunV2Event>>((resolve, reject) => {
     const abort = () => {
       signal.removeEventListener("abort", abort)
-      reject(signal.reason ?? new Error("Event stream aborted"))
+      reject(signal.reason ?? new Error("Se canceló el flujo de eventos"))
     }
     signal.addEventListener("abort", abort, { once: true })
     void stream.next().then(
@@ -359,12 +359,12 @@ function shellTerminal(
   output: { output: string; cursor: number; size: number; truncated: boolean },
 ) {
   const incomplete = output.truncated || output.cursor < output.size
-  const text = `${output.output}${incomplete ? `${output.output.endsWith("\n") || !output.output ? "" : "\n"}[output truncated]` : ""}`
+  const text = `${output.output}${incomplete ? `${output.output.endsWith("\n") || !output.output ? "" : "\n"}[salida truncada]` : ""}`
   const error =
     shell.status === "exited" && shell.exit === 0
       ? undefined
       : shell.status === "exited"
-        ? `Shell exited with code ${shell.exit ?? "unknown"}`
+        ? `La terminal terminó con el código ${shell.exit ?? "unknown"}`
         : `Shell ${shell.status}`
   if (!error) return [shellCommit(id, command, { text, phase: "progress", toolState: "completed" })]
   return [
@@ -525,7 +525,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
     const abort = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal
     while (!state.connected) {
       if (state.closed || controller.signal.aborted || input.footer.isClosed || signal?.aborted)
-        throw new Error("Event stream aborted")
+        throw new Error("Se canceló el flujo de eventos")
       await wait(25, abort)
     }
   }
@@ -806,7 +806,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         state.shellStarted.add(message.shellID)
         write([
           shellCommit(message.shellID, message.command, {
-            text: "running shell",
+            text: "terminal en ejecución",
             phase: "start",
             toolState: "running",
           }),
@@ -1150,7 +1150,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
       write(
         [
           shellCommit(event.data.shell.id, event.data.shell.command, {
-            text: "running shell",
+            text: "terminal en ejecución",
             phase: "start",
             toolState: "running",
           }),
@@ -1169,7 +1169,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         state.shellStarted.add(event.data.shell.id)
         if (command)
           commits.push(
-            shellCommit(event.data.shell.id, command, { text: "running shell", phase: "start", toolState: "running" }),
+            shellCommit(event.data.shell.id, command, { text: "terminal en ejecución", phase: "start", toolState: "running" }),
           )
       }
       if (!state.shellEnded.has(event.data.shell.id)) {
@@ -1440,7 +1440,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         return
       }
       if (event.type === "session.execution.interrupted") {
-        current.terminalError = new Error(`Session interrupted: ${event.data.reason}`)
+        current.terminalError = new Error(`Sesión interrumpida: ${event.data.reason}`)
       }
     }
   }
@@ -1505,13 +1505,13 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         activeAttempt = attempt
         try {
           const first = await nextEvent(stream, connection.signal)
-          if (first.done || first.value.type !== "server.connected") throw new Error("Event stream disconnected")
+          if (first.done || first.value.type !== "server.connected") throw new Error("Se desconectó el flujo de eventos")
           const buffered: RunV2Event[] = []
           let booting = true
           const consume = (async () => {
             while (true) {
               const next = await nextEvent(stream, connection.signal)
-              if (next.done) throw new Error("Event stream disconnected")
+              if (next.done) throw new Error("Se desconectó el flujo de eventos")
               if (booting) buffered.push(next.value)
               else receive(attempt, next.value)
             }
@@ -1525,10 +1525,10 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
             ),
             consume,
           ])
-          if (!current(attempt)) throw new Error("Event stream disconnected")
+          if (!current(attempt)) throw new Error("Se desconectó el flujo de eventos")
           state.initial = false
           for (const event of buffered.splice(0)) apply(attempt, event)
-          if (!current(attempt)) throw new Error("Event stream disconnected")
+          if (!current(attempt)) throw new Error("Se desconectó el flujo de eventos")
           booting = false
           state.connected = true
           readyResolve()
@@ -1577,7 +1577,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
   }
 
   const runShellTurn = async (next: SessionTurnInput) => {
-    if (state.wait || state.shellWait) throw new Error("prompt already running")
+    if (state.wait || state.shellWait) throw new Error("el mensaje ya está en ejecución")
     await waitUntilConnected(next.signal)
     const client = sdk
     const abort = new AbortController()
@@ -1810,14 +1810,14 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
 
   return {
     async admitPromptTurn(next, delivery) {
-      if (next.prompt.mode === "shell") throw new Error("This prompt cannot be queued")
+      if (next.prompt.mode === "shell") throw new Error("Este mensaje no se puede poner en cola")
       await waitUntilConnected(next.signal)
       const client = sdk
       if (!next.prompt.command && next.agent)
         await client.session.switchAgent({ sessionID: input.sessionID, agent: next.agent }, { signal: next.signal })
       if (!next.prompt.command) {
         const selected = await resolveSelectedModel(input, client, next)
-        if (next.variant && !selected) throw new Error("Cannot select a variant before selecting a model")
+        if (next.variant && !selected) throw new Error("Selecciona primero un modelo para elegir una variante")
         if (selected)
           await client.session.switchModel({ sessionID: input.sessionID, model: selected }, { signal: next.signal })
       }
@@ -1835,7 +1835,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         await runShellTurn(next)
         return
       }
-      if (state.wait || state.shellWait) throw new Error("prompt already running")
+      if (state.wait || state.shellWait) throw new Error("el mensaje ya está en ejecución")
       await waitUntilConnected(next.signal)
       const client = sdk
       const messageID = next.prompt.messageID
@@ -1852,7 +1852,7 @@ export async function createSessionTransport(input: StreamInput): Promise<Sessio
         await client.session.switchAgent({ sessionID: input.sessionID, agent: next.agent }, { signal: next.signal })
       }
       const selected = await resolveSelectedModel(input, client, next)
-      if (next.variant && !selected) throw new Error("Cannot select a variant before selecting a model")
+      if (next.variant && !selected) throw new Error("Selecciona primero un modelo para elegir una variante")
       if (selected)
         await client.session.switchModel({ sessionID: input.sessionID, model: selected }, { signal: next.signal })
 

@@ -43,16 +43,16 @@ const login = Effect.fn("cli.auth.login.run")(function* (input: {
   answer?: ReadonlyArray<string>
 }) {
   if (!input.target)
-    yield* requireInteractive("Pass an integration ID or name when running without an interactive terminal")
-  intro("Connect an integration")
+    yield* requireInteractive("Indica un ID o nombre de integración si no hay terminal interactiva")
+  intro("Conectar una integración")
   const client = yield* createClient()
   const integration = yield* findIntegration(client, input.target)
   const methods = connectMethods(integration)
-  if (methods.length === 0) yield* Effect.fail(new Error(`${integration.name} has no interactive login methods`))
+  if (methods.length === 0) yield* Effect.fail(new Error(`${integration.name} no tiene métodos de inicio de sesión interactivos`))
   const method = yield* chooseMethod(methods, input.method)
   const answer = yield* answerForm(method.type === "command" ? undefined : method.form, input.answer)
   yield* authenticate(client, integration, method, answer)
-  outro("Done")
+  outro("Terminado")
 })
 
 const findIntegration = Effect.fn("cli.auth.login.integration")(function* (client: OpenCodeClient, target?: string) {
@@ -60,17 +60,17 @@ const findIntegration = Effect.fn("cli.auth.login.integration")(function* (clien
     const protocol = new URL(target).protocol
     if (protocol === "http:" || protocol === "https:") {
       const progress = spinner()
-      progress.start("Discovering authentication provider...")
+      progress.start("Buscando proveedor de autenticación...")
       yield* request((signal) => client.integration.wellknown.add({ url: target, location }, { signal })).pipe(
-        Effect.tap(() => Effect.sync(() => progress.stop("Authentication provider discovered"))),
-        Effect.tapCause(() => Effect.sync(() => progress.stop("Discovery failed", 1))),
+        Effect.tap(() => Effect.sync(() => progress.stop("Proveedor de autenticación encontrado"))),
+        Effect.tapCause(() => Effect.sync(() => progress.stop("Falló la detección", 1))),
       )
     }
   }
   const integrations = yield* loadIntegrations(client)
   if (target) return yield* resolveIntegration(integrations, target)
   const choices = loginChoices(integrations)
-  if (choices.length === 0) return yield* Effect.fail(new Error("No authentication integrations are available"))
+  if (choices.length === 0) return yield* Effect.fail(new Error("No hay integraciones de autenticación disponibles"))
   const id = yield* prompt<string>(() => selectIntegration(choices))
   return yield* resolveIntegration(integrations, id)
 })
@@ -102,12 +102,12 @@ export function loginChoices(integrations: IntegrationInfo[]): IntegrationChoice
 const chooseMethod = Effect.fn("cli.auth.login.method")(function* (methods: ConnectMethod[], target?: string) {
   if (target) return yield* resolveMethod(methods, target)
   if (methods.length === 1) return methods[0]
-  yield* requireInteractive("Pass --method when running without an interactive terminal")
+  yield* requireInteractive("Indica --method si no hay terminal interactiva")
   const id = yield* prompt<string>(() =>
     select({
-      message: "Select login method",
+      message: "Seleccionar método de inicio de sesión",
       options: methods.map((method) => {
-        if (method.type === "key") return { value: "key", label: method.label ?? "API key" }
+        if (method.type === "key") return { value: "key", label: method.label ?? "Clave API" }
         return { value: method.id, label: method.label }
       }),
     }),
@@ -142,7 +142,7 @@ const externalLogin = Effect.fn("cli.auth.login.external")(function* (
     ),
   ).pipe(
     Effect.tap(() => Effect.sync(() => progress.stop(`Connected to ${integration.name}`))),
-    Effect.tapCause(() => Effect.sync(() => progress.stop("Authentication failed", 1))),
+    Effect.tapCause(() => Effect.sync(() => progress.stop("Falló la autenticación", 1))),
   )
 })
 
@@ -159,7 +159,7 @@ const keyLogin = Effect.fn("cli.auth.login.key")(function* (
     client.integration.connect.key({ integrationID: integration.id, key, answer, location }, { signal }),
   ).pipe(
     Effect.tap(() => Effect.sync(() => progress.stop(`Connected to ${integration.name}`))),
-    Effect.tapCause(() => Effect.sync(() => progress.stop("Authentication failed", 1))),
+    Effect.tapCause(() => Effect.sync(() => progress.stop("Falló la autenticación", 1))),
   )
 })
 
@@ -177,7 +177,7 @@ export const oauthLogin = Effect.fn("cli.auth.login.oauth")(function* (
       { integrationID: integration.id, methodID: method.id, answer, label, location },
       { signal },
     ),
-  ).pipe(Effect.tapCause(() => Effect.sync(() => progress.stop("Authentication failed", 1))))
+  ).pipe(Effect.tapCause(() => Effect.sync(() => progress.stop("Falló la autenticación", 1))))
   const attempt = started.data
   yield* Effect.addFinalizer(() =>
     request(() =>
@@ -195,7 +195,7 @@ export const oauthLogin = Effect.fn("cli.auth.login.oauth")(function* (
   if (attempt.mode === "code") {
     yield* requireInteractive("This login requires an interactive terminal to enter the authorization code")
     const code = yield* prompt<string>(() =>
-      text({ message: "Paste the authorization code", validate: (value) => (!value ? "Required" : undefined) }),
+      text({ message: "Pega el código de autorización", validate: (value) => (!value ? "Required" : undefined) }),
     )
     const completing = spinner()
     completing.start("Completing authorization...")
@@ -206,7 +206,7 @@ export const oauthLogin = Effect.fn("cli.auth.login.oauth")(function* (
       ),
     ).pipe(
       Effect.tap(() => Effect.sync(() => completing.stop(`Connected to ${integration.name}`))),
-      Effect.tapCause(() => Effect.sync(() => completing.stop("Authentication failed", 1))),
+      Effect.tapCause(() => Effect.sync(() => completing.stop("Falló la autenticación", 1))),
     )
     return
   }
@@ -220,7 +220,7 @@ export const oauthLogin = Effect.fn("cli.auth.login.oauth")(function* (
     return
   }
   if (status.status === "failed") yield* Effect.fail(new Error(status.message))
-  yield* Effect.fail(new Error("Authorization expired"))
+  yield* Effect.fail(new Error("La autorización expiró"))
 })
 
 const commandLogin = Effect.fn("cli.auth.login.command")(function* (
@@ -232,7 +232,7 @@ const commandLogin = Effect.fn("cli.auth.login.command")(function* (
   progress.start("Starting authentication command...")
   const started = yield* request((signal) =>
     client.integration.command.connect({ integrationID: integration.id, methodID: method.id, location }, { signal }),
-  ).pipe(Effect.tapCause(() => Effect.sync(() => progress.stop("Authentication failed", 1))))
+  ).pipe(Effect.tapCause(() => Effect.sync(() => progress.stop("Falló la autenticación", 1))))
   yield* Effect.addFinalizer(() =>
     request(() =>
       client.integration.command.cancel(
@@ -261,7 +261,7 @@ const commandLogin = Effect.fn("cli.auth.login.command")(function* (
     return
   }
   if (status.status === "failed") yield* Effect.fail(new Error(status.message))
-  yield* Effect.fail(new Error("Authentication expired"))
+  yield* Effect.fail(new Error("La autenticación expiró"))
 })
 
 const waitForOAuth = Effect.fn("cli.auth.login.oauth.wait")(function* (

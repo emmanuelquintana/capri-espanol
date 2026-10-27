@@ -23,9 +23,9 @@ export function DialogThemeList(props: { onClose?: () => void }) {
 
   return (
     <DialogSelect
-      title="Themes"
+      title="Temas"
       searchInTitle
-      titlePlaceholder="Search themes"
+      titlePlaceholder="Buscar temas"
       options={options}
       current={initial}
       onCancel={props.onClose}

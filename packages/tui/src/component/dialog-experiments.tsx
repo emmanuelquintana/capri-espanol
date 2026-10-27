@@ -17,13 +17,13 @@ type Experiment = {
 export const experiments: Experiment[] = [
   {
     id: "new-designs",
-    title: "New designs",
-    description: "Preview the new TUI designs",
+    title: "Nuevos diseños",
+    description: "Probar los nuevos diseños de terminal",
   },
   {
     id: "client-mcp",
-    title: "TUI tools",
-    description: "Let the agent open terminals in this TUI (requires server support)",
+    title: "Herramientas de terminal",
+    description: "Permitir que el agente abra terminales aquí (requiere soporte del servidor)",
   },
 ]
 
@@ -63,14 +63,14 @@ export function DialogExperiments() {
 
   return (
     <DialogSelect
-      title="Experiments"
+      title="Experimentos"
       options={options()}
       renderFilter={experiments.length > 0}
       onMove={(option) => setSelected(option.value)}
       onSelect={(option) => void change(option.value)}
       emptyView={
         <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-          <text fg={theme.text.muted}>No experiments available</text>
+          <text fg={theme.text.muted}>No hay experimentos disponibles</text>
         </box>
       }
       footerHints={experiments.length > 0 && !newDesigns() ? [{ title: "change", label: "←/→" }] : []}
@@ -79,13 +79,13 @@ export function DialogExperiments() {
           ? [
               {
                 bind: "left",
-                title: "Previous value",
+                title: "Valor anterior",
                 group: "Experiments",
                 run: () => void change(),
               },
               {
                 bind: "right",
-                title: "Next value",
+                title: "Valor siguiente",
                 group: "Experiments",
                 run: () => void change(),
               },

@@ -106,9 +106,9 @@ export function RunFooterSubagentBody(props: {
     if (tab()?.status !== "running") return undefined
     return props.interrupt?.()
   })
-  const count = () => (props.total() > 1 && props.index() > 0 ? `${props.index()} of ${props.total()}` : "")
+  const count = () => (props.total() > 1 && props.index() > 0 ? `${props.index()} de ${props.total()}` : "")
   const headerControlsWidth = () =>
-    (interruptHint() ? stringWidth(`${interruptHint()} interrupt`) + 1 : 0) + (count() ? stringWidth(count()) + 1 : 0)
+    (interruptHint() ? stringWidth(`${interruptHint()} interrumpir`) + 1 : 0) + (count() ? stringWidth(count()) + 1 : 0)
   const headerControls = () => !compact() && stringWidth(title()) + 2 + headerControlsWidth() <= width() - 4
   const titleWidth = () => Math.max(1, width() - (compact() ? 2 : 6) - (headerControls() ? headerControlsWidth() : 0))
 
@@ -195,7 +195,7 @@ export function RunFooterSubagentBody(props: {
               <Show when={interruptHint()}>
                 {(hint) => (
                   <text fg={footer().muted} wrapMode="none" flexShrink={0}>
-                    {hint()} interrupt
+                    {hint()} interrumpir
                   </text>
                 )}
               </Show>
@@ -227,7 +227,7 @@ export function RunFooterSubagentBody(props: {
             rows()
           ) : (
             <text width="100%" fg={footer().muted} wrapMode="word" flexShrink={0}>
-              No subagent activity yet
+              Aún no hay actividad del subagente
             </text>
           )}
         </box>
@@ -235,18 +235,18 @@ export function RunFooterSubagentBody(props: {
       <Show when={!headerControls()}>
         <box width="100%" flexDirection="row" flexWrap="wrap" columnGap={1} flexShrink={0}>
           <text height={1} fg={footer().actionSecondaryText} wrapMode="none" flexShrink={0} onMouseUp={props.onClose}>
-            esc back
+            esc volver
           </text>
           <Show when={interruptHint()}>
             {(hint) => (
               <text maxWidth="100%" fg={footer().actionSecondaryText} wrapMode="word" flexShrink={0}>
-                {hint()} {width() >= stringWidth(hint()) + 10 ? "interrupt" : "stop"}
+                {hint()} {width() >= stringWidth(hint()) + 12 ? "interrumpir" : "parar"}
               </text>
             )}
           </Show>
           <Show when={width() >= 56}>
             <text height={1} fg={footer().muted} wrapMode="none" flexShrink={0}>
-              pgup/pgdn scroll
+              pgup/pgdn desplazar
             </text>
             <Show when={props.total() > 1 && props.index() > 0}>
               <text
@@ -256,7 +256,7 @@ export function RunFooterSubagentBody(props: {
                 flexShrink={0}
                 onMouseUp={() => props.onCycle(1)}
               >
-                tab next {props.index()}/{props.total()}
+                tab siguiente {props.index()}/{props.total()}
               </text>
             </Show>
           </Show>

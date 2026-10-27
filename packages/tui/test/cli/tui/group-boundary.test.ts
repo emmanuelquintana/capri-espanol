@@ -56,7 +56,7 @@ test("stops when a page adds no messages", async () => {
   expect(state.loads()).toBe(1)
 })
 
-test("stops when the session is no longer active", async () => {
+test("stops when the session is no longer activo", async () => {
   const state = history([{ messages: 20 }, { messages: 20 }, { messages: 1, prompt: true }])
   await completeGroupBoundary(state.input(() => state.deactivate()))
   expect(state.loads()).toBe(1)

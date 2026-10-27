@@ -22,21 +22,21 @@ export function cliErrorMessage(input: unknown): string | undefined {
       ? model.suggestions.filter((item): item is string => typeof item === "string")
       : []
     return [
-      `Model not found: ${field(model, "providerID")}/${field(model, "modelID")}`,
-      ...(suggestions.length ? ["Did you mean: " + suggestions.join(", ")] : []),
-      "Try: `capri models` to list available models",
-      "Or check your config (opencode.json) provider/model names",
+      `No se encontró el modelo: ${field(model, "providerID")}/${field(model, "modelID")}`,
+      ...(suggestions.length ? ["Quizás quisiste decir: " + suggestions.join(", ")] : []),
+      "Ejecuta `capri models` para ver los modelos disponibles",
+      "O revisa los nombres de proveedor y modelo en opencode.json",
     ].join("\n")
   }
 
   const provider = configData(input, "ProviderInitError")
   if (provider)
-    return `Failed to initialize provider "${field(provider, "providerID")}". Check credentials and configuration.`
+    return `No se pudo inicializar el proveedor "${field(provider, "providerID")}". Revisa las credenciales y la configuración.`
 
   const json = configData(input, "ConfigJsonError")
   if (json) {
     const message = field(json, "message")
-    return `Config file at ${field(json, "path")} is not valid JSON(C)` + (message ? `: ${message}` : "")
+    return `El archivo de configuración en ${field(json, "path")} no contiene JSON(C) válido` + (message ? `: ${message}` : "")
   }
 
   const directory = configData(input, "ConfigDirectoryTypoError")
@@ -62,7 +62,7 @@ export function cliErrorMessage(input: unknown): string | undefined {
         })
       : []
     return [
-      `Configuration is invalid${path && path !== "config" ? ` at ${path}` : ""}` + (message ? `: ${message}` : ""),
+      `La configuración no es válida${path && path !== "config" ? ` at ${path}` : ""}` + (message ? `: ${message}` : ""),
       ...issues.map((issue) => "↳ " + issue.message + " " + issue.path.join(".")),
     ].join("\n")
   }
@@ -111,7 +111,7 @@ export function errorFormat(error: unknown): string {
       }
       return json
     } catch {
-      return "Unexpected error (unserializable)"
+      return "Error inesperado (no se puede serializar)"
     }
   }
 
@@ -137,5 +137,5 @@ export function errorMessage(error: unknown): string {
 
   const formatted = errorFormat(error)
   if (formatted) return formatted
-  return "unknown error"
+  return "error desconocido"
 }

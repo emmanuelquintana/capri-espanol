@@ -11,31 +11,31 @@ export default Runtime.handler(
   Commands.commands.upgrade,
   Effect.fn("cli.upgrade")(
     function* (input) {
-      intro("Upgrade")
+      intro("Actualizar")
       const updater = yield* Updater.Service
       const method = Option.getOrUndefined(input.method) ?? (yield* updater.method())
       if (!method)
         return yield* Effect.fail(
-          new Error("Could not detect the installation method. Pass --method to choose how to upgrade Capri."),
+          new Error("No se pudo detectar el método de instalación. Usa --method para elegir cómo actualizar Capri."),
         )
 
-      log.info(`Using method: ${method}`)
+      log.info(`Método seleccionado: ${method}`)
       const target = Option.getOrUndefined(input.target) ?? (yield* updater.latest(method))
       const version = target.trim().replace(/^v/, "")
       if (version === OPENCODE_VERSION) {
-        log.warn(`Capri upgrade skipped: ${version} is already installed`)
-        outro("Done")
+        log.warn(`Se omitió la actualización de Capri: ${version} ya está instalada`)
+        outro("Terminado")
         return
       }
 
-      log.info(`From ${OPENCODE_VERSION} → ${version}`)
+      log.info(`De ${OPENCODE_VERSION} → ${version}`)
       const progress = spinner()
-      progress.start("Upgrading...")
+      progress.start("Actualizando…")
       yield* updater.upgrade(method, target).pipe(
-        Effect.tap(() => Effect.sync(() => progress.stop("Upgrade complete"))),
-        Effect.tapCause(() => Effect.sync(() => progress.stop("Upgrade failed", 1))),
+        Effect.tap(() => Effect.sync(() => progress.stop("Actualización completada"))),
+        Effect.tapCause(() => Effect.sync(() => progress.stop("La actualización falló", 1))),
       )
-      outro("Done")
+      outro("Terminado")
     },
     (effect) =>
       handlePromptErrors(
@@ -56,8 +56,8 @@ function formatUpgradeError(error: Updater.UpgradeError) {
     line(error.title),
     "",
     detail,
-    ...(error.command ? ["", field("Command", line(error.command))] : []),
-    field("Retry", line(error.retry)),
+    ...(error.command ? ["", field("Comando", line(error.command))] : []),
+    field("Reintentar", line(error.retry)),
   ].join("\n")
 }
 

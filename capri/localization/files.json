@@ -1,0 +1,2747 @@
+[
+  {
+    "source": "capri/logo/logo.ts",
+    "target": "packages/tui/src/logo.ts",
+    "purpose": "Logo y representación de marca"
+  },
+  {
+    "source": "capri/install/install.sh",
+    "target": "install",
+    "purpose": "Instalador local de la edición española"
+  },
+  {
+    "source": "capri/install/install.ps1",
+    "target": "install.ps1",
+    "purpose": "Instalador local de la edición española"
+  },
+  {
+    "source": "capri/docs/README.md",
+    "target": "README.md",
+    "purpose": "Instrucciones principales en español"
+  },
+  {
+    "source": "capri/theme/capri-theme.json",
+    "target": "packages/tui/src/theme/assets/v2/opencode.json",
+    "purpose": "Tema visual de Capri"
+  },
+  {
+    "source": "capri/config/capri.ts",
+    "target": "packages/core/src/capri.ts",
+    "purpose": "Configuración del personaje y la terminal"
+  },
+  {
+    "source": "capri/config/capri-config.ts",
+    "target": "packages/tui/src/capri-config.ts",
+    "purpose": "Configuración del personaje y la terminal"
+  },
+  {
+    "source": "capri/glitch/glitch.ts",
+    "target": "packages/tui/src/glitch.ts",
+    "purpose": "Efectos visuales y selector de nivel"
+  },
+  {
+    "source": "capri/glitch/glitch.test.ts",
+    "target": "packages/tui/test/glitch.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/glitch/cyber-glitch.tsx",
+    "target": "packages/tui/src/component/cyber-glitch.tsx",
+    "purpose": "Efectos visuales y selector de nivel"
+  },
+  {
+    "source": "capri/glitch/dialog-cyberpsycosis.tsx",
+    "target": "packages/tui/src/component/dialog-cyberpsycosis.tsx",
+    "purpose": "Efectos visuales y selector de nivel"
+  },
+  {
+    "source": "capri/logo/logo-halfblock.ts",
+    "target": "packages/tui/src/logo-halfblock.ts",
+    "purpose": "Logo y representación de marca"
+  },
+  {
+    "source": "capri/logo/logo-image.ts",
+    "target": "packages/tui/src/logo-image.ts",
+    "purpose": "Logo y representación de marca"
+  },
+  {
+    "source": "capri/upstream/session-index.tsx",
+    "target": "packages/tui/src/routes/session/index.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/index.tsx"
+  },
+  {
+    "source": "capri/upstream/message-parts.tsx",
+    "target": "packages/tui/src/routes/session/message-parts.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/message-parts.tsx"
+  },
+  {
+    "source": "capri/upstream/prompt-index.tsx",
+    "target": "packages/tui/src/component/prompt/index.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/prompt/index.tsx"
+  },
+  {
+    "source": "capri/upstream/app.tsx",
+    "target": "packages/tui/src/app.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/app.tsx"
+  },
+  {
+    "source": "capri/upstream/prompt-footer.tsx",
+    "target": "packages/tui/src/feature-plugins/prompt/footer.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/prompt/footer.tsx"
+  },
+  {
+    "source": "capri/upstream/keybind.ts",
+    "target": "packages/tui/src/config/keybind.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/config/keybind.ts"
+  },
+  {
+    "source": "capri/upstream/attention.ts",
+    "target": "packages/tui/src/attention.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/attention.ts"
+  },
+  {
+    "source": "capri/upstream/mini-runtime-lifecycle.ts",
+    "target": "packages/tui/src/mini/runtime.lifecycle.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/runtime.lifecycle.ts"
+  },
+  {
+    "source": "capri/upstream/cli-default.ts",
+    "target": "packages/cli/src/commands/handlers/default.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/default.ts"
+  },
+  {
+    "source": "capri/upstream/permission.tsx",
+    "target": "packages/tui/src/routes/session/permission.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/permission.tsx"
+  },
+  {
+    "source": "capri/upstream/mini-footer-permission.tsx",
+    "target": "packages/tui/src/mini/footer.permission.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.permission.tsx"
+  },
+  {
+    "source": "capri/upstream/error-component.tsx",
+    "target": "packages/tui/src/component/error-component.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/error-component.tsx"
+  },
+  {
+    "source": "capri/upstream/terminal-pane.tsx",
+    "target": "packages/tui/src/component/terminal-pane.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/terminal-pane.tsx"
+  },
+  {
+    "source": "capri/upstream/mini-footer-prompt.tsx",
+    "target": "packages/tui/src/mini/footer.prompt.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.prompt.tsx"
+  },
+  {
+    "source": "capri/upstream/error-details.ts",
+    "target": "packages/tui/src/util/error-details.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/error-details.ts"
+  },
+  {
+    "source": "capri/upstream/tui-config-index.tsx",
+    "target": "packages/tui/src/config/index.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/config/index.tsx"
+  },
+  {
+    "source": "capri/upstream/sidebar-footer.tsx",
+    "target": "packages/tui/src/feature-plugins/sidebar/footer.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/sidebar/footer.tsx"
+  },
+  {
+    "source": "capri/upstream/dialog-pair.tsx",
+    "target": "packages/tui/src/component/dialog-pair.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-pair.tsx"
+  },
+  {
+    "source": "capri/upstream/tui-error.ts",
+    "target": "packages/tui/src/util/error.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/error.ts"
+  },
+  {
+    "source": "capri/upstream/mini-splash.ts",
+    "target": "packages/tui/src/mini/splash.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/splash.ts"
+  },
+  {
+    "source": "capri/upstream/cli-commands.ts",
+    "target": "packages/cli/src/commands/commands.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/commands.ts"
+  },
+  {
+    "source": "capri/upstream/cli-pair.ts",
+    "target": "packages/cli/src/commands/handlers/pair.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/pair.ts"
+  },
+  {
+    "source": "capri/upstream/cli-uninstall.ts",
+    "target": "packages/cli/src/commands/handlers/uninstall.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/uninstall.ts"
+  },
+  {
+    "source": "capri/upstream/cli-upgrade.ts",
+    "target": "packages/cli/src/commands/handlers/upgrade.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/upgrade.ts"
+  },
+  {
+    "source": "capri/upstream/cli-stats.ts",
+    "target": "packages/cli/src/commands/handlers/stats.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/stats.ts"
+  },
+  {
+    "source": "capri/upstream/cli-acp-handler.ts",
+    "target": "packages/cli/src/commands/handlers/acp.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/acp.ts"
+  },
+  {
+    "source": "capri/upstream/cli-mcp-auth.ts",
+    "target": "packages/cli/src/commands/handlers/mcp/auth.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/mcp/auth.ts"
+  },
+  {
+    "source": "capri/upstream/cli-acp-service.ts",
+    "target": "packages/cli/src/acp/service.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/acp/service.ts"
+  },
+  {
+    "source": "capri/upstream/cli-acp-error.ts",
+    "target": "packages/cli/src/acp/error.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/acp/error.ts"
+  },
+  {
+    "source": "capri/upstream/cli-acp-translate.ts",
+    "target": "packages/cli/src/acp/translate.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/acp/translate.ts"
+  },
+  {
+    "source": "capri/upstream/cli-mini.ts",
+    "target": "packages/cli/src/mini.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/mini.ts"
+  },
+  {
+    "source": "capri/upstream/cli-mini-host.ts",
+    "target": "packages/cli/src/mini-host.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/mini-host.ts"
+  },
+  {
+    "source": "capri/upstream/cli-server-process.ts",
+    "target": "packages/cli/src/server-process.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/server-process.ts"
+  },
+  {
+    "source": "capri/upstream/cli-remote-tunnel.ts",
+    "target": "packages/cli/src/services/remote-tunnel.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/services/remote-tunnel.ts"
+  },
+  {
+    "source": "capri/upstream/cli-build.ts",
+    "target": "packages/cli/script/build.ts",
+    "purpose": "Copia del código adaptado: packages/cli/script/build.ts"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/SKILL.md",
+    "target": ".opencode/skills/cyberpunk-lore/SKILL.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/characters.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/characters.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/factions.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/factions.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/places.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/places.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/tech.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/tech.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/timeline.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/timeline.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/skills/cyberpunk-lore/references/slang.md",
+    "target": ".opencode/skills/cyberpunk-lore/references/slang.md",
+    "purpose": "Habilidad de lore y sus referencias originales"
+  },
+  {
+    "source": "capri/tests/capri-settings.ts",
+    "target": "packages/tui/test/fixture/capri-settings.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/app-lifecycle.test.tsx",
+    "target": "packages/tui/test/app-lifecycle.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/command-selection.test.tsx",
+    "target": "packages/tui/test/command-selection.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/compact-admission.test.tsx",
+    "target": "packages/tui/test/compact-admission.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/new-session-id.test.tsx",
+    "target": "packages/tui/test/new-session-id.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/prompt-shell-failure.test.tsx",
+    "target": "packages/tui/test/prompt-shell-failure.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/session-panel.test.tsx",
+    "target": "packages/tui/test/session-panel.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/session-backfill-disclosure.test.tsx",
+    "target": "packages/tui/test/session-backfill-disclosure.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/session-group-navigation.test.tsx",
+    "target": "packages/tui/test/session-group-navigation.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/session-activity-anchor.test.tsx",
+    "target": "packages/tui/test/session-activity-anchor.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/tests/group-view.test.tsx",
+    "target": "packages/tui/test/cli/tui/group-view.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/config/gitignore",
+    "target": ".gitignore",
+    "purpose": "Exclusiones de compilación y dependencias recuperadas"
+  },
+  {
+    "source": "capri/config/bun.lock",
+    "target": "bun.lock",
+    "purpose": "Resolución reproducible de dependencias"
+  },
+  {
+    "source": "capri/upstream/cli/src/acp/catalog.ts",
+    "target": "packages/cli/src/acp/catalog.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/acp/catalog.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/acp/elicitation.ts",
+    "target": "packages/cli/src/acp/elicitation.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/acp/elicitation.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/api.test.ts",
+    "target": "packages/cli/src/commands/handlers/api.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/auth/account.ts",
+    "target": "packages/cli/src/commands/handlers/auth/account.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/auth/account.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/auth/form.ts",
+    "target": "packages/cli/src/commands/handlers/auth/form.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/auth/form.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/auth/login.ts",
+    "target": "packages/cli/src/commands/handlers/auth/login.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/auth/login.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/auth/logout.ts",
+    "target": "packages/cli/src/commands/handlers/auth/logout.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/auth/logout.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/auth/switch.ts",
+    "target": "packages/cli/src/commands/handlers/auth/switch.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/auth/switch.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/mcp/list.ts",
+    "target": "packages/cli/src/commands/handlers/mcp/list.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/mcp/list.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/plugin/inventory.ts",
+    "target": "packages/cli/src/commands/handlers/plugin/inventory.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/plugin/inventory.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/plugin/list.ts",
+    "target": "packages/cli/src/commands/handlers/plugin/list.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/plugin/list.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/reload.ts",
+    "target": "packages/cli/src/commands/handlers/reload.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/reload.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/session/export.ts",
+    "target": "packages/cli/src/commands/handlers/session/export.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/session/export.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/commands/handlers/session/list.ts",
+    "target": "packages/cli/src/commands/handlers/session/list.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/session/list.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/framework/runtime.ts",
+    "target": "packages/cli/src/framework/runtime.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/framework/runtime.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/framework/spanish.ts",
+    "target": "packages/cli/src/framework/spanish.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/framework/spanish.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/run/noninteractive.ts",
+    "target": "packages/cli/src/run/noninteractive.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/run/noninteractive.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/run/run.ts",
+    "target": "packages/cli/src/run/run.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/run/run.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/run/v1.ts",
+    "target": "packages/cli/src/run/v1.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/run/v1.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/services/server-connection.ts",
+    "target": "packages/cli/src/services/server-connection.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/services/server-connection.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/services/service-config.ts",
+    "target": "packages/cli/src/services/service-config.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/services/service-config.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/services/updater.test.ts",
+    "target": "packages/cli/src/services/updater.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/src/session-target.ts",
+    "target": "packages/cli/src/session-target.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/session-target.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/ssh-askpass.test.ts",
+    "target": "packages/cli/src/ssh-askpass.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/src/ui/integration-picker.ts",
+    "target": "packages/cli/src/ui/integration-picker.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/ui/integration-picker.ts"
+  },
+  {
+    "source": "capri/upstream/cli/src/ui/prompt.ts",
+    "target": "packages/cli/src/ui/prompt.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/ui/prompt.ts"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/additional-directories.subprocess.test.ts",
+    "target": "packages/cli/test/acp/additional-directories.subprocess.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/additional-directories.test.ts",
+    "target": "packages/cli/test/acp/additional-directories.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/catalog.test.ts",
+    "target": "packages/cli/test/acp/catalog.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/compaction.test.ts",
+    "target": "packages/cli/test/acp/compaction.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/config-option.test.ts",
+    "target": "packages/cli/test/acp/config-option.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/elicitation.test.ts",
+    "target": "packages/cli/test/acp/elicitation.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/error.test.ts",
+    "target": "packages/cli/test/acp/error.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/lifecycle.subprocess.test.ts",
+    "target": "packages/cli/test/acp/lifecycle.subprocess.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/permission.test.ts",
+    "target": "packages/cli/test/acp/permission.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/prompt-content.subprocess.test.ts",
+    "target": "packages/cli/test/acp/prompt-content.subprocess.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/prompt.test.ts",
+    "target": "packages/cli/test/acp/prompt.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/replay.test.ts",
+    "target": "packages/cli/test/acp/replay.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/session.test.ts",
+    "target": "packages/cli/test/acp/session.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/subprocess.ts",
+    "target": "packages/cli/test/acp/subprocess.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/translate.test.ts",
+    "target": "packages/cli/test/acp/translate.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/turn.test.ts",
+    "target": "packages/cli/test/acp/turn.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/acp/wire-fixture.ts",
+    "target": "packages/cli/test/acp/wire-fixture.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/app-archive.test.ts",
+    "target": "packages/cli/test/app-archive.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/auth-form.test.ts",
+    "target": "packages/cli/test/auth-form.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/auth-login-choices.test.ts",
+    "target": "packages/cli/test/auth-login-choices.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/auth.test.ts",
+    "target": "packages/cli/test/auth.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/config.test.ts",
+    "target": "packages/cli/test/config.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/cors.test.ts",
+    "target": "packages/cli/test/cors.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/cpu-profile.test.ts",
+    "target": "packages/cli/test/cpu-profile.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/debug-config.test.ts",
+    "target": "packages/cli/test/debug-config.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/debug-heap-dump.test.ts",
+    "target": "packages/cli/test/debug-heap-dump.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/debug-paths.test.ts",
+    "target": "packages/cli/test/debug-paths.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/env.test.ts",
+    "target": "packages/cli/test/env.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/import-boundaries.test.ts",
+    "target": "packages/cli/test/import-boundaries.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/import-export.test.ts",
+    "target": "packages/cli/test/import-export.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/mcp-auth-choices.test.ts",
+    "target": "packages/cli/test/mcp-auth-choices.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/mini-config.test.ts",
+    "target": "packages/cli/test/mini-config.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/mini-host.test.ts",
+    "target": "packages/cli/test/mini-host.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/mini-timeout.test.ts",
+    "target": "packages/cli/test/mini-timeout.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/mini.test.ts",
+    "target": "packages/cli/test/mini.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/node-assets.test.ts",
+    "target": "packages/cli/test/node-assets.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/pair-remote-consent.test.ts",
+    "target": "packages/cli/test/pair-remote-consent.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/prompt-open-url.test.ts",
+    "target": "packages/cli/test/prompt-open-url.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/retained-image.test.ts",
+    "target": "packages/cli/test/retained-image.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/run/noninteractive.test.ts",
+    "target": "packages/cli/test/run/noninteractive.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/server-connection.test.ts",
+    "target": "packages/cli/test/server-connection.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/service-lifecycle.test.ts",
+    "target": "packages/cli/test/service-lifecycle.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/service.test.ts",
+    "target": "packages/cli/test/service.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/session-target.test.ts",
+    "target": "packages/cli/test/session-target.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/spanish.test.ts",
+    "target": "packages/cli/test/spanish.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/standalone.test.ts",
+    "target": "packages/cli/test/standalone.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/stats.test.ts",
+    "target": "packages/cli/test/stats.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/updater-install.test.ts",
+    "target": "packages/cli/test/updater-install.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/upgrade.test.ts",
+    "target": "packages/cli/test/upgrade.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/vite-refresh.test.ts",
+    "target": "packages/cli/test/vite-refresh.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/vite-route.test.tsx",
+    "target": "packages/cli/test/vite-route.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli/test/web-ui.test.ts",
+    "target": "packages/cli/test/web-ui.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/core/test/session-system-prompt.test.ts",
+    "target": "packages/core/test/session-system-prompt.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/README.md",
+    "target": "packages/plugin-browser/README.md",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/package.json",
+    "target": "packages/plugin-browser/package.json",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/script/publish.ts",
+    "target": "packages/plugin-browser/script/publish.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/connection.ts",
+    "target": "packages/plugin-browser/src/connection.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/files.ts",
+    "target": "packages/plugin-browser/src/files.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/index.ts",
+    "target": "packages/plugin-browser/src/index.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/proxy.ts",
+    "target": "packages/plugin-browser/src/proxy.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/rpc.ts",
+    "target": "packages/plugin-browser/src/rpc.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/tools.ts",
+    "target": "packages/plugin-browser/src/tools.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/src/tunnel.ts",
+    "target": "packages/plugin-browser/src/tunnel.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/test/rpc.test.ts",
+    "target": "packages/plugin-browser/test/rpc.test.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/test/tools.test.ts",
+    "target": "packages/plugin-browser/test/tools.test.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/test/tunnel.test.ts",
+    "target": "packages/plugin-browser/test/tunnel.test.ts",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/tsconfig.build.json",
+    "target": "packages/plugin-browser/tsconfig.build.json",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/tsconfig.json",
+    "target": "packages/plugin-browser/tsconfig.json",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/plugin-browser/tsconfig.test.json",
+    "target": "packages/plugin-browser/tsconfig.test.json",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/command-palette.tsx",
+    "target": "packages/tui/src/component/command-palette.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/command-palette.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/devtools-bar.tsx",
+    "target": "packages/tui/src/component/devtools-bar.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/devtools-bar.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-agent.tsx",
+    "target": "packages/tui/src/component/dialog-agent.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-agent.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-config.tsx",
+    "target": "packages/tui/src/component/dialog-config.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-config.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-debug.tsx",
+    "target": "packages/tui/src/component/dialog-debug.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-debug.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-error-details.tsx",
+    "target": "packages/tui/src/component/dialog-error-details.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-error-details.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-experiments.tsx",
+    "target": "packages/tui/src/component/dialog-experiments.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-experiments.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-go-upsell.tsx",
+    "target": "packages/tui/src/component/dialog-go-upsell.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-go-upsell.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-highlights.tsx",
+    "target": "packages/tui/src/component/dialog-highlights.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-highlights.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-image-preview.tsx",
+    "target": "packages/tui/src/component/dialog-image-preview.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-image-preview.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-integration.tsx",
+    "target": "packages/tui/src/component/dialog-integration.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-integration.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-mcp.tsx",
+    "target": "packages/tui/src/component/dialog-mcp.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-mcp.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-model-free.tsx",
+    "target": "packages/tui/src/component/dialog-model-free.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-model-free.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-model.tsx",
+    "target": "packages/tui/src/component/dialog-model.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-model.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-open.tsx",
+    "target": "packages/tui/src/component/dialog-open.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-open.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-session-list.tsx",
+    "target": "packages/tui/src/component/dialog-session-list.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-session-list.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-session-rename.tsx",
+    "target": "packages/tui/src/component/dialog-session-rename.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-session-rename.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-shell-output.tsx",
+    "target": "packages/tui/src/component/dialog-shell-output.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-shell-output.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-skill.tsx",
+    "target": "packages/tui/src/component/dialog-skill.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-skill.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-stash.tsx",
+    "target": "packages/tui/src/component/dialog-stash.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-stash.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-status.tsx",
+    "target": "packages/tui/src/component/dialog-status.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-status.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-theme-list.tsx",
+    "target": "packages/tui/src/component/dialog-theme-list.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-theme-list.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-update.tsx",
+    "target": "packages/tui/src/component/dialog-update.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-update.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-variant.tsx",
+    "target": "packages/tui/src/component/dialog-variant.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-variant.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-workspace-file-changes.tsx",
+    "target": "packages/tui/src/component/dialog-workspace-file-changes.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-workspace-file-changes.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-workspaces.tsx",
+    "target": "packages/tui/src/component/dialog-workspaces.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-workspaces.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/dialog-worktree-name.tsx",
+    "target": "packages/tui/src/component/dialog-worktree-name.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/dialog-worktree-name.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/migration-overlay.tsx",
+    "target": "packages/tui/src/component/migration-overlay.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/migration-overlay.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/plugin-route-missing.tsx",
+    "target": "packages/tui/src/component/plugin-route-missing.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/plugin-route-missing.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/prompt/autocomplete.tsx",
+    "target": "packages/tui/src/component/prompt/autocomplete.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/prompt/autocomplete.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/prompt/local-attachment.ts",
+    "target": "packages/tui/src/component/prompt/local-attachment.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/prompt/local-attachment.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/prompt/metadata.tsx",
+    "target": "packages/tui/src/component/prompt/metadata.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/prompt/metadata.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/prompt/move.tsx",
+    "target": "packages/tui/src/component/prompt/move.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/prompt/move.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/reconnecting.tsx",
+    "target": "packages/tui/src/component/reconnecting.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/reconnecting.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/session-frame.tsx",
+    "target": "packages/tui/src/component/session-frame.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/session-frame.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/session-tabs.tsx",
+    "target": "packages/tui/src/component/session-tabs.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/session-tabs.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/startup-loading.tsx",
+    "target": "packages/tui/src/component/startup-loading.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/startup-loading.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/component/theme-error-toast.tsx",
+    "target": "packages/tui/src/component/theme-error-toast.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/component/theme-error-toast.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/config/v1/index.tsx",
+    "target": "packages/tui/src/config/v1/index.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/config/v1/index.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/config/v1/keybind.ts",
+    "target": "packages/tui/src/config/v1/keybind.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/config/v1/keybind.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/context/local.tsx",
+    "target": "packages/tui/src/context/local.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/context/local.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/context/program-status.ts",
+    "target": "packages/tui/src/context/program-status.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/context/program-status.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/context/session-tabs-model.ts",
+    "target": "packages/tui/src/context/session-tabs-model.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/context/session-tabs-model.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/context/session-tabs.tsx",
+    "target": "packages/tui/src/context/session-tabs.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/context/session-tabs.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/context/theme.tsx",
+    "target": "packages/tui/src/context/theme.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/context/theme.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/editor.ts",
+    "target": "packages/tui/src/editor.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/editor.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/home/footer.tsx",
+    "target": "packages/tui/src/feature-plugins/home/footer.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/home/footer.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/prompt/btw.tsx",
+    "target": "packages/tui/src/feature-plugins/prompt/btw.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/prompt/btw.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/sidebar/context.tsx",
+    "target": "packages/tui/src/feature-plugins/sidebar/context.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/sidebar/context.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/sidebar/mcp.tsx",
+    "target": "packages/tui/src/feature-plugins/sidebar/mcp.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/sidebar/mcp.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/sidebar/todo.tsx",
+    "target": "packages/tui/src/feature-plugins/sidebar/todo.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/sidebar/todo.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/diff-viewer-file-menu.tsx",
+    "target": "packages/tui/src/feature-plugins/system/diff-viewer-file-menu.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/diff-viewer-file-menu.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/diff-viewer-file-tree.tsx",
+    "target": "packages/tui/src/feature-plugins/system/diff-viewer-file-tree.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/diff-viewer-file-tree.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/diff-viewer-image.tsx",
+    "target": "packages/tui/src/feature-plugins/system/diff-viewer-image.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/diff-viewer-image.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/diff-viewer.tsx",
+    "target": "packages/tui/src/feature-plugins/system/diff-viewer.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/diff-viewer.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/notifications.ts",
+    "target": "packages/tui/src/feature-plugins/system/notifications.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/notifications.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/plugins.tsx",
+    "target": "packages/tui/src/feature-plugins/system/plugins.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/plugins.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/stats-data.ts",
+    "target": "packages/tui/src/feature-plugins/system/stats-data.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/stats-data.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/feature-plugins/system/stats.tsx",
+    "target": "packages/tui/src/feature-plugins/system/stats.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/feature-plugins/system/stats.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/demo.ts",
+    "target": "packages/tui/src/mini/demo.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/demo.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/entry.body.ts",
+    "target": "packages/tui/src/mini/entry.body.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/entry.body.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.command.tsx",
+    "target": "packages/tui/src/mini/footer.command.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.command.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.form.tsx",
+    "target": "packages/tui/src/mini/footer.form.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.form.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.menu.tsx",
+    "target": "packages/tui/src/mini/footer.menu.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.menu.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.subagent.tsx",
+    "target": "packages/tui/src/mini/footer.subagent.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.subagent.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.ts",
+    "target": "packages/tui/src/mini/footer.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/footer.view.tsx",
+    "target": "packages/tui/src/mini/footer.view.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/footer.view.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/form.shared.ts",
+    "target": "packages/tui/src/mini/form.shared.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/form.shared.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/runtime.ts",
+    "target": "packages/tui/src/mini/runtime.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/runtime.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/scrollback.writer.tsx",
+    "target": "packages/tui/src/mini/scrollback.writer.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/scrollback.writer.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/stream-v2.subagent.ts",
+    "target": "packages/tui/src/mini/stream-v2.subagent.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/stream-v2.subagent.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/stream-v2.transport.ts",
+    "target": "packages/tui/src/mini/stream-v2.transport.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/stream-v2.transport.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/mini/tool.ts",
+    "target": "packages/tui/src/mini/tool.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/mini/tool.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/plugin/api.tsx",
+    "target": "packages/tui/src/plugin/api.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/plugin/api.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/plugin/context.tsx",
+    "target": "packages/tui/src/plugin/context.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/plugin/context.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/plugin/render.tsx",
+    "target": "packages/tui/src/plugin/render.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/plugin/render.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/home.tsx",
+    "target": "packages/tui/src/routes/home.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/home.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/activity-summary.ts",
+    "target": "packages/tui/src/routes/session/activity-summary.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/activity-summary.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/composer/index.tsx",
+    "target": "packages/tui/src/routes/session/composer/index.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/composer/index.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/composer/shell-tab.tsx",
+    "target": "packages/tui/src/routes/session/composer/shell-tab.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/composer/shell-tab.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/composer/subagents-tab.tsx",
+    "target": "packages/tui/src/routes/session/composer/subagents-tab.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/composer/subagents-tab.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/composer/terminals-tab.tsx",
+    "target": "packages/tui/src/routes/session/composer/terminals-tab.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/composer/terminals-tab.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/dialog-execute.tsx",
+    "target": "packages/tui/src/routes/session/dialog-execute.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/dialog-execute.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/dialog-fork.tsx",
+    "target": "packages/tui/src/routes/session/dialog-fork.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/dialog-fork.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/dialog-message.tsx",
+    "target": "packages/tui/src/routes/session/dialog-message.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/dialog-message.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/dialog-timeline.tsx",
+    "target": "packages/tui/src/routes/session/dialog-timeline.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/dialog-timeline.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/form.tsx",
+    "target": "packages/tui/src/routes/session/form.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/form.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/group-view.tsx",
+    "target": "packages/tui/src/routes/session/group-view.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/group-view.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/routes/session/location-missing.tsx",
+    "target": "packages/tui/src/routes/session/location-missing.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/routes/session/location-missing.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-alert.tsx",
+    "target": "packages/tui/src/ui/dialog-alert.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-alert.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-confirm.tsx",
+    "target": "packages/tui/src/ui/dialog-confirm.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-confirm.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-export-options.tsx",
+    "target": "packages/tui/src/ui/dialog-export-options.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-export-options.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-export-result.tsx",
+    "target": "packages/tui/src/ui/dialog-export-result.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-export-result.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-help.tsx",
+    "target": "packages/tui/src/ui/dialog-help.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-help.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-prompt.tsx",
+    "target": "packages/tui/src/ui/dialog-prompt.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-prompt.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog-select.tsx",
+    "target": "packages/tui/src/ui/dialog-select.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog-select.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/dialog.tsx",
+    "target": "packages/tui/src/ui/dialog.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/dialog.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/toast.tsx",
+    "target": "packages/tui/src/ui/toast.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/toast.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/ui/working-directory-actions.tsx",
+    "target": "packages/tui/src/ui/working-directory-actions.tsx",
+    "purpose": "Copia del código adaptado: packages/tui/src/ui/working-directory-actions.tsx"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/form.ts",
+    "target": "packages/tui/src/util/form.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/form.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/locale.ts",
+    "target": "packages/tui/src/util/locale.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/locale.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/model.ts",
+    "target": "packages/tui/src/util/model.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/model.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/permission.ts",
+    "target": "packages/tui/src/util/permission.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/permission.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/presentation.ts",
+    "target": "packages/tui/src/util/presentation.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/presentation.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/selection.ts",
+    "target": "packages/tui/src/util/selection.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/selection.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/spanish.ts",
+    "target": "packages/tui/src/util/spanish.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/spanish.ts"
+  },
+  {
+    "source": "capri/upstream/tui/src/util/tool-display.ts",
+    "target": "packages/tui/src/util/tool-display.ts",
+    "purpose": "Copia del código adaptado: packages/tui/src/util/tool-display.ts"
+  },
+  {
+    "source": "capri/upstream/tui/test/clear-session.test.tsx",
+    "target": "packages/tui/test/clear-session.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/cmd/tui/integration-options.test.ts",
+    "target": "packages/tui/test/cli/cmd/tui/integration-options.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/cmd/tui/model-options.test.ts",
+    "target": "packages/tui/test/cli/cmd/tui/model-options.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/cmd/tui/notifications.test.ts",
+    "target": "packages/tui/test/cli/cmd/tui/notifications.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/__snapshots__/inline-tool-wrap-snapshot.test.tsx.snap",
+    "target": "packages/tui/test/cli/tui/__snapshots__/inline-tool-wrap-snapshot.test.tsx.snap",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/anchors.test.ts",
+    "target": "packages/tui/test/cli/tui/anchors.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/collapse-tool-output.test.ts",
+    "target": "packages/tui/test/cli/tui/collapse-tool-output.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/command-palette.test.tsx",
+    "target": "packages/tui/test/cli/tui/command-palette.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/composer-keymap.test.tsx",
+    "target": "packages/tui/test/cli/tui/composer-keymap.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/data.test.tsx",
+    "target": "packages/tui/test/cli/tui/data.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-integration.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-integration.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-mcp.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-mcp.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-open.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-open.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-prompt.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-prompt.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-select.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-select.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/dialog-session-list.test.tsx",
+    "target": "packages/tui/test/cli/tui/dialog-session-list.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/diff-viewer-file-tree.test.tsx",
+    "target": "packages/tui/test/cli/tui/diff-viewer-file-tree.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/diff-viewer-image.test.tsx",
+    "target": "packages/tui/test/cli/tui/diff-viewer-image.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/diff-viewer.test.tsx",
+    "target": "packages/tui/test/cli/tui/diff-viewer.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/form.test.tsx",
+    "target": "packages/tui/test/cli/tui/form.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/group-boundary.test.ts",
+    "target": "packages/tui/test/cli/tui/group-boundary.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/grouping-tree.test.ts",
+    "target": "packages/tui/test/cli/tui/grouping-tree.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/inline-tool-wrap-snapshot.test.tsx",
+    "target": "packages/tui/test/cli/tui/inline-tool-wrap-snapshot.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/input-scope.test.tsx",
+    "target": "packages/tui/test/cli/tui/input-scope.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/keymap-arguments.test.tsx",
+    "target": "packages/tui/test/cli/tui/keymap-arguments.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/message-navigation.test.ts",
+    "target": "packages/tui/test/cli/tui/message-navigation.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/mount-budget.test.ts",
+    "target": "packages/tui/test/cli/tui/mount-budget.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/permission.test.ts",
+    "target": "packages/tui/test/cli/tui/permission.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/plugins-dialog.test.tsx",
+    "target": "packages/tui/test/cli/tui/plugins-dialog.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/prompt-interrupt-status.test.tsx",
+    "target": "packages/tui/test/cli/tui/prompt-interrupt-status.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/prompt-move.test.tsx",
+    "target": "packages/tui/test/cli/tui/prompt-move.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/session-grouping.test.ts",
+    "target": "packages/tui/test/cli/tui/session-grouping.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/session-history.test.ts",
+    "target": "packages/tui/test/cli/tui/session-history.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/session-rows.test.ts",
+    "target": "packages/tui/test/cli/tui/session-rows.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/session-verbosity.test.ts",
+    "target": "packages/tui/test/cli/tui/session-verbosity.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/theme-mode.test.tsx",
+    "target": "packages/tui/test/cli/tui/theme-mode.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/thinking.test.ts",
+    "target": "packages/tui/test/cli/tui/thinking.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/toast.test.tsx",
+    "target": "packages/tui/test/cli/tui/toast.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/cli/tui/use-event.test.tsx",
+    "target": "packages/tui/test/cli/tui/use-event.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/client-mcp.test.tsx",
+    "target": "packages/tui/test/client-mcp.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/clipboard.test.ts",
+    "target": "packages/tui/test/clipboard.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/completion-notices.test.tsx",
+    "target": "packages/tui/test/completion-notices.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-error-details.test.tsx",
+    "target": "packages/tui/test/component/dialog-error-details.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-export-options.test.tsx",
+    "target": "packages/tui/test/component/dialog-export-options.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-highlights.test.tsx",
+    "target": "packages/tui/test/component/dialog-highlights.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-shell-output.test.tsx",
+    "target": "packages/tui/test/component/dialog-shell-output.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-update.test.tsx",
+    "target": "packages/tui/test/component/dialog-update.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/dialog-variant.test.tsx",
+    "target": "packages/tui/test/component/dialog-variant.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/go-upsell-art.test.tsx",
+    "target": "packages/tui/test/component/go-upsell-art.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/retry-provider.test.tsx",
+    "target": "packages/tui/test/component/retry-provider.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/session-tabs-marquee.test.ts",
+    "target": "packages/tui/test/component/session-tabs-marquee.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/session-tabs-mouse.test.tsx",
+    "target": "packages/tui/test/component/session-tabs-mouse.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/session-tabs-rail.test.tsx",
+    "target": "packages/tui/test/component/session-tabs-rail.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/session-tabs-status.test.tsx",
+    "target": "packages/tui/test/component/session-tabs-status.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/shimmer-text.test.tsx",
+    "target": "packages/tui/test/component/shimmer-text.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/spinner-renderable.test.tsx",
+    "target": "packages/tui/test/component/spinner-renderable.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/tab-pulse.test.tsx",
+    "target": "packages/tui/test/component/tab-pulse.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/component/terminal-pane-theme.test.ts",
+    "target": "packages/tui/test/component/terminal-pane-theme.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/config-v2.test.tsx",
+    "target": "packages/tui/test/config-v2.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/config.test.tsx",
+    "target": "packages/tui/test/config.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/local-selection.test.tsx",
+    "target": "packages/tui/test/context/local-selection.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/local.test.ts",
+    "target": "packages/tui/test/context/local.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/program-status.test.ts",
+    "target": "packages/tui/test/context/program-status.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/session-retention.test.ts",
+    "target": "packages/tui/test/context/session-retention.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/session-tabs-model.test.ts",
+    "target": "packages/tui/test/context/session-tabs-model.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/session-tabs.test.tsx",
+    "target": "packages/tui/test/context/session-tabs.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/storage.test.ts",
+    "target": "packages/tui/test/context/storage.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/context/theme.test.tsx",
+    "target": "packages/tui/test/context/theme.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/copy-session-id.test.tsx",
+    "target": "packages/tui/test/copy-session-id.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/editor.test.ts",
+    "target": "packages/tui/test/editor.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/feature-plugins/diff-viewer-file-tree-utils.test.ts",
+    "target": "packages/tui/test/feature-plugins/diff-viewer-file-tree-utils.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/feature-plugins/home-footer.test.ts",
+    "target": "packages/tui/test/feature-plugins/home-footer.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/feature-plugins/prompt-footer.test.tsx",
+    "target": "packages/tui/test/feature-plugins/prompt-footer.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/feature-plugins/sidebar-context.test.tsx",
+    "target": "packages/tui/test/feature-plugins/sidebar-context.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/feature-plugins/sidebar-footer.test.tsx",
+    "target": "packages/tui/test/feature-plugins/sidebar-footer.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/highlights.test.ts",
+    "target": "packages/tui/test/highlights.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/interactivity.test.tsx",
+    "target": "packages/tui/test/interactivity.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/keybind.test.ts",
+    "target": "packages/tui/test/keybind.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/keymap-scope.test.tsx",
+    "target": "packages/tui/test/keymap-scope.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/keymap.test.tsx",
+    "target": "packages/tui/test/keymap.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/localization.test.tsx",
+    "target": "packages/tui/test/localization.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/markdown-streaming.test.tsx",
+    "target": "packages/tui/test/markdown-streaming.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/blocker.responsive.test.tsx",
+    "target": "packages/tui/test/mini/blocker.responsive.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/catalog.shared.test.ts",
+    "target": "packages/tui/test/mini/catalog.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/entry.body.test.ts",
+    "target": "packages/tui/test/mini/entry.body.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer-keymap.test.tsx",
+    "target": "packages/tui/test/mini/footer-keymap.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer.menu.test.ts",
+    "target": "packages/tui/test/mini/footer.menu.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer.responsive.test.tsx",
+    "target": "packages/tui/test/mini/footer.responsive.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer.test.ts",
+    "target": "packages/tui/test/mini/footer.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer.view.test.tsx",
+    "target": "packages/tui/test/mini/footer.view.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/footer.width.test.ts",
+    "target": "packages/tui/test/mini/footer.width.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/form.shared.test.ts",
+    "target": "packages/tui/test/mini/form.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/permission.shared.test.ts",
+    "target": "packages/tui/test/mini/permission.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/prompt.editor.test.ts",
+    "target": "packages/tui/test/mini/prompt.editor.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/prompt.shared.test.ts",
+    "target": "packages/tui/test/mini/prompt.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/runtime.boot.test.ts",
+    "target": "packages/tui/test/mini/runtime.boot.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/runtime.queue.test.ts",
+    "target": "packages/tui/test/mini/runtime.queue.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/runtime.test.ts",
+    "target": "packages/tui/test/mini/runtime.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/scrollback.image.test.ts",
+    "target": "packages/tui/test/mini/scrollback.image.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/scrollback.surface.test.ts",
+    "target": "packages/tui/test/mini/scrollback.surface.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/session.shared.test.ts",
+    "target": "packages/tui/test/mini/session.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/splash.test.ts",
+    "target": "packages/tui/test/mini/splash.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/stream-v2.transport.test.ts",
+    "target": "packages/tui/test/mini/stream-v2.transport.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/stream.test.ts",
+    "target": "packages/tui/test/mini/stream.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/theme.test.ts",
+    "target": "packages/tui/test/mini/theme.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/tool.test.ts",
+    "target": "packages/tui/test/mini/tool.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/variant.shared.test.ts",
+    "target": "packages/tui/test/mini/variant.shared.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/mini/verbosity.test.ts",
+    "target": "packages/tui/test/mini/verbosity.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/model-preference.test.ts",
+    "target": "packages/tui/test/model-preference.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/new-session-location.test.ts",
+    "target": "packages/tui/test/new-session-location.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/panel.test.ts",
+    "target": "packages/tui/test/panel.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-discovery.test.ts",
+    "target": "packages/tui/test/plugin-discovery.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-keymap.test.tsx",
+    "target": "packages/tui/test/plugin-keymap.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-markdown.test.tsx",
+    "target": "packages/tui/test/plugin-markdown.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-model.test.tsx",
+    "target": "packages/tui/test/plugin-model.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-native-resources.test.tsx",
+    "target": "packages/tui/test/plugin-native-resources.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-select.test.tsx",
+    "target": "packages/tui/test/plugin-select.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-source.test.ts",
+    "target": "packages/tui/test/plugin-source.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/plugin-toast.test.tsx",
+    "target": "packages/tui/test/plugin-toast.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt-offset.test.tsx",
+    "target": "packages/tui/test/prompt-offset.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt-paste.test.tsx",
+    "target": "packages/tui/test/prompt-paste.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/attachment.test.ts",
+    "target": "packages/tui/test/prompt/attachment.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/autocomplete.test.ts",
+    "target": "packages/tui/test/prompt/autocomplete.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/codec.test.ts",
+    "target": "packages/tui/test/prompt/codec.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/display.test.ts",
+    "target": "packages/tui/test/prompt/display.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/draft-stash.test.ts",
+    "target": "packages/tui/test/prompt/draft-stash.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/history-provider.test.tsx",
+    "target": "packages/tui/test/prompt/history-provider.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/history.test.ts",
+    "target": "packages/tui/test/prompt/history.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/jsonl.test.ts",
+    "target": "packages/tui/test/prompt/jsonl.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/local-attachment.test.ts",
+    "target": "packages/tui/test/prompt/local-attachment.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/mention.test.ts",
+    "target": "packages/tui/test/prompt/mention.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/parse.test.ts",
+    "target": "packages/tui/test/prompt/parse.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/part.test.ts",
+    "target": "packages/tui/test/prompt/part.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/persistence.test.ts",
+    "target": "packages/tui/test/prompt/persistence.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/prompt/traits.test.ts",
+    "target": "packages/tui/test/prompt/traits.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/runtime.test.tsx",
+    "target": "packages/tui/test/runtime.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-dialog-resync.test.tsx",
+    "target": "packages/tui/test/session-dialog-resync.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-fork-pending.test.tsx",
+    "target": "packages/tui/test/session-fork-pending.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-home.test.tsx",
+    "target": "packages/tui/test/session-home.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-mount-budget.test.tsx",
+    "target": "packages/tui/test/session-mount-budget.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-terminal-availability.test.tsx",
+    "target": "packages/tui/test/session-terminal-availability.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/session-wheel-focus.test.tsx",
+    "target": "packages/tui/test/session-wheel-focus.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/simulation/semantics.test.ts",
+    "target": "packages/tui/test/simulation/semantics.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/stats.test.ts",
+    "target": "packages/tui/test/stats.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/stats.view.test.tsx",
+    "target": "packages/tui/test/stats.view.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/theme.test.ts",
+    "target": "packages/tui/test/theme.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/theme/v2/component.test.ts",
+    "target": "packages/tui/test/theme/v2/component.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/theme/v2/resolve.test.ts",
+    "target": "packages/tui/test/theme/v2/resolve.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/theme/v2/select.test.ts",
+    "target": "packages/tui/test/theme/v2/select.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/theme/v2/v1-migrate.test.ts",
+    "target": "packages/tui/test/theme/v2/v1-migrate.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/file-path.test.ts",
+    "target": "packages/tui/test/ui/file-path.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/layout.test.ts",
+    "target": "packages/tui/test/ui/layout.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/link.test.tsx",
+    "target": "packages/tui/test/ui/link.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/pane-resize-handle.test.tsx",
+    "target": "packages/tui/test/ui/pane-resize-handle.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/pane-resize.test.ts",
+    "target": "packages/tui/test/ui/pane-resize.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/ui/select-controller.test.ts",
+    "target": "packages/tui/test/ui/select-controller.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/added-patch.test.ts",
+    "target": "packages/tui/test/util/added-patch.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/connected-provider.test.ts",
+    "target": "packages/tui/test/util/connected-provider.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/delayed-presence.test.ts",
+    "target": "packages/tui/test/util/delayed-presence.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/error-details.test.ts",
+    "target": "packages/tui/test/util/error-details.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/error.test.ts",
+    "target": "packages/tui/test/util/error.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/filetype.test.ts",
+    "target": "packages/tui/test/util/filetype.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/form.test.ts",
+    "target": "packages/tui/test/util/form.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/locale.test.ts",
+    "target": "packages/tui/test/util/locale.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/marquee.test.ts",
+    "target": "packages/tui/test/util/marquee.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/model.test.ts",
+    "target": "packages/tui/test/util/model.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/path-format.test.ts",
+    "target": "packages/tui/test/util/path-format.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/permission.test.ts",
+    "target": "packages/tui/test/util/permission.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/presentation.test.ts",
+    "target": "packages/tui/test/util/presentation.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/renderer.test.ts",
+    "target": "packages/tui/test/util/renderer.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/selection-copy-on-select.test.tsx",
+    "target": "packages/tui/test/util/selection-copy-on-select.test.tsx",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/selection-keys.test.ts",
+    "target": "packages/tui/test/util/selection-keys.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/selection.test.ts",
+    "target": "packages/tui/test/util/selection.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/session.test.ts",
+    "target": "packages/tui/test/util/session.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/tui/test/util/tool-display.test.ts",
+    "target": "packages/tui/test/util/tool-display.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/vendor/ui/LICENSE",
+    "target": "packages/ui/LICENSE",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/package.json",
+    "target": "packages/ui/package.json",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-01.aac",
+    "target": "packages/ui/src/assets/audio/alert-01.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-01.mp3",
+    "target": "packages/ui/src/assets/audio/alert-01.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-02.aac",
+    "target": "packages/ui/src/assets/audio/alert-02.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-02.mp3",
+    "target": "packages/ui/src/assets/audio/alert-02.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-03.aac",
+    "target": "packages/ui/src/assets/audio/alert-03.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-03.mp3",
+    "target": "packages/ui/src/assets/audio/alert-03.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-04.aac",
+    "target": "packages/ui/src/assets/audio/alert-04.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-04.mp3",
+    "target": "packages/ui/src/assets/audio/alert-04.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-05.aac",
+    "target": "packages/ui/src/assets/audio/alert-05.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-05.mp3",
+    "target": "packages/ui/src/assets/audio/alert-05.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-06.aac",
+    "target": "packages/ui/src/assets/audio/alert-06.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-06.mp3",
+    "target": "packages/ui/src/assets/audio/alert-06.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-07.aac",
+    "target": "packages/ui/src/assets/audio/alert-07.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-07.mp3",
+    "target": "packages/ui/src/assets/audio/alert-07.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-08.aac",
+    "target": "packages/ui/src/assets/audio/alert-08.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-08.mp3",
+    "target": "packages/ui/src/assets/audio/alert-08.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-09.aac",
+    "target": "packages/ui/src/assets/audio/alert-09.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-09.mp3",
+    "target": "packages/ui/src/assets/audio/alert-09.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-10.aac",
+    "target": "packages/ui/src/assets/audio/alert-10.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/alert-10.mp3",
+    "target": "packages/ui/src/assets/audio/alert-10.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-01.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-01.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-01.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-01.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-02.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-02.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-02.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-02.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-03.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-03.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-03.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-03.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-04.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-04.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-04.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-04.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-05.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-05.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-05.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-05.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-06.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-06.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-06.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-06.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-07.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-07.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-07.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-07.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-08.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-08.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-08.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-08.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-09.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-09.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-09.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-09.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-10.aac",
+    "target": "packages/ui/src/assets/audio/bip-bop-10.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/bip-bop-10.mp3",
+    "target": "packages/ui/src/assets/audio/bip-bop-10.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-01.aac",
+    "target": "packages/ui/src/assets/audio/nope-01.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-01.mp3",
+    "target": "packages/ui/src/assets/audio/nope-01.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-02.aac",
+    "target": "packages/ui/src/assets/audio/nope-02.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-02.mp3",
+    "target": "packages/ui/src/assets/audio/nope-02.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-03.aac",
+    "target": "packages/ui/src/assets/audio/nope-03.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-03.mp3",
+    "target": "packages/ui/src/assets/audio/nope-03.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-04.aac",
+    "target": "packages/ui/src/assets/audio/nope-04.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-04.mp3",
+    "target": "packages/ui/src/assets/audio/nope-04.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-05.aac",
+    "target": "packages/ui/src/assets/audio/nope-05.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-05.mp3",
+    "target": "packages/ui/src/assets/audio/nope-05.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-06.aac",
+    "target": "packages/ui/src/assets/audio/nope-06.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-06.mp3",
+    "target": "packages/ui/src/assets/audio/nope-06.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-07.aac",
+    "target": "packages/ui/src/assets/audio/nope-07.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-07.mp3",
+    "target": "packages/ui/src/assets/audio/nope-07.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-08.aac",
+    "target": "packages/ui/src/assets/audio/nope-08.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-08.mp3",
+    "target": "packages/ui/src/assets/audio/nope-08.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-09.aac",
+    "target": "packages/ui/src/assets/audio/nope-09.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-09.mp3",
+    "target": "packages/ui/src/assets/audio/nope-09.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-10.aac",
+    "target": "packages/ui/src/assets/audio/nope-10.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-10.mp3",
+    "target": "packages/ui/src/assets/audio/nope-10.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-11.aac",
+    "target": "packages/ui/src/assets/audio/nope-11.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-11.mp3",
+    "target": "packages/ui/src/assets/audio/nope-11.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-12.aac",
+    "target": "packages/ui/src/assets/audio/nope-12.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/nope-12.mp3",
+    "target": "packages/ui/src/assets/audio/nope-12.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-01.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-01.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-01.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-01.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-02.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-02.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-02.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-02.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-03.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-03.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-03.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-03.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-04.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-04.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-04.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-04.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-05.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-05.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-05.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-05.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-06.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-06.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-06.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-06.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-07.aac",
+    "target": "packages/ui/src/assets/audio/staplebops-07.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/staplebops-07.mp3",
+    "target": "packages/ui/src/assets/audio/staplebops-07.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-01.aac",
+    "target": "packages/ui/src/assets/audio/yup-01.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-01.mp3",
+    "target": "packages/ui/src/assets/audio/yup-01.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-02.aac",
+    "target": "packages/ui/src/assets/audio/yup-02.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-02.mp3",
+    "target": "packages/ui/src/assets/audio/yup-02.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-03.aac",
+    "target": "packages/ui/src/assets/audio/yup-03.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-03.mp3",
+    "target": "packages/ui/src/assets/audio/yup-03.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-04.aac",
+    "target": "packages/ui/src/assets/audio/yup-04.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-04.mp3",
+    "target": "packages/ui/src/assets/audio/yup-04.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-05.aac",
+    "target": "packages/ui/src/assets/audio/yup-05.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-05.mp3",
+    "target": "packages/ui/src/assets/audio/yup-05.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-06.aac",
+    "target": "packages/ui/src/assets/audio/yup-06.aac",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/vendor/ui/src/assets/audio/yup-06.mp3",
+    "target": "packages/ui/src/assets/audio/yup-06.mp3",
+    "purpose": "Dependencia recuperada de OpenCode 2.1.4; véase vendor/ORIGEN.md"
+  },
+  {
+    "source": "capri/friendly/config.ts",
+    "target": "packages/cli/src/friendly/config.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/friendly/config.ts"
+  },
+  {
+    "source": "capri/friendly/server.ts",
+    "target": "packages/cli/src/friendly/server.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/friendly/server.ts"
+  },
+  {
+    "source": "capri/friendly/index.html.txt",
+    "target": "packages/cli/src/friendly/index.html.txt",
+    "purpose": "Copia del código adaptado: packages/cli/src/friendly/index.html.txt"
+  },
+  {
+    "source": "capri/friendly/style.css.txt",
+    "target": "packages/cli/src/friendly/style.css.txt",
+    "purpose": "Copia del código adaptado: packages/cli/src/friendly/style.css.txt"
+  },
+  {
+    "source": "capri/friendly/app.js.txt",
+    "target": "packages/cli/src/friendly/app.js.txt",
+    "purpose": "Copia del código adaptado: packages/cli/src/friendly/app.js.txt"
+  },
+  {
+    "source": "capri/friendly/amigable.ts",
+    "target": "packages/cli/src/commands/handlers/amigable.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/commands/handlers/amigable.ts"
+  },
+  {
+    "source": "capri/friendly/friendly.test.ts",
+    "target": "packages/cli/test/friendly.test.ts",
+    "purpose": "Prueba o fixture de comportamiento y textos de terminal"
+  },
+  {
+    "source": "capri/upstream/cli-index.ts",
+    "target": "packages/cli/src/index.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/index.ts"
+  },
+  {
+    "source": "capri/install/Instalar-Capri.cmd",
+    "target": "Instalar-Capri.cmd",
+    "purpose": "Instalador local de la edición española"
+  },
+  {
+    "source": "capri/docs/NOTICE.md",
+    "target": "NOTICE.md",
+    "purpose": "Copia del código adaptado: NOTICE.md"
+  },
+  {
+    "source": "capri/automation/capri-espanol.yml",
+    "target": ".github/workflows/capri-espanol.yml",
+    "purpose": "Copia del código adaptado: .github/workflows/capri-espanol.yml"
+  },
+  {
+    "source": "capri/upstream/cli/src/services/standalone.ts",
+    "target": "packages/cli/src/services/standalone.ts",
+    "purpose": "Copia del código adaptado: packages/cli/src/services/standalone.ts"
+  }
+]

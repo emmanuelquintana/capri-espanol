@@ -177,10 +177,10 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       const minimum = typeof current.minimum === "number" ? current.minimum : undefined
       const maximum = typeof current.maximum === "number" ? current.maximum : undefined
       if (minimum !== undefined && maximum !== undefined) return `${minimum}-${maximum}`
-      if (minimum !== undefined) return `at least ${minimum}`
-      if (maximum !== undefined) return `at most ${maximum}`
+      if (minimum !== undefined) return `al menos ${minimum}`
+      if (maximum !== undefined) return `como máximo ${maximum}`
     }
-    return "Type your answer"
+    return "Escribe tu respuesta"
   })
   const other = createMemo(() => custom() && store.selected === rows().length)
   const input = createMemo(() => store.custom[answerField()?.key ?? ""] ?? "")
@@ -197,7 +197,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
     const external = externalField()
     if (external) {
       if (store.answers[external.key] === true) return "continue"
-      return store.externalReady[external.key] ? "I finished" : "open link"
+      return store.externalReady[external.key] ? "Ya terminé" : "abrir enlace"
     }
     if (multi()) {
       if (other() && store.editing) return "done"
@@ -480,7 +480,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
     setStore("error", "")
     void openUrl(current.url)
       .then(() => setStore("externalReady", { ...store.externalReady, [current.key]: true }))
-      .catch(() => setStore("error", "Could not open the browser. Copy the URL and continue manually."))
+      .catch(() => setStore("error", "No se pudo abrir el navegador. Copia la URL y continúa manualmente."))
   }
 
   function copyExternal() {
@@ -490,7 +490,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       .write(current.url)
       .then(() => {
         setStore("externalReady", { ...store.externalReady, [current.key]: true })
-        toast.show({ message: "Copied URL to clipboard", variant: "info" })
+        toast.show({ message: "URL copiada al portapapeles", variant: "info" })
       })
       .catch(toast.error)
   }
@@ -520,7 +520,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       .filter(isFormAnswerField)
       .find((field) => formValidateValue(field, store.answers[field.key]))
     if (invalid) {
-      setStore("error", formValidateValue(invalid, store.answers[invalid.key]) ?? "Invalid answer")
+      setStore("error", formValidateValue(invalid, store.answers[invalid.key]) ?? "Respuesta no válida")
       return
     }
     reply(
@@ -541,7 +541,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
     commands: [
       {
         id: "prompt.paste",
-        title: "Paste from clipboard",
+        title: "Pegar desde el portapapeles",
         group: "Form",
         run: (_input, event) => {
           event?.preventDefault()
@@ -559,7 +559,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
     commands: [
       {
         id: "prompt.clear",
-        title: "Clear answer edit",
+        title: "Limpiar edición de respuesta",
         group: "Form",
         run() {
           const text = textarea?.plainText ?? ""
@@ -576,7 +576,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       },
       {
         bind: "escape",
-        title: textual() ? "Dismiss form" : "Close answer edit",
+        title: textual() ? "Descartar formulario" : "Cerrar edición de respuesta",
         group: "Form",
         run: () => {
           if (textual()) {
@@ -588,7 +588,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       },
       {
         bind: "tab",
-        title: "Next field",
+        title: "Campo siguiente",
         group: "Form",
         run: () => {
           const text = textarea?.plainText?.trim() ?? ""
@@ -597,7 +597,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       },
       {
         bind: "shift+tab",
-        title: "Previous field",
+        title: "Campo anterior",
         group: "Form",
         run: () => {
           const text = textarea?.plainText?.trim() ?? ""
@@ -606,7 +606,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       },
       {
         bind: "up",
-        title: "Leave answer edit",
+        title: "Salir de la edición de respuesta",
         group: "Form",
         run: () => {
           if (textual() || !textarea || textarea.isDestroyed || store.selected === 0) return false
@@ -617,7 +617,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       },
       {
         bind: "return",
-        title: "Submit answer edit",
+        title: "Enviar respuesta editada",
         group: "Form",
         run: () => {
           const text = textarea?.plainText?.trim() ?? ""
@@ -650,33 +650,33 @@ export function FormPrompt(props: { form: FormWithLocation }) {
       commands: [
         {
           id: "app.exit",
-          title: "Dismiss form",
+          title: "Descartar formulario",
           group: "Form",
           run: cancel,
         },
         {
           bind: "left",
-          title: "Previous field",
+          title: "Campo anterior",
           group: "Form",
           run: () => selectTab((store.tab - 1 + tabs()) % tabs()),
         },
         {
           bind: "h",
-          title: "Previous field",
+          title: "Campo anterior",
           group: "Form",
           run: () => selectTab((store.tab - 1 + tabs()) % tabs()),
         },
-        { bind: "right", title: "Next field", group: "Form", run: () => selectTab((store.tab + 1) % tabs()) },
-        { bind: "l", title: "Next field", group: "Form", run: () => selectTab((store.tab + 1) % tabs()) },
+        { bind: "right", title: "Campo siguiente", group: "Form", run: () => selectTab((store.tab + 1) % tabs()) },
+        { bind: "l", title: "Campo siguiente", group: "Form", run: () => selectTab((store.tab + 1) % tabs()) },
         {
           bind: "tab",
-          title: "Next field",
+          title: "Campo siguiente",
           group: "Form",
           run: () => selectTab((store.tab + 1) % tabs()),
         },
         {
           bind: "shift+tab",
-          title: "Previous field",
+          title: "Campo anterior",
           group: "Form",
           run: () => selectTab((store.tab - 1 + tabs()) % tabs()),
         },
@@ -686,39 +686,39 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                 bind: "return",
                 title:
                   store.answers[external.key] === true
-                    ? "Continue"
+                    ? "Continuar"
                     : store.externalReady[external.key]
-                      ? "Confirm completion"
-                      : "Open link",
+                      ? "Confirmar finalización"
+                      : "Abrir enlace",
                 group: "Form",
                 run: acknowledgeExternal,
               },
-              { bind: "c", title: "Copy link", group: "Form", run: copyExternal },
-              { bind: "escape", title: "Dismiss form", group: "Form", run: cancel },
+              { bind: "c", title: "Copiar enlace", group: "Form", run: copyExternal },
+              { bind: "escape", title: "Descartar formulario", group: "Form", run: cancel },
             ]
           : confirm()
             ? [
                 {
                   bind: "return",
-                  title: "Submit form",
+                  title: "Enviar formulario",
                   group: "Form",
                   run: submit,
                 },
                 {
                   bind: "escape",
-                  title: "Dismiss form",
+                  title: "Descartar formulario",
                   group: "Form",
                   run: cancel,
                 },
-                { bind: "up", title: "Scroll review", group: "Form", run: () => review?.scrollBy(-1) },
-                { bind: "k", title: "Scroll review", group: "Form", run: () => review?.scrollBy(-1) },
-                { bind: "down", title: "Scroll review", group: "Form", run: () => review?.scrollBy(1) },
-                { bind: "j", title: "Scroll review", group: "Form", run: () => review?.scrollBy(1) },
+                { bind: "up", title: "Desplazarse por la revisión", group: "Form", run: () => review?.scrollBy(-1) },
+                { bind: "k", title: "Desplazarse por la revisión", group: "Form", run: () => review?.scrollBy(-1) },
+                { bind: "down", title: "Desplazarse por la revisión", group: "Form", run: () => review?.scrollBy(1) },
+                { bind: "j", title: "Desplazarse por la revisión", group: "Form", run: () => review?.scrollBy(1) },
               ]
             : [
                 ...Array.from({ length: max }, (_, index) => ({
                   bind: String(index + 1),
-                  title: `Select answer ${index + 1}`,
+                  title: `Seleccionar respuesta ${index + 1}`,
                   group: "Form",
                   run: () => {
                     setStore("selected", index)
@@ -727,35 +727,35 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                 })),
                 {
                   bind: "up",
-                  title: "Previous answer",
+                  title: "Respuesta anterior",
                   group: "Form",
                   run: () => setStore("selected", (store.selected - 1 + total) % total),
                 },
                 {
                   bind: "k",
-                  title: "Previous answer",
+                  title: "Respuesta anterior",
                   group: "Form",
                   run: () => setStore("selected", (store.selected - 1 + total) % total),
                 },
                 {
                   bind: "down",
-                  title: "Next answer",
+                  title: "Respuesta siguiente",
                   group: "Form",
                   run: () => setStore("selected", (store.selected + 1) % total),
                 },
                 {
                   bind: "j",
-                  title: "Next answer",
+                  title: "Respuesta siguiente",
                   group: "Form",
                   run: () => setStore("selected", (store.selected + 1) % total),
                 },
-                { bind: "return", title: "Select answer", group: "Form", run: () => selectOption() },
+                { bind: "return", title: "Seleccionar respuesta", group: "Form", run: () => selectOption() },
                 ...(multi()
-                  ? [{ bind: "space", title: "Toggle answer", group: "Form", run: () => selectOption() }]
+                  ? [{ bind: "space", title: "Alternar respuesta", group: "Form", run: () => selectOption() }]
                   : []),
                 {
                   bind: "escape",
-                  title: "Dismiss form",
+                  title: "Descartar formulario",
                   group: "Form",
                   run: cancel,
                 },
@@ -783,11 +783,11 @@ export function FormPrompt(props: { form: FormWithLocation }) {
         <Show when={!single() && !tabbed()}>
           <box flexDirection="row" gap={3} paddingLeft={1}>
             <text fg={theme.text.muted}>
-              {confirm() ? "Review" : `Field ${Math.min(store.tab, fields().length - 1) + 1} of ${fields().length}`}
+              {confirm() ? "Revisar" : `Field ${Math.min(store.tab, fields().length - 1) + 1} of ${fields().length}`}
             </text>
             <Show when={fields().length > 0}>
               <text fg={theme.text.muted}>
-                · {answered()}/{fields().length} completed
+                · {answered()}/{fields().length} completado
               </text>
             </Show>
           </box>
@@ -840,7 +840,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                 }
                 attributes={confirm() ? TextAttributes.BOLD : undefined}
               >
-                Submit
+                Enviar
               </text>
             </box>
           </box>
@@ -870,8 +870,8 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                 {store.answers[external().key] === true
                   ? "✓ Acknowledged"
                   : store.externalReady[external().key]
-                    ? "Complete the external action, then press enter to confirm."
-                    : "Open or copy the URL, complete the external action, then confirm."}
+                    ? "Completa la acción externa y pulsa enter para confirmar."
+                    : "Abre o copia la URL, completa la acción externa y confirma."}
               </text>
             </box>
           )}
@@ -1015,7 +1015,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                           fallback={
                             <>
                               <text fg={other() ? theme.text.formfield.focused : theme.text.formfield.base}>
-                                {input() || "Type your own answer"}
+                                {input() || "Escribe tu respuesta"}
                               </text>
                               <Show when={!multi() && customPicked()}>
                                 <text fg={theme.text.formfield.selected}>✓</text>
@@ -1037,7 +1037,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                               })
                             }}
                             initialValue={input()}
-                            placeholder="Type your own answer"
+                            placeholder="Escribe tu respuesta"
                             placeholderColor={theme.text.muted}
                             minHeight={1}
                             maxHeight={6}
@@ -1087,7 +1087,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                                 : theme.text.feedback.error.base,
                             }}
                           >
-                            {acknowledged() ? "Acknowledged" : "(acknowledgement required)"}
+                            {acknowledged() ? "Acknowledged" : "(se requiere confirmación)"}
                           </span>
                         </text>
                       </box>
@@ -1111,7 +1111,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
                                   : theme.text.muted,
                           }}
                         >
-                          {invalid() ?? (answered() ? value() : missing() ? "(required)" : "(not answered)")}
+                          {invalid() ?? (answered() ? value() : missing() ? "(required)" : "(sin responder)")}
                         </span>
                       </text>
                     </box>
@@ -1139,12 +1139,12 @@ export function FormPrompt(props: { form: FormWithLocation }) {
           </Show>
           <Show when={!confirm() && !textual() && !externalField() && !store.editing}>
             <text fg={theme.text.base}>
-              {"↑↓"} <span style={{ fg: theme.text.muted }}>select</span>
+              {"↑↓"} <span style={{ fg: theme.text.muted }}>seleccionar</span>
             </text>
           </Show>
           <Show when={confirm() && reviewContentHeight() > reviewMaxHeight()}>
             <text fg={theme.text.base}>
-              {"↑↓"} <span style={{ fg: theme.text.muted }}>scroll</span>
+              {"↑↓"} <span style={{ fg: theme.text.muted }}>desplazamiento</span>
             </text>
           </Show>
           <text
@@ -1159,7 +1159,7 @@ export function FormPrompt(props: { form: FormWithLocation }) {
           </text>
           <Show when={externalField()}>
             <text fg={theme.text.base} onMouseUp={copyExternal}>
-              c <span style={{ fg: theme.text.muted }}>copy</span>
+              c <span style={{ fg: theme.text.muted }}>copiar</span>
             </text>
           </Show>
           <text fg={theme.text.base} onMouseUp={cancel}>

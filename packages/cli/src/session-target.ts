@@ -104,7 +104,7 @@ async function selectSession(input: {
 }) {
   const explicit = input.session ? await findSession(input.client, input.session, input.signal) : undefined
   if (input.session && !explicit) {
-    if (input.fork) throw new Error("Session not found")
+    if (input.fork) throw new Error("No se encontró la sesión")
     return { session: undefined }
   }
   if (explicit)

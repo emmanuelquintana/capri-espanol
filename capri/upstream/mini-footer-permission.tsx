@@ -111,7 +111,7 @@ export function RejectField(props: {
       minHeight={1}
       maxHeight={3}
       wrapMode="word"
-      placeholder="Tell Capri what to do differently"
+      placeholder="Dile a Capri qué debe hacer de otra manera"
       placeholderColor={props.theme.muted}
       textColor={props.theme.formfieldText}
       focusedTextColor={props.theme.formfieldFocusedText}
@@ -171,19 +171,19 @@ export function RunPermissionBody(props: {
   const controlsWidth = () => opts().reduce((total, option) => total + stringWidth(permissionLabel(option)) + 3, -1)
   const hint = () =>
     compact() && width() < 56
-      ? "pgup/pgdn scroll"
-      : `${props.mono ? "left/right" : "⇆"} select  enter confirm  esc ${stage() === "always" ? "cancel" : "reject"}`
+      ? "pgup/pgdn mover"
+      : `${props.mono ? "←/→" : "⇆"} elegir  enter confirmar  esc ${stage() === "always" ? "cancelar" : "rechazar"}`
   const inlineControls = () => controlsWidth() + stringWidth(hint()) + 1 <= width() - (compact() ? 0 : 5)
   const title = createMemo(() => {
     if (stage() === "always") {
-      return "Always allow"
+      return "Siempre"
     }
 
     if (stage() === "reject") {
-      return width() < 24 ? "Reject" : "Reject permission"
+      return width() < 24 ? "Rechazar" : "Rechazar permiso"
     }
 
-    return width() < 24 ? "Permission" : "Permission required"
+    return width() < 24 ? "Permiso" : "Se requiere permiso"
   })
 
   createEffect(() => {
@@ -323,7 +323,7 @@ export function RunPermissionBody(props: {
           {title()}
         </text>
         <Show when={!compact() && stage() === "reject"}>
-          <text fg={props.theme.muted}>Tell Capri what to do differently</text>
+          <text fg={props.theme.muted}>Dile a Capri qué debe hacer de otra manera</text>
         </Show>
       </box>
 
@@ -362,16 +362,16 @@ export function RunPermissionBody(props: {
                 when={!busy()}
                 fallback={
                   <text fg={props.theme.running} height={1} wrapMode="none" truncate flexShrink={0}>
-                    {compact() ? "Waiting…" : "Waiting for permission event…"}
+                    {compact() ? "Esperando…" : "Esperando solicitud de permiso…"}
                   </text>
                 }
               >
                 <box flexDirection="row" flexWrap="wrap" columnGap={compact() ? 1 : 2} flexShrink={0}>
                   <text fg={props.theme.text} height={1} wrapMode="none" flexShrink={0}>
-                    enter <span style={{ fg: props.theme.muted }}>{compact() ? "reject" : "confirm"}</span>
+                    enter <span style={{ fg: props.theme.muted }}>{compact() ? "rechazar" : "confirmar"}</span>
                   </text>
                   <text fg={props.theme.text} height={1} wrapMode="none" flexShrink={0}>
-                    esc <span style={{ fg: props.theme.muted }}>{compact() ? "back" : "cancel"}</span>
+                    esc <span style={{ fg: props.theme.muted }}>{compact() ? "volver" : "cancelar"}</span>
                   </text>
                 </box>
               </Show>
@@ -486,7 +486,7 @@ export function RunPermissionBody(props: {
                   </Show>
                   <Show when={!info().diff && !info().patch && info().lines.length === 0}>
                     <text width="100%" fg={props.theme.muted} flexShrink={0}>
-                      No diff provided
+                      No se proporcionaron diferencias
                     </text>
                   </Show>
                 </box>
@@ -535,7 +535,7 @@ export function RunPermissionBody(props: {
             when={!busy()}
             fallback={
               <text fg={props.theme.running} height={1} wrapMode="none" truncate flexShrink={0}>
-                {compact() ? "Waiting…" : "Waiting for permission event…"}
+                {compact() ? "Esperando…" : "Esperando solicitud de permiso…"}
               </text>
             }
           >
@@ -545,13 +545,13 @@ export function RunPermissionBody(props: {
                 fallback={
                   <>
                     {props.mono ? "left/right" : "⇆"}
-                    <span style={{ fg: props.theme.muted }}>{" select  "}</span>
-                    enter<span style={{ fg: props.theme.muted }}>{" confirm  "}</span>
-                    esc<span style={{ fg: props.theme.muted }}> {stage() === "always" ? "cancel" : "reject"}</span>
+                    <span style={{ fg: props.theme.muted }}>{" elegir  "}</span>
+                    enter<span style={{ fg: props.theme.muted }}>{" confirmar  "}</span>
+                    esc<span style={{ fg: props.theme.muted }}> {stage() === "always" ? "cancelar" : "rechazar"}</span>
                   </>
                 }
               >
-                pgup/pgdn<span style={{ fg: props.theme.muted }}> scroll</span>
+                pgup/pgdn<span style={{ fg: props.theme.muted }}> desplazamiento</span>
               </Show>
             </text>
           </Show>

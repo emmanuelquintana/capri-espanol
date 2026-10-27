@@ -5,10 +5,10 @@ import { $$refresh } from "../dev/refresh"
 
 test("re-evaluated dependencies retain their mounted context before any HMR accept callback", () => {
   const previous = $$registry()
-  const mounted = $$context(previous, "Context", createContext("old default"))
+  const mounted = $$context(previous, "Contexto", createContext("old default"))
   const next = $$registry()
-  const updated = $$context(next, "Context", createContext("new default"))
-  const unrelated = $$context($$registry(), "Context", createContext("unrelated"))
+  const updated = $$context(next, "Contexto", createContext("new default"))
+  const unrelated = $$context($$registry(), "Contexto", createContext("unrelated"))
   let accepted = false
   $$refresh(
     "vite",

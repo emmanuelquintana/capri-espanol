@@ -43,7 +43,7 @@ describe("prompt display", () => {
       "中文@",
       "🙂@",
       "foo@bar.com",
-      "中文 @src file",
+      "中文 @src archivo",
       "\0@x",
       "Review /api design",
       "Review /tmp/file.ts",

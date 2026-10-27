@@ -24,19 +24,19 @@ export function DialogMessage(props: {
 
   return (
     <DialogSelect
-      title="Message Actions"
+      title="Acciones del mensaje"
       renderFilter={!newDesigns()}
       options={[
         {
-          title: "Jump to",
+          title: "Ir a",
           value: "message.jump",
-          description: "view message in session",
+          description: "ver mensaje en la sesión",
           onSelect: (dialog) => dialog.clear(),
         },
         {
-          title: "Revert",
+          title: "Revertir",
           value: "session.revert",
-          description: "undo messages and file changes",
+          description: "deshacer mensajes y cambios en archivos",
           onSelect: (dialog) => {
             const value = message()
             if (value?.type === "user") {
@@ -52,9 +52,9 @@ export function DialogMessage(props: {
           },
         },
         {
-          title: "Copy",
+          title: "Copiar",
           value: "message.copy",
-          description: "message text to clipboard",
+          description: "copiar texto del mensaje",
           onSelect: async (dialog) => {
             const value = message()
             if (!value) return
@@ -78,9 +78,9 @@ export function DialogMessage(props: {
           },
         },
         {
-          title: "Fork",
+          title: "Bifurcar",
           value: "session.fork",
-          description: "create a new session",
+          description: "crear una sesión",
           onSelect: (dialog) => {
             const value = message()
             if (!value || value.type !== "user") return

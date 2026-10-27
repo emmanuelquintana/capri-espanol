@@ -243,7 +243,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     if (contextUsage()) details.push(contextUsage())
     if (cost()) details.push(cost())
     if (queuedPrompts().length > 0) details.push(`${queuedPrompts().length} pending`)
-    if (activeTabs().length > 0) details.push(`${activeTabs().length} subagent${activeTabs().length === 1 ? "" : "s"}`)
+    if (activeTabs().length > 0) details.push(`${activeTabs().length} subagente${activeTabs().length === 1 ? "" : "s"}`)
     return details.join(props.mono ? " - " : " · ")
   })
   const permission = createMemo<Extract<FooterView, { type: "permission" }> | undefined>(() => {
@@ -331,7 +331,7 @@ export function RunFooterView(props: RunFooterViewProps) {
       )
       if (!error) return true
       props.onStatus(
-        `failed to ${failureLabel ?? (action === "cancel" ? "delete" : action)} pending prompt: ${errorMessage(error)}`,
+        `no se pudo ${failureLabel ?? (action === "cancel" ? "delete" : action)} pending prompt: ${errorMessage(error)}`,
       )
       return false
     })
@@ -401,9 +401,9 @@ export function RunFooterView(props: RunFooterViewProps) {
     if (exiting() || (busy() && armed())) {
       const key = exiting() ? clearShortcut() : interruptLabel()
       const action = exiting() ? "exit" : "stop"
-      if (!key) return exiting() ? "Exit pending" : "Stop pending"
+      if (!key) return exiting() ? "Salida pendiente" : "Detención pendiente"
       const phrases = [
-        `Press ${key} again to ${exiting() ? "exit" : "interrupt"}`,
+        `Pulsa ${key} again to ${exiting() ? "exit" : "interrupt"}`,
         `${key} again to ${exiting() ? "exit" : "interrupt"}`,
         `${key} again: ${action}`,
         `${key} ${action}`,
@@ -412,12 +412,12 @@ export function RunFooterView(props: RunFooterViewProps) {
     }
 
     if (notice()) return notice()
-    if (!footerDetails()) return shell() ? "Shell" : ""
+    if (!footerDetails()) return shell() ? "Terminal" : ""
     if (busy()) {
       if (stateStatus() === "reconnecting") return "reconnecting"
       return interruptLabel() ? `${interruptLabel()} stop` : "Running"
     }
-    return stateStatus() || (shell() ? "Shell" : "")
+    return stateStatus() || (shell() ? "Terminal" : "")
   })
   const agentStatus = createMemo(() => {
     if (!footerDetails() || !prompt() || shell()) return undefined
@@ -462,7 +462,7 @@ export function RunFooterView(props: RunFooterViewProps) {
         id: "subagents",
         key: subagentShortcut(),
         label: `${activeTabs().length} sub`,
-        expanded: `${activeTabs().length} subagent${activeTabs().length === 1 ? "" : "s"}`,
+        expanded: `${activeTabs().length} subagente${activeTabs().length === 1 ? "" : "s"}`,
       })
     }
     if (foregroundSubagents() && backgroundShortcut()) {
@@ -550,7 +550,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "app.clear",
-        title: "Clear screen",
+        title: "Limpiar pantalla",
         group: "System",
         run: clearScreen,
       },
@@ -562,13 +562,13 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "command.palette.show",
-        title: "Open command palette",
+        title: "Abrir paleta de comandos",
         group: "Prompt",
         run: openCommand,
       },
       {
         id: "variant.cycle",
-        title: "Cycle model variant",
+        title: "Cambiar variante del modelo",
         group: "Model",
         run: props.onCycle,
       },
@@ -581,7 +581,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "session.background",
-        title: "Background subagents",
+        title: "Subagentes en segundo plano",
         group: "Session",
         run: () => props.onBackground?.(),
       },
@@ -593,7 +593,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "session.child.first",
-        title: "View subagents",
+        title: "Ver subagentes",
         group: "Session",
         run: openSubagentMenu,
       },
@@ -605,7 +605,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "session.queued_prompts",
-        title: "View pending prompts",
+        title: "Ver mensajes pendientes",
         group: "Prompt",
         run: openQueuedMenu,
       },
@@ -622,7 +622,7 @@ export function RunFooterView(props: RunFooterViewProps) {
     commands: [
       {
         id: "composer.subagent.interrupt",
-        title: "Interrupt subagent",
+        title: "Interrumpir subagente",
         group: "Session",
         run: () => {
           const current = selectedTab()
@@ -801,7 +801,7 @@ export function RunFooterView(props: RunFooterViewProps) {
                             onUndo={async (item) => {
                               const current = composer.current()
                               if (current.mode === "shell" && current.text) {
-                                props.onStatus("leave shell mode before undoing a queued prompt")
+                                props.onStatus("sal del modo terminal antes de deshacer un mensaje en cola")
                                 return
                               }
                               if (!(await queuedPromptAction("cancel", item.messageID, "undo"))) return

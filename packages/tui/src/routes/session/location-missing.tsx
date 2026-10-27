@@ -40,16 +40,16 @@ export function SessionLocationMissing(props: { directory: string; projectID: st
         : await client.api.worktree
             .create({ projectID: props.projectID, name: selection.name })
             .then((result) => {
-              if (!result.directory) throw new Error("No worktree directory returned")
+              if (!result.directory) throw new Error("No se recibió el directorio del árbol de trabajo")
               return result.directory
             })
             .catch((error) => {
-              toast.show({ title: "Creating workspace failed", message: errorMessage(error), variant: "error" })
+              toast.show({ title: "No se pudo crear el espacio de trabajo", message: errorMessage(error), variant: "error" })
               return undefined
             })
     if (!directory) return
     await client.api.session.move({ sessionID: props.sessionID, directory }).catch((error) => {
-      toast.show({ title: "Failed to move session", message: errorMessage(error), variant: "error" })
+      toast.show({ title: "No se pudo mover la sesión", message: errorMessage(error), variant: "error" })
     })
   }
 
@@ -64,17 +64,17 @@ export function SessionLocationUnavailable(props: { directory: string; onMove: (
   return (
     <SessionQuestion
       id="session.location-missing"
-      group="Session recovery"
-      choicesLabel="Recovery actions"
+      group="Recuperación de sesión"
+      choicesLabel="Acciones de recuperación"
       instance={props.directory}
-      title="Session location unavailable"
+      title="Ubicación de la sesión no disponible"
       body={
         <box paddingLeft={1} gap={1}>
           <text fg={theme.text.muted}>{directory()}</text>
-          <text fg={theme.text.base}>Choose another directory to continue this session.</text>
+          <text fg={theme.text.base}>Elige otro directorio para continuar esta sesión.</text>
         </box>
       }
-      options={{ move: "Choose directory" }}
+      options={{ move: "Elegir directorio" }}
       onSelect={props.onMove}
     />
   )

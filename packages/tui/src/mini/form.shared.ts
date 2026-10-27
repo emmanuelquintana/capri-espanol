@@ -48,14 +48,14 @@ export function formSync(state: FormBodyState, form: FormInfo): FormBodyState {
 }
 
 export function formUnsupported(form: FormInfo): string | undefined {
-  if (!Array.isArray(form.fields) || form.fields.length === 0) return "This form has no supported fields."
+  if (!Array.isArray(form.fields) || form.fields.length === 0) return "Este formulario no tiene campos compatibles."
   for (const field of form.fields as ReadonlyArray<FormField | Record<string, unknown>>) {
-    if (!field || typeof field !== "object" || typeof field.type !== "string") return "This form uses an unknown field."
-    if (!("key" in field) || typeof field.key !== "string") return "This form uses an invalid field."
+    if (!field || typeof field !== "object" || typeof field.type !== "string") return "El formulario utiliza un campo desconocido."
+    if (!("key" in field) || typeof field.key !== "string") return "El formulario utiliza un campo no válido."
     if ("when" in field && Array.isArray(field.when) && field.when.length > 0)
-      return "Conditional forms are not supported in Mini yet."
+      return "Mini aún no admite formularios condicionales."
     if (field.type === "string" && "pattern" in field && field.pattern !== undefined)
-      return "Pattern-constrained forms are not supported in Mini yet."
+      return "Mini aún no admite formularios con restricciones de patrón."
     if (!["string", "number", "integer", "boolean", "multiselect", "external"].includes(field.type))
       return `Field type ${field.type} is not supported in Mini yet.`
   }
@@ -82,8 +82,8 @@ export function formSingle(form: FormInfo) {
 }
 
 export function formPlaceholder(field: FormField | undefined) {
-  if (field?.type === "string") return field.placeholder ?? "Type your answer"
-  return "Enter a number"
+  if (field?.type === "string") return field.placeholder ?? "Escribe tu respuesta"
+  return "Introduce un número"
 }
 
 export function formMove(state: FormBodyState, form: FormInfo, direction: -1 | 1): FormBodyState {
@@ -237,5 +237,5 @@ export function formErrorMessage(error: unknown) {
     const tag = "_tag" in error ? error._tag : undefined
     if (typeof tag === "string" && tag.trim()) return tag
   }
-  return "Form request failed"
+  return "Falló la solicitud del formulario"
 }

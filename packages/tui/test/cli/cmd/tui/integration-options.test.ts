@@ -49,7 +49,7 @@ describe("connectMethods", () => {
           name: "Example",
           methods: [
             { type: "env", names: ["EXAMPLE_KEY"] },
-            { type: "key", label: "API key" },
+            { type: "key", label: "Clave API" },
             { type: "oauth", id: "account", label: "Account" },
           ],
         }),

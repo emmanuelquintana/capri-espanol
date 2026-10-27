@@ -169,7 +169,7 @@ describe("diff viewer file tree utilities", () => {
     ])
   })
 
-  test("finds the parent directories to expand for a patch file", () => {
+  test("finds the parent directories to expand for a patch archivo", () => {
     const tree = buildFileTree([{ file: "src/config/tui.ts" }, { file: "src/session/index.ts" }, { file: "README.md" }])
     const selection = fileTreeFileSelection(tree, 1)
 
@@ -177,7 +177,7 @@ describe("diff viewer file tree utilities", () => {
     expect(fileTreeFileSelection(tree, 99)).toBeUndefined()
   })
 
-  test("prefers the selected file when choosing the single patch file", () => {
+  test("prefers the selected file when choosing the single patch archivo", () => {
     expect(singlePatchFileIndex(2, 0, 3)).toBe(2)
     expect(singlePatchFileIndex(undefined, 0, 3)).toBe(0)
     expect(singlePatchFileIndex(undefined, undefined, 3)).toBe(3)

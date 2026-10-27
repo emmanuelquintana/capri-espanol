@@ -64,7 +64,7 @@ test("sidebar waits for integrations before showing onboarding", async () => {
   const app = await render(context())
 
   try {
-    expect(app.captureCharFrame()).not.toContain("Getting started")
+    expect(app.captureCharFrame()).not.toContain("Primeros pasos")
   } finally {
     app.renderer.destroy()
   }
@@ -74,7 +74,7 @@ test("sidebar preserves the compact layout when the onboarding card cannot fit",
   const app = await render(context({ integrations: [] }), 21)
 
   try {
-    expect(app.captureCharFrame()).not.toContain("Getting started")
+    expect(app.captureCharFrame()).not.toContain("Primeros pasos")
   } finally {
     app.renderer.destroy()
   }
@@ -85,9 +85,9 @@ test("sidebar shows onboarding without a connected integration", async () => {
 
   try {
     const frame = app.captureCharFrame()
-    expect(frame).toContain("Getting started")
+    expect(frame).toContain("Primeros pasos")
     expect(frame).toContain("OpenCode includes free models")
-    expect(frame).toContain("Connect provider")
+    expect(frame).toContain("Conectar proveedor")
     expect(frame).toContain("/connect")
   } finally {
     app.renderer.destroy()
@@ -99,8 +99,8 @@ test("sidebar hides onboarding after an integration is connected or the card is 
   const dismissed = await render(context({ integrations: [], dismissed: true }))
 
   try {
-    expect(connected.captureCharFrame()).not.toContain("Getting started")
-    expect(dismissed.captureCharFrame()).not.toContain("Getting started")
+    expect(connected.captureCharFrame()).not.toContain("Primeros pasos")
+    expect(dismissed.captureCharFrame()).not.toContain("Primeros pasos")
   } finally {
     connected.renderer.destroy()
     dismissed.renderer.destroy()
@@ -119,7 +119,7 @@ test("sidebar onboarding opens integrations and can be dismissed", async () => {
     const dismiss = app.renderer.root.findDescendantById("sidebar.footer.getting-started.dismiss")!
     await app.mockMouse.click(dismiss.x, dismiss.y)
     await app.renderOnce()
-    expect(app.captureCharFrame()).not.toContain("Getting started")
+    expect(app.captureCharFrame()).not.toContain("Primeros pasos")
   } finally {
     app.renderer.destroy()
   }

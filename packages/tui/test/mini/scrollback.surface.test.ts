@@ -485,7 +485,7 @@ test("entry looks preserve semantic colors without dimming and keep errors bold"
     reasoning: { body: "#abcdef" },
   }
 
-  expect(entryLook(reasoning("Thinking: next steps"), theme)).toEqual({ fg: theme.reasoning.body })
+  expect(entryLook(reasoning("Thinking: next pasos"), theme)).toEqual({ fg: theme.reasoning.body })
   expect(entryLook(reasoning("", "final"), theme)).toEqual({ fg: theme.system.body })
   expect(entryLook(error("failed"), theme)).toEqual({ fg: theme.error.body, attrs: TextAttributes.BOLD })
   expect(entryLook(toolCommit({ tool: "shell", phase: "final", toolState: "error" }), theme)).toEqual({
@@ -967,7 +967,7 @@ test("renders structured write finals once as code blocks", async () => {
     try {
       expect(commits).toHaveLength(1)
       const output = render(commits[0] ? [commits[0]] : [])
-      expect(output).toContain("# Wrote src/a.ts")
+      expect(output).toContain("# Escribió src/a.ts")
       expect(output).toMatch(/1\s+const x = 1/)
       expect(output).toMatch(/2\s+const y = 2/)
     } finally {

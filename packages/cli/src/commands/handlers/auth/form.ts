@@ -73,7 +73,7 @@ const answerField = Effect.fn("cli.auth.form.field")(function* (field: FormField
     log.info(field.url)
     yield* openUrl(field.url)
     const acknowledged = yield* prompt<boolean>(() =>
-      confirm({ message: message || "Continue after completing this step?", initialValue: true }),
+      confirm({ message: message || "¿Continuar después de completar este paso?", initialValue: true }),
     )
     if (!acknowledged) return yield* Effect.fail(new Error(`${message || "External step"} is required`))
     return true
@@ -81,9 +81,9 @@ const answerField = Effect.fn("cli.auth.form.field")(function* (field: FormField
   if (field.type === "boolean") {
     if (field.required) return yield* prompt<boolean>(() => confirm({ message, initialValue: field.default ?? true }))
     const options: Array<Option<boolean | typeof skip>> = [
-      { value: true, label: "Yes" },
+      { value: true, label: "Sí" },
       { value: false, label: "No" },
-      { value: skip, label: "Skip" },
+      { value: skip, label: "Omitir" },
     ]
     const value = yield* prompt<boolean | typeof skip>(() =>
       select<boolean | typeof skip>({
@@ -101,7 +101,7 @@ const answerField = Effect.fn("cli.auth.form.field")(function* (field: FormField
       label: option.label,
       hint: option.description,
     }))
-    if (field.custom) options.push({ value: custom, label: "Type another value" })
+    if (field.custom) options.push({ value: custom, label: "Escribir otro valor" })
     const values = yield* prompt<Array<string | typeof custom>>(() =>
       multiselect<string | typeof custom>({
         message,
@@ -112,13 +112,13 @@ const answerField = Effect.fn("cli.auth.form.field")(function* (field: FormField
     )
     const selected = values.filter((value): value is string => value !== custom)
     if (values.includes(custom)) {
-      selected.push(yield* prompt<string>(() => text({ message: "Enter value", validate: required })))
+      selected.push(yield* prompt<string>(() => text({ message: "Introduce un valor", validate: required })))
     }
     if (field.minItems !== undefined && selected.length < field.minItems) {
-      return yield* Effect.fail(new Error(`Select at least ${field.minItems}`))
+      return yield* Effect.fail(new Error(`Selecciona al menos ${field.minItems}`))
     }
     if (field.maxItems !== undefined && selected.length > field.maxItems) {
-      return yield* Effect.fail(new Error(`Select at most ${field.maxItems}`))
+      return yield* Effect.fail(new Error(`Selecciona como máximo ${field.maxItems}`))
     }
     return selected
   }
@@ -128,8 +128,8 @@ const answerField = Effect.fn("cli.auth.form.field")(function* (field: FormField
       label: option.label,
       hint: option.description,
     }))
-    if (field.custom) options.push({ value: custom, label: "Type your own answer" })
-    if (!field.required) options.push({ value: skip, label: "Skip" })
+    if (field.custom) options.push({ value: custom, label: "Escribe tu respuesta" })
+    if (!field.required) options.push({ value: skip, label: "Omitir" })
     const value = yield* prompt<string | typeof custom | typeof skip>(() =>
       select<string | typeof custom | typeof skip>({ message, options, initialValue: field.default }),
     )
@@ -167,16 +167,16 @@ function validateText(field: Exclude<FormField, { type: "boolean" | "external" |
   if (!value) return field.required ? "Required" : undefined
   if (field.type === "number" || field.type === "integer") {
     const number = Number(value)
-    if (!Number.isFinite(number)) return "Expected a number"
-    if (field.type === "integer" && !Number.isInteger(number)) return "Expected an integer"
-    if (typeof field.minimum === "number" && number < field.minimum) return `Must be at least ${field.minimum}`
-    if (typeof field.maximum === "number" && number > field.maximum) return `Must be at most ${field.maximum}`
+    if (!Number.isFinite(number)) return "Introduce un número"
+    if (field.type === "integer" && !Number.isInteger(number)) return "Introduce un número entero"
+    if (typeof field.minimum === "number" && number < field.minimum) return `El mínimo es ${field.minimum}`
+    if (typeof field.maximum === "number" && number > field.maximum) return `El máximo es ${field.maximum}`
     return undefined
   }
   if (field.minLength !== undefined && value.length < field.minLength)
-    return `Must be at least ${field.minLength} characters`
+    return `El mínimo es ${field.minLength} caracteres`
   if (field.maxLength !== undefined && value.length > field.maxLength)
-    return `Must be at most ${field.maxLength} characters`
+    return `El máximo es ${field.maxLength} caracteres`
   if (field.pattern) {
     try {
       if (!new RegExp(field.pattern).test(value)) return "Invalid format"
@@ -184,13 +184,13 @@ function validateText(field: Exclude<FormField, { type: "boolean" | "external" |
       return "Invalid format"
     }
   }
-  if (field.format === "uri" && !URL.canParse(value)) return "Expected a URL"
-  if (field.format === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Expected an email address"
+  if (field.format === "uri" && !URL.canParse(value)) return "Introduce una URL"
+  if (field.format === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Introduce un correo electrónico"
   if (field.format === "date") {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return "Expected a date"
     const date = new Date(`${value}T00:00:00.000Z`)
     if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value) return "Expected a date"
   }
-  if (field.format === "date-time" && Number.isNaN(Date.parse(value))) return "Expected a date and time"
+  if (field.format === "date-time" && Number.isNaN(Date.parse(value))) return "Introduce una fecha y hora"
   return undefined
 }

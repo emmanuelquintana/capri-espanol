@@ -52,7 +52,7 @@ export function SubagentsTab(props: { sessionID: string }) {
             ? Locale.titlecase(session.agent)
             : agentMatch
               ? Locale.titlecase(agentMatch[1])
-              : "Subagent",
+              : "Subagente",
           title: agentMatch ? title.replace(agentMatch[0], "").trim() || title : title,
           status: data.session.status(session.id),
           current: session.id === route.sessionID,
@@ -118,7 +118,7 @@ export function SubagentsTab(props: { sessionID: string }) {
   onMount(() => {
     const cleanup = composer.register({
       id: "subagents",
-      label: "Subagents",
+      label: "Subagentes",
       hints: () => {
         const entry = selectedEntry()
         return [
@@ -142,7 +142,7 @@ export function SubagentsTab(props: { sessionID: string }) {
     commands: [
       {
         id: "composer.subagent.up",
-        title: "Previous subagent",
+        title: "Subagente anterior",
         group: "Composer",
         run() {
           if (store.selected === 0) {
@@ -154,7 +154,7 @@ export function SubagentsTab(props: { sessionID: string }) {
       },
       {
         id: "composer.subagent.down",
-        title: "Next subagent",
+        title: "Subagente siguiente",
         group: "Composer",
         run() {
           const list = entries()
@@ -164,7 +164,7 @@ export function SubagentsTab(props: { sessionID: string }) {
       },
       {
         id: "composer.subagent.select",
-        title: "Navigate to subagent",
+        title: "Ir al subagente",
         group: "Composer",
         run() {
           const entry = entries()[store.selected]
@@ -173,7 +173,7 @@ export function SubagentsTab(props: { sessionID: string }) {
       },
       {
         id: "composer.subagent.toggle-activity",
-        title: "Toggle active subagents",
+        title: "Alternar subagentes activos",
         group: "Composer",
         bind: "ctrl+a",
         run() {
@@ -184,7 +184,7 @@ export function SubagentsTab(props: { sessionID: string }) {
       },
       {
         id: "composer.subagent.interrupt",
-        title: "Interrupt subagent",
+        title: "Interrumpir subagente",
         group: "Composer",
         run() {
           const entry = selectedEntry()
@@ -200,7 +200,7 @@ export function SubagentsTab(props: { sessionID: string }) {
       <scrollbox scrollbarOptions={{ visible: false }} maxHeight={5} ref={(r: ScrollBoxRenderable) => (scroll = r)}>
         <Show
           when={entries().length > 0}
-          fallback={<text fg={theme.text.muted}> No {filter.active ? "active" : "inactive"} subagents</text>}
+          fallback={<text fg={theme.text.muted}> No {filter.active ? "active" : "inactive"} subagentes</text>}
         >
           <For each={entries()}>
             {(entry, index) => {

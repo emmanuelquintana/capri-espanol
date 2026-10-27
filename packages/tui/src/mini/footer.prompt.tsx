@@ -286,7 +286,7 @@ export function RunPromptBody(props: {
                 const [failed, setFailed] = createSignal(false)
                 return (
                   <box width={props.layout().images * 2} height="100%" flexShrink={1}>
-                    <Show when={!failed()} fallback={<text fg={props.theme().muted}>No preview</text>}>
+                    <Show when={!failed()} fallback={<text fg={props.theme().muted}>Sin vista previa</text>}>
                       <image
                         id={`mini-prompt-image-${index()}`}
                         source={image}
@@ -303,7 +303,7 @@ export function RunPromptBody(props: {
             </For>
             <Show when={props.images().length > 3}>
               <text fg={props.theme().muted} wrapMode="none" truncate>
-                +{props.images().length - 3} more
+                +{props.images().length - 3} más
               </text>
             </Show>
           </box>
@@ -352,7 +352,7 @@ export function createPromptState(input: PromptInput): PromptState {
     }
 
     return new StyledText([
-      fg(input.theme().muted)(`Ask anything, / for commands, @ for context${input.mono() ? "..." : "…"}`),
+      fg(input.theme().muted)(`Pregunta lo que quieras, / para comandos, @ para contexto${input.mono() ? "..." : "…"}`),
     ])
   })
 
@@ -511,24 +511,24 @@ export function createPromptState(input: PromptInput): PromptState {
         action: "editor" as const,
         name: "editor",
         display: "/editor",
-        description: "compose in your external editor",
+        description: "redactar en tu editor externo",
       } satisfies SlashOption,
       {
         kind: "slash",
         action: "settings" as const,
         name: "settings",
         display: "/settings",
-        description: "configure Mini transcript output",
+        description: "configurar la conversación del modo Mini",
       } satisfies SlashOption,
-      { kind: "slash", name: "new", display: "/new", description: "start a new session" } satisfies SlashOption,
+      { kind: "slash", name: "new", display: "/new", description: "iniciar una sesión" } satisfies SlashOption,
       {
         kind: "slash",
         name: "compact",
         display: "/compact",
-        description: "compact older session context to free space",
+        description: "compactar el contexto antiguo para liberar espacio",
       } satisfies SlashOption,
       ...EXIT_COMMANDS.map(
-        (name) => ({ kind: "slash", name, display: `/${name}`, description: "close Capri" }) satisfies SlashOption,
+        (name) => ({ kind: "slash", name, display: `/${name}`, description: "cerrar Capri" }) satisfies SlashOption,
       ),
     ]
     const hidden = new Set(builtins.map((item) => item.name))
@@ -869,7 +869,7 @@ export function createPromptState(input: PromptInput): PromptState {
         if (!content || changed()) return
         const image = content.mime.startsWith("image/")
         if (image && shell()) {
-          input.onStatus("image attachments are unavailable in shell mode")
+          input.onStatus("el modo terminal no admite imágenes adjuntas")
           return
         }
         if (!image && content.mime !== "text/plain") return
@@ -1023,7 +1023,7 @@ export function createPromptState(input: PromptInput): PromptState {
       })
     } catch {
       restore(current)
-      input.onStatus("failed to open editor")
+      input.onStatus("no se pudo abrir el editor")
     }
   }
 
@@ -1164,7 +1164,7 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.clear",
-        title: "Clear prompt or exit",
+        title: "Limpiar mensaje o salir",
         group: "Prompt",
         run() {
           if (requestExit()) return
@@ -1179,13 +1179,13 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.paste",
-        title: "Paste",
+        title: "Pegar",
         group: "Prompt",
         run: () => paste(),
       },
       {
         id: "session.interrupt",
-        title: "Interrupt session",
+        title: "Interrumpir sesión",
         group: "Session",
         run() {
           if (input.onInterrupt()) return
@@ -1201,7 +1201,7 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.queue",
-        title: "Queue prompt",
+        title: "Poner mensaje en cola",
         group: "Prompt",
         palette: true,
         run() {
@@ -1217,7 +1217,7 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.editor",
-        title: "Open editor",
+        title: "Abrir editor",
         group: "Prompt",
         run() {
           void openEditor()
@@ -1232,7 +1232,7 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.history.previous",
-        title: "Previous prompt history",
+        title: "Mensaje anterior del historial",
         group: "Prompt",
         run(_input: string | undefined, event?: KeyEvent) {
           if (!event) return false
@@ -1241,7 +1241,7 @@ export function createPromptState(input: PromptInput): PromptState {
       },
       {
         id: "prompt.history.next",
-        title: "Next prompt history",
+        title: "Mensaje siguiente del historial",
         group: "Prompt",
         run(_input: string | undefined, event?: KeyEvent) {
           if (!event) return false
@@ -1256,7 +1256,7 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         bind: "!",
-        title: "Shell mode",
+        title: "Modo terminal",
         group: "Prompt",
         run() {
           if (shell()) return false
@@ -1273,13 +1273,13 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         bind: "escape",
-        title: "Exit shell mode",
+        title: "Salir del modo terminal",
         group: "Prompt",
         run: () => setShellMode(false),
       },
       {
         bind: "backspace",
-        title: "Exit shell mode",
+        title: "Salir del modo terminal",
         group: "Prompt",
         run() {
           if (!area || area.isDestroyed) return false
@@ -1295,25 +1295,25 @@ export function createPromptState(input: PromptInput): PromptState {
     commands: [
       {
         id: "prompt.autocomplete.prev",
-        title: "Previous autocomplete item",
+        title: "Sugerencia anterior",
         group: "Autocomplete",
         run: () => menu.move(-1),
       },
       {
         id: "prompt.autocomplete.next",
-        title: "Next autocomplete item",
+        title: "Sugerencia siguiente",
         group: "Autocomplete",
         run: () => menu.move(1),
       },
       {
         id: "prompt.autocomplete.hide",
-        title: "Hide autocomplete",
+        title: "Ocultar sugerencias",
         group: "Autocomplete",
         run: cancelAutocomplete,
       },
       {
         id: "prompt.autocomplete.select",
-        title: "Select autocomplete item",
+        title: "Seleccionar sugerencia",
         group: "Autocomplete",
         run() {
           if (mode() === "slash" && options().length === 0) {
@@ -1325,7 +1325,7 @@ export function createPromptState(input: PromptInput): PromptState {
       },
       {
         id: "prompt.autocomplete.complete",
-        title: "Complete autocomplete item",
+        title: "Completar sugerencia",
         group: "Autocomplete",
         run() {
           if (mode() === "slash" && options().length === 0) {
@@ -1375,7 +1375,7 @@ export function createPromptState(input: PromptInput): PromptState {
         })
         return
       }
-      input.onStatus(input.state().phase === "running" ? "waiting for current response" : "empty prompt ignored")
+      input.onStatus(input.state().phase === "running" ? "esperando la respuesta actual" : "se ignoró el mensaje vacío")
       return
     }
 
@@ -1388,7 +1388,7 @@ export function createPromptState(input: PromptInput): PromptState {
         isExitCommand(next.text) ||
         next.text.trim().toLowerCase() === "/settings")
     ) {
-      input.onStatus("this prompt cannot be queued")
+      input.onStatus("este mensaje no se puede poner en cola")
       return
     }
     if (!command && next.mode !== "shell" && isExitCommand(next.text)) {
@@ -1407,7 +1407,7 @@ export function createPromptState(input: PromptInput): PromptState {
         ? undefined
         : parseSlashCommand(next.text, input.commands())
     if (parsed?.type === "pending") {
-      input.onStatus("loading commands")
+      input.onStatus("cargando comandos")
       return
     }
 

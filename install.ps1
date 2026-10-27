@@ -1,6 +1,5 @@
 # Capri installer (Windows). Installs the binary as `capri`, seeds ~\.config\capri\capri.json and installs Capri's skills.
-#   irm https://raw.githubusercontent.com/seanyih/Capri/main/install.ps1 | iex
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/seanyih/Capri/main/install.ps1))) -Version v0.2.0
+# Legacy CLI installer. For the guided interface, use Instalar-Capri.cmd from emmanuelquintana/capri-espanol.
 param(
     [string]$Version = $env:VERSION,
     [string]$Binary = "",
@@ -11,11 +10,16 @@ $ProgressPreference = "SilentlyContinue"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $App = "capri"
-$Repo = "seanyih/Capri"
+$Repo = "emmanuelquintana/capri-espanol"
 $HomeDir = [Environment]::GetFolderPath("UserProfile")
 
+if (-not $Binary) {
+    Write-Host "Esta edición en español requiere un ejecutable local. Compila el proyecto y usa -Binary (consulta README.md)." -ForegroundColor Red
+    exit 1
+}
+
 if (-not [Environment]::Is64BitOperatingSystem -or $env:PROCESSOR_ARCHITECTURE -eq "ARM64") {
-    Write-Host "Capri only ships for Windows x64 right now. Build from source instead (see the README)." -ForegroundColor Red
+    Write-Host "Este instalador requiere Windows x64. Consulta README.md para compilar en tu plataforma." -ForegroundColor Red
     exit 1
 }
 
@@ -32,8 +36,8 @@ function Install-Binary([string]$Source) {
 }
 
 if ($Binary) {
-    if (-not (Test-Path $Binary)) { Write-Host "Error: Binary not found at $Binary" -ForegroundColor Red; exit 1 }
-    Write-Host "Jacking in from: $Binary"
+    if (-not (Test-Path $Binary)) { Write-Host "Error: no se encontró el ejecutable en $Binary" -ForegroundColor Red; exit 1 }
+    Write-Host "Instalando desde: $Binary"
     Install-Binary $Binary
 } else {
     $file = "$App-windows-x64.zip"
@@ -42,10 +46,10 @@ if ($Binary) {
     $tmp = Join-Path ([IO.Path]::GetTempPath()) "capri_install_$([guid]::NewGuid().ToString('N'))"
     New-Item -ItemType Directory -Force -Path $tmp | Out-Null
     try {
-        Write-Host "Downloading $file from github.com/$Repo"
+        Write-Host "Descargando $file from github.com/$Repo"
         try { Invoke-WebRequest -Uri $url -OutFile (Join-Path $tmp $file) -UseBasicParsing }
         catch {
-            Write-Host "Download failed: $url" -ForegroundColor Red
+            Write-Host "Falló la descarga: $url" -ForegroundColor Red
             Write-Host "No release for Windows yet? Build from source (see the README) and use -Binary."
             exit 1
         }
@@ -64,17 +68,17 @@ $ConfigDir = Join-Path $ConfigHome "capri"
 $ConfigFile = Join-Path $ConfigDir "capri.json"
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
 if (Test-Path $ConfigFile) {
-    Write-Host "Keeping your existing $ConfigFile"
+    Write-Host "Se conserva el archivo existente $ConfigFile"
 } else {
     @'
 {
-  // Capri settings (jsonc). Restart Capri to apply changes.
-  // Env vars override these per launch: CAPRI_LOGO, CAPRI_CYBERPSYCOSIS.
+  // Ajustes de Capri (jsonc). Reinicia Capri para aplicar los cambios.
+  // Variables de entorno que tienen prioridad al iniciar: CAPRI_LOGO, CAPRI_CYBERPSYCOSIS.
 
   // none | low | medium | max. Also switchable in the TUI with /cyberpsycosis.
   "cyberpsycosis": "none",
 
-  // Screen glitch rate multiplier: 1 = normal, 0 = off, 2 = double (max 10).
+  // Intensidad de los efectos: 1 = normal, 0 = desactivados, 2 = doble (máximo 10).
   "glitchProbability": 1,
 
   "logo": {
@@ -83,25 +87,25 @@ if (Test-Path $ConfigFile) {
   },
 
   "hide": {
-    // Show the model's reasoning as scrambled glyphs.
+    // Representar el razonamiento del modelo como símbolos cifrados.
     "thinking": true,
-    // Hide tool output, diffs and diagnostics.
+    // Ocultar resultados de herramientas, diferencias y diagnósticos.
     "toolResults": true,
-    // Hide the lines that show a skill being loaded.
+    // Ocultar las líneas de carga de habilidades.
     "skills": true
   },
 
   "footer": {
-    // Label for the default agent in the reply footer.
+    // Nombre del agente predeterminado al pie de la respuesta.
     "name": "Capri",
-    // Show the model name in the footer and prompt box.
+    // Mostrar el modelo al pie y en la entrada de mensajes.
     "model": false,
-    // Show tokens per second (also needs session.tps in tui.json).
+    // Mostrar tokens por segundo (requiere session.tps en tui.json).
     "tps": false
   }
 }
 '@ | Set-Content -Encoding UTF8 -Path $ConfigFile
-    Write-Host "Wrote default settings to $ConfigFile"
+    Write-Host "Se guardó la configuración inicial en $ConfigFile"
 }
 
 # Capri skills go in the global skills dir, so they work from any project. They are Capri's own, so a rerun refreshes
@@ -123,19 +127,19 @@ try {
         if ($src -and (Test-Path (Join-Path $src $f))) { Copy-Item -Force (Join-Path $src $f) $dest }
         else { Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/$Repo/$ref/capri/skills/$f" -OutFile $dest }
     }
-    Write-Host "Installed skills to $SkillsDir"
+    Write-Host "Habilidades instaladas en $SkillsDir"
 } catch {
-    Write-Host "Warning: could not install Capri skills (offline?). Capri works without them." -ForegroundColor Magenta
+    Write-Host "Advertencia: no se pudieron instalar las habilidades de Capri. Comprueba la conexión. Capri funciona sin ellas." -ForegroundColor Magenta
 }
 
 if (-not $NoModifyPath) {
     $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
     if (($userPath -split ";") -notcontains $InstallDir) {
         [Environment]::SetEnvironmentVariable("Path", ($userPath.TrimEnd(";") + ";" + $InstallDir).TrimStart(";"), "User")
-        Write-Host "Added $InstallDir to your user PATH. Open a new terminal to use 'capri'."
+        Write-Host "Se añadió $InstallDir al PATH de tu usuario. Abre una terminal nueva para usar 'capri'."
     }
 }
 
 Write-Host ""
-Write-Host "Capri installed: $Target" -ForegroundColor Green
-Write-Host "Run: capri   (Windows Terminal recommended)"
+Write-Host "Capri instalado: $Target" -ForegroundColor Green
+Write-Host "Ejecuta: capri   (se recomienda Windows Terminal)"

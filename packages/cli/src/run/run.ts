@@ -70,12 +70,12 @@ export function runNonInteractiveWithOptions(input: RunCommandInput, options: Ex
 }
 
 async function run(input: RunCommandInput, options: ExecutionOptions) {
-  if (input.fork && !input.continue && !input.session) fail("--fork requires --continue or --session")
+  if (input.fork && !input.continue && !input.session) fail("--fork requiere --continue o --session")
   const root = options.root ?? process.env.PWD ?? process.cwd()
   const local = localDirectory(root)
   const directory = options.useServerDirectory ? undefined : (options.directory ?? local)
   const message = mergeInput(formatMessage(input.message), process.stdin.isTTY ? undefined : await readStdin())
-  if (!message?.trim()) fail("You must provide a message")
+  if (!message?.trim()) fail("Debes proporcionar un mensaje")
   const files = await Promise.all(input.file.map((file) => prepareFile(file, root, options)))
   const prepared = { directory, message, files }
   return execute(input, prepared, input.server.endpoint, options)
@@ -116,7 +116,7 @@ async function execute(input: RunCommandInput, prepared: Prepared, endpoint: End
           }
         : undefined
       if ((options.variant ?? explicit?.variant) && !model)
-        throw new RunTargetError("Cannot select a variant before selecting a model", next.session?.id)
+        throw new RunTargetError("Selecciona primero un modelo para elegir una variante", next.session?.id)
       return { model, agent: next.agent }
     },
   }).catch((error) => {
@@ -169,7 +169,7 @@ function localDirectory(root: string) {
     process.chdir(root)
     return process.cwd()
   } catch {
-    fail(`Failed to change directory to ${root}`)
+    fail(`No se pudo cambiar al directorio ${root}`)
   }
 }
 
@@ -184,7 +184,7 @@ export function parseRunModel(value?: string) {
 
 async function prepareFile(input: string, directory: string, options: ExecutionOptions): Promise<FilePart> {
   const file = path.resolve(directory, input)
-  const handle = await open(file, "r").catch(() => fail(`File not found: ${input}`))
+  const handle = await open(file, "r").catch(() => fail(`No se encontró el archivo: ${input}`))
   try {
     const stat = await handle.stat()
     if (options.compatibility === "v1" && options.attached && stat.isDirectory())

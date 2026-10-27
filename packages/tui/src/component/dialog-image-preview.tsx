@@ -30,21 +30,21 @@ export function DialogImagePreview(props: { images: readonly ImagePreviewItem[];
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "left", title: "Previous image", group: "Dialog", run: () => move(-1) },
-      { bind: "right", title: "Next image", group: "Dialog", run: () => move(1) },
+      { bind: "left", title: "Imagen anterior", group: "Dialog", run: () => move(-1) },
+      { bind: "right", title: "Imagen siguiente", group: "Dialog", run: () => move(1) },
     ],
   }))
 
   return (
     <DialogLayout
       id="prompt-image-viewer"
-      header={<DialogHeader title={`Image ${index() + 1} of ${props.images.length}`} />}
+      header={<DialogHeader title={`Imagen ${index() + 1} of ${props.images.length}`} />}
       footer={{
         actions: {
           primary:
             props.images.length > 1
               ? [
-                  { title: "previous", key: "←", onTrigger: () => move(-1) },
+                  { title: "anterior", key: "←", onTrigger: () => move(-1) },
                   { title: "next", key: "→", onTrigger: () => move(1) },
                 ]
               : [],
@@ -52,7 +52,7 @@ export function DialogImagePreview(props: { images: readonly ImagePreviewItem[];
         get children() {
           return (
             <text fg={failed() ? theme.text.feedback.error.base : theme.text.muted} wrapMode="none" truncate>
-              {failed() ? "No preview" : (current().mention?.text ?? `Image ${index() + 1}`)}
+              {failed() ? "Sin vista previa" : (current().mention?.text ?? `Imagen ${index() + 1}`)}
             </text>
           )
         },
@@ -63,7 +63,7 @@ export function DialogImagePreview(props: { images: readonly ImagePreviewItem[];
             {props.images.length > 1 ? "← previous" : ""}
           </text>
           <text fg={failed() ? theme.text.feedback.error.base : theme.text.muted} wrapMode="none" truncate>
-            {failed() ? "No preview" : (current().mention?.text ?? `Image ${index() + 1}`)}
+            {failed() ? "Sin vista previa" : (current().mention?.text ?? `Imagen ${index() + 1}`)}
           </text>
           <text fg={theme.text.muted} onMouseUp={() => move(1)}>
             {props.images.length > 1 ? "next →" : ""}

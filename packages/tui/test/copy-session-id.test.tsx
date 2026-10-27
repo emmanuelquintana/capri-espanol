@@ -50,7 +50,7 @@ test.each(["success", "failure", "home"])("Copy session ID from Ctrl+P (%s)", as
     await setup.waitFor(() => setup.renderer.currentFocusedEditor instanceof TextareaRenderable)
     setup.mockInput.pressKey("p", { ctrl: true })
     await setup.waitFor(() => setup.renderer.currentFocusedEditor instanceof InputRenderable)
-    await setup.mockInput.typeText("Copy session ID")
+    await setup.mockInput.typeText("Copiar ID de sesión")
     if (mode === "home") {
       await setup.waitForVisualIdle()
       expect(setup.captureCharFrame()).not.toMatch(/Copy session ID\s+Session/)
@@ -60,11 +60,11 @@ test.each(["success", "failure", "home"])("Copy session ID from Ctrl+P (%s)", as
     await setup.waitForFrame((frame) => /Copy session ID\s+Session/.test(frame))
     setup.mockInput.pressEnter()
     const frame = await setup.waitForFrame((frame) =>
-      frame.includes(mode === "success" ? "Session ID copied to clipboard!" : "Failed to copy session ID"),
+      frame.includes(mode === "success" ? "¡ID de sesión copiado!" : "No se pudo copiar el ID de sesión"),
     )
     expect(copy).toHaveBeenCalledTimes(1)
     expect(copy.mock.calls[0]?.[0]).toBe(sessionID)
-    expect(frame).not.toContain("Copy session ID")
+    expect(frame).not.toContain("Copiar ID de sesión")
     await setup.waitFor(
       () =>
         setup.renderer.currentFocusedEditor instanceof TextareaRenderable &&

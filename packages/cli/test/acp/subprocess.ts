@@ -266,7 +266,7 @@ function spawnAcp(input: { readonly env: Record<string, string | undefined> }): 
         timer: setTimeout(() => {
           const index = waiters.indexOf(waiter)
           if (index !== -1) waiters.splice(index, 1)
-          reject(new Error(`Timed out waiting for ${description}${stderr ? `: ${stderr}` : ""}`))
+          reject(new Error(`Timed out waiting para ${description}${stderr ? `: ${stderr}` : ""}`))
         }, timeoutMs),
       }
       waiters.push(waiter)

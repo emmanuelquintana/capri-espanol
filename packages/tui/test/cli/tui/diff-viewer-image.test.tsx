@@ -42,11 +42,11 @@ test.each([
     options,
   )
   try {
-    await app.waitForFrame((frame) => frame.includes("Loading image…"))
+    await app.waitForFrame((frame) => frame.includes("Cargando imagen…"))
     pending.resolve(diffImageFixture)
     await app.waitForFrame((frame) => frame.includes("96 x 48"))
     expect(requested).toEqual(["assets/landscape.png"])
-    expect(app.captureCharFrame()).toContain("Working tree preview")
+    expect(app.captureCharFrame()).toContain("Vista previa del árbol de trabajo")
     const image = findImage(app.renderer.root)!
     expect(image.image?.width).toBe(96)
     expect(image.image?.height).toBe(48)
@@ -65,7 +65,7 @@ test("clicking a thumbnail opens the shared image modal and escape returns to th
     await app.waitForFrame((frame) => frame.includes("Click to enlarge"))
     const thumbnail = findImage(app.renderer.root)!
     await app.mockMouse.click(thumbnail.x + Math.floor(thumbnail.width / 2), thumbnail.y + 1)
-    await app.waitForFrame((frame) => frame.includes("Image 1 of 1"))
+    await app.waitForFrame((frame) => frame.includes("Imagen 1 of 1"))
     const modal = app.renderer.root.findDescendantById("prompt-image-viewer-image")
     expect(modal).toBeInstanceOf(ImageRenderable)
     if (!(modal instanceof ImageRenderable)) throw new Error("Missing image modal")
@@ -75,7 +75,7 @@ test("clicking a thumbnail opens the shared image modal and escape returns to th
     expect(app.captureCharFrame()).toContain("landscape.png")
 
     app.mockInput.pressEscape()
-    await app.waitForFrame((frame) => !frame.includes("Image 1 of 1"))
+    await app.waitForFrame((frame) => !frame.includes("Imagen 1 of 1"))
     expect(findImage(app.renderer.root)).toBe(thumbnail)
     expect(app.captureCharFrame()).toContain("Click to enlarge")
   } finally {
@@ -100,7 +100,7 @@ test("pending image reads are aborted when the source changes or the preview clo
     </Show>
   ))
   try {
-    await app.waitForFrame((frame) => frame.includes("Loading image…"))
+    await app.waitForFrame((frame) => frame.includes("Cargando imagen…"))
     expect(signals[0].aborted).toBe(false)
     setFile("b.png")
     await app.flush()
@@ -131,7 +131,7 @@ test.each(["fetch", "decode"])("recovers from a %s error when the file changes",
   ))
   try {
     await app.waitForFrame((frame) =>
-      frame.includes(failure === "fetch" ? "Could not load image" : "Could not decode image"),
+      frame.includes(failure === "fetch" ? "No se pudo cargar la imagen" : "No se pudo decodificar la imagen"),
     )
     expect(findImage(app.renderer.root)).toBeUndefined()
     setFile("landscape.png")

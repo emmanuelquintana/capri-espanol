@@ -45,7 +45,7 @@ export function webSearchProviderName(provider: unknown) {
 
 export function webSearchProviderLabel(provider: unknown) {
   const name = webSearchProviderName(provider)
-  return name ? `Web Search via ${name}` : "Web Search"
+  return name ? `Búsqueda web mediante ${name}` : "Búsqueda web"
 }
 
 export function toolDisplayMetadata(state: unknown): Record<string, unknown> {

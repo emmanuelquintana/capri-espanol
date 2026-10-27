@@ -282,7 +282,7 @@ test.skipIf(process.platform === "win32").each([
       const image = app.renderer.root.findDescendantById("mini-prompt-image-0")
       if (!options.mono && options.preview) {
         expect(image).toBeInstanceOf(ImageRenderable)
-        if (!(image instanceof ImageRenderable)) throw new Error("Image preview missing")
+        if (!(image instanceof ImageRenderable)) throw new Error("Imagen preview missing")
         await image.loadPromise
         expect(image.image?.width).toBe(96)
         expect(image.fit).toBe("fit")
@@ -548,14 +548,14 @@ test("mini preserves mentionless images through draft edits and a rejected submi
 })
 
 test("direct footer leads with the active agent and default model", async () => {
-  const app = await renderFooter({ state: { model: "Default model" } })
+  const app = await renderFooter({ state: { model: "Modelo predeterminado" } })
   try {
     await app.renderOnce()
     const frame = app.captureCharFrame()
     expect(
       frame
         .split("\n")
-        .find((line) => line.includes("Default model"))
+        .find((line) => line.includes("Modelo predeterminado"))
         ?.trimEnd(),
     ).toBe("Build · Default model · ctrl+p menu")
     expect(frame).not.toContain("BUILD")
@@ -597,7 +597,7 @@ test.each([56, 160])("exit confirmation replaces routine footer details at %i co
     app.setState((state) => ({ ...state, exit: 1 }))
     await app.renderOnce()
     const frame = app.captureCharFrame()
-    expect(frame).toContain("Press ctrl+c again to exit")
+    expect(frame).toContain("Pulsa ctrl+c again to exit")
     for (const text of ["Build", "GPT-5", "opencode", "high", "12.0K", "queued", "menu"])
       expect(frame).not.toContain(text)
     app.setState((state) => ({ ...state, exit: 0 }))
@@ -641,7 +641,7 @@ test("direct footer preserves a partial multi-field form draft across permission
       },
     })
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Permission required")
+    expect(app.captureCharFrame()).toContain("Se requiere permiso")
 
     app.setView({ type: "form", request })
     await app.renderOnce()
@@ -921,15 +921,15 @@ test("direct command panel renders grouped actions without catalog commands", as
     await app.renderOnce()
     const frame = app.captureCharFrame()
 
-    expect(frame).toContain("Commands")
+    expect(frame).toContain("Comandos")
     expect(frame).toMatch(/^ {2}Commands/m)
-    expect(frame).toContain("Search")
-    expect(frame).toContain("Session")
-    expect(frame).toContain("Agent")
-    expect(frame).toContain("Open editor")
+    expect(frame).toContain("Buscar")
+    expect(frame).toContain("Sesión")
+    expect(frame).toContain("Agente")
+    expect(frame).toContain("Abrir editor")
     expect(frame).toContain("/editor")
     expect(frame).toContain("Show status")
-    expect(frame).toContain("Compact session")
+    expect(frame).toContain("Compactar sesión")
     expect(frame).toContain("/compact")
     expect(frame.match(/\bAgent\b/g)?.length).toBe(1)
     expect(frame).not.toContain("┌")
@@ -942,17 +942,17 @@ test("direct command panel renders grouped actions without catalog commands", as
 
     await app.mockInput.typeText("agent")
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Switch agent")
+    expect(app.captureCharFrame()).toContain("Cambiar agente")
 
     app.mockInput.pressKey("u", { ctrl: true })
     await app.mockInput.typeText("review")
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("No results found")
+    expect(app.captureCharFrame()).toContain("No se encontraron resultados")
 
     app.mockInput.pressKey("u", { ctrl: true })
     await app.mockInput.typeText("deploy")
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("No results found")
+    expect(app.captureCharFrame()).toContain("No se encontraron resultados")
 
     app.mockInput.pressKey("u", { ctrl: true })
     await app.mockInput.typeText("status")
@@ -989,17 +989,17 @@ test.each([false, true])("settings change preferences and preview the work spinn
   try {
     await app.renderOnce()
     const frame = app.captureCharFrame()
-    expect(frame).toContain("Settings")
+    expect(frame).toContain("Configuración")
     expect(frame).toMatch(/^ +Settings/m)
-    expect(frame).toContain("Verbosity")
-    expect(frame).toContain("Thinking")
-    expect(frame).toContain("Tools")
-    expect(frame).toContain("Shell")
-    expect(frame).toContain("Turn summary")
+    expect(frame).toContain("Nivel de detalle")
+    expect(frame).toContain("Pensando")
+    expect(frame).toContain("Herramientas")
+    expect(frame).toContain("Terminal")
+    expect(frame).toContain("Resumen del turno")
     expect(frame).toContain("Footer details")
     expect(frame).toContain("Splash")
     expect(frame).toContain("Monochrome UI")
-    expect(frame).toContain("left/right change")
+    expect(frame).toContain("izquierda/derecha cambiar")
     if (mono) expect(frame).not.toMatch(/[^\x00-\x7F]/)
 
     app.mockInput.pressKey("ARROW_RIGHT")
@@ -1134,8 +1134,8 @@ test("direct command panel shows subagent entry when available", async () => {
     await app.renderOnce()
     const frame = app.captureCharFrame()
 
-    expect(frame).toContain("View subagents")
-    expect(frame).toContain("1 active")
+    expect(frame).toContain("Ver subagentes")
+    expect(frame).toContain("1 activo")
   } finally {
     app.renderer.destroy()
   }
@@ -1184,14 +1184,14 @@ test("direct command panel keeps completed subagents available", async () => {
     await app.renderOnce()
     const frame = app.captureCharFrame()
 
-    expect(frame).toContain("View subagents")
+    expect(frame).toContain("Ver subagentes")
     expect(frame).toContain("1 recent")
   } finally {
     app.renderer.destroy()
   }
 })
 
-test("direct subagent panel toggles between active and inactive subagents", async () => {
+test("direct subagent panel toggles between active and inactive subagentes", async () => {
   const [tabs] = createSignal([
     subagent({ sessionID: "s-1", label: "Explore", description: "Inspect auth flow" }),
     subagent({ sessionID: "s-2", label: "General", description: "Write migration plan", status: "completed" }),
@@ -1225,10 +1225,10 @@ test("direct subagent panel toggles between active and inactive subagents", asyn
     const frame = app.captureCharFrame()
     const list = panelMenu(app.renderer.root)
 
-    expect(frame).toContain("Select subagent")
+    expect(frame).toContain("Seleccionar subagente")
     expect(frame).toContain("Inspect auth flow")
     expect(frame).not.toContain("Write migration plan")
-    expect(frame).not.toContain("done")
+    expect(frame).not.toContain("terminado")
     expect(frame).toContain("tab show inactive")
     expect(frame).not.toContain("┌")
     expect(frame).not.toContain("┃")
@@ -1242,7 +1242,7 @@ test("direct subagent panel toggles between active and inactive subagents", asyn
     expect(inactive).not.toContain("Inspect auth flow")
     expect(inactive).toContain("Write migration plan")
     expect(inactive).toContain("done")
-    expect(inactive).toContain("tab show active")
+    expect(inactive).toContain("tab show activo")
   } finally {
     app.renderer.destroy()
   }
@@ -1303,14 +1303,14 @@ test.each(["queue", "steer"] as const)("direct footer toggles and deletes pendin
     expect(app.captureCharFrame()).toContain("ctrl+x q 1 pending")
     app.mockInput.pressKey("ARROW_DOWN")
     await app.renderOnce()
-    expect(app.captureCharFrame()).not.toContain("Pending prompts")
+    expect(app.captureCharFrame()).not.toContain("Mensajes pendientes")
 
     app.mockInput.pressKey("x", { ctrl: true })
     app.mockInput.pressKey("q")
     await app.renderOnce()
     const frame = app.captureCharFrame()
     const list = panelMenu(app.renderer.root)
-    expect(frame).toContain("Pending prompts")
+    expect(frame).toContain("Mensajes pendientes")
     expect(frame).toContain("follow up")
     expect(frame).toContain(delivery === "queue" ? "queued" : "steering")
     expect(frame).toContain(`enter ${delivery === "queue" ? "steer" : "queue"} · ctrl+d delete · ctrl+u undo`)
@@ -1332,7 +1332,7 @@ test.each(["queue", "steer"] as const)("direct footer toggles and deletes pendin
     await Bun.sleep(0)
     await app.renderOnce()
     expect(actions.at(-1)).toBe("cancel:m-1")
-    expect(app.captureCharFrame()).not.toContain("Pending prompts")
+    expect(app.captureCharFrame()).not.toContain("Mensajes pendientes")
     expect(app.captureCharFrame()).not.toContain("1 pending")
   } finally {
     app.cleanup()
@@ -1374,7 +1374,7 @@ test("undo appends a pending prompt to the draft", async () => {
     expect(actions).toEqual(["cancel:m-1"])
     expect(app.captureCharFrame()).toContain("existing draft")
     expect(app.captureCharFrame()).toContain("look at main.ts")
-    expect(app.captureCharFrame()).not.toContain("Pending prompts")
+    expect(app.captureCharFrame()).not.toContain("Mensajes pendientes")
     await app.waitFor(() => app.renderer.currentFocusedEditor instanceof TextareaRenderable)
     app.mockInput.pressEnter()
     await Bun.sleep(0)
@@ -1403,8 +1403,8 @@ test("undo leaves the queue and input alone when cancellation fails", async () =
     app.mockInput.pressKey("u", { ctrl: true })
     await Bun.sleep(0)
     await app.renderOnce()
-    expect(statuses.at(-1)).toContain("failed to undo pending prompt: cancel failed")
-    expect(app.captureCharFrame()).toContain("Pending prompts")
+    expect(statuses.at(-1)).toContain("no se pudo undo pending prompt: cancel failed")
+    expect(app.captureCharFrame()).toContain("Mensajes pendientes")
     app.mockInput.pressKey("ESCAPE")
     await app.renderOnce()
     expect(app.captureCharFrame()).not.toContain("still queued")
@@ -1577,7 +1577,7 @@ test("direct footer rejects local commands submitted with the queue shortcut", a
     app.mockInput.pressEnter()
     await Bun.sleep(0)
     expect(submitted).toEqual([])
-    expect(statuses).toContain("this prompt cannot be queued")
+    expect(statuses).toContain("este mensaje no se puede poner en cola")
   } finally {
     app.cleanup()
   }
@@ -1596,11 +1596,11 @@ test.skip("direct footer recreates the frame across command panel transitions", 
       app.mockInput.pressKey("p", { ctrl: true })
       await app.renderOnce()
 
-      expect(app.captureCharFrame()).toContain("Commands")
+      expect(app.captureCharFrame()).toContain("Comandos")
       expect(footerComposerFrame(app.renderer.root)).not.toBe(composerFrame)
       app.mockInput.pressKey("c", { ctrl: true })
       await app.renderOnce()
-      expect(app.captureCharFrame()).not.toContain("Commands")
+      expect(app.captureCharFrame()).not.toContain("Comandos")
       expect(app.captureCharFrame()).not.toContain("┃")
       expect(app.captureCharFrame()).not.toContain("█")
     }
@@ -1719,11 +1719,11 @@ test("direct footer closes settings with ctrl-c instead of arming exit", async (
     await app.renderOnce()
     app.mockInput.pressEnter()
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Shell")
+    expect(app.captureCharFrame()).toContain("Terminal")
 
     app.mockInput.pressKey("c", { ctrl: true })
     await app.renderOnce()
-    expect(app.captureCharFrame()).not.toContain("Shell")
+    expect(app.captureCharFrame()).not.toContain("Terminal")
     expect(app.renderer.currentFocusedEditor?.plainText).toBe("")
   } finally {
     app.cleanup()
@@ -1762,7 +1762,7 @@ test("direct footer counts queued and steering work while running", async () => 
     const statusline = footerStatusline(app.renderer.root)
     expect(frame).toContain("esc stop · ctrl+x q 2 pending · ↓ 1 subagent · ctrl+b background · Build")
     expect(frame).toMatch(/opencode · ctrl\+p menu *$/m)
-    expect(frame).not.toContain("1 agent")
+    expect(frame).not.toContain("1 agente")
     expect(statusline.backgroundColor.toInts()).toEqual(transparent)
   } finally {
     app.cleanup()
@@ -1811,7 +1811,7 @@ test.each([16, 20, 24, 32])("status takeovers retain complete instructions at %i
       for (const state of [
         { phase: "idle" as const, exit: 1, interrupt: 0, notice: "", key: "ctrl+c", action: "exit" },
         { phase: "running" as const, exit: 0, interrupt: 1, notice: "", key: "esc", action: "" },
-        { phase: "running" as const, exit: 0, interrupt: 0, notice: "failed to save settings", key: "", action: "" },
+        { phase: "running" as const, exit: 0, interrupt: 0, notice: "no se pudo guardar la configuración", key: "", action: "" },
       ]) {
         app.setState((previous) => ({ ...previous, ...state }))
         await app.renderOnce()
@@ -1915,9 +1915,9 @@ test.each([8, 12])("production footer grows for wrapped instructions in %i rows"
     expect(app.captureCharFrame()).toContain("ctrl+shift+alt+x")
     expect(app.captureCharFrame()).toContain("exit")
     expect(app.captureCharFrame()).not.toContain("GPT-5")
-    footer.event({ type: "stream.patch", patch: { exit: 0, notice: "failed to save settings" } })
+    footer.event({ type: "stream.patch", patch: { exit: 0, notice: "no se pudo guardar la configuración" } })
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("settings")
+    expect(app.captureCharFrame()).toContain("configuración")
     footer.event({ type: "stream.patch", patch: { notice: "" } })
     await app.renderOnce()
     expect(app.renderer.footerHeight).toBe(initial)
@@ -1973,7 +1973,7 @@ test.each(["ctrl+i", "none"])("takeovers preserve configured shortcuts with hidd
       await app.renderOnce()
       const frame = app.captureCharFrame()
       expect(frame).toContain(
-        key === "none" ? (exit ? "Exit pending" : "Stop pending") : `${key} ${exit ? "exit" : "stop"}`,
+        key === "none" ? (exit ? "Salida pendiente" : "Detención pendiente") : `${key} ${exit ? "exit" : "stop"}`,
       )
       for (const hidden of ["ctrl+c", "esc", "menu", "Build", "gpt-5"]) expect(frame).not.toContain(hidden)
     }
@@ -2170,7 +2170,7 @@ test("direct footer reserves the working indicator beside complete status text",
   }
 })
 
-test("direct footer always offers backgrounding for a foreground subagent", async () => {
+test("direct footer always offers backgrounding for a foreground subagente", async () => {
   const app = await renderFooter({
     subagents: {
       tabs: [subagent({ sessionID: "s-1", label: "Explore", description: "Inspect auth flow" })],
@@ -2297,13 +2297,13 @@ test("direct footer hides routine activity and shows explicit notices", async ()
     expect(initial).not.toContain("gpt-5")
     expect(initial).not.toContain("159.6K")
 
-    app.setState((state) => ({ ...state, phase: "running", status: "assistant responding" }))
+    app.setState((state) => ({ ...state, phase: "running", status: "el asistente está respondiendo" }))
     await app.renderOnce()
     const changed = app.captureCharFrame()
     const statusline = footerStatusline(app.renderer.root)
 
     expect(changed).not.toContain("running")
-    expect(changed).not.toContain("assistant responding")
+    expect(changed).not.toContain("el asistente está respondiendo")
     expect(changed).not.toContain("interrupt")
     expect(changed).not.toContain("gpt-5")
     expect(changed).not.toContain("159.6K")
@@ -2401,13 +2401,13 @@ test("direct model panel keeps native V2 light search and options readable on a 
     const frame = app.captureCharFrame()
     const list = panelMenu(app.renderer.root)
 
-    expect(frame).toContain("Select model")
-    expect(frame).toContain("Search")
+    expect(frame).toContain("Seleccionar modelo")
+    expect(frame).toContain("Buscar")
     expect(frame).toContain("opencode")
     expect(frame).toContain("GPT-5")
-    expect(frame).toContain("current")
+    expect(frame).toContain("actual")
     expect(frame).toContain("GPT Free")
-    expect(frame).toContain("Free")
+    expect(frame).toContain("Gratis")
     expect(frame).not.toContain("┌")
     expect(frame).not.toContain("┃")
     expect(frame).not.toContain("Old Model")
@@ -2459,8 +2459,8 @@ test("direct permission buttons use secondary text over the native V2 light pane
   try {
     await app.renderOnce()
     const spans = app.captureSpans().lines.flatMap((line) => line.spans)
-    const inactive = spans.find((span) => span.text.includes("Reject"))!
-    const selected = spans.find((span) => span.text.includes("Allow once"))!
+    const inactive = spans.find((span) => span.text.includes("Rechazar"))!
+    const selected = spans.find((span) => span.text.includes("Permitir"))!
     expect(inactive.fg.toInts()).toEqual((theme.footer.actionSecondaryText as RGBA).toInts())
     expect(inactive.bg.toInts()).toEqual((theme.footer.pane as RGBA).toInts())
     expect(selected.fg.toInts()).toEqual((theme.footer.actionFocusedText as RGBA).toInts())
@@ -2471,7 +2471,7 @@ test("direct permission buttons use secondary text over the native V2 light pane
   }
 })
 
-test("direct agent panel shows eligible agents and marks the current agent", async () => {
+test("direct agent panel shows eligible agents and marks the current agente", async () => {
   const theme = await nativeLightTheme()
   const [agents] = createSignal<RunAgent[]>([
     { id: "build", name: "Build", description: "Build software", mode: "all", hidden: false },
@@ -2504,12 +2504,12 @@ test("direct agent panel shows eligible agents and marks the current agent", asy
     await app.renderOnce()
     const frame = app.captureCharFrame()
 
-    expect(frame).toContain("Select agent")
+    expect(frame).toContain("Seleccionar agente")
     expect(frame).toContain("build")
     expect(frame).toContain("review")
     expect(frame).toContain("Review changes")
-    expect(frame).toContain("current")
-    expect(frame).not.toContain("explore")
+    expect(frame).toContain("actual")
+    expect(frame).not.toContain("explorar")
     expect(frame).not.toContain("secret")
 
     app.mockInput.pressEnter()
@@ -2555,11 +2555,11 @@ test("direct variant panel renders current variant selector", async () => {
     const frame = app.captureCharFrame()
     const list = panelMenu(app.renderer.root)
 
-    expect(frame).toContain("Select variant")
-    expect(frame).toContain("Default")
+    expect(frame).toContain("Seleccionar variante")
+    expect(frame).toContain("Predeterminado")
     expect(frame).toContain("high")
     expect(frame).toContain("minimal")
-    expect(frame).toContain("current")
+    expect(frame).toContain("actual")
     expect(frame).not.toContain("┌")
     expect(frame).not.toContain("┃")
     expectPaletteList(list, 1)

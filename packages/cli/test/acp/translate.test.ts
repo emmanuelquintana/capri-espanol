@@ -207,7 +207,7 @@ const rows: Row[] = [
   {
     name: "excludes child session steps from the turn usage",
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       stepEnded("ses_child", "msg_child", { tokens: usage(500, 50) }),
       succeeded("ses_child"),
       stepEnded(root, "msg_root", { tokens: usage(20, 7) }),
@@ -308,14 +308,14 @@ const rows: Row[] = [
   },
   {
     name: "projects a child's tool call onto the parent with its ID and title prefixed",
-    events: live(childCreated("ses_child", root, "Explore"), toolStarted("ses_child", "call_1", "read")),
+    events: live(childCreated("ses_child", root, "Explorar"), toolStarted("ses_child", "call_1", "read")),
     expected: {
       updates: [
         {
           sessionUpdate: "tool_call",
           toolCallId: "ses_child:call_1",
           title: "Explore: read",
-          _meta: childMeta("ses_child", root, 1, "Explore"),
+          _meta: childMeta("ses_child", root, 1, "Explorar"),
         },
       ],
       children: [],
@@ -324,7 +324,7 @@ const rows: Row[] = [
   {
     name: "projects a nested child with its depth and its own parent, and ignores unrelated sessions",
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       childCreated("ses_grandchild", "ses_child", "Deeper"),
       childCreated("ses_stranger", "ses_unknown", "Unrelated"),
       toolStarted("ses_grandchild", "call_1", "read"),
@@ -344,7 +344,7 @@ const rows: Row[] = [
     name: "routes child work to the extension when the client supports it",
     ctx: { childUpdates: true },
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       durableEvent("session.execution.started", { sessionID: "ses_child" }),
       textDelta("ses_child", "msg_child", "nested"),
       failed("ses_child", { type: "tool.error", message: "boom" }),
@@ -363,7 +363,7 @@ const rows: Row[] = [
   {
     name: "fails the tools a cancelled turn left open, including a child's",
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       toolStarted(root, "call_root", "shell"),
       toolCalled(root, "call_root", { command: "sleep 60" }),
       toolProgress(root, "call_root", { pid: 1 }),
@@ -375,7 +375,7 @@ const rows: Row[] = [
           toolCallId: "call_root",
           status: "failed",
           rawInput: { command: "sleep 60" },
-          rawOutput: { metadata: { pid: 1 }, error: "Cancelled" },
+          rawOutput: { metadata: { pid: 1 }, error: "Cancelado" },
         },
         { toolCallId: "ses_child:call_child", status: "failed", title: "Explore: read" },
       ],
@@ -502,14 +502,14 @@ const rows: Row[] = [
     name: "keeps a child's compaction projected onto the parent as a marker",
     ctx: { compaction: true },
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       compaction.started("ses_child"),
       compaction.ended("Summary", "ses_child"),
     ),
     expected: {
       updates: [
-        { _meta: { "opencode/compaction": { status: "started" }, ...childMeta("ses_child", root, 1, "Explore") } },
-        { _meta: { "opencode/compaction": { status: "completed" }, ...childMeta("ses_child", root, 1, "Explore") } },
+        { _meta: { "opencode/compaction": { status: "started" }, ...childMeta("ses_child", root, 1, "Explorar") } },
+        { _meta: { "opencode/compaction": { status: "completed" }, ...childMeta("ses_child", root, 1, "Explorar") } },
       ],
     },
   },
@@ -517,7 +517,7 @@ const rows: Row[] = [
     name: "sends a child's compaction as standard updates through the extension",
     ctx: { compaction: true, childUpdates: true },
     events: live(
-      childCreated("ses_child", root, "Explore"),
+      childCreated("ses_child", root, "Explorar"),
       compaction.started("ses_child"),
       compaction.ended("Summary", "ses_child"),
     ),

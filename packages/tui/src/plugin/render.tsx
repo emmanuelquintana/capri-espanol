@@ -33,8 +33,8 @@ function PluginBoundary(props: ParentProps<{ id: string; where: string }>) {
         onMount(() =>
           toast.show({
             variant: "error",
-            title: "Plugin",
-            message: `${props.id} crashed in ${props.where}: ${errorMessage(error)}`,
+            title: "Complemento",
+            message: `${props.id} falló en ${props.where}: ${errorMessage(error)}`,
           }),
         )
         return null

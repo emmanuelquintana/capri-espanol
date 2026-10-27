@@ -67,7 +67,7 @@ whenBuildLabelShown("custom commands commit the captured agent, model and varian
     await setup.waitForFrame((frame) => frame.includes("Plan ·"))
     setup.mockInput.pressKey("F8")
     await setup.waitForFrame(
-      (frame) => frame.includes("Select model") && setup.renderer.currentFocusedRenderable instanceof InputRenderable,
+      (frame) => frame.includes("Seleccionar modelo") && setup.renderer.currentFocusedRenderable instanceof InputRenderable,
     )
     await setup.mockInput.typeText("second")
     await setup.renderOnce()
@@ -75,7 +75,7 @@ whenBuildLabelShown("custom commands commit the captured agent, model and varian
     // DialogSelect focuses its filter on a timer; typing earlier is dropped and Enter picks "Default".
     await setup.waitForFrame(
       (frame) =>
-        frame.includes("Select variant") &&
+        frame.includes("Seleccionar variante") &&
         frame.includes("low") &&
         setup.renderer.currentFocusedRenderable instanceof InputRenderable,
     )

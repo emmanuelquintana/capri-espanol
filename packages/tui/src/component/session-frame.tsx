@@ -32,7 +32,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
   const config = useConfig()
   const data = useData()
   const toast = useToast()
-  const terminalError = () => toast.show({ variant: "error", message: "Unable to load terminal" })
+  const terminalError = () => toast.show({ variant: "error", message: "No se puede cargar la terminal" })
   const renderer = useRenderer()
   const dimensions = useTerminalDimensions()
   const panels = usePanel()
@@ -167,13 +167,13 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
     commands: [
       {
         id: "pane.focus.left",
-        title: "Focus session pane",
+        title: "Enfocar panel de sesión",
         enabled: () => !fullscreen(),
         run: focusSession,
       },
       {
         id: "pane.focus.right",
-        title: "Focus right pane",
+        title: "Enfocar panel derecho",
         run: focusRightPane,
       },
     ],
@@ -185,7 +185,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
     commands: [
       {
         id: "session.sidebar.toggle",
-        title: rightPane() === "sidebar" ? "Hide sidebar" : "Show sidebar",
+        title: rightPane() === "sidebar" ? "Ocultar panel lateral" : "Mostrar panel lateral",
         group: "Session",
         palette: true,
         run: () => {
@@ -197,7 +197,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
         ? [
             {
               id: "terminal.toggle",
-              title: rightPane() === "terminal" ? "Hide terminal pane" : "Show terminal pane",
+              title: rightPane() === "terminal" ? "Ocultar panel de terminal" : "Mostrar panel de terminal",
               group: "Session",
               palette: true as const,
               run: () => {
@@ -219,7 +219,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
             },
             {
               id: "terminal.select",
-              title: "Select terminal",
+              title: "Seleccionar terminal",
               group: "Session",
               palette: true as const,
               run: () => {
@@ -232,7 +232,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
             },
             {
               id: "terminal.close",
-              title: "Close terminal pane",
+              title: "Cerrar panel de terminal",
               group: "Session",
               palette: true as const,
               enabled: rightPane() === "terminal",
@@ -244,7 +244,7 @@ export function SessionFrame(props: { sessionID: string; verticalTabsWidth: numb
             },
             {
               id: "session.terminal",
-              title: "New terminal",
+              title: "Nueva terminal",
               group: "Session",
               palette: true as const,
               slash: { name: "terminal" },

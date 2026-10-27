@@ -4,7 +4,7 @@ import { findMessageBoundary, messageNavigationSlack } from "../../../src/routes
 
 const messages: SessionMessageInfo[] = [
   { type: "user", id: "user-1", text: "First", time: { created: 0 } },
-  assistant("assistant-1", "Response"),
+  assistant("assistant-1", "Respuesta"),
   { type: "user", id: "user-2", text: "Second", time: { created: 2 } },
 ]
 const children = [
@@ -13,12 +13,12 @@ const children = [
   { id: "user-2", y: 40 },
 ]
 
-test("adds only enough slack to align the selected message", () => {
+test("adds only enough slack to align the selected mensaje", () => {
   expect(messageNavigationSlack({ top: 80, viewportHeight: 50, scrollHeight: 100, currentSlack: 0 })).toBe(30)
   expect(messageNavigationSlack({ top: 20, viewportHeight: 50, scrollHeight: 130, currentSlack: 30 })).toBe(0)
 })
 
-test("finds the next user message without stopping at an assistant message", () => {
+test("finds the next user message without stopping at an assistant mensaje", () => {
   expect(
     findMessageBoundary({
       direction: "next",
@@ -31,7 +31,7 @@ test("finds the next user message without stopping at an assistant message", () 
   ).toEqual({ id: "user-2", y: 40, top: 40 })
 })
 
-test("finds the previous user message without stopping at an assistant message", () => {
+test("finds the previous user message without stopping at an assistant mensaje", () => {
   expect(
     findMessageBoundary({
       direction: "prev",
@@ -90,7 +90,7 @@ test("uses the selected message when the viewport is too tall to scroll", () => 
   ).toEqual({ id: "user-1", y: 0, top: 0 })
 })
 
-test("stops at the first and last selected user message", () => {
+test("stops at the first and last selected user mensaje", () => {
   expect(
     findMessageBoundary({
       direction: "next",
@@ -129,7 +129,7 @@ test("keeps the logical boundary when layout temporarily moves it outside the vi
   ).toBeNull()
 })
 
-test("stops at the first and last message", () => {
+test("stops at the first and last mensaje", () => {
   expect(
     findMessageBoundary({
       direction: "next",

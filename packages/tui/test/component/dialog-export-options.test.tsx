@@ -49,19 +49,19 @@ test("tab and shift+tab move a visible focus through the export options", async 
 
   try {
     app.renderer.start()
-    await app.waitForFrame((frame) => frame.includes("Copy") && frame.includes("Include tools"))
+    await app.waitForFrame((frame) => frame.includes("Copiar") && frame.includes("Incluir herramientas"))
     // Only the focused field is highlighted; checked fields keep the base label colour.
     expect(span("Markdown")?.fg.equals(focusedField())).toBe(true)
-    expect(span("Include thinking")?.fg.equals(field())).toBe(true)
-    expect(span("Copy")?.bg.equals(focusedButton())).toBe(false)
+    expect(span("Incluir razonamiento")?.fg.equals(field())).toBe(true)
+    expect(span("Copiar")?.bg.equals(focusedButton())).toBe(false)
 
     for (const _ of [1, 2, 3, 4]) app.mockInput.pressTab()
-    await app.waitForFrame(() => span("Copy")?.bg.equals(focusedButton()) === true)
-    expect(span("Include tools")?.fg.equals(field())).toBe(true)
+    await app.waitForFrame(() => span("Copiar")?.bg.equals(focusedButton()) === true)
+    expect(span("Incluir herramientas")?.fg.equals(field())).toBe(true)
 
     app.mockInput.pressTab({ shift: true })
-    await app.waitForFrame(() => span("Include tools")?.fg.equals(focusedField()) === true)
-    expect(span("Copy")?.bg.equals(focusedButton())).toBe(false)
+    await app.waitForFrame(() => span("Incluir herramientas")?.fg.equals(focusedField()) === true)
+    expect(span("Copiar")?.bg.equals(focusedButton())).toBe(false)
   } finally {
     app.renderer.destroy()
   }

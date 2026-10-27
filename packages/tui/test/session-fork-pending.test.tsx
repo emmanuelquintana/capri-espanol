@@ -49,11 +49,11 @@ test("choosing a row in /fork shows the pending view until the fork finishes", a
     await setup.waitForFrame((frame) => frame.includes("First answer"))
     await setup.mockInput.typeText("/fork")
     setup.mockInput.pressEnter()
-    await setup.waitForFrame((frame) => frame.includes("Fork session") && frame.includes("Full session"))
+    await setup.waitForFrame((frame) => frame.includes("Bifurcar sesión") && frame.includes("Sesión completa"))
     setup.mockInput.pressEnter()
     await requested.promise
-    await setup.waitForFrame((frame) => frame.includes("Forking session") && !frame.includes("Full session"))
-    expect(setup.captureCharFrame()).toContain("Fork session")
+    await setup.waitForFrame((frame) => frame.includes("Bifurcando sesión") && !frame.includes("Sesión completa"))
+    expect(setup.captureCharFrame()).toContain("Bifurcar sesión")
   } finally {
     fork.resolve(new Response(null, { status: 500 }))
   }

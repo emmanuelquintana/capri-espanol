@@ -114,7 +114,7 @@ export function StatsPoster(props: { stats: SessionStatsInfo }) {
           )}
         </For>
         <Show when={calendar().clipped}>
-          <text fg={theme.text.muted}>Your last {calendar().weeks.length} weeks</text>
+          <text fg={theme.text.muted}>Tus últimas {calendar().weeks.length} semanas</text>
         </Show>
       </box>
       <box width="100%" flexDirection="row" justifyContent="space-around">
@@ -123,7 +123,7 @@ export function StatsPoster(props: { stats: SessionStatsInfo }) {
             <box alignItems="center">
               <text fg={theme.text.base} attributes={TextAttributes.BOLD}>
                 {statsNumber(metric.value)}
-                {metric.label === "best streak" ? " days" : ""}
+                {metric.label === "best streak" ? " días" : ""}
               </text>
               <text fg={theme.text.muted}>{metric.label}</text>
             </box>
@@ -149,7 +149,7 @@ function StatsPage(props: { context: Plugin.Context; onClose: () => void }) {
   const theme = useTheme()
 
   props.context.keymap.layer(() => ({
-    commands: [{ bind: "escape", title: "back", run: props.onClose }],
+    commands: [{ bind: "escape", title: "volver", run: props.onClose }],
   }))
 
   return (
@@ -167,10 +167,10 @@ function StatsPage(props: { context: Plugin.Context; onClose: () => void }) {
         <Show
           when={!result.error}
           fallback={
-            <text fg={theme.text.feedback.error.base}>Could not load stats. Reopen /stats to try again.</text>
+            <text fg={theme.text.feedback.error.base}>No se pudieron cargar las estadísticas. Reabre /stats para reintentar.</text>
           }
         >
-          <Show when={result()} fallback={<text fg={theme.text.muted}>Gathering your stats…</text>}>
+          <Show when={result()} fallback={<text fg={theme.text.muted}>Recopilando tus estadísticas…</text>}>
             {(value) => <StatsPoster stats={value()} />}
           </Show>
         </Show>
@@ -195,7 +195,7 @@ export default Plugin.define({
           commands: [
             {
               id: "stats.open",
-              title: "Usage statistics",
+              title: "Estadísticas de uso",
               group: "System",
               slash: { name: "stats" },
               palette: true,

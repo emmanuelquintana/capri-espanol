@@ -65,7 +65,7 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
         .catch((cause: unknown) => {
           if (disposed) return
           missing = isShellNotFoundError(cause)
-          setError(missing ? "Shell output is no longer available." : "Unable to read shell output. Retrying…")
+          setError(missing ? "La salida de la terminal ya no está disponible." : "No se puede leer la salida de la terminal. Reintentando…")
         })
         .then((more) => {
           // Poll only while the viewer is open, including after exit so the final
@@ -82,20 +82,20 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
 
   const status = () => {
     if (info().status === "running") return "Running"
-    if (info().status === "timeout") return "Timed out"
+    if (info().status === "timeout") return "Tiempo de espera agotado"
     if (info().status === "killed") return "Killed"
-    return info().exit === undefined ? "Exited" : `Exited · code ${info().exit}`
+    return info().exit === undefined ? "Exited" : `Finalizado · código ${info().exit}`
   }
 
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "up", title: "Scroll output up", group: "Shell", run: () => scroll?.scrollBy(-1) },
-      { bind: "down", title: "Scroll output down", group: "Shell", run: () => scroll?.scrollBy(1) },
-      { bind: "pageup", title: "Previous output page", group: "Shell", run: () => scroll?.scrollBy(-height()) },
-      { bind: "pagedown", title: "Next output page", group: "Shell", run: () => scroll?.scrollBy(height()) },
-      { bind: "home", title: "First loaded output", group: "Shell", run: () => scroll?.scrollTo(0) },
-      { bind: "end", title: "Follow shell output", group: "Shell", run: () => scroll?.scrollTo(Infinity) },
+      { bind: "up", title: "Desplazar salida hacia arriba", group: "Shell", run: () => scroll?.scrollBy(-1) },
+      { bind: "down", title: "Desplazar salida hacia abajo", group: "Shell", run: () => scroll?.scrollBy(1) },
+      { bind: "pageup", title: "Página de salida anterior", group: "Shell", run: () => scroll?.scrollBy(-height()) },
+      { bind: "pagedown", title: "Página de salida siguiente", group: "Shell", run: () => scroll?.scrollBy(height()) },
+      { bind: "home", title: "Primera salida cargada", group: "Shell", run: () => scroll?.scrollTo(0) },
+      { bind: "end", title: "Seguir salida de la terminal", group: "Shell", run: () => scroll?.scrollTo(Infinity) },
     ],
   }))
 
@@ -106,7 +106,7 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
           gap={dimensions().width < 60 ? 1 : 2}
           titleView={
             <text fg={theme.text.base} attributes={TextAttributes.BOLD} flexGrow={1}>
-              Shell output
+              Salida de consola
             </text>
           }
         >
@@ -117,9 +117,9 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
         <DialogFooter
           actions={{
             secondary: [
-              { title: "scroll", key: "↑/↓" },
-              { title: "follow", key: "end" },
-              { title: "back", key: "esc" },
+              { title: "desplazamiento", key: "↑/↓" },
+              { title: "seguir", key: "end" },
+              { title: "volver", key: "esc" },
             ],
           }}
         />
@@ -130,7 +130,7 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
           {props.shell.command}
         </text>
         <Show when={omitted()}>
-          <text fg={theme.text.muted}>Earlier output omitted · showing recent output</text>
+          <text fg={theme.text.muted}>Salida anterior omitida · se muestra la más reciente</text>
         </Show>
         <scrollbox
           id="shell-output-scroll"
@@ -143,8 +143,8 @@ export function DialogShellOutput(props: { shell: ShellInfo; location: LocationR
           <text fg={theme.text.base} wrapMode="word">
             {text() ||
               (output() === undefined
-                ? "Loading output…"
-                : "No captured output. Output redirected to files is not shown here.")}
+                ? "Cargando salida…"
+                : "No hay salida capturada. La salida redirigida a archivos no se muestra aquí.")}
           </text>
         </scrollbox>
         <Show when={error()}>

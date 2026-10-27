@@ -12,7 +12,7 @@ describe("run stream bridge", () => {
       },
       {
         commits: [],
-        updates: [{ type: "stream.patch", patch: { status: "assistant responding" } }],
+        updates: [{ type: "stream.patch", patch: { status: "el asistente está respondiendo" } }],
       },
     )
 
@@ -21,7 +21,7 @@ describe("run stream bridge", () => {
         type: "stream.patch",
         patch: {
           phase: "running",
-          status: "assistant responding",
+          status: "el asistente está respondiendo",
         },
       },
     ])

@@ -35,7 +35,7 @@ export function permissionPresentation(
     const diff = text(first.patch) || text(first.diff) || text(metadata.diff) || undefined
     return {
       icon: "→",
-      title: `Edit ${formatPath(file)}`,
+      title: `Editar ${formatPath(file)}`,
       lines: [],
       diff,
       patch: diff ? undefined : text(input.patchText) || undefined,
@@ -45,11 +45,11 @@ export function permissionPresentation(
 
   if (action === "read" || action === "list") {
     const value = text(input.path) || resources[0] || ""
-    const title = action === "read" ? "Read" : "List"
+    const title = action === "read" ? "Leer" : "Listar"
     return {
       icon: "→",
       title: `${title} ${formatPath(value)}`,
-      lines: value ? [`Path: ${formatPath(value)}`] : [],
+      lines: value ? [`Ruta: ${formatPath(value)}`] : [],
     }
   }
 
@@ -59,7 +59,7 @@ export function permissionPresentation(
     return {
       icon: "✱",
       title: `${title} "${pattern}"`,
-      lines: pattern ? [`Pattern: ${pattern}`] : [],
+      lines: pattern ? [`Patrón: ${pattern}`] : [],
     }
   }
 
@@ -67,7 +67,7 @@ export function permissionPresentation(
     const command = text(input.command)
     return {
       icon: "#",
-      title: "Shell command",
+      title: "Comando de terminal",
       lines: command ? [`$ ${command}`] : resources.map((item) => `- ${item}`),
     }
   }
@@ -77,7 +77,7 @@ export function permissionPresentation(
     const description = text(input.description)
     return {
       icon: "#",
-      title: `${Locale.titlecase(agent)} Subagent`,
+      title: `${Locale.titlecase(agent)} Subagente`,
       lines: description ? [`◉ ${description}`] : [],
     }
   }
@@ -86,7 +86,7 @@ export function permissionPresentation(
     const url = text(input.url) || text(metadata.url)
     return {
       icon: "%",
-      title: `WebFetch ${url}`,
+      title: `Consultar web ${url}`,
       lines: url ? [`URL: ${url}`] : [],
     }
   }
@@ -97,7 +97,7 @@ export function permissionPresentation(
     return {
       icon: "◈",
       title: query ? `${title} "${query}"` : title,
-      lines: query ? [`Query: ${query}`] : [],
+      lines: query ? [`Consulta: ${query}`] : [],
     }
   }
 
@@ -111,9 +111,9 @@ export function permissionPresentation(
       icon: "→",
       title: `LSP ${operation}${file ? ` ${formatPath(file)}${position ? `:${position}` : ""}` : ""}`,
       lines: [
-        ...(input.operation ? [`Operation: ${operation}`] : []),
-        ...(file ? [`Path: ${formatPath(file)}`] : []),
-        ...(position ? [`Position: ${position}`] : []),
+        ...(input.operation ? [`Operación: ${operation}`] : []),
+        ...(file ? [`Ruta: ${formatPath(file)}`] : []),
+        ...(position ? [`Posición: ${position}`] : []),
       ],
     }
   }
@@ -123,7 +123,7 @@ export function permissionPresentation(
     const directory = wildcardDirectory(raw)
     return {
       icon: "←",
-      title: `Access external directory ${formatPath(directory)}`,
+      title: `Acceder al directorio externo ${formatPath(directory)}`,
       lines: resources.map((item) => `- ${item}`),
     }
   }
@@ -131,15 +131,15 @@ export function permissionPresentation(
   if (action === "doom_loop") {
     return {
       icon: "⟳",
-      title: "Continue after repeated failures",
-      lines: ["This keeps the session running despite repeated failures."],
+      title: "Continuar tras errores repetidos",
+      lines: ["Mantiene la sesión activa a pesar de los errores repetidos."],
     }
   }
 
   return {
     icon: "⚙",
-    title: `Call tool ${source.action}`,
-    lines: [`Tool: ${source.action}`],
+    title: `Llamar a la herramienta ${source.action}`,
+    lines: [`Herramienta: ${source.action}`],
   }
 }
 
@@ -154,17 +154,17 @@ function wildcardDirectory(value: string) {
 export function permissionAlwaysLines(input: { action: string; save?: ReadonlyArray<string> }): string[] {
   const save = input.save ?? []
   if (save.length === 1 && save[0] === "*") {
-    return [`This will always allow ${input.action} for this project.`]
+    return [`Esto permitirá siempre ${input.action} para este proyecto.`]
   }
-  return ["This will always allow the following patterns for this project.", ...save.map((item) => `- ${item}`)]
+  return ["Esto permitirá siempre los siguientes patrones para este proyecto.", ...save.map((item) => `- ${item}`)]
 }
 
 export function permissionOptionLabel(option: "once" | "always" | "reject" | "confirm" | "cancel") {
-  if (option === "once") return "Allow once"
-  if (option === "always") return "Always allow"
-  if (option === "reject") return "Reject"
-  if (option === "confirm") return "Confirm"
-  return "Cancel"
+  if (option === "once") return "Permitir"
+  if (option === "always") return "Siempre"
+  if (option === "reject") return "Rechazar"
+  if (option === "confirm") return "Confirmar"
+  return "Cancelar"
 }
 
 function normalizeInput(action: string, value: unknown): Dict {

@@ -11,13 +11,13 @@ export function TerminalsTab(props: { sessionID: string; visibleTerminalID?: str
   const terminals = useSessionTerminals()
   const theme = useTheme()
   const toast = useToast()
-  const failure = () => toast.show({ variant: "error", message: "Unable to load terminal" })
+  const failure = () => toast.show({ variant: "error", message: "No se puede cargar la terminal" })
   const [selected, setSelected] = createSignal<number>()
   const session = () => terminals.get(props.sessionID)
   const entries = () => session()?.terminals ?? []
 
   onMount(() => {
-    const cleanup = composer.register({ id: "terminals", label: "Terminals" })
+    const cleanup = composer.register({ id: "terminals", label: "Terminales" })
     onCleanup(cleanup)
   })
 
@@ -46,19 +46,19 @@ export function TerminalsTab(props: { sessionID: string; visibleTerminalID?: str
     commands: [
       {
         id: "composer.terminal.up",
-        title: "Previous terminal",
+        title: "Terminal anterior",
         group: "Composer",
         run: () => setSelected((index) => ((index ?? 0) + entries().length) % (entries().length + 1)),
       },
       {
         id: "composer.terminal.down",
-        title: "Next terminal",
+        title: "Terminal siguiente",
         group: "Composer",
         run: () => setSelected((index) => ((index ?? -1) + 1) % (entries().length + 1)),
       },
       {
         id: "composer.terminal.select",
-        title: "Select terminal",
+        title: "Seleccionar terminal",
         group: "Composer",
         run: select,
       },
@@ -102,7 +102,7 @@ export function TerminalsTab(props: { sessionID: string; visibleTerminalID?: str
                   wrapMode="none"
                   truncate
                 >
-                  {terminal?.foregroundProcess ?? terminal?.title ?? "+ New terminal"}
+                  {terminal?.foregroundProcess ?? terminal?.title ?? "+ Nueva terminal"}
                 </text>
               </box>
             )

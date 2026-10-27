@@ -9,7 +9,7 @@ describe("debug paths command", () => {
 
     expect(debug.exitCode).toBe(0)
     expect(debug.stdout).toContain("paths")
-    expect(debug.stdout).toContain("Show global paths (data, config, cache, state)")
+    expect(debug.stdout).toContain("Mostrar rutas globales (datos, configuración, caché y estado)")
     expect(paths.exitCode).toBe(0)
     expect(paths.stdout).toContain("opencode debug paths [flags]")
   })

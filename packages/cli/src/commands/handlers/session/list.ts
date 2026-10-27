@@ -98,7 +98,7 @@ function formatList(sessions: ReadonlyArray<SessionInfo>) {
     .map((session) =>
       [
         session.id,
-        (session.title ?? "Untitled session").replace(/[\r\n\t]/g, " "),
+        (session.title ?? "Sesión sin título").replace(/[\r\n\t]/g, " "),
         new Date(session.time.updated).toLocaleString(),
       ].join("\t"),
     )

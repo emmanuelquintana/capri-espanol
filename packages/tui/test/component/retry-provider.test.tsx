@@ -13,7 +13,7 @@ async function fixture() {
   const provider = new RetryProviderRenderable(app.renderer, {
     value: { id: "call-1", provider: "exa", running: true },
   })
-  text.add("Web Search via ")
+  text.add("Búsqueda web mediante ")
   text.add(provider)
   text.add(' "query"')
   app.renderer.root.add(text)
@@ -43,18 +43,18 @@ test("only an already-painted running call starts a provider transition", async 
   // Updates before the first paint are not a visible retry.
   app.provider.value = { id: "call-1", provider: "parallel", running: true }
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Parallel "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Parallel \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
   app.provider.value = { id: "call-1", provider: "parallel", running: true }
   app.provider.value = { id: "call-1", provider: "parallel", running: false }
   app.provider.value = { id: "call-1", provider: "tavily", running: false }
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Tavily "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Tavily \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
   // A new invocation/history view must not animate from the previous call's label.
   app.provider.value = { id: "call-2", provider: "exa", running: true }
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Exa "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Exa \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
 })
 
@@ -72,7 +72,7 @@ test("fades only the provider, changes width while invisible, and settles withou
   expect(middle.find((span) => span.text.includes("Exa"))?.fg.toInts()).not.toEqual(
     initial.lines[0].spans[0].fg.toInts(),
   )
-  expect(middle.find((span) => span.text.includes("Web Search"))?.fg.toInts()).toEqual(
+  expect(middle.find((span) => span.text.includes("Búsqueda web"))?.fg.toInts()).toEqual(
     initial.lines[0].spans[0].fg.toInts(),
   )
   expect(middle.find((span) => span.text.includes("query"))?.fg.toInts()).toEqual(initial.lines[0].spans[0].fg.toInts())
@@ -84,10 +84,10 @@ test("fades only the provider, changes width while invisible, and settles withou
   await app.step(30)
   const moving = app.captureCharFrame().indexOf('"query"')
   expect(moving).toBeGreaterThan(before)
-  expect(moving).toBeLessThan("Web Search via Parallel ".length)
+  expect(moving).toBeLessThan("Búsqueda web mediante Parallel ".length)
   await app.step(30)
   await app.step(80)
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Parallel "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Parallel \"query\"")
   expect(app.captureSpans().lines[0].spans[0].fg.toInts()).toEqual(initial.lines[0].spans[0].fg.toInts())
   expect(app.renderer.liveRequestCount).toBe(0)
 })
@@ -101,7 +101,7 @@ test("coalesces rapid fallbacks and does not restart on completion", async () =>
   app.provider.value = { id: "call-1", provider: "firecrawl", running: true }
   app.provider.value = { id: "call-1", provider: "firecrawl", running: false }
   await app.step(180)
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Firecrawl "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Firecrawl \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
 })
 
@@ -116,7 +116,7 @@ test("retargets a fading-in provider without flashing back to full brightness", 
   await app.renderOnce()
   expect(app.captureSpans()).toEqual(middle)
   await app.step(220)
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Tavily "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Tavily \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
 })
 
@@ -127,11 +127,11 @@ test("disabling animations settles immediately and recursive destruction release
   await app.renderOnce()
   app.provider.enabled = false
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Parallel "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Parallel \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
   app.provider.value = { id: "call-1", provider: "exa", running: true }
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Exa "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Exa \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
   app.provider.enabled = true
   app.provider.value = { id: "call-1", provider: "tavily", running: true }
@@ -150,7 +150,7 @@ test("a hidden first paint does not arm the transition", async () => {
   expect(app.renderer.liveRequestCount).toBe(0)
   app.text.visible = true
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Parallel "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Parallel \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
   app.provider.value = { id: "call-1", provider: "tavily", running: true }
   expect(app.renderer.liveRequestCount).toBe(1)
@@ -165,7 +165,7 @@ test("offscreen and ancestor-clipped rows show the latest provider on entry, wit
   expect(app.renderer.liveRequestCount).toBe(0)
   app.text.top = 0
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Parallel "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Parallel \"query\"")
   const clip = new BoxRenderable(app.renderer, { width: 50, height: 1, overflow: "hidden" })
   app.renderer.root.remove(app.text)
   clip.add(app.text)
@@ -177,7 +177,7 @@ test("offscreen and ancestor-clipped rows show the latest provider on entry, wit
   expect(app.renderer.liveRequestCount).toBe(0)
   app.text.top = 0
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Tavily "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Tavily \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
 })
 
@@ -195,7 +195,7 @@ test("a transition settles when hidden and waits for a new paint before animatin
   app.provider.value = { id: "call-1", provider: "tavily", running: true }
   expect(app.renderer.liveRequestCount).toBe(0)
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Tavily "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Tavily \"query\"")
   app.provider.value = { id: "call-1", provider: "exa", running: true }
   expect(app.renderer.liveRequestCount).toBe(1)
   app.text.top = 4
@@ -205,7 +205,7 @@ test("a transition settles when hidden and waits for a new paint before animatin
   expect(app.renderer.liveRequestCount).toBe(0)
   app.text.top = 0
   await app.renderOnce()
-  expect(app.captureCharFrame().trim()).toBe('Web Search via Exa "query"')
+  expect(app.captureCharFrame().trim()).toBe("Búsqueda web mediante Exa \"query\"")
   expect(app.renderer.liveRequestCount).toBe(0)
 })
 

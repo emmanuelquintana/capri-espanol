@@ -64,9 +64,9 @@ test("search orders enabled options across categories and receives every query",
     const chosen = select.dialog.select({
       title: "Projects",
       options: [
-        { title: "Alpha", value: "alpha", category: "Recent" },
+        { title: "Alpha", value: "alpha", category: "Recientes" },
         { title: "Beta", value: "beta", category: "Pinned" },
-        { title: "Gamma", value: "gamma", category: "Recent" },
+        { title: "Gamma", value: "gamma", category: "Recientes" },
         { title: "Delta", value: "delta", category: "Pinned", disabled: true },
       ],
       search: (query, options) => {

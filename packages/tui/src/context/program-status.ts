@@ -61,10 +61,10 @@ function root(sessions: PendingSession[]): ProgramStatus {
       state: "blocked",
       kind: blocked.every((session) => session.kind === blocked[0].kind) ? blocked[0].kind : undefined,
       app: APP,
-      message: `${blocked.length} sessions need input`,
+      message: `${blocked.length} sesiones requieren una respuesta`,
     }
   if (working.length === 1) return record(working[0])
-  if (working.length > 1) return { state: "working", app: APP, message: `${working.length} sessions working` }
+  if (working.length > 1) return { state: "working", app: APP, message: `${working.length} sesiones en curso` }
   return { state: "idle", app: APP }
 }
 

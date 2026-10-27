@@ -193,7 +193,7 @@ export function RunFooterMenu(props: {
             backgroundColor={props.background ? props.theme().shade : transparent}
           >
             <text fg={props.theme().muted} wrapMode="none" truncate>
-              {props.empty ?? "No matching items"}
+              {props.empty ?? "No hay elementos coincidentes"}
             </text>
           </box>
         </box>

@@ -14,7 +14,7 @@ export default Runtime.handler(
     const response = yield* Effect.promise(() => client.mcp.list({ location: { directory: process.cwd() } }))
     const servers = response.data.toSorted((a, b) => a.name.localeCompare(b.name))
     if (servers.length === 0) {
-      process.stdout.write("No MCP servers configured" + EOL)
+      process.stdout.write("No hay servidores MCP configurados" + EOL)
       return
     }
     const width = Math.max(...servers.map((server) => server.name.length))

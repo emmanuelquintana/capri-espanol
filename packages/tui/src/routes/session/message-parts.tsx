@@ -157,7 +157,7 @@ function ReasoningHeader(props: {
     <Switch>
       <Match when={!props.done}>
         <box flexDirection="row">
-          <Spinner color={fg()}>{props.title ? "Thinking: " + props.title : "Thinking"}</Spinner>
+          <Spinner color={fg()}>{props.title ? "Thinking: " + props.title : "Razonamiento"}</Spinner>
         </box>
       </Match>
       <Match when={true}>
@@ -165,7 +165,7 @@ function ReasoningHeader(props: {
           <Show when={props.toggleable}>
             <span>{props.open ? "- " : "+ "}</span>
           </Show>
-          <span>Thought</span>
+          <span>Razonamiento</span>
           <Show when={props.title || props.duration}>
             <span>: </span>
           </Show>

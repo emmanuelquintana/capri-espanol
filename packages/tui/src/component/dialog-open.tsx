@@ -120,7 +120,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
   }
   const [worktrees, worktreeActions] = createResource(projectID, (projectID) =>
     client.api.worktree.list({ projectID }).catch((error: unknown) => {
-      toast.show({ title: "Loading worktrees failed", message: errorMessage(error), variant: "error" })
+      toast.show({ title: "No se pudieron cargar los árboles de trabajo", message: errorMessage(error), variant: "error" })
       return []
     }),
   )
@@ -222,7 +222,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
         title: withTimestampedFallback(session),
         searchText: `${session.id} ${session.location.directory}`,
         value: { type: "session", sessionID: session.id } as OpenTarget,
-        category: "Sessions",
+        category: "Sesiones",
         footer: `${label ? `${Locale.truncate(label, 30)} · ` : ""}${timeAgo(session.time.updated)}`,
         onSelect: () => location.set(session.location),
         gutter: sessionStatusGutter(
@@ -261,7 +261,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
             directory: item.directory,
             ...(git ? { projectID: item.project!.id } : {}),
           } as OpenTarget,
-          category: "Projects",
+          category: "Proyectos",
           gutter:
             item.directory === current.directory ||
             item.directory === location.current?.project.canonical
@@ -335,8 +335,8 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
               pending = undefined
               restore(previous)
             }}
-            title={projectID() ? `${projectName(data.project.get(projectID()!)) ?? "Project"} / Worktrees` : "Open"}
-            placeholder={projectID() ? "Search worktrees…" : "Search sessions and projects…"}
+            title={projectID() ? `${projectName(data.project.get(projectID()!)) ?? "Proyecto"} / Árboles de trabajo` : "Abrir"}
+            placeholder={projectID() ? "Buscar árboles de trabajo…" : "Buscar sesiones y proyectos…"}
             options={projectID() ? worktreeOptions() : options()}
             current={
               currentSessionID() ? ({ type: "session", sessionID: currentSessionID()! } as OpenTarget) : undefined
@@ -353,7 +353,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
             emptyView={
               <Show when={!recent.loading && !projects.loading}>
                 <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
-                  <text fg={theme.text.muted}>No recent sessions or projects</text>
+                  <text fg={theme.text.muted}>No hay sesiones o proyectos recientes</text>
                 </box>
               </Show>
             }
@@ -367,15 +367,15 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
               >
                 <box>
                   <Show when={projectID() && worktrees.loading}>
-                    <Spinner color={theme.text.muted}>Loading worktrees…</Spinner>
+                    <Spinner color={theme.text.muted}>Cargando árboles de trabajo…</Spinner>
                   </Show>
                   <Show when={!projectID() && (recent.loading || projects.loading)}>
-                    <Spinner color={theme.text.muted}>Refreshing sessions and projects…</Spinner>
+                    <Spinner color={theme.text.muted}>Actualizando sesiones y proyectos…</Spinner>
                   </Show>
                   <Show when={!projectID() && (recent() === false || projects() === false)}>
                     <text fg={theme.text.feedback.error.base}>
-                      Could not refresh{" "}
-                      {recent() === false ? (projects() === false ? "sessions and projects" : "sessions") : "projects"}.
+                      No se pudieron actualizar{" "}
+                      {recent() === false ? (projects() === false ? "sesiones y proyectos" : "sesiones") : "proyectos"}.
                     </text>
                   </Show>
                 </box>
@@ -386,7 +386,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
                 ? [
                     {
                       bind: "right",
-                      title: "Show project worktrees",
+                      title: "Mostrar árboles de trabajo del proyecto",
                       group: "Dialog",
                       run: () => {
                         const target = select?.selected?.value
@@ -408,27 +408,27 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
                 ? [
                     {
                       bind: "left",
-                      title: "Return to projects",
+                      title: "Volver a los proyectos",
                       group: "Dialog",
                       run: back,
                     },
-                    { bind: "ctrl+n", title: "New worktree", group: "Dialog", run: newWorktree },
+                    { bind: "ctrl+n", title: "Nuevo árbol de trabajo", group: "Dialog", run: newWorktree },
                   ]
                 : []),
             ]}
-            footerHints={[...(projectID() ? [{ title: "new worktree", label: "ctrl+n" }] : [])]}
+            footerHints={[...(projectID() ? [{ title: "nuevo árbol de trabajo", label: "ctrl+n" }] : [])]}
             noMatchView={
               <box paddingLeft={DIALOG_LIST_INSET} paddingRight={DIALOG_LIST_INSET}>
                 <text fg={theme.text.muted}>
                   {projectID()
                     ? worktrees.loading
-                      ? "Loading worktrees…"
-                      : "No matching worktrees"
+                      ? "Cargando árboles de trabajo…"
+                      : "No hay árboles de trabajo coincidentes"
                     : recent.loading || projects.loading || matched.loading
-                      ? "Searching sessions and projects…"
+                      ? "Buscando sesiones y proyectos…"
                       : shortcuts.get("session.list")
-                        ? `No matches · search all sessions with ${shortcuts.get("session.list")}`
-                        : "No matches"}
+                        ? `Sin coincidencias · busca en todas las sesiones con ${shortcuts.get("session.list")}`
+                        : "Sin coincidencias"}
                 </text>
               </box>
             }
@@ -449,11 +449,11 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
       >
         <DialogPrompt
           size="large"
-          title={`${projectName(data.project.get(projectID()!)) ?? "Project"} / New worktree`}
-          placeholder="Worktree name (optional)"
-          description={() => <text fg={theme.text.muted}>Leave blank for a random name.</text>}
+          title={`${projectName(data.project.get(projectID()!)) ?? "Proyecto"} / Nuevo árbol de trabajo`}
+          placeholder="Nombre del árbol de trabajo (opcional)"
+          description={() => <text fg={theme.text.muted}>Déjalo vacío para generar un nombre.</text>}
           busy={creating()}
-          busyText="Creating worktree…"
+          busyText="Creando árbol de trabajo…"
           onCancel={cancelCreation}
           onConfirm={(value) => {
             const id = projectID()!
@@ -474,7 +474,7 @@ export function DialogOpen(props: { sessions: SessionInfo[]; onLoad: (sessions: 
                 location.set(target)
               })
               .catch((error: unknown) =>
-                toast.show({ title: "Creating worktree failed", message: errorMessage(error), variant: "error" }),
+                toast.show({ title: "No se pudo crear el árbol de trabajo", message: errorMessage(error), variant: "error" }),
               )
               .finally(() => setCreating(false))
           }}

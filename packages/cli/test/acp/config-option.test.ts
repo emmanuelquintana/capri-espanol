@@ -44,7 +44,7 @@ describe("acp config options", () => {
       currentValue: "default",
       options: [
         { value: "low", name: "Low" },
-        { value: "default", name: "Default" },
+        { value: "default", name: "Predeterminado" },
         { value: "high", name: "High" },
       ],
     })

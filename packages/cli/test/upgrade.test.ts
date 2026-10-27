@@ -19,7 +19,7 @@ describe("upgrade command", () => {
     const result = await cli([])
     expect(result.exitCode).toBe(0)
     expect(result.events).toEqual(["method", { latest: "npm" }, { method: "npm", version: "0.0.0-beta-new" }])
-    expect(result.stdout).toContain("Upgrade complete")
+    expect(result.stdout).toContain("Actualización completada")
   })
 
   test("resolves the latest version for an explicit method without detection", async () => {
@@ -77,9 +77,9 @@ describe("upgrade command", () => {
   test("reports installation failures with a nonzero exit code", async () => {
     const result = await cli([], { UPGRADE_TEST_INSTALL_ERROR: "1" })
     expect(result.exitCode).toBe(1)
-    expect(result.stdout).toContain("Upgrade failed")
+    expect(result.stdout).toContain("La actualización falló")
     expect(result.stdout).toContain("Permission denied")
-    expect(result.stdout).not.toContain("Upgrade complete")
+    expect(result.stdout).not.toContain("Actualización completada")
   })
 })
 

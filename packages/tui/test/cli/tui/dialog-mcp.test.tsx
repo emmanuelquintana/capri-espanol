@@ -22,10 +22,10 @@ test.each(["enter", "space"])("starts OAuth with %s for an MCP server requiring 
 
   try {
     await fixture.app.waitForFrame((frame) => frame.includes("Sign in required"))
-    expect(fixture.app.captureCharFrame()).not.toContain("view error")
+    expect(fixture.app.captureCharFrame()).not.toContain("ver error")
     if (key === "enter") fixture.app.mockInput.pressEnter()
     else fixture.app.mockInput.pressKey(" ")
-    await fixture.app.waitForFrame((frame) => frame.includes("Waiting for authorization"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Esperando autorización"))
 
     expect(fixture.oauth).toBe(1)
     expect(fixture.connect).toBe(0)
@@ -39,18 +39,18 @@ test("opens an investigation draft for a failed MCP server at its originating lo
   const fixture = await renderMcp({ failed: true, location })
 
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("Failed !"))
+    await fixture.app.waitForFrame((frame) => frame.includes("Error !"))
     expect(fixture.app.captureCharFrame()).toContain("view error enter")
     fixture.app.mockInput.pressEnter()
     await fixture.app.waitForFrame((frame) => frame.includes("investigate i"))
     fixture.app.mockInput.pressKey("i")
-    await fixture.app.waitForFrame((frame) => !frame.includes("MCP server: linear"))
+    await fixture.app.waitForFrame((frame) => !frame.includes("Servidor MCP: linear"))
 
     expect(fixture.route.data.type).toBe("home")
     if (fixture.route.data.type !== "home") throw new Error("Expected investigation to open a new session")
     expect(fixture.route.data.location).toEqual(location)
     expect(fixture.route.data.prompt?.text).toContain("OpenCode component failed in the current project")
-    expect(fixture.route.data.prompt?.text).toContain("MCP server: linear")
+    expect(fixture.route.data.prompt?.text).toContain("Servidor MCP: linear")
     expect(fixture.route.data.prompt?.text).toContain("Status: failed")
     expect(fixture.route.data.prompt?.text).toContain("Configuration: mcp.servers.linear")
     expect(fixture.route.data.prompt?.text).toContain("Integration: mcp_linear")

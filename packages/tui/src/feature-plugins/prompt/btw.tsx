@@ -50,19 +50,19 @@ export default Plugin.define({
           commands: [
             {
               id: "session.aside",
-              title: "Ask a side question",
-              description: "One-shot answer from the session's context without adding to the conversation",
+              title: "Hacer una pregunta aparte",
+              description: "Respuesta puntual con el contexto de la sesión, sin añadirla a la conversación",
               group: "Session",
               palette: true,
               slash: { name: "btw", arguments: true },
               async run(input) {
                 const route = context.ui.router.current()
                 if (route.type !== "session") {
-                  toast.show({ message: "Open a session first", variant: "warning" })
+                  toast.show({ message: "Abre primero una sesión", variant: "warning" })
                   return
                 }
                 const question =
-                  input?.trim() || (await context.ui.dialog.prompt({ title: "/btw", placeholder: "Ask anything" }))
+                  input?.trim() || (await context.ui.dialog.prompt({ title: "/btw", placeholder: "Pregunta lo que quieras" }))
                 if (!question) return
                 setPending((count) => count + 1)
                 await context.client.session
@@ -110,7 +110,7 @@ export function Answer(props: {
 
   Keymap.createLayer(() => ({
     mode: "modal",
-    commands: [{ bind: "c", title: "Copy answer", group: "Dialog", run: copy }],
+    commands: [{ bind: "c", title: "Copiar respuesta", group: "Dialog", run: copy }],
   }))
 
   useKeyboard((event) => {
@@ -143,8 +143,8 @@ export function Answer(props: {
         actions: {
           primary: [
             copied()
-              ? { title: "✓ copied", color: theme.text.feedback.success.base, onTrigger: copy }
-              : { title: "copy response", key: "c", onTrigger: copy },
+              ? { title: "✓ copiado", color: theme.text.feedback.success.base, onTrigger: copy }
+              : { title: "copiar respuesta", key: "c", onTrigger: copy },
           ],
         },
       }}
@@ -153,9 +153,9 @@ export function Answer(props: {
           actions={{
             secondary: [
               copied()
-                ? { title: "✓ copied", color: theme.text.feedback.success.base, onTrigger: copy }
+                ? { title: "✓ copiado", color: theme.text.feedback.success.base, onTrigger: copy }
                 : { title: "copy", key: "c", onTrigger: copy },
-              { title: "scroll", key: "j/k ↑/↓" },
+              { title: "desplazamiento", key: "j/k ↑/↓" },
             ],
           }}
         />

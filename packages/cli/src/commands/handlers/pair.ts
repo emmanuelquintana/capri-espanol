@@ -82,7 +82,7 @@ export interface RemoteConsentPrompt {
 
 const terminalPrompt: RemoteConsentPrompt = {
   interactive: () => Boolean(process.stdin.isTTY && process.stdout.isTTY),
-  confirm: () => confirm({ message: "Expose your server to the internet?", initialValue: true }),
+  confirm: () => confirm({ message: "¿Exponer tu servidor a internet?", initialValue: true }),
 }
 
 // Remote access is only explained and accepted the first time it is turned on; once accepted, pairing goes straight

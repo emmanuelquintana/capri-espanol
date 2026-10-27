@@ -11,7 +11,7 @@ import {
   turnTokensPerSecond,
 } from "../../../src/routes/session/rows"
 
-test("measures turn duration from the user prompt across assistant steps", () => {
+test("measures turn duration from the user prompt across assistant pasos", () => {
   const first = assistant("assistant-1", [])
   first.time = { created: 8_000, completed: 11_000 }
   const final = assistant("assistant-2", [])
@@ -394,7 +394,7 @@ test("keeps non-exploration tools as individual part rows", () => {
   ])
 })
 
-test("assigns stable kind ordinals within an assistant message", () => {
+test("assigns stable kind ordinals within an assistant mensaje", () => {
   const messages: SessionMessageInfo[] = [
     assistant("assistant-1", [
       { type: "text", text: "First" },
@@ -602,7 +602,7 @@ test("renders a footer for a pre-output retry assistant after replay", () => {
   expect(reduceSessionRows([message])).toEqual([{ type: "assistant-footer", messageID: "assistant-retry" }])
 })
 
-test("places a running compaction barrier before every queued user message", () => {
+test("places a running compaction barrier before every queued user mensaje", () => {
   const queued = (id: string, text: string, created: number): SessionMessageInfo => ({
     type: "user",
     id,

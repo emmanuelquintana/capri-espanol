@@ -141,7 +141,7 @@ whenThinkingShown("retains nested expansion state and registers exact headers an
       }),
     )
     await app.renderOnce()
-    expect(app.captureCharFrame()).toContain("Thought")
+    expect(app.captureCharFrame()).toContain("Razonamiento")
     expect(app.captureCharFrame()).not.toContain("Reset thought body")
     const thinkingID = groupID(row, 0)
     if (!thinkingID) throw new Error("Missing thinking group ID")
@@ -250,7 +250,7 @@ test("a low activity group with nothing finished stays collapsed behind a status
   }
 })
 
-test("failed low activity uses a disclosure icon and keeps details expandable", async () => {
+test("error low activity uses a disclosure icon and keeps details expandable", async () => {
   const config = createTuiResolvedConfig({ animations: false })
   const anchors = createTimelineAnchors()
   const [expanded, setExpanded] = createStore<Record<string, boolean>>({})

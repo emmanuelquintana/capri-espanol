@@ -72,7 +72,7 @@ whenModelShown.each([70, 120])(
       await setup.waitForFrame((frame) => frame.includes("Demo Model"))
       await setup.mockInput.typeText("/compact")
       setup.mockInput.pressEnter()
-      const frame = await setup.waitForFrame((frame) => frame.includes("Compaction queued"))
+      const frame = await setup.waitForFrame((frame) => frame.includes("Compactación en cola"))
       expect(frame).not.toContain("/compact")
       await setup.mockInput.typeText("/compact")
       setup.mockInput.pressEnter()
@@ -83,7 +83,7 @@ whenModelShown.each([70, 120])(
 
       model.resolve(json({ message: "Model setup failed" }, { status: 400 }))
       const rejected = await setup.waitForFrame((frame) => frame.includes("Model setup failed"))
-      expect(rejected).not.toContain("Compaction queued")
+      expect(rejected).not.toContain("Compactación en cola")
       expect(mutations).toEqual(["model"])
     } finally {
       model.resolve(new Response(null, { status: 204 }))
@@ -197,12 +197,12 @@ whenModelShown.each(["first", "second"])(
       await setup.mockInput.typeText("/models")
       setup.mockInput.pressEnter()
       await setup.waitForFrame(
-        (frame) => frame.includes("Select model") && setup.renderer.currentFocusedRenderable instanceof InputRenderable,
+        (frame) => frame.includes("Seleccionar modelo") && setup.renderer.currentFocusedRenderable instanceof InputRenderable,
       )
       await setup.mockInput.typeText(id)
       await setup.renderOnce()
       setup.mockInput.pressEnter()
-      await setup.waitForFrame((frame) => frame.includes(`${id} model`) && !frame.includes("Select model"))
+      await setup.waitForFrame((frame) => frame.includes(`${id} model`) && !frame.includes("Seleccionar modelo"))
     }
     try {
       await ready.promise
@@ -214,7 +214,7 @@ whenModelShown.each(["first", "second"])(
       if (initial !== "first") await selectModel("first")
       await setup.mockInput.typeText("/compact")
       setup.mockInput.pressEnter()
-      await setup.waitForFrame((frame) => frame.includes("Compaction queued"))
+      await setup.waitForFrame((frame) => frame.includes("Compactación en cola"))
       await selectModel("second")
       await setup.mockInput.typeText("Second prompt")
       setup.mockInput.pressEnter()

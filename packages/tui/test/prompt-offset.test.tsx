@@ -24,7 +24,7 @@ test("an agent mention after a tab replaces only the mention", async () => {
     },
   })
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
   await setup.mockInput.pasteBracketedText("\f👨‍👩‍👧நி\t@助")
   await setup.waitForFrame((frame) => frame.includes("@助手"))
   setup.mockInput.pressEnter()
@@ -43,7 +43,7 @@ test("history navigation moves the cursor to the end of wide text", async () => 
   await Bun.write(file, entry("中\t👨‍👩‍👧நி") + entry("末") + "corrupt\n")
   await using setup = await createAppFixture({ state: state.path })
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
   // The history provider rewrites the file without the corrupt line after it loads the entries.
   await setup.waitFor(async () => !(await Bun.file(file).text()).includes("corrupt"), { maxPasses: 200 })
   const text = () => setup.renderer.currentFocusedEditor?.plainText

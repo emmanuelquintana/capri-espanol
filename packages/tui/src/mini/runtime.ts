@@ -948,7 +948,7 @@ async function runInteractiveRuntime(input: RunRuntimeInput, deps: RunRuntimeDep
                 },
                 runtimeController.signal,
               )
-              if (!created.sessionID) throw new Error("Failed to create session")
+              if (!created.sessionID) throw new Error("No se pudo crear la sesión")
               await footer.idle().catch(() => {})
               await state.stream?.then((item) => item.handle.close()).catch(() => {})
               state.stream = undefined

@@ -95,13 +95,13 @@ export function DialogGoUpsell(props: {
   Keymap.createLayer(() => ({
     mode: "modal",
     commands: [
-      { bind: "return", title: "Confirm Go option", group: "Dialog", run: () => run(selected()) },
-      { bind: "left", title: "Previous Go option", group: "Dialog", run: () => step(-1) },
-      { bind: "up", title: "Previous Go option", group: "Dialog", run: () => step(-1) },
-      { bind: "shift+tab", title: "Previous Go option", group: "Dialog", run: () => step(-1) },
-      { bind: "right", title: "Next Go option", group: "Dialog", run: () => step(1) },
-      { bind: "down", title: "Next Go option", group: "Dialog", run: () => step(1) },
-      { bind: "tab", title: "Next Go option", group: "Dialog", run: () => step(1) },
+      { bind: "return", title: "Confirmar opción de Go", group: "Dialog", run: () => run(selected()) },
+      { bind: "left", title: "Opción anterior de Go", group: "Dialog", run: () => step(-1) },
+      { bind: "up", title: "Opción anterior de Go", group: "Dialog", run: () => step(-1) },
+      { bind: "shift+tab", title: "Opción anterior de Go", group: "Dialog", run: () => step(-1) },
+      { bind: "right", title: "Opción siguiente de Go", group: "Dialog", run: () => step(1) },
+      { bind: "down", title: "Opción siguiente de Go", group: "Dialog", run: () => step(1) },
+      { bind: "tab", title: "Opción siguiente de Go", group: "Dialog", run: () => step(1) },
     ],
   }))
 
@@ -155,7 +155,7 @@ export function DialogGoUpsell(props: {
       <box zIndex={1} paddingLeft={inset()} paddingRight={inset()} paddingBottom={short() ? 0 : 1} gap={short() ? 0 : 1}>
         <box flexDirection="row" justifyContent="space-between" flexShrink={0}>
           <text attributes={TextAttributes.BOLD} fg={theme.text.base} bg={textBg()}>
-            Free limit reached
+            Límite gratuito alcanzado
           </text>
           <text fg={theme.text.muted} bg={textBg()} onMouseUp={() => dialog.clear()}>
             esc
@@ -166,10 +166,10 @@ export function DialogGoUpsell(props: {
           fallback={
             <scrollbox maxHeight={bodyMaxHeight()} flexShrink={1}>
               <text fg={theme.text.muted} bg={textBg()} wrapMode="word">
-                You've used today's free messages.{props.reset ? ` Resets at ${props.reset}.` : ""}
+                Agotaste los mensajes gratuitos de hoy.{props.reset ? ` Resets at ${props.reset}.` : ""}
               </text>
               <text fg={theme.text.muted} bg={textBg()} wrapMode="word">
-                OpenCode Go gives you reliable access to the best open-source models for $10/month.
+                OpenCode Go ofrece acceso a modelos de código abierto por 10 USD al mes.
               </text>
               <Link href={GO_URL} fg={primary()} bg={textBg()} wrapMode="none" />
             </scrollbox>
@@ -177,10 +177,10 @@ export function DialogGoUpsell(props: {
         >
           <box>
             <text fg={theme.text.muted} bg={textBg()} wrapMode="word">
-              You've used today's free messages.{props.reset ? ` Resets at ${props.reset}.` : ""}
+              Agotaste los mensajes gratuitos de hoy.{props.reset ? ` Resets at ${props.reset}.` : ""}
             </text>
             <text fg={theme.text.muted} bg={textBg()} wrapMode="word">
-              OpenCode Go gives you reliable access to the best open-source models for $10/month.
+              OpenCode Go ofrece acceso a modelos de código abierto por 10 USD al mes.
             </text>
           </box>
           <box ref={setAnchor} height={7} paddingBottom={1} alignItems="center" justifyContent="flex-end">
@@ -272,7 +272,7 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
     if (closed || dialog.stack.length === 0) return false
     if (!valid()) return null
     if (announce) {
-      toast.show({ variant: "success", message: `Connected ${integration()?.name ?? "OpenCode Console"}` })
+      toast.show({ variant: "success", message: `Conectado ${integration()?.name ?? "OpenCode Console"}` })
     }
     finish()
     return true
@@ -301,7 +301,7 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
           }
           toast.show({
             variant: "error",
-            message: status.status === "failed" ? status.message : "Authorization expired",
+            message: status.status === "failed" ? status.message : "La autorización expiró",
           })
           dialog.clear()
         } catch (cause) {
@@ -386,7 +386,7 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
     if (!current) return
     Open.openUrl(current.url).catch(() =>
       toast.show({
-        message: "Could not open the browser. Copy the URL and continue manually.",
+        message: "No se pudo abrir el navegador. Copia la URL y continúa manualmente.",
         variant: "error",
       }),
     )
@@ -398,7 +398,7 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
     const value = current.instructions.match(OAUTH_CODE)?.[0] ?? current.url
     clipboard
       .write(value)
-      .then(() => toast.show({ message: "Copied to clipboard", variant: "info" }))
+      .then(() => toast.show({ message: "Copiado al portapapeles", variant: "info" }))
       .catch(toast.error)
   }
 
@@ -406,12 +406,12 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
     mode: "modal",
     enabled: () => Boolean(attempt()),
     commands: [
-      { bind: newDesigns() ? "return" : "o", title: "Open authorization URL", group: "Dialog", run: open },
-      { bind: "c", title: "Copy authorization details", group: "Dialog", run: copy },
+      { bind: newDesigns() ? "return" : "o", title: "Abrir URL de autorización", group: "Dialog", run: open },
+      { bind: "c", title: "Copiar datos de autorización", group: "Dialog", run: copy },
     ],
   }))
 
-  const title = () => method()?.label ?? "Connect an integration"
+  const title = () => method()?.label ?? "Conectar una integración"
 
   return (
     <DialogLayout
@@ -421,11 +421,11 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
           primary: attempt()
             ? [
                 {
-                  title: attempt()?.instructions.match(OAUTH_CODE) ? "copy code" : "copy link",
+                  title: attempt()?.instructions.match(OAUTH_CODE) ? "copiar código" : "copiar enlace",
                   key: "c",
                   onTrigger: copy,
                 },
-                { title: "open link", key: "enter", onTrigger: open },
+                { title: "abrir enlace", key: "enter", onTrigger: open },
               ]
             : [],
         },
@@ -454,7 +454,7 @@ function DialogGoUpsellConnect(props: { canContinue?: () => boolean; onSubscribe
             </box>
           )}
         </Show>
-        <text fg={theme.text.muted}>{attempt() ? "Waiting for authorization…" : "Starting authorization…"}</text>
+        <text fg={theme.text.muted}>{attempt() ? "Esperando autorización…" : "Iniciando autorización…"}</text>
       </box>
     </DialogLayout>
   )

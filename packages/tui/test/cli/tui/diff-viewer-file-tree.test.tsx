@@ -54,16 +54,16 @@ describe("DiffViewerFileTree", () => {
       <DiffViewerFileTree width={32} files={[]} loading={false} error={undefined} />
     ))
 
-    expect(loading).not.toContain("Loading diff…")
-    expect(loading).not.toContain("No files")
-    expect(failed).not.toContain("Failed to load diff")
-    expect(failed).not.toContain("No files")
-    expect(empty).toContain("No files")
+    expect(loading).not.toContain("Cargando diferencias…")
+    expect(loading).not.toContain("No hay archivos")
+    expect(failed).not.toContain("No se pudo load diff")
+    expect(failed).not.toContain("No hay archivos")
+    expect(empty).toContain("No hay archivos")
     expect(
       empty
         .split("\n")
-        .find((line) => line.includes("No files"))
-        ?.indexOf("No files"),
+        .find((line) => line.includes("No hay archivos"))
+        ?.indexOf("No hay archivos"),
     ).toBe(2)
   })
 

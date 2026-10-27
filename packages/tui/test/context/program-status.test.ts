@@ -41,7 +41,7 @@ test("summarizes several pending sessions and clears resolved ones", () => {
     { id: "ses_b", state: "blocked", kind: "question", message: "Pick one" },
     { id: "ses_c", state: "working" },
   ])
-  expect(status.reports[0]).toEqual({ state: "blocked", app: "opencode", message: "2 sessions need input" })
+  expect(status.reports[0]).toEqual({ state: "blocked", app: "opencode", message: "2 sesiones requieren una respuesta" })
   status.reports.length = 0
 
   status.setSessions([{ id: "ses_c", state: "working" }])

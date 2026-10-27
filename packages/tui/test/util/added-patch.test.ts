@@ -34,7 +34,7 @@ test("retains a missing-final-newline marker only on the last chunk", () => {
   const chunks = splitAddedPatch(patch, 2)!
   expect(chunks).toHaveLength(2)
   expect(chunks[0].patch).not.toContain("No newline")
-  expect(chunks[1].patch).toContain("+three\n\\ No newline at end of file")
+  expect(chunks[1].patch).toContain("+three\n\\ No newline at end of archivo")
 })
 
 test("does not split partial or mixed patches", () => {

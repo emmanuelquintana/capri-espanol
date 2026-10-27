@@ -183,7 +183,7 @@ export async function resolveMiniTarget<A>(input: {
 }
 
 export function validateMiniTerminal() {
-  if (!process.stdout.isTTY) fail("capri mini requires a TTY stdout")
+  if (!process.stdout.isTTY) fail("capri mini requiere una salida TTY")
 }
 
 /** @internal Exported for testing. */
@@ -196,9 +196,9 @@ export function mergeInput(piped: string | undefined, prompt: string | undefined
 function validate(input: MiniCommandInput) {
   validateMiniTerminal()
   if (input.replayLimit !== undefined && (!Number.isInteger(input.replayLimit) || input.replayLimit <= 0)) {
-    fail("--replay-limit must be a positive integer")
+    fail("--replay-limit debe ser un entero positivo")
   }
-  if (input.fork && !input.continue && !input.session) fail("--fork requires --continue or --session")
+  if (input.fork && !input.continue && !input.session) fail("--fork requiere --continue o --session")
 }
 
 function localDirectory(): string {
@@ -207,7 +207,7 @@ function localDirectory(): string {
     process.chdir(root)
     return process.cwd()
   } catch {
-    throw new MiniInputError(`Failed to change directory to ${root}`)
+    throw new MiniInputError(`No se pudo cambiar al directorio ${root}`)
   }
 }
 
@@ -215,7 +215,7 @@ function parseModel(value?: string) {
   try {
     return parseSessionTargetModel(value)
   } catch {
-    throw new MiniInputError("--model must use the format provider/model[#variant]")
+    throw new MiniInputError("--model debe tener el formato proveedor/modelo[#variante]")
   }
 }
 

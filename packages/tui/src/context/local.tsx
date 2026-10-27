@@ -101,7 +101,7 @@ export const { use: useLocal, provider: LocalProvider } = createSimpleContext({
           if (!agents().some((agent) => agent.id === id))
             return toast.show({
               variant: "warning",
-              message: `Agent not found: ${id}`,
+              message: `No se encontró el agente: ${id}`,
               duration: 3000,
             })
           batch(() => {
@@ -399,8 +399,8 @@ export const { use: useLocal, provider: LocalProvider } = createSimpleContext({
           const value = currentSelection()
           if (!value) {
             return {
-              provider: "Connect a provider",
-              model: "No provider selected",
+              provider: "Conectar un proveedor",
+              model: "No se seleccionó un proveedor",
               reasoning: false,
             }
           }
@@ -429,7 +429,7 @@ export const { use: useLocal, provider: LocalProvider } = createSimpleContext({
           if (!favorites.length) {
             toast.show({
               variant: "info",
-              message: "Add a favorite model to use this shortcut",
+              message: "Añade un modelo favorito para usar este atajo",
               duration: 3000,
             })
             return

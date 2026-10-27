@@ -227,7 +227,7 @@ export function RunEntryContent(props: {
                 </box>
               ) : (
                 <text width="100%" wrapMode="word" fg={theme().block.diffRemoved}>
-                  -{item.deletions ?? 0} line{item.deletions === 1 ? "" : "s"}
+                  -{item.deletions ?? 0} línea{item.deletions === 1 ? "" : "s"}
                 </text>
               )}
             </box>
@@ -256,7 +256,7 @@ export function RunEntryContent(props: {
       <Match when={todo_snapshot()}>
         <box width="100%" flexDirection="column" gap={1}>
           <text width="100%" wrapMode="word" fg={theme().block.muted}>
-            # Todos
+            # Pendientes
           </text>
           <box width="100%" flexDirection="column" gap={0}>
             {todo_snapshot()!.items.map((item) => (
@@ -282,7 +282,7 @@ export function RunEntryContent(props: {
       <Match when={question_snapshot()}>
         <box width="100%" flexDirection="column" gap={1}>
           <text width="100%" wrapMode="word" fg={theme().block.muted}>
-            # Questions
+            # Preguntas
           </text>
           <box width="100%" flexDirection="column" gap={1}>
             {question_snapshot()!.items.map((item) => (

@@ -14,7 +14,7 @@ import { errorMessage } from "../../util/error"
 export default Runtime.handler(
   Commands.commands.uninstall,
   Effect.fn("cli.uninstall")(function* (input) {
-    intro("Uninstall Capri")
+    intro("Desinstalar Capri")
     const fs = yield* FileSystem.FileSystem
     const global = yield* Global.Service
     const updater = yield* Updater.Service
@@ -28,7 +28,7 @@ export default Runtime.handler(
       : []
     const shell = method === "curl" ? yield* shellConfigs(global.home) : []
 
-    log.info(`Installation method: ${method ?? "unknown"}`)
+    log.info(`Método de instalación: ${method ?? "desconocido"}`)
     log.message("The following global files will be removed (shared by OpenCode versions and channels):")
     if (yield* fs.exists(global.cache)) log.info(`  Cache: ${global.cache}`)
     services.forEach((name) =>
@@ -37,27 +37,27 @@ export default Runtime.handler(
     shell.forEach((file) => log.info(`  Shell PATH: ${file}`))
     if (removal) log.info(`  Package: ${removal.command.join(" ")}`)
     if (method === "curl") log.info(`  Binary (manual removal): ${process.execPath}`)
-    if (!method) log.warn("Could not detect the installation method. Remove the installation manually after cleanup.")
+    if (!method) log.warn("No se pudo detectar el método de instalación. Elimínala manualmente después de limpiar los datos.")
 
     if (input.dryRun) {
-      log.warn("Dry run - no changes made")
-      outro("Done")
+      log.warn("Simulación: no se realizaron cambios")
+      outro("Terminado")
       return
     }
     if (!input.force) {
-      yield* requireInteractive("Use --force to uninstall without an interactive terminal, or --dry-run to preview.")
+      yield* requireInteractive("Usa --force para desinstalar sin terminal interactiva o --dry-run para ver una simulación.")
       const accepted = yield* prompt(() =>
-        confirm({ message: "Are you sure you want to uninstall?", initialValue: false }),
+        confirm({ message: "¿Seguro que quieres desinstalar?", initialValue: false }),
       )
       if (!accepted) {
-        outro("Cancelled")
+        outro("Cancelado")
         return
       }
     }
 
     const progress = spinner()
     if (services.length) {
-      progress.start("Stopping background services...")
+      progress.start("Deteniendo servicios en segundo plano...")
       yield* Effect.forEach(services, (name) =>
         Effect.gen(function* () {
           const options = { file: path.join(global.state, name) }
@@ -65,15 +65,15 @@ export default Runtime.handler(
           yield* Service.stop(options)
         }),
       ).pipe(
-        Effect.tap(() => Effect.sync(() => progress.stop("Background services stopped"))),
-        Effect.tapCause(() => Effect.sync(() => progress.stop("Failed to stop background services", 1))),
+        Effect.tap(() => Effect.sync(() => progress.stop("Servicios en segundo plano detenidos"))),
+        Effect.tapCause(() => Effect.sync(() => progress.stop("No se pudieron detener los servicios en segundo plano", 1))),
       )
     }
 
     // Links that keep an older OpenCode replaceable may still run; move them so the cache can go.
     if (process.platform === "win32") yield* RetainedImage.relocate(global.cache, global.tmp)
     const errors: string[] = []
-    progress.start("Removing Cache...")
+    progress.start("Eliminando caché...")
     yield* fs.remove(global.cache, { recursive: true, force: true }).pipe(
       // Windows reports a terminated service as gone before it releases its file handles,
       // so the first removal can race that teardown.
@@ -81,10 +81,10 @@ export default Runtime.handler(
         while: (error) => process.platform === "win32" && error.reason._tag === "Busy",
         schedule: Schedule.max([Schedule.spaced("250 millis"), Schedule.recurs(40)]),
       }),
-      Effect.tap(() => Effect.sync(() => progress.stop("Removed Cache"))),
+      Effect.tap(() => Effect.sync(() => progress.stop("Caché eliminada"))),
       Effect.catch((error) =>
         Effect.sync(() => {
-          progress.stop("Failed to remove Cache", 1)
+          progress.stop("No se pudo eliminar la caché", 1)
           errors.push(`Cache: ${errorMessage(error)}`)
         }),
       ),
@@ -98,22 +98,22 @@ export default Runtime.handler(
     if (removal) {
       progress.start(`Running ${removal.command.join(" ")}...`)
       yield* removal.run.pipe(
-        Effect.tap(() => Effect.sync(() => progress.stop("Package removed"))),
+        Effect.tap(() => Effect.sync(() => progress.stop("Paquete eliminado"))),
         Effect.catch((error) =>
           Effect.sync(() => {
-            progress.stop("Package manager uninstall failed", 1)
+            progress.stop("Falló la desinstalación del paquete", 1)
             errors.push(errorMessage(error))
-            log.warn(`Run manually: ${removal.command.join(" ")}`)
+            log.warn(`Ejecuta manualmente: ${removal.command.join(" ")}`)
           }),
         ),
       )
     }
     if (method === "curl") {
-      log.message("To finish removing the binary, run:")
+      log.message("Para terminar de eliminar el ejecutable, ejecuta:")
       log.info(`  rm '${process.execPath.replaceAll("'", "'\\''")}'`)
     }
     if (errors.length) yield* Effect.fail(new Error(errors.join("\n")))
-    outro("Done")
+    outro("Terminado")
   }, handlePromptErrors),
 )
 

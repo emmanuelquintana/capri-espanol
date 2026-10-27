@@ -49,7 +49,7 @@ export function ShellTab(props: { sessionID: string }) {
   onMount(() => {
     const cleanup = composer.register({
       id: "shell",
-      label: "Shell",
+      label: "Terminal",
       hints: () =>
         selectedEntry()
           ? [
@@ -68,7 +68,7 @@ export function ShellTab(props: { sessionID: string }) {
     commands: [
       {
         id: "composer.shell.up",
-        title: "Previous shell",
+        title: "Comando de terminal anterior",
         group: "Composer",
         run() {
           if (store.selected === 0) {
@@ -80,7 +80,7 @@ export function ShellTab(props: { sessionID: string }) {
       },
       {
         id: "composer.shell.down",
-        title: "Next shell",
+        title: "Comando de terminal siguiente",
         group: "Composer",
         run() {
           const list = entries()
@@ -90,13 +90,13 @@ export function ShellTab(props: { sessionID: string }) {
       },
       {
         id: "composer.shell.select",
-        title: "View shell output",
+        title: "Ver salida de la terminal",
         group: "Composer",
         run: open,
       },
       {
         id: "composer.shell.kill",
-        title: "Kill shell command",
+        title: "Detener comando de terminal",
         group: "Composer",
         run() {
           const entry = selectedEntry()
@@ -113,7 +113,7 @@ export function ShellTab(props: { sessionID: string }) {
   return (
     <Show when={composer.active("shell")}>
       <scrollbox scrollbarOptions={{ visible: false }} maxHeight={5} ref={(r: ScrollBoxRenderable) => (scroll = r)}>
-        <Show when={entries().length > 0} fallback={<text fg={theme.text.muted}> No shell commands</text>}>
+        <Show when={entries().length > 0} fallback={<text fg={theme.text.muted}> No hay comandos de consola</text>}>
           <For each={entries()}>
             {(shell, index) => {
               const active = createMemo(() => index() === store.selected)

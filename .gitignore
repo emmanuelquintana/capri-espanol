@@ -77,3 +77,24 @@ AGENTS.md
 
 # Capri's local workspace
 capri_dev/
+
+# Local tools and delivery archives are not application source.
+/.capri-tools/
+/entrega/
+/Capri-es-windows-x64.zip
+/Capri-amigable-windows-x64.zip
+/output/
+/.playwright-cli/
+/.playwright/
+
+# Dependencies required by the retained terminal packages.
+!/packages/plugin-browser/
+!/packages/ui/
+/packages/ui/*
+!/packages/ui/package.json
+!/packages/ui/LICENSE
+!/packages/ui/src/
+/packages/ui/src/*
+!/packages/ui/src/assets/
+/packages/ui/src/assets/*
+!/packages/ui/src/assets/audio/

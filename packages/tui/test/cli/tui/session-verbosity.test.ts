@@ -194,7 +194,7 @@ test("running work is active but not counted, and failed tools are counted", () 
     ],
     0,
   )
-  expect(summary).toEqual({ label: "1 read, 1 tool", active: true })
+  expect(summary).toEqual({ label: "1 read, 1 herramienta", active: true })
 })
 
 test("execute counts its finished nested calls instead of itself", () => {
@@ -216,7 +216,7 @@ test("execute counts its finished nested calls instead of itself", () => {
     },
   }
   expect(activitySummary([{ message, part: execute }], 0)).toEqual({
-    label: "2 reads, 1 tool",
+    label: "2 reads, 1 herramienta",
     active: false,
   })
 })
@@ -281,10 +281,10 @@ test("busy labels depend only on the tool and whether it is still being prepared
   expect(busyLabel(tool("s", "shell", "running"))).toBe("Running command…")
   expect(busyLabel(tool("r", "read", "running"))).toBe("Running read…")
   expect(busyLabel(tool("x", "execute", "running"))).toBe("Running code…")
-  expect(busyLabel({ type: "reasoning", text: "", time: { created: 1 } })).toBe("Thinking…")
+  expect(busyLabel({ type: "reasoning", text: "", time: { created: 1 } })).toBe("Pensando…")
 })
 
-test("a finished execute with no nested calls counts as one tool", () => {
+test("a finished execute with no nested calls counts as one herramienta", () => {
   const message = assistant("a", [])
-  expect(activitySummary([{ message, part: tool("x", "execute") }], 0).label).toBe("1 tool")
+  expect(activitySummary([{ message, part: tool("x", "execute") }], 0).label).toBe("1 herramienta")
 })

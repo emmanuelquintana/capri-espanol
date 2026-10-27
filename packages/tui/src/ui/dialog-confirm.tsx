@@ -35,19 +35,19 @@ export function DialogConfirm(props: DialogConfirmProps) {
     mode: "modal",
     commands: newDesigns()
       ? [
-          { bind: "return", title: "Confirm", group: "Dialog", run: () => choose("confirm") },
-          { bind: "escape", title: "Cancel", group: "Dialog", run: () => choose("cancel") },
+          { bind: "return", title: "Confirmar", group: "Dialog", run: () => choose("confirm") },
+          { bind: "escape", title: "Cancelar", group: "Dialog", run: () => choose("cancel") },
         ]
       : [
           {
             bind: "return",
-            title: "Confirm dialog selection",
+            title: "Confirmar selección",
             group: "Dialog",
             run: () => choose(store.active),
           },
           {
             bind: "left",
-            title: "Previous dialog option",
+            title: "Opción anterior del diálogo",
             group: "Dialog",
             run: () => {
               setStore("active", store.active === "confirm" ? "cancel" : "confirm")
@@ -55,7 +55,7 @@ export function DialogConfirm(props: DialogConfirmProps) {
           },
           {
             bind: "right",
-            title: "Next dialog option",
+            title: "Opción siguiente del diálogo",
             group: "Dialog",
             run: () => {
               setStore("active", store.active === "confirm" ? "cancel" : "confirm")

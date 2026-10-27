@@ -136,7 +136,7 @@ test("uses physical cell geometry without enlarging a small image", async () => 
 
 test("finishes active text before every image and renders more than three images in order", async () => {
   const out = await setup({ imagePreview: true })
-  const first = { ...image(wide, "image 1"), kind: "tool", source: "tool", tool: "read" } as const
+  const first = { ...image(wide, "imagen 1"), kind: "tool", source: "tool", tool: "read" } as const
   await out.scrollback.append({ ...first, image: undefined, tool: "shell", phase: "progress", text: "before images" })
   expect(out.externalOutput.take()).toEqual([])
   await out.scrollback.append(first)
@@ -152,7 +152,7 @@ test("finishes active text before every image and renders more than three images
       .take()
       .filter((commit) => commit.text.trim())
       .map((commit) => commit.rows[0]),
-  ).toEqual(["before images", "image 1", "image 2", "image 3", "image 4", "image 5", "after images"])
+  ).toEqual(["before images", "imagen 1", "imagen 2", "imagen 3", "imagen 4", "imagen 5", "after images"])
   expect(out.previews.every((preview) => preview.image.isDestroyed && preview.surface.isDestroyed)).toBe(true)
 })
 

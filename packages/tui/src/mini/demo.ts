@@ -534,7 +534,7 @@ function emitTask(state: State): void {
   } satisfies SessionMessageAssistantTool
   showSubagent(state, {
     sessionID: "ses_demo_child",
-    label: "Explore",
+    label: "Explorar",
     description: "Scan run/* for reducer touchpoints",
     status: "completed",
     title: "Reducer touchpoints found",
@@ -581,11 +581,11 @@ function emitQuestionTool(state: State): void {
   const ref = make(state, "question", {
     questions: [
       {
-        header: "Style",
+        header: "Estilo",
         question: "Which output style do you want to inspect?",
         options: [
-          { label: "Diff", description: "Show diff block" },
-          { label: "Code", description: "Show code block" },
+          { label: "Diferencias", description: "Show diff block" },
+          { label: "Código", description: "Show code block" },
         ],
         multiple: false,
         custom: false,
@@ -594,8 +594,8 @@ function emitQuestionTool(state: State): void {
         header: "Extras",
         question: "Pick extra rows",
         options: [
-          { label: "Usage", description: "Add usage row" },
-          { label: "Duration", description: "Add duration row" },
+          { label: "Uso", description: "Add usage row" },
+          { label: "Duración", description: "Add duration row" },
         ],
         multiple: true,
         custom: true,
@@ -605,7 +605,7 @@ function emitQuestionTool(state: State): void {
   doneTool(state, ref, {
     output: "",
     metadata: {
-      answers: [["Diff"], ["Usage", "custom-note"]],
+      answers: [["Diferencias"], ["Uso", "custom-note"]],
     },
   })
 }
@@ -743,49 +743,49 @@ function demoForm(kind: FormKind): { title: string; fields: MiniFormRequest["fie
   if (kind === "question") {
     const questions: JsonValue[] = [
       {
-        header: "Layout",
+        header: "Distribución",
         question: "Which footer view should be the reference for spacing checks?",
         options: [
-          { label: "Form", description: "Inspect the canonical Form footer" },
-          { label: "Prompt", description: "Return to the normal composer" },
+          { label: "Formulario", description: "Inspect the canonical Form footer" },
+          { label: "Mensaje", description: "Return to the normal composer" },
         ],
         multiple: false,
         custom: true,
       },
       {
-        header: "Checks",
+        header: "Comprobaciones",
         question: "Pick formatting previews",
         options: [
-          { label: "Diff", description: "Emit an edit diff" },
-          { label: "Subagent", description: "Emit a subagent card" },
+          { label: "Diferencias", description: "Emit an edit diff" },
+          { label: "Subagente", description: "Emit a subagent card" },
         ],
         multiple: true,
         custom: true,
       },
     ]
     return {
-      title: "Questions",
+      title: "Preguntas",
       questions,
       fields: [
         {
           key: "q0",
-          title: "Layout",
+          title: "Distribución",
           description: "Which footer view should be the reference for spacing checks?",
           type: "string",
           options: [
-            { value: "Form", label: "Form", description: "Inspect the canonical Form footer" },
-            { value: "Prompt", label: "Prompt", description: "Return to the normal composer" },
+            { value: "Form", label: "Formulario", description: "Inspect the canonical Form footer" },
+            { value: "Prompt", label: "Mensaje", description: "Return to the normal composer" },
           ],
           custom: true,
         },
         {
           key: "q1",
-          title: "Checks",
+          title: "Comprobaciones",
           description: "Pick formatting previews",
           type: "multiselect",
           options: [
-            { value: "Diff", label: "Diff", description: "Emit an edit diff" },
-            { value: "Subagent", label: "Subagent", description: "Emit a subagent card" },
+            { value: "Diff", label: "Diferencias", description: "Emit an edit diff" },
+            { value: "Subagent", label: "Subagente", description: "Emit a subagent card" },
           ],
           custom: true,
         },

@@ -45,7 +45,7 @@ export default Runtime.handler(
     )
     const output = format(response.data, configured.flat(), input.builtin)
     if (!output) {
-      process.stdout.write("No plugins found" + EOL)
+      process.stdout.write("No se encontraron complementos" + EOL)
       return
     }
     process.stdout.write(output + EOL)

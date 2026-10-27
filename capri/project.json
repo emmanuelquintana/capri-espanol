@@ -1,0 +1,11 @@
+{
+  "name": "Capri en español",
+  "edition": "Comunidad",
+  "version": "0.3.0-es.1",
+  "repository": "emmanuelquintana/capri-espanol",
+  "upstream": "seanyih/Capri",
+  "upstreamCommit": "7160631f275a8fae32462a511624cae20d85b05e",
+  "platform": "windows-x64",
+  "bun": "1.4.4",
+  "license": "MIT"
+}

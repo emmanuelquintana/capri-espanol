@@ -11,13 +11,15 @@ export type IntegrationChoice = {
 }
 
 export async function selectIntegration(choices: IntegrationChoice[], kind = "integration") {
+  const categoryLabel = (category: IntegrationChoice["category"]) => ({ MCP: "MCP", Popular: "Populares", Services: "Servicios" })[category]
+  const kindLabel = kind === "integration" ? "integración" : kind === "MCP server" ? "servidor MCP" : kind
   const result = await new AutocompletePrompt<IntegrationChoice>({
     options: choices,
     filter: (search, choice) =>
-      [choice.label, choice.value, choice.category].some((value) => value.toLowerCase().includes(search.toLowerCase())),
-    validate: (value) => (value ? undefined : `Select an ${kind}`),
+      [choice.label, choice.value, choice.category, categoryLabel(choice.category)].some((value) => value.toLowerCase().includes(search.toLowerCase())),
+    validate: (value) => (value ? undefined : `Selecciona: ${kindLabel}`),
     render() {
-      const title = `${color.gray(S_BAR)}\n${symbol(this.state)}  Select ${kind}`
+      const title = `${color.gray(S_BAR)}\n${symbol(this.state)}  Seleccionar: ${kindLabel}`
       if (this.state === "submit") {
         const choice = choices.find((item) => item.value === this.value)
         return `${title}\n${color.gray(S_BAR)}  ${color.dim(choice?.label ?? "")}`
@@ -35,7 +37,7 @@ export async function selectIntegration(choices: IntegrationChoice[], kind = "in
       const visible = this.filteredOptions.slice(start, start + maxItems)
       const rows = visible.flatMap((choice, index) => [
         ...(index === 0 || visible[index - 1].category !== choice.category
-          ? [...(compact ? [] : [`${color.cyan(S_BAR)}  `]), `${color.cyan(S_BAR)}  ${color.bold(choice.category)}`]
+          ? [...(compact ? [] : [`${color.cyan(S_BAR)}  `]), `${color.cyan(S_BAR)}  ${color.bold(categoryLabel(choice.category))}`]
           : []),
         `${color.cyan(S_BAR)}  ${start + index === this.cursor ? color.green(S_RADIO_ACTIVE) : color.dim(S_RADIO_INACTIVE)} ${
           start + index === this.cursor ? choice.label : color.dim(choice.label)
@@ -43,9 +45,9 @@ export async function selectIntegration(choices: IntegrationChoice[], kind = "in
       ])
       return [
         title,
-        `${color.cyan(S_BAR)}  ${color.dim("Search:")} ${this.isNavigating ? color.dim(this.userInput) : this.userInputWithCursor}`,
+        `${color.cyan(S_BAR)}  ${color.dim("Buscar:")} ${this.isNavigating ? color.dim(this.userInput) : this.userInputWithCursor}`,
         ...(visible.length === 0 && this.userInput
-          ? [`${color.cyan(S_BAR)}  ${color.yellow(`No ${kind}s found`)}`]
+          ? [`${color.cyan(S_BAR)}  ${color.yellow(`Sin resultados para: ${kindLabel}`)}`]
           : []),
         ...(this.state === "error" && visible.length > 0
           ? [`${color.yellow(S_BAR)}  ${color.yellow(this.error)}`]
@@ -55,13 +57,13 @@ export async function selectIntegration(choices: IntegrationChoice[], kind = "in
         ...(start + maxItems < this.filteredOptions.length ? [`${color.cyan(S_BAR)}  ${color.dim("…")}`] : []),
         `${color.cyan(S_BAR)}  ${color.dim(
           (process.stdout.columns ?? 80) < 50
-            ? "↑/↓ navigate • Enter select"
-            : "↑/↓ to select • Enter: confirm • Type: to search",
+            ? "↑/↓ navegar • Enter elegir"
+            : "↑/↓ elegir • Enter: confirmar • Escribe para buscar",
         )}`,
         color.cyan(S_BAR_END),
       ].join("\n")
     },
   }).prompt()
   if (typeof result === "string" || typeof result === "symbol") return result
-  throw new Error(`No ${kind} selected`)
+  throw new Error(`No seleccionaste: ${kindLabel}`)
 }

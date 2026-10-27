@@ -55,7 +55,7 @@ export function copy(renderer: Renderer, toast: Toast, clipboard: ClipboardServi
 
   clipboard
     .write(clipboardText)
-    .then(() => toast.show({ message: "Copied to clipboard", variant: "info" }))
+    .then(() => toast.show({ message: "Copiado al portapapeles", variant: "info" }))
     .catch(toast.error)
 
   // Copy never clears selection, including empty releases: clearing also resets multi-click history.

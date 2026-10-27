@@ -1,11 +1,12 @@
 import { Effect, FileSystem, Scope } from "effect"
-import { Command } from "effect/cli"
+import { CliOutput, Command } from "effect/cli"
 import { PrintLogs } from "../commands/commands"
 import { Spec } from "./spec"
 import { Global } from "@opencode/util/global"
 import { Updater } from "../services/updater"
 import { Config } from "../config"
 import { Npm } from "@opencode/util/npm"
+import { spanishFormatter } from "./spanish"
 
 export type Input<Value> =
   Value extends Spec.Node<infer _Name, infer Command, infer _Commands>
@@ -82,7 +83,9 @@ export function handlers<const Root extends Spec.Any>(root: Root, handlers: Hand
 }
 
 export function run(commands: Spec.Any, handlers: ReadonlyArray<LazyHandler>, options: { readonly version: string }) {
-  return Command.run(provide(commands, handlers).pipe(Command.withGlobalFlags([PrintLogs])), options) as Effect.Effect<
+  return Command.run(provide(commands, handlers).pipe(Command.withGlobalFlags([PrintLogs])), options).pipe(
+    Effect.provide(CliOutput.layer(spanishFormatter())),
+  ) as Effect.Effect<
     void,
     unknown,
     Command.Environment

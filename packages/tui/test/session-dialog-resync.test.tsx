@@ -83,15 +83,15 @@ async function openDialogThenResync(target: string, dialog: string) {
   return setup.captureCharFrame()
 }
 
-test("message actions dialog survives a resync that drops its message", async () => {
-  const frame = await openDialogThenResync("Turn 00 prompt", "Message Actions")
+test("message actions dialog survives a resync that drops its mensaje", async () => {
+  const frame = await openDialogThenResync("Turn 00 prompt", "Acciones del mensaje")
   expect(frame).not.toContain("Stale read")
-  expect(frame).toContain("Message Actions")
+  expect(frame).toContain("Acciones del mensaje")
 }, 20000)
 
-test("execute dialog keeps its last state after a resync drops its message", async () => {
-  const frame = await openDialogThenResync("execute", "copy code")
+test("execute dialog keeps its last state after a resync drops its mensaje", async () => {
+  const frame = await openDialogThenResync("execute", "copiar código")
   expect(frame).not.toContain("Stale read")
   expect(frame).toContain("return 1")
-  expect(frame).toContain("Completed")
+  expect(frame).toContain("Completado")
 }, 20000)

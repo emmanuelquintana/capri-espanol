@@ -69,7 +69,7 @@ export function DialogPrompt(props: DialogPromptProps) {
     commands: [
       {
         id: "dialog.prompt.submit",
-        title: "Submit dialog prompt",
+        title: "Enviar texto del diálogo",
         group: "Dialog",
         run: confirm,
       },
@@ -89,7 +89,7 @@ export function DialogPrompt(props: DialogPromptProps) {
     commands: [
       {
         bind: "escape",
-        title: "Back",
+        title: "Volver",
         group: "Dialog",
         run: () => {
           if (renderer.getSelection()) {
@@ -149,7 +149,7 @@ export function DialogPrompt(props: DialogPromptProps) {
         },
       }}
       legacyFooter={
-        <Show when={!props.busy} fallback={<text fg={theme.text.muted}>processing…</text>}>
+        <Show when={!props.busy} fallback={<text fg={theme.text.muted}>procesando…</text>}>
           <DialogFooter
             actions={{
               secondary: [{ title: "submit", command: "dialog.prompt.submit", onTrigger: confirm }, ...extraActions()],
@@ -168,7 +168,7 @@ export function DialogPrompt(props: DialogPromptProps) {
             setTextareaTarget(val)
           }}
           initialValue={props.value}
-          placeholder={props.placeholder ?? "Enter text"}
+          placeholder={props.placeholder ?? "Escribe texto"}
           placeholderColor={newDesigns() ? theme.text.faint : theme.text.muted}
           textColor={props.busy ? theme.text.formfield.disabled : theme.text.formfield.base}
           focusedTextColor={props.busy ? theme.text.formfield.disabled : theme.text.formfield.base}
@@ -176,7 +176,7 @@ export function DialogPrompt(props: DialogPromptProps) {
           cursorStyle={config.cursor}
         />
         <Show when={props.busy}>
-          <Spinner color={theme.text.muted}>{props.busyText ?? "Working…"}</Spinner>
+          <Spinner color={theme.text.muted}>{props.busyText ?? "Trabajando…"}</Spinner>
         </Show>
       </box>
     </DialogLayout>

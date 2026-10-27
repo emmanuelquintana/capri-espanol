@@ -100,7 +100,7 @@ test("roomy question forms retain the established spacing and inline description
       )!
       expect({ text, x: node.x, y: node.y }).toEqual({ text, x, y })
     }
-    expect(app.captureCharFrame().split("\n")[18]).toContain("↑↓ select   enter choose   tab next   esc dismiss")
+    expect(app.captureCharFrame().split("\n")[18]).toContain("↑↓ seleccionar   enter elegir   tab siguiente   esc descartar")
   } finally {
     app.renderer.destroy()
   }
@@ -191,7 +191,7 @@ test("advancing fields reveals the new choice without a second Enter", async () 
     expect(app.replies).toEqual([])
     app.mockInput.pressEnter()
     await settle(app)
-    expect(app.captureCharFrame()).toContain("Review")
+    expect(app.captureCharFrame()).toContain("Revisar")
   } finally {
     app.renderer.destroy()
   }
@@ -214,16 +214,16 @@ test("roomy permission prompts retain their header and padded action bar", async
     const nodes = descendants(app.renderer.root).filter(
       (node): node is TextRenderable => node instanceof TextRenderable,
     )
-    const title = nodes.find((node) => node.plainText.includes("Permission required"))!
-    const action = nodes.find((node) => node.plainText === "Allow once")!
+    const title = nodes.find((node) => node.plainText.includes("Se requiere permiso"))!
+    const action = nodes.find((node) => node.plainText === "Permitir")!
     expect({ x: title.x, y: title.y }).toEqual({ x: 2, y: 1 })
     expect({ x: action.x, y: action.y }).toEqual({ x: 3, y: 18 })
-    expect(app.captureCharFrame().split("\n")[18]).toContain("⇆ select  enter confirm  esc reject")
+    expect(app.captureCharFrame().split("\n")[18]).toContain("⇆ elegir  enter confirmar  esc rechazar")
     const scroll = descendants(app.renderer.root).find((node) => node instanceof ScrollBoxRenderable)!
     expect(scroll.x + scroll.width).toBe(109)
     app.mockInput.pressEnter()
     await settle(app)
-    expect(app.captureCharFrame()).toContain("Waiting for permission event…")
+    expect(app.captureCharFrame()).toContain("Esperando solicitud de permiso…")
   } finally {
     app.renderer.destroy()
   }
@@ -251,13 +251,13 @@ test("roomy rejection keeps the editor and confirmation hints inline", async () 
     await settle(app)
     const editor = app.renderer.currentFocusedEditor!
     const confirm = descendants(app.renderer.root).find(
-      (node) => node instanceof TextRenderable && node.plainText === "enter confirm",
+      (node) => node instanceof TextRenderable && node.plainText === "enter confirmar",
     )!
     expect(editor.y).toBe(18)
     expect(confirm.y).toBe(editor.y)
     expect(confirm.x).toBeGreaterThanOrEqual(editor.x + editor.width)
-    expect(app.captureCharFrame()).toContain("esc cancel")
-    expect(app.captureCharFrame()).toContain("Tell OpenCode what to do differently")
+    expect(app.captureCharFrame()).toContain("esc cancelar")
+    expect(app.captureCharFrame()).toContain("Dile a Capri qué debe hacer de otra manera")
   } finally {
     app.renderer.destroy()
   }
@@ -337,7 +337,7 @@ test.each([
   )
   try {
     await settle(app)
-    for (const label of ["Allow once", "Always allow", "Reject"]) {
+    for (const label of ["Permitir", "Siempre", "Rechazar"]) {
       expect(app.captureCharFrame()).toContain(label)
       const node = descendants(app.renderer.root).find(
         (node) => node instanceof TextRenderable && node.plainText === label,
@@ -400,10 +400,10 @@ test.each(["once", "always", "reject"] as const)(
       await settle(app)
       footer.event({ type: "stream.view", view: { type: "permission", request: permission } })
       await settle(app)
-      for (const label of ["Allow once", "Always allow", "Reject"]) expect(app.captureCharFrame()).toContain(label)
+      for (const label of ["Permitir", "Siempre", "Rechazar"]) expect(app.captureCharFrame()).toContain(label)
       for (let index = 0; index < ["once", "always", "reject"].indexOf(choice); index++) app.mockInput.pressTab()
       await settle(app)
-      const label = choice === "once" ? "Allow once" : choice === "always" ? "Always allow" : "Reject"
+      const label = choice === "once" ? "Permitir" : choice === "always" ? "Siempre" : "Rechazar"
       const node = descendants(app.renderer.root).find(
         (node) => node instanceof TextRenderable && node.plainText === label,
       )!
@@ -415,7 +415,7 @@ test.each(["once", "always", "reject"] as const)(
       await settle(app)
       if (choice !== "once") {
         expect(replies).toEqual([])
-        expect(app.captureCharFrame()).toContain(choice === "always" ? "Confirm" : "enter reject")
+        expect(app.captureCharFrame()).toContain(choice === "always" ? "Confirmar" : "enter rechazar")
         app.mockInput.pressEnter()
         await settle(app)
       }
@@ -486,12 +486,12 @@ test("form review scrolls from the first answer to the last", async () => {
   )
   try {
     await settle(app)
-    expect(app.captureCharFrame()).toContain("Field 1: Yes")
+    expect(app.captureCharFrame()).toContain("Field 1: Sí")
     expect(app.captureCharFrame()).not.toContain("Field 12: No")
     app.mockInput.pressKey("\x1b[6~")
     await settle(app)
     expect(app.captureCharFrame()).toContain("Field 12: No")
-    expect(app.captureCharFrame()).toContain("enter submit")
+    expect(app.captureCharFrame()).toContain("enter enviar")
   } finally {
     app.renderer.destroy()
   }
@@ -543,8 +543,8 @@ test("long permission paths, diffs and persistent scopes remain keyboard accessi
       scopes.push(app.captureCharFrame())
     }
     expect(scopes.join("\n")).toContain("GRANT_SENTINEL")
-    expect(app.captureCharFrame()).toContain("Confirm")
-    expect(app.captureCharFrame()).toContain("Cancel")
+    expect(app.captureCharFrame()).toContain("Confirmar")
+    expect(app.captureCharFrame()).toContain("Cancelar")
     const end = scroll.scrollTop
     app.mockInput.pressKey("\x1b[5~")
     await settle(app)
@@ -614,9 +614,9 @@ test.each([16, 24, 80])("text form keeps its editor, error and controls at %s x 
     await settle(app)
     app.mockInput.pressEnter()
     await settle(app)
-    expect(app.captureCharFrame()).toContain("Answer required")
-    expect(app.captureCharFrame()).toContain("enter save")
-    expect(app.captureCharFrame()).toContain("esc dismiss")
+    expect(app.captureCharFrame()).toContain("Falta respuesta")
+    expect(app.captureCharFrame()).toContain("enter guardar")
+    expect(app.captureCharFrame()).toContain("esc cerrar")
     const editor = app.renderer.currentFocusedEditor!
     expect(editor.y).toBeGreaterThan(1)
     expect(editor.y + editor.height).toBeLessThan(8)
@@ -647,15 +647,15 @@ test("external form exposes its complete URL and state-specific actions", async 
   )
   try {
     await settle(app)
-    expect(app.captureCharFrame()).toContain("enter open URL")
-    expect(app.captureCharFrame()).not.toContain("choose")
+    expect(app.captureCharFrame()).toContain("enter abrir URL")
+    expect(app.captureCharFrame()).not.toContain("elegir")
     for (let index = 0; index < 10; index++) app.mockInput.pressKey("\x1b[6~")
     await settle(app)
     expect(app.captureCharFrame()).toContain("URL_SENTINEL")
     app.mockInput.pressEnter()
     await settle(app)
     expect(opened).toEqual([url])
-    expect(app.captureCharFrame()).toContain("enter acknowledge")
+    expect(app.captureCharFrame()).toContain("enter confirmar")
   } finally {
     app.renderer.destroy()
   }
@@ -719,9 +719,9 @@ test.each([
   try {
     await settle(app)
     expect(app.captureCharFrame()).toContain("Inspect")
-    if (size.width < 56 || size.height < 12) expect(app.captureCharFrame()).toContain("esc back")
-    else expect(app.captureCharFrame()).toContain("12 of 12")
-    expect(app.captureCharFrame()).toContain("ctrl+d interrupt")
+    if (size.width < 56 || size.height < 12) expect(app.captureCharFrame()).toContain("esc volver")
+    else expect(app.captureCharFrame()).toContain("12 de 12")
+    expect(app.captureCharFrame()).toContain(size.width < 18 ? "ctrl+d parar" : "ctrl+d interrumpir")
     expect(app.captureCharFrame()).toContain("Activity")
     app.mockInput.pressEscape()
     await settle(app)

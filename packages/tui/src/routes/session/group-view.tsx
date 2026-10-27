@@ -176,15 +176,15 @@ function GroupContent(props: GroupProps) {
                       )
               }
               complete={props.completed}
-              pending={latest() ? `Thinking: ${latest()}` : "Thinking"}
+              pending={latest() ? `Thinking: ${latest()}` : "Razonamiento"}
               spinner={!props.completed}
               onMouseOver={() => setHover(true)}
               onMouseOut={() => setHover(false)}
               onMouseUp={toggle}
             >
-              {props.completed ? "Thought" : latest() ? `Thinking: ${latest()}` : "Thinking"}
+              {props.completed ? "Razonamiento" : latest() ? `Thinking: ${latest()}` : "Razonamiento"}
               <Show when={props.completed && !expanded() && latest()}>: {latest()}</Show>
-              <Show when={props.completed && thoughts().length > 1}> · {thoughts().length} steps</Show>
+              <Show when={props.completed && thoughts().length > 1}> · {thoughts().length} pasos</Show>
               <Show when={props.completed && duration()}> · {Locale.duration(duration())}</Show>
             </InlineToolRow>
             <Show when={expanded()}>
@@ -255,7 +255,7 @@ function InstructionsGroup(props: GroupProps) {
         onMouseOut={() => setHover(false)}
         onMouseUp={() => disclosure.toggle()}
       >
-        Instructions: {files()} {files() === 1 ? "file" : "files"}
+        Instrucciones: {files()} {files() === 1 ? "file" : "files"}
       </InlineToolRow>
       <Show when={disclosure.expanded()}>
         <Children {...props} nodes={props.node.children} mode="normal" />

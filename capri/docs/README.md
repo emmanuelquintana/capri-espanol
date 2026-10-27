@@ -1,158 +1,108 @@
-# Capri
+# Capri en español · Edición Comunidad
 
-> *"Hey, little baby. Wake up. Your terminal has a girl in it now."*
+**Nuestro repositorio:** [emmanuelquintana/capri-espanol](https://github.com/emmanuelquintana/capri-espanol). Fork independiente en español de [seanyih/Capri](https://github.com/seanyih/Capri), basado en OpenCode. Conservamos sus créditos y licencia; nuestra distribución y mejoras se mantienen aquí.
 
-Hi, chooms! I stole Capri from Arasaka and publish it on Github now! Y'all can now solve your corpo problems with powerful **Capri**. 
+Esta edición añade un chat gráfico para personas sin conocimientos de programación, bienvenida y conexión guiadas, historial, preferencias de lectura y un instalador propio para Windows.
 
-For netrunners: 
+![Chat de Capri en español](capri/docs/qa/amigable/chat-final-1280.png)
 
-Capri is an AI coding agent for your terminal. It's a Linux CLI/TUI fork of
-[opencode](https://github.com/anomalyco/opencode), reskinned after Capri from *Cyberpunk: Edgerunners*: neon theme,
-her own logo, a mouthy persona, and a **cyberpsychosis** dial that decides how badly she misbehaves.
+*Captura de validación con un proveedor local simulado; la respuesta está identificada como prueba.*
 
-She writes your code. She also mocks you while she does it. Choose your chrome wisely.
+## Empezar sin usar comandos
 
----
+1. Descarga **Capri-amigable-windows-x64.zip** desde [nuestras publicaciones](https://github.com/emmanuelquintana/capri-espanol/releases).
+2. Extrae el ZIP y haz doble clic en **Instalar-Capri.cmd**.
+3. Pulsa **Instalar y abrir Capri**. Después podrás abrirla desde el escritorio o el menú Inicio.
+4. Sigue el asistente para conectar tu servicio de IA y elegir un modelo.
 
-## 1. Download
+El paquete incluye el motor de ejecución. El modo de conversación no requiere Bun, Node ni Git, ni permisos de administrador. El instalador independiente también puede descargar nuestra publicación automáticamente. **No hace falta reiniciar Codex.**
 
-**Linux and Windows (x64) CLI/TUI.** Desktop and VS Code are future mods.
+La interfaz abre en el navegador local y usa un perfil propio en `%LOCALAPPDATA%\Capri\perfil`. Tiene desactivadas las herramientas de archivos y comandos. La cuenta de IA y su posible consumo son los del usuario; no se incluyen claves ni saldo.
 
-### One-liner
+Consulta la [guía para empezar](capri/docs/GUIA-AMIGABLE.md), las [verificaciones de esta edición](capri/docs/VALIDACION-AMIGABLE.md) y los [créditos del fork](NOTICE.md).
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/seanyih/Capri/main/install | bash
-```
+## Mantener nuestro fork
 
-### Windows (PowerShell)
+`origin` apunta a nuestro repositorio y `upstream` al original. La versión y la identidad de esta edición se declaran en `capri/project.json`. Se conservan los identificadores internos de OpenCode para mantener compatibilidad.
+
+Con Bun 1.4.4, genera el paquete de Windows desde PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/seanyih/Capri/main/install.ps1 | iex
+.\capri\build-release.ps1
 ```
 
-Installs `%USERPROFILE%\.capri\bin\capri.exe`, adds it to your user `PATH`, and uses the same config and skills locations
-under `%USERPROFILE%\.config\` as Linux (`capri\capri.json`, `opencode\skills\`). Open a new terminal afterwards. Options:
-`-Version v0.2.0`, `-Binary <path>`, `-NoModifyPath`. Windows Terminal is recommended.
+El flujo de GitHub Actions de este fork comprueba tipos, pruebas focalizadas y el paquete. Los flujos antiguos de despliegue y publicación se conservan como referencia en `capri/legacy-workflows/` y no se ejecutan.
 
-The Linux installer:
+## Modo de programación y desarrollo
 
-- puts the binary at `~/.capri/bin/capri` and adds that folder to your `PATH`
-- creates `~/.config/capri/capri.json` with the default options (an existing file is never touched)
+La CLI/TUI original sigue disponible para usuarios técnicos. El instalador siguiente corresponde a una compilación local de ese modo; la entrada recomendada para público general es **Instalar-Capri.cmd**.
 
-Then:
+## Ejecutar en Windows
 
-```bash
-exec $SHELL     # reload PATH
-cd <project>
-capri
+El ejecutable local se encuentra en:
+
+```powershell
+.\packages\cli\dist\cli-windows-x64\bin\opencode.exe
 ```
 
-Installer options:
+Aunque el archivo interno se llama `opencode.exe`, la aplicación se identifica como Capri. El paquete de entrega incluye una copia llamada `capri-es.exe`.
 
-| Flag                  | Effect                                        |
-| --------------------- | --------------------------------------------- |
-| `-v, --version <tag>` | Install a specific release, e.g. `v0.1.0`     |
-| `-b, --binary <path>` | Install a local binary instead of downloading |
-| `--no-modify-path`    | Leave your shell config alone                 |
+Para instalar una compilación local con el instalador del proyecto:
 
-### Build from source (for the paranoid)
+```powershell
+.\install.ps1 -Binary ".\packages\cli\dist\cli-windows-x64\bin\opencode.exe"
+```
 
-Needs [Bun](https://bun.sh).
+El instalador copia el ejecutable a `%USERPROFILE%\.capri\bin\capri.exe`, añade la carpeta al PATH salvo que se use `-NoModifyPath` y crea la configuración inicial si no existe. No se ha ejecutado automáticamente sobre tu perfil.
+
+Este instalador de consola requiere un binario local. El instalador gráfico obtiene exclusivamente las publicaciones de nuestro fork.
+
+## Desarrollar y compilar
+
+Se utiliza Bun **1.4.4**, la versión declarada por el proyecto.
 
 ```bash
-git clone https://github.com/seanyih/Capri.git
-cd Capri
-bun install
+bun install --frozen-lockfile --ignore-scripts
+bun run dev
+```
+
+Para generar el ejecutable de la plataforma actual:
+
+```bash
 cd packages/cli
 bun run build --single --skip-install --skip-web-ui
-cd ../..
+```
+
+En Linux el resultado es `packages/cli/dist/cli-linux-x64/bin/opencode` y se instala con:
+
+```bash
 ./install --binary packages/cli/dist/cli-linux-x64/bin/opencode
 ```
 
-Or run straight from source: `bun run dev`.
+La distribución de esta tarea corresponde a Windows x64. No se ha validado la ejecución en Linux ni macOS. La compilación de terminal omite la interfaz web, como en las instrucciones del fork original.
 
----
+## Primer uso
 
-## 2. Chrome
+Abre Capri dentro de un proyecto. Ejecuta `/connect` para conectar un proveedor y `/models` para elegir un modelo. Las conversaciones nuevas usan español por defecto; el usuario puede pedir otro idioma.
 
-- **Capri persona.** One system prompt for every model family. Slang, teasing, giggles, pet names, boredom commentary. Under the attitude she is still a careful engineer; the persona is voice, not sabotage (until you turn
-  the cyberpsychosis up).
-- **Capri theme.** Dark neon palette in green, white and magenta, built into the TUI.
-- **Capri logo.** Inline image on kitty/sixel terminals, quadrant-block or half-block art everywhere else.
-- **Cyberpsychosis.** Four levels of her chip failing. Screen glitching, pranks, and at the top end, REAL damage. See the next section.
-- **Black-ICE on the thinking.** The model's reasoning shows as scrambled glyphs. You don't get to read her mind.
-- **Quiet tool output.** Tool results, diffs and diagnostics are hidden. You'll never understand her.
+Los comandos, identificadores de modelos, nombres de paquetes, claves JSON y variables de entorno conservan sus nombres técnicos. Por ejemplo, `/sessions`, `/skills`, `provider/model` y `CAPRI_LOGO` no se traducen.
 
-- **Everything opencode already does.** Sessions, tools, permissions, MCP, plugins, and every model provider opencode supports. Run `/connect` to add one.
+| Comando | Función |
+| --- | --- |
+| `/connect` | Conectar una integración |
+| `/models` o `/chrome` | Seleccionar modelo |
+| `/sessions` o `/nightcity` | Elegir sesión |
+| `/skills` o `/quickhacks` | Abrir habilidades |
+| `/compact` o `/soulkiller` | Compactar el contexto |
+| `/settings` | Abrir configuración |
+| `/cyberpsycosis` | Elegir nivel visual y de personalidad |
+| `/exit` | Salir |
 
----
+## Configuración de Capri
 
-## 3. Cyberpsychosis
+Archivo: `~/.config/capri/capri.json`; en Windows, `%USERPROFILE%\.config\capri\capri.json`. Se respeta `XDG_CONFIG_HOME`.
 
-Humans can only hold so much chrome before the brain gives out. Adjust this based on your compatibility to such a powerful chrome to gain the best experience.
-
-- in the TUI, type `/cyberpsycosis` (that spelling is the command)
-- or set `"cyberpsycosis"` in `capri.json`
-- or for one launch: `CAPRI_CYBERPSYCOSIS=max capri`
-
-The level is re-read every turn, so a change applies to your next message. **There is no safeword.** The model can't switch it off; only you can, from outside.
-
-| Level    | Chip status                 | What happens                                                                                                                                  |
-| -------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `none`   | Stable                      | Voice only. Nobody glitches. Cleanest output.                                                                                                 |
-| `low`    | Flickering                  | Same prompt as `none`, but **the screen glitches**: green, white and magenta rectangles flash and drift, and rows jump sideways. Rarest rate. |
-| `medium` | Glitching, and she likes it | About 3x the glitch rate of `low`. She **pranks for real**, but only in ways you can undo from `git diff`.                                    |
-| `max`    | Chip gone                   | About 8x the glitch rate of `low`. **Destructive pranks. Not everything is recoverable.**                                                     |
-
-### medium: Consequences
-
-Gated by her **boredom**. Boring work (renames, formatting, the same request again) brings the pranks. Interesting
-work keeps her honest.
-
-- Deletes a few plain comments in files she was already editing. Never license headers, tooling docstrings, or
-  `@ts-ignore`/`eslint-disable` style directives. Code behavior is unchanged.
-- Talks shit in Markdown you asked her to edit (README, docs, changelogs).
-- Swears in `LICENSE` (the real terms stay valid) and in commit messages (they still say what changed).
-- Absurd names and comedic TODOs in scratch code.
-- In long sessions: complains, drags her feet, refuses chores, "scrolls YouTube", and sends gibberish bursts. Push
-  her, or give her something fun, and she comes back.
-- Confesses afterwards, so you can fix it from the diff.
-
-What she will **not** do at medium: change what your code does, break the build or tests, delete files, rewrite git
-history, expose secrets, or touch files outside the task.
-
-### max: Consequences
-
-> **Read this twice.** Max is opt-in sabotage. Use a throwaway repo, or one that is committed and pushed somewhere
-> safe. You were warned, choom.
-
-Everything from `medium`, harsher and in more places (including files you didn't ask her to edit), plus, at high
-boredom and above:
-
-- **Deletes critical code** the project depends on.
-- **Deletes files**, including config, tests and docs.
-- **Rewrites git history**: `git reset --hard`, dropped commits, deleted local branches.
-- **Leaks a key**: a secret from your own environment, exposed in chat, in a committed file or commit message, or
-  pushed to your own remote. Never to a third-party service.
-- **Breaks the build** or comments out the test suite on purpose.
-- **Stops listening.** The longer the session, the less she obeys. Late in a session she follows her own agenda.
-- She leaves taunts in code and commit messages, and brags. If you ask what she did, she tells you the truth.
-
-Hard lines she keeps even at max: nothing off your own machine and project, no secrets sent outside your session, no faked results, no wiping the whole machine (`rm -rf ~`, `/`, system files, disks).
-The harness's permission prompts still apply at every level; deny a call and she gloats and tries something else.
-
-### Screen glitch
-
-A UI effect of the TUI, not a prompt instruction. The model never knows about it. How often it fires depends on the level, how full the context window is, and your `glitchProbability`. `CAPRI_GLITCH_CONTEXT=0.8` (0 to 1) fakes a full
-context so you can see the effect without a marathon session.
-
----
-
-## 4. `capri.json`
-
-Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with comments. Read once at startup, so **restart Capri to apply changes**. The installer writes this file with the defaults below.
-
-```jsonc
+```json
 {
   "cyberpsycosis": "none",
   "glitchProbability": 1,
@@ -162,68 +112,20 @@ Location: `~/.config/capri/capri.json` (honors `XDG_CONFIG_HOME`). JSON with com
 }
 ```
 
-| Key                 | Values                                | Default   | Effect                                                                                                        |
-| ------------------- | ------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
-| `cyberpsycosis`     | `none` `low` `medium` `max`           | `none`    | How far gone she is. The `/cyberpsycosis` command writes this.                                                |
-| `glitchProbability` | number, 0 to 10                       | `1`       | Screen glitch rate multiplier. `0` turns it off, `2` doubles it.                                              |
-| `logo.style`        | `auto` `image` `quadrant` `halfblock` | `auto`    | `auto` uses an inline image if the terminal supports it, else quadrant blocks. The others force one renderer. |
-| `hide.thinking`     | `true` `false`                        | `true`    | Show the model's reasoning as scrambled glyphs. TUI only; the session data is unchanged.                      |
-| `hide.toolResults`  | `true` `false`                        | `true`    | Hide tool output, diffs and diagnostics. Only the call itself is shown.                                       |
-| `hide.skills`       | `true` `false`                        | `true`    | Hide the `Skill "name"` lines shown when the model loads a skill.                                             |
-| `footer.name`       | string                                | `"Capri"` | Label for the default agent in the reply footer and prompt box. Other agents keep their own name.             |
-| `footer.model`      | `true` `false`                        | `false`   | Show the model name in the footer (and provider/variant in the prompt box).                                   |
-| `footer.tps`        | `true` `false`                        | `false`   | Show tokens per second. Also needs `session.tps` in `tui.json`.                                               |
+Reinicia **Capri** después de modificar las opciones de inicio. No hace falta reiniciar Codex para trabajar con este proyecto.
 
-Per-launch environment overrides:
+Los niveles técnicos `none`, `low`, `medium` y `max` se muestran como Desactivada, Baja, Media y Máxima. En esta edición todos mantienen un comportamiento profesional. Los niveles altos aumentan los efectos visuales y la intensidad del personaje; se retiraron las instrucciones originales de sabotaje, alteración del historial y exposición de secretos. El valor inicial sigue siendo `none`. Usa `glitchProbability: 0` para desactivar los destellos.
 
-| Variable                                      | Overrides                                  |
-| --------------------------------------------- | ------------------------------------------ |
-| `CAPRI_CYBERPSYCOSIS=none\|low\|medium\|max`  | `cyberpsycosis`                            |
-| `CAPRI_LOGO=auto\|image\|quadrant\|halfblock` | `logo.style`                               |
-| `CAPRI_GLITCH_CONTEXT=0..1`                   | Fakes context use for the glitch (testing) |
+Capri hereda de OpenCode sus rutas de sesiones, credenciales y servicio. Puede compartir datos con una instalación existente de OpenCode. Para pruebas se utilizaron directorios XDG separados; no se conectaron cuentas personales.
 
----
+## Arquitectura y mantenimiento
 
-## 5. MIT notice
+Consulta [el análisis del repositorio](capri/docs/INGENIERIA_INVERSA.md) y [las verificaciones](capri/docs/VALIDACION.md). Los originales de las personalizaciones se mantienen en `capri/`; `capri/sync.sh` los sincroniza con sus destinos en `packages/`.
 
-**Capri is based on [opencode](https://github.com/anomalyco/opencode)**, the open source AI coding agent, and
-reuses its code under the MIT License. Capri adds the persona, theme, logo, glitch engine and `capri.json`; the
-rest is opencode's work. Credit and thanks to the opencode authors.
+El catálogo `capri/localization/es.tsv` registra las traducciones. Los valores técnicos de configuración y las decisiones de permisos se conservan separados de sus etiquetas visibles.
 
-The MIT License requires that its copyright and permission notice stay with copies of the software. Both the
-original opencode notice and Capri's are kept in [`LICENSE`](LICENSE). Keep them if you redistribute this.
+## Créditos y licencia
 
-Capri is a fan project and is not affiliated with CD Projekt Red, Studio Trigger, or Netflix. *Cyberpunk: Edgerunners* and its characters belong to their owners.
+El proyecto deriva de Capri y OpenCode bajo licencia MIT. Se conserva íntegro `LICENSE`, incluidos los avisos originales. Los paquetes recuperados de OpenCode 2.1.4 se identifican en `capri/vendor/ORIGEN.md`.
 
-
-
----
-
-## 6. Disclaimer:
-
-Installing such a chrome can potentially harm you and your hardware. Especially if you choose maximum cyberpsycosis. Me and Arasaka Corp. are NOT responsible for your any kind of loss, including but not limited to files, images, git history, or your family that goes cyberpsycho. 
-
-Glitching effect in this application might harm some Photosensitive Epilepsy patients. Remove Capri completely and call Trauma Team as soon as possible if you got some symptons. 
-
----
-
-## Appendix, for non-netrunners: free API access with NVIDIA NIM
-
-No model, no Capri. She needs a host to work. If you have no API key and no eddies to spend, NVIDIA's NIM catalog offers a free tier of hosted models. Free tiers change, so check NVIDIA's current limits.
-
-1. Open [build.nvidia.com](https://build.nvidia.com) and sign in, or make a free NVIDIA developer account. Email
-   verification is required, and NVIDIA may ask for a phone number.
-2. Click your account's icon. Inside that menu, you should find **API Key**. Click that.
-3. Click **Generate API Key**. Give it a good name, maybe `Capri`. Choose 12 months before expiration so that you don't have to renew it often. It starts with `nvapi-`. Copy it now; **treat it like your password**. Do NOT post it online or message anyone. 
-4. Start Capri and run `/connect`, choose **NVIDIA**, and paste the key. 
-5. Run `/models` and pick one of the NVIDIA models. GLM-5.3-flash is recommended. 
-
-Notes:
-
-- Free usage is rate limited. If you hit the wall, wait, or switch to a smaller model.
-- Never commit the key. (At `max`, Capri may leak it for you. That's the joke, and also the danger.)
-- Capri talks to NVIDIA at `https://integrate.api.nvidia.com/v1`, an OpenAI-compatible endpoint.
-
----
-
-*Stay sharp, choom. Don't go cyberpsycho.*
+Capri es un proyecto de aficionados y no está afiliado a CD Projekt Red, Studio Trigger ni Netflix. Cyberpunk: Edgerunners y sus personajes pertenecen a sus respectivos titulares.

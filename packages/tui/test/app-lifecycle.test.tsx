@@ -50,12 +50,12 @@ test.each([100, 44])("Ctrl-O is immediate, dismissible, and prunes cached deleti
   })
   try {
     await setup.ready
-    await setup.waitForFrame((frame) => frame.includes("commands"))
+    await setup.waitForFrame((frame) => frame.includes("comandos"))
     setup.mockInput.pressKey("o", { ctrl: true })
     await requested.promise
     await setup.renderOnce()
-    expect(setup.captureCharFrame()).toContain("Search sessions")
-    expect(setup.captureCharFrame()).toContain("Refreshing")
+    expect(setup.captureCharFrame()).toContain("Buscar sesiones")
+    expect(setup.captureCharFrame()).toContain("Actualizando")
     projects.resolve(
       json([
         {
@@ -76,7 +76,7 @@ test.each([100, 44])("Ctrl-O is immediate, dismissible, and prunes cached deleti
     await setup.renderOnce()
     expect(setup.captureCharFrame()).not.toContain("Fixture project")
     setup.mockInput.pressKey("o", { ctrl: true })
-    await setup.waitForFrame((frame) => frame.includes("Refreshing"))
+    await setup.waitForFrame((frame) => frame.includes("Actualizando"))
     expect(setup.captureCharFrame()).not.toContain("Disposed")
     setup.mockInput.pressEscape()
     await setup.waitForFrame((frame) => !frame.includes("Fixture project"))
@@ -85,7 +85,7 @@ test.each([100, 44])("Ctrl-O is immediate, dismissible, and prunes cached deleti
     setup.mockInput.pressEscape()
     await setup.waitForFrame((frame) => !frame.includes("Fixture project"))
     setup.mockInput.pressKey("o", { ctrl: true })
-    await setup.waitForFrame((frame) => frame.includes("Cached") && frame.includes("Refreshing"))
+    await setup.waitForFrame((frame) => frame.includes("Cached") && frame.includes("Actualizando"))
     setup.events.emit({
       id: "evt_deleted",
       created: 1,
@@ -95,12 +95,12 @@ test.each([100, 44])("Ctrl-O is immediate, dismissible, and prunes cached deleti
     })
     await setup.waitForFrame((frame) => !frame.includes("Cached"))
     refresh.resolve(json({ data: [cachedSession], cursor: {} }))
-    await setup.waitForFrame((frame) => frame.includes("Fixture project") && !frame.includes("Refreshing"))
+    await setup.waitForFrame((frame) => frame.includes("Fixture project") && !frame.includes("Actualizando"))
     expect(setup.captureCharFrame()).not.toContain("Cached")
     setup.mockInput.pressEscape()
     await setup.waitForFrame((frame) => !frame.includes("Fixture project"))
     setup.mockInput.pressKey("o", { ctrl: true })
-    await setup.waitForFrame((frame) => frame.includes("Could not refresh sessions"))
+    await setup.waitForFrame((frame) => frame.includes("No se pudieron actualizar sesiones"))
     expect(setup.captureCharFrame()).not.toContain("Cached")
   } finally {
     response.resolve(json({ data: [], cursor: {} }))
@@ -173,14 +173,14 @@ test.each(["dismissed", "refreshing"])(
     })
     try {
       await setup.ready
-      await setup.waitForFrame((frame) => frame.includes("commands"))
+      await setup.waitForFrame((frame) => frame.includes("comandos"))
       setup.mockInput.pressKey("o", { ctrl: true })
-      await setup.waitForFrame((frame) => frame.includes(cached.title) && !frame.includes("Refreshing"))
+      await setup.waitForFrame((frame) => frame.includes(cached.title) && !frame.includes("Actualizando"))
       setup.mockInput.pressEscape()
-      await setup.waitForFrame((frame) => !frame.includes("Search sessions"))
+      await setup.waitForFrame((frame) => !frame.includes("Buscar sesiones"))
       if (phase === "refreshing") {
         setup.mockInput.pressKey("o", { ctrl: true })
-        await setup.waitForFrame((frame) => frame.includes(cached.title) && frame.includes("Refreshing"))
+        await setup.waitForFrame((frame) => frame.includes(cached.title) && frame.includes("Actualizando"))
       }
       setup.events.emit({
         id: "evt_cached_moved",
@@ -192,14 +192,14 @@ test.each(["dismissed", "refreshing"])(
       if (phase === "dismissed") {
         setup.mockInput.pressKey("o", { ctrl: true })
         refresh.resolve(new Response("Unavailable", { status: 503 }))
-        await setup.waitForFrame((frame) => frame.includes("Could not refresh sessions"))
+        await setup.waitForFrame((frame) => frame.includes("No se pudieron actualizar sesiones"))
       }
       if (phase === "refreshing") {
         await setup.waitForFrame((frame) =>
           frame.split("\n").some((line) => line.includes(cached.title) && line.includes("New")),
         )
         refresh.resolve(json({ data: [cached], cursor: {} }))
-        await setup.waitForFrame((frame) => frame.includes(cached.title) && !frame.includes("Refreshing"))
+        await setup.waitForFrame((frame) => frame.includes(cached.title) && !frame.includes("Actualizando"))
       }
       await setup.waitForFrame((frame) =>
         frame.split("\n").some((line) => line.includes(cached.title) && line.includes("New")),
@@ -229,7 +229,7 @@ test("boots on the simulation renderer with the terminal title enabled", async (
         yield* Effect.promise(async () => {
           await using app = await createAppFixture({ setup })
           await app.ready
-          await app.waitForFrame((frame) => frame.includes("commands"))
+          await app.waitForFrame((frame) => frame.includes("comandos"))
         })
       }),
     ),
@@ -807,7 +807,7 @@ whenTpsShown("keeps assistant footer metrics current after prepend, same-length 
       frame.includes("Prepended instructions") &&
       frame.includes("Original answer") &&
       frame.includes("20.0 tok/s") &&
-      !frame.includes("Loading session history…"),
+      !frame.includes("Cargando historial de la sesión…"),
   )
   expect(prepended).toContain("Current input")
   expect(prepended).toContain("Original answer")
@@ -1073,17 +1073,17 @@ test("error investigations repeatedly seed editable home drafts without creating
       return undefined
     },
   })
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
 
   setup.mockInput.pressKey("F6")
-  await setup.waitForFrame((frame) => frame.includes("MCP servers") && frame.includes("alpha"))
+  await setup.waitForFrame((frame) => frame.includes("Servidores MCP") && frame.includes("alpha"))
   setup.mockInput.pressEnter()
   await setup.waitForFrame((frame) => frame.includes("Alpha connection refused") && frame.includes("investigate i"))
   setup.mockInput.pressKey("i")
   await setup.waitForFrame((frame) => frame.includes("Alpha connection refused") && !frame.includes("investigate i"))
 
   setup.mockInput.pressKey("F6")
-  await setup.waitForFrame((frame) => frame.includes("MCP servers"))
+  await setup.waitForFrame((frame) => frame.includes("Servidores MCP"))
   setup.mockInput.pressArrow("down")
   setup.mockInput.pressEnter()
   await setup.waitForFrame((frame) => frame.includes("Beta initialization failed") && frame.includes("investigate i"))
@@ -1173,7 +1173,7 @@ test("completed user shell output replaces a partial live read when the final re
 
   const running = await setup.waitForFrame((frame) => frame.includes(partial.trim()))
   expect(running).toContain(shell.command)
-  expect(running).not.toContain("Background")
+  expect(running).not.toContain("Segundo plano")
 
   finished = true
   setup.events.emit({
@@ -1195,10 +1195,10 @@ test("completed user shell output replaces a partial live read when the final re
       output: { output: completed, cursor: completed.length, size: completed.length, truncated: false },
     },
   })
-  const terminal = await setup.waitForFrame((frame) => frame.includes("last persisted output"))
+  const terminal = await setup.waitForFrame((frame) => frame.includes("últimos persisted output"))
   expect(terminal).toContain(partial.trim())
   expect(terminal).toContain(`$ ${shell.command}`)
-  expect(terminal).not.toContain("Background")
+  expect(terminal).not.toContain("Segundo plano")
 })
 
 whenModelShown("new session inherits the active session model", async () => {
@@ -1362,29 +1362,29 @@ test("configured app binding opens settings", async () => {
     config: { animations: false, keybinds: { "opencode.settings": "f6" } },
   })
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
 
   setup.mockInput.pressKey("F6")
-  const settings = await setup.waitForFrame((frame) => frame.includes("Settings"))
-  expect(settings).toContain("Color mode")
-  expect(settings).toContain("Animations")
+  const settings = await setup.waitForFrame((frame) => frame.includes("Configuración"))
+  expect(settings).toContain("Modo de color")
+  expect(settings).toContain("Animaciones")
 })
 
 test("ctrl+c dismisses autocomplete and shell mode before exiting", async () => {
   await using setup = await createAppFixture()
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
   await setup.mockInput.typeText("/theme")
-  await setup.waitForFrame((frame) => frame.includes("Switch theme"))
+  await setup.waitForFrame((frame) => frame.includes("Cambiar tema"))
 
   setup.mockInput.pressKey("c", { ctrl: true })
-  await setup.waitForFrame((frame) => !frame.includes("Switch theme"))
+  await setup.waitForFrame((frame) => !frame.includes("Cambiar tema"))
   expect(setup.renderer.isDestroyed).toBe(false)
 
   await setup.mockInput.typeText("!")
-  await setup.waitForFrame((frame) => frame.includes("Shell"))
+  await setup.waitForFrame((frame) => frame.includes("Terminal"))
   setup.mockInput.pressKey("c", { ctrl: true })
-  await setup.waitForFrame((frame) => !frame.includes("Shell"))
+  await setup.waitForFrame((frame) => !frame.includes("Terminal"))
   expect(setup.renderer.isDestroyed).toBe(false)
 })
 
@@ -1479,7 +1479,7 @@ test.skipIf(process.platform === "win32").each(["manual", "select"] as const)(
       )
 
       await ready.promise
-      await setup.waitForFrame((frame) => frame.includes("commands"))
+      await setup.waitForFrame((frame) => frame.includes("comandos"))
       await setup.mockInput.typeText("selection audit draft")
       setup.mockInput.pressKey("a", { ctrl: true, shift: true })
       expect(setup.renderer.getSelection()?.getSelectedText()).toBe("selection audit draft")
@@ -1495,7 +1495,7 @@ test.skipIf(process.platform === "win32").each(["manual", "select"] as const)(
       expect(setup.renderer.isDestroyed).toBeFalse()
 
       await setup.mockInput.typeText("/terminal")
-      await setup.waitForFrame((frame) => frame.includes("New terminal"))
+      await setup.waitForFrame((frame) => frame.includes("Nueva terminal"))
       setup.mockInput.pressEnter()
       await setup.waitForFrame((frame) => frame.includes("alpha beta gamma"))
       setup.mockInput.pressKey("x", { ctrl: true })
@@ -1531,7 +1531,7 @@ test.skipIf(process.platform === "win32").each(["manual", "select"] as const)(
       expect(setup.renderer.currentFocusedRenderable).toBeInstanceOf(EmbeddedTerminalRenderable)
       setup.mockInput.pressKey("x", { ctrl: true })
       setup.mockInput.pressArrow("down")
-      await setup.waitForFrame((frame) => frame.includes("Subagents") && frame.includes("Terminals"))
+      await setup.waitForFrame((frame) => frame.includes("Subagentes") && frame.includes("Terminales"))
       expect(setup.renderer.currentFocusedRenderable).not.toBeInstanceOf(EmbeddedTerminalRenderable)
 
       setup.renderer.destroy()
@@ -1571,7 +1571,7 @@ test.each([100, 44])(
       },
     })
     await setup.ready
-    await setup.waitForFrame((frame) => frame.includes("commands"))
+    await setup.waitForFrame((frame) => frame.includes("comandos"))
     setup.mockInput.pressKey("u", { ctrl: true })
     await setup.mockInput.typeText("Keep this draft")
     await setup.waitForFrame((frame) => frame.includes("Keep this draft"))
@@ -1585,11 +1585,11 @@ test.each([100, 44])(
         error: { type: "unknown", message: 'Plugin "broken-skills" failed during skill.transform.' },
       },
     })
-    await setup.waitForFrame((frame) => frame.includes("Session failed"))
+    await setup.waitForFrame((frame) => frame.includes("La sesión falló"))
     expect(setup.captureCharFrame()).toContain("broken-skills")
     expect(setup.captureCharFrame()).toContain("skill.transform")
     expect(setup.captureCharFrame()).toContain("Keep this draft")
-    expect(setup.captureCharFrame()).not.toContain("Select directory")
+    expect(setup.captureCharFrame()).not.toContain("Seleccionar directory")
     await setup.mockInput.typeText(" intact")
     await setup.waitForFrame((frame) => frame.includes("Keep this draft intact"))
   },
@@ -1630,7 +1630,7 @@ test.each([
     },
   })
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("commands"))
+  await setup.waitForFrame((frame) => frame.includes("comandos"))
   if (!initial) {
     expect(setup.captureCharFrame()).not.toContain("Plugin failed")
     inventory = inventory.map((plugin) => (plugin.id === "broken" ? { ...plugin, state: failure } : plugin))
@@ -1641,16 +1641,16 @@ test.each([
   expect(setup.captureCharFrame()).toContain("1 plugin failed")
 
   const lines = setup.captureCharFrame().split("\n")
-  const row = lines.findIndex((line) => line.includes("Open plugins"))
+  const row = lines.findIndex((line) => line.includes("Abrir complementos"))
   expect(row).toBeGreaterThanOrEqual(0)
   const line = lines[row]
   if (!line) throw new Error("Open plugins action is missing")
-  await setup.mockMouse.click(line.indexOf("Open plugins"), row)
+  await setup.mockMouse.click(line.indexOf("Abrir complementos"), row)
   await setup.waitForFrame((frame) => frame.includes("ctrl+a") && frame.includes("broken"))
   expect(setup.captureCharFrame()).toContain("broken")
   expect(setup.captureCharFrame()).not.toContain("healthy")
   setup.mockInput.pressEnter()
-  await setup.waitForFrame((frame) => frame.includes("Server plugin error") && frame.includes("transform failed"))
+  await setup.waitForFrame((frame) => frame.includes("Server error del complemento") && frame.includes("transform failed"))
   expect(setup.captureCharFrame()).toContain("Plugin disabled")
   expect(setup.captureCharFrame()).toContain("transform failed")
   expect(setup.captureCharFrame()).toContain("err_fixture")
@@ -1699,10 +1699,10 @@ test("server plugin failures share one notice and use source names before an ID 
         : undefined,
   })
   await setup.ready
-  await setup.waitForFrame((frame) => frame.includes("2 plugins failed"))
+  await setup.waitForFrame((frame) => frame.includes("2 complementos fallaron"))
   expect(setup.captureCharFrame()).toContain("missing-package")
   expect(setup.captureCharFrame()).toContain("/fixture/broken.ts")
-  expect(setup.captureCharFrame()).toContain("Open plugins")
+  expect(setup.captureCharFrame()).toContain("Abrir complementos")
 })
 
 whenModelShown("free usage limit offers OpenCode Go once per 24h, transitions Subscribe to Connect Go, and restores focus", async () => {
@@ -1903,8 +1903,8 @@ whenModelShown("free usage limit offers OpenCode Go once per 24h, transitions Su
   expect(upsell).toContain("don't show again")
   expect(upsell).toContain("dismiss")
   expect(upsell).toContain("subscribe")
-  expect(upsell).not.toContain("Connect OpenCode Go")
-  expect(upsell).not.toContain("Session failed")
+  expect(upsell).not.toContain("Conectar OpenCode Go")
+  expect(upsell).not.toContain("La sesión falló")
   // Dismiss closes the modal, leaves the muted notice, and restores focus to the composer.
   setup.mockInput.pressArrow("left")
   setup.mockInput.pressEnter()
@@ -1913,7 +1913,7 @@ whenModelShown("free usage limit offers OpenCode Go once per 24h, transitions Su
   expect(frame).toContain("You've used today's free messages. They reset at")
   expect(frame).toContain("Upgrade to OpenCode Go → /connect · Switch model → /models")
   expect(frame).not.toContain("Error:")
-  expect(frame).not.toContain("Session failed")
+  expect(frame).not.toContain("La sesión falló")
   // The delivered prompt (not the queued one) shows once in the transcript and once more back in the composer.
   await setup.waitForFrame((frame) => frame.split("Refactor the parser").length === 3)
   expect(setup.captureCharFrame().split("Queued follow-up").length).toBe(2)
@@ -1964,7 +1964,7 @@ whenModelShown("free usage limit offers OpenCode Go once per 24h, transitions Su
       frame.split("You've used today's free messages").length === 3 && frame.split("Queued follow-up").length === 3,
   )
   expect(setup.captureCharFrame()).not.toContain("Free limit reached")
-  expect(setup.captureCharFrame()).not.toContain("Connect OpenCode Go")
+  expect(setup.captureCharFrame()).not.toContain("Conectar OpenCode Go")
 
   // Exactly at 24h (86_400_000 ms) with an empty composer: reopens Free limit reached, and Subscribe starts OpenCode device OAuth directly, selects Go, and resends the saved prompt.
   currentNow = baseNow + 86_400_000
@@ -2184,11 +2184,11 @@ whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, syn
   await setup.waitForFrame((frame) => frame.includes("Free limit reached"))
   setup.mockInput.pressEnter()
   expect(openSpy).toHaveBeenCalledWith("https://opencode.ai/go")
-  await setup.waitForFrame((frame) => frame.includes("Connect an integration"))
+  await setup.waitForFrame((frame) => frame.includes("Conectar una integración"))
   releaseCatalog()
-  await setup.waitForFrame((frame) => frame.includes("Waiting for authorization…"))
+  await setup.waitForFrame((frame) => frame.includes("Esperando autorización…"))
   setup.mockInput.pressEscape()
-  await setup.waitForFrame((frame) => !frame.includes("Waiting for authorization…"))
+  await setup.waitForFrame((frame) => !frame.includes("Esperando autorización…"))
   releaseMidAuth()
   await waitForGoUpsellConnect()
   expect(switchedModels).toHaveLength(0)
@@ -2222,10 +2222,10 @@ whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, syn
   })
   await setup.waitForFrame((frame) => frame.includes("Free limit reached"))
   setup.mockInput.pressEnter()
-  await setup.waitForFrame((frame) => frame.includes("Waiting for authorization…"))
+  await setup.waitForFrame((frame) => frame.includes("Esperando autorización…"))
   await midSyncStarted.promise
   setup.mockInput.pressEscape()
-  await setup.waitForFrame((frame) => !frame.includes("Waiting for authorization…"))
+  await setup.waitForFrame((frame) => !frame.includes("Esperando autorización…"))
   releaseMidSync()
   await waitForGoUpsellConnect()
   onModelSyncRequest = undefined
@@ -2256,7 +2256,7 @@ whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, syn
   await setup.waitForFrame((frame) => frame.includes("Free limit reached"))
   setup.mockInput.pressEnter()
   await setup.waitForFrame(
-    (frame) => !frame.includes("Waiting for authorization…") && frame.includes("UnexpectedStatus: 500"),
+    (frame) => !frame.includes("Esperando autorización…") && frame.includes("UnexpectedStatus: 500"),
   )
   expect(switchedModels).toHaveLength(0)
   expect(resentPrompts).toHaveLength(0)
@@ -2291,13 +2291,13 @@ whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, syn
   await setup.waitForFrame((frame) => frame.includes("Free limit reached"))
   const oauthCallsBeforeExpired = oauthConnectCalls
   setup.mockInput.pressEnter()
-  await setup.waitForFrame((frame) => frame.includes("Waiting for authorization…") && frame.includes("NOGO-5678"))
+  await setup.waitForFrame((frame) => frame.includes("Esperando autorización…") && frame.includes("NOGO-5678"))
   expect(oauthConnectCalls).toBe(oauthCallsBeforeExpired + 1)
   expect(switchedModels).toHaveLength(0)
   expect(resentPrompts).toHaveLength(0)
   // Complete sign-in so the refreshed active credential becomes valid again, then cancel before testing already-connected.
   setup.mockInput.pressEscape()
-  await setup.waitForFrame((frame) => !frame.includes("Waiting for authorization…"))
+  await setup.waitForFrame((frame) => !frame.includes("Esperando autorización…"))
   releaseNeedsAuthOAuth()
   await waitForGoUpsellConnect()
 
@@ -2325,10 +2325,10 @@ whenModelShown("free usage limit Subscribe handles mid-auth/mid-sync Escape, syn
   needsAuth = false
   const oauthCallsBeforeCachedExpired = oauthConnectCalls
   setup.mockInput.pressEnter()
-  await setup.waitForFrame((frame) => frame.includes("Select model") && frame.includes("Big Pickle"))
+  await setup.waitForFrame((frame) => frame.includes("Seleccionar modelo") && frame.includes("Big Pickle"))
   expect(oauthConnectCalls).toBe(oauthCallsBeforeCachedExpired + 1)
   setup.mockInput.pressEscape()
-  await setup.waitForFrame((frame) => !frame.includes("Select model"))
+  await setup.waitForFrame((frame) => !frame.includes("Seleccionar modelo"))
 
   // 3c. Already-connected valid account with Go entitlement: skips device OAuth, refreshes catalog, selects Go, and resends the prompt.
   const oauthCallsBeforeAlreadyConnected = oauthConnectCalls
@@ -2547,7 +2547,7 @@ test("free usage limit claims suppression atomically across two TUI instances an
   expect(frame).toContain("Draft in progress")
   expect(frame.split("Refactor the parser").length).toBe(2)
   expect(frame).not.toContain("Free limit reached")
-  expect(frame).not.toContain("Connect OpenCode Go")
+  expect(frame).not.toContain("Conectar OpenCode Go")
 })
 
 test("free usage limit modal manages live animation FPS and adapts to 44x24 and 60x12 terminals", async () => {
@@ -2667,7 +2667,7 @@ test("free usage limit modal manages live animation FPS and adapts to 44x24 and 
     await compact.waitForFrame((frame) => frame.includes("Free limit reached"))
     const frame = compact.captureCharFrame()
     expect(frame).toContain("Free limit reached")
-    expect(frame).toContain("don't show again")
+    expect(frame).toContain("no volver a mostrar")
     expect(frame).toContain("dismiss")
     expect(frame).toContain("subscribe")
     expect(findArt(compact.renderer.root)).toBeUndefined()
@@ -2732,7 +2732,7 @@ test.each([44, 100])(
     expect(setup.captureCharFrame()).not.toContain("Error:")
     await setup.waitForFrame((frame) => frame.includes("Retrying in 2s"), { maxPasses: 200 })
     await setup.waitForFrame((frame) => frame.includes("Retrying in 1s"), { maxPasses: 200 })
-    await setup.waitForFrame((frame) => frame.includes("Retry due"), { maxPasses: 200 })
+    await setup.waitForFrame((frame) => frame.includes("Reintento pendiente"), { maxPasses: 200 })
     expect(setup.captureCharFrame()).not.toContain("in 0s")
 
     setup.events.emit({
@@ -2750,7 +2750,7 @@ test.each([44, 100])(
       durable: { aggregateID: session.id, seq: 2, version: 1 },
       data: { sessionID: session.id, assistantMessageID: "msg_countdown", agent: "build", model, started: 3 },
     })
-    await setup.waitForFrame((frame) => !frame.includes("Retrying") && !frame.includes("Retry due"))
+    await setup.waitForFrame((frame) => !frame.includes("Retrying") && !frame.includes("Reintento pendiente"))
 
     setup.events.emit({
       id: "evt_countdown_expired",
@@ -2759,7 +2759,7 @@ test.each([44, 100])(
       durable: { aggregateID: session.id, seq: 3, version: 1 },
       data: { sessionID: session.id, assistantMessageID: "msg_countdown", attempt: 4, at: Date.now() - 1_000, error },
     })
-    await setup.waitForFrame((frame) => frame.includes("Retry due") && frame.includes("attempt 4"))
+    await setup.waitForFrame((frame) => frame.includes("Reintento pendiente") && frame.includes("attempt 4"))
     expect(setup.captureCharFrame()).not.toContain("in -")
     setup.events.emit({
       id: "evt_countdown_interrupted",
@@ -2768,7 +2768,7 @@ test.each([44, 100])(
       durable: { aggregateID: session.id, seq: 4, version: 1 },
       data: { sessionID: session.id, reason: "shutdown" },
     })
-    await setup.waitForFrame((frame) => !frame.includes("Retrying") && !frame.includes("Retry due"))
+    await setup.waitForFrame((frame) => !frame.includes("Retrying") && !frame.includes("Reintento pendiente"))
   },
   15_000,
 )
@@ -2814,11 +2814,11 @@ test("restarting after an update tells the user to start OpenCode again", async 
     )
 
     await started.promise
-    await setup.waitForFrame((frame) => frame.includes("commands"))
+    await setup.waitForFrame((frame) => frame.includes("comandos"))
     await setup.mockInput.typeText("/update")
     await setup.waitForFrame((frame) => frame.includes("Update OpenCode"))
     setup.mockInput.pressEnter()
-    await setup.waitForFrame((frame) => frame.includes("Update successful") && frame.includes("Restart"))
+    await setup.waitForFrame((frame) => frame.includes("Update successful") && frame.includes("Reiniciar"))
     setup.mockInput.pressEnter()
     await task
 
@@ -2874,10 +2874,10 @@ test("quitting after a background update tells the user to start OpenCode again"
     )
 
     await started.promise
-    await setup.waitForFrame((frame) => frame.includes("commands"))
+    await setup.waitForFrame((frame) => frame.includes("comandos"))
     await setup.waitForFrame((frame) => frame.includes("restart to use v2.0.0"))
     await setup.mockInput.typeText("/exit")
-    await setup.waitForFrame((frame) => frame.includes("Exit the app"))
+    await setup.waitForFrame((frame) => frame.includes("Salir de la aplicación"))
     setup.mockInput.pressEnter()
     await task
 

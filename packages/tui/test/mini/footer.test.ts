@@ -69,7 +69,7 @@ test.each(["show", "hide"] as const)("tools setting %s controls tool and skill t
     expect(text).toContain("do the thing")
     expect(text).toContain("all done")
     if (tools === "hide") {
-      expect(text).not.toContain("Read")
+      expect(text).not.toContain("Leer")
       expect(text).not.toContain("Skill")
       return
     }
@@ -256,11 +256,11 @@ test.each([false, true])("command menu uses its full height on first open (mono=
     await app.renderOnce()
     await app.renderOnce()
     const frame = app.captureCharFrame()
-    expect(frame).toContain("Open editor")
+    expect(frame).toContain("Abrir editor")
     expect(frame).toContain("Show status")
-    expect(frame).toContain("Compact session")
-    expect(frame).toContain("New session")
-    expect(frame).toContain("Variant cycle")
+    expect(frame).toContain("Compactar sesión")
+    expect(frame).toContain("Nueva sesión")
+    expect(frame).toContain("Variante siguiente")
   } finally {
     app.footer.destroy()
     app.renderer.destroy()
@@ -307,7 +307,7 @@ test.each([false, true])("monochrome toggles live without replacing the footer (
       expect(app.footer.currentTheme()).toBe(next ? RUN_THEME_MONO : RUN_THEME_FALLBACK)
       expect(app.renderer.currentFocusedRenderable).toBe(search)
       expect(app.captureCharFrame()).toContain("monochrome")
-      expect(app.captureCharFrame()).not.toContain("restart")
+      expect(app.captureCharFrame()).not.toContain("reiniciar")
       app.footer.append({ kind: "user", text: "new output", phase: "start", source: "system" })
       await app.footer.idle()
       expect(output.at(-1)).toContain(next ? "> new output" : "\u203a new output")

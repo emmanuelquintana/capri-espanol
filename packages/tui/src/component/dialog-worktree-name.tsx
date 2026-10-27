@@ -7,14 +7,14 @@ export function DialogWorktreeName(props: { onConfirm: (name: string) => void })
   const newDesigns = useNewDesigns()
   return (
     <DialogPrompt
-      title="Name worktree"
-      placeholder="Worktree name"
+      title="Nombrar árbol de trabajo"
+      placeholder="Nombre del árbol de trabajo"
       onConfirm={(value) => props.onConfirm(slugify(value) || Slug.create())}
       actions={[
         {
-          title: newDesigns() ? "generate name" : "generate one",
+          title: newDesigns() ? "generar nombre" : "generar uno",
           command: "dialog.worktree.generate",
-          commandTitle: "Generate worktree name",
+          commandTitle: "Generar nombre del árbol de trabajo",
           onTrigger: (prompt) => prompt.setValue(Slug.create()),
         },
       ]}

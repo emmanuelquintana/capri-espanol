@@ -26,12 +26,12 @@ export function DialogDebug() {
   const entries = createMemo(() => {
     const model = local.model.current()
     return [
-      { label: "Version", value: `${app.version} (${app.channel})` },
-      { label: "Date", value: new Date().toISOString() },
+      { label: "Versión", value: `${app.version} (${app.channel})` },
+      { label: "Fecha", value: new Date().toISOString() },
       { label: "OS", value: describeOS() },
       { label: "Terminal", value: describeTerminal() },
-      { label: "Session ID", value: route.data.type === "session" ? route.data.sessionID : "n/a" },
-      { label: "Model", value: model ? `${model.providerID}/${model.modelID}` : "n/a" },
+      { label: "ID de sesión", value: route.data.type === "session" ? route.data.sessionID : "n/a" },
+      { label: "Modelo", value: model ? `${model.providerID}/${model.modelID}` : "n/a" },
     ]
   })
 
@@ -43,18 +43,18 @@ export function DialogDebug() {
       .write(text)
       .then(() => {
         setCopied(true)
-        toast.show({ message: "Debug info copied to clipboard", variant: "info" })
+        toast.show({ message: "Información de depuración copiada", variant: "info" })
       })
       .catch(toast.error)
   }
 
   Keymap.createLayer(() => ({
     mode: "modal",
-    commands: [{ bind: newDesigns() ? "c" : "return", title: "Copy debug info", group: "Dialog", run: copy }],
+    commands: [{ bind: newDesigns() ? "c" : "return", title: "Copiar información de depuración", group: "Dialog", run: copy }],
   }))
 
   const copyAction = () => ({
-    title: copied() ? "✓ copied" : "copy",
+    title: copied() ? "✓ copiado" : "copy",
     key: newDesigns() ? "c" : "enter",
     color: copied() ? theme.text.feedback.success.base : undefined,
     onTrigger: copy,
@@ -62,12 +62,12 @@ export function DialogDebug() {
 
   return (
     <DialogLayout
-      header={<DialogHeader title="Debug" description="Share this when reporting an issue" />}
+      header={<DialogHeader title="Depuración" description="Comparte esto al reportar un problema" />}
       footer={{
         actions: { primary: [copyAction()] },
         get children() {
           if (newDesigns()) return undefined
-          return <text fg={theme.text.muted}>Share this when reporting an issue.</text>
+          return <text fg={theme.text.muted}>Comparte esto al reportar un problema.</text>
         },
       }}
     >

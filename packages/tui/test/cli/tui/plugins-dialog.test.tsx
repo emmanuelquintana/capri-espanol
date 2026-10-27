@@ -122,7 +122,7 @@ async function renderPlugins(
   return { app, requests, toasts, activations }
 }
 
-test("failed TUI plugins keep enter to enable and use space to show the error", async () => {
+test("error TUI plugins keep enter to enable and use space to show the error", async () => {
   await using tmp = await tmpdir()
   const fixture = await renderPlugins(
     tmp.path,
@@ -141,7 +141,7 @@ test("failed TUI plugins keep enter to enable and use space to show the error", 
   )
 
   try {
-    await fixture.app.waitForFrame((frame) => frame.includes("broken.plugin") && frame.includes("view error"))
+    await fixture.app.waitForFrame((frame) => frame.includes("broken.plugin") && frame.includes("ver error"))
     expect(fixture.app.captureCharFrame()).toContain("enable")
 
     fixture.app.mockInput.pressEnter()
@@ -150,7 +150,7 @@ test("failed TUI plugins keep enter to enable and use space to show the error", 
 
     fixture.app.mockInput.pressKey(" ")
     await fixture.app.waitForFrame(
-      (frame) => frame.includes("TUI plugin error") && frame.includes("Plugin setup failed"),
+      (frame) => frame.includes("TUI error del complemento") && frame.includes("Plugin setup failed"),
     )
   } finally {
     fixture.app.renderer.destroy()

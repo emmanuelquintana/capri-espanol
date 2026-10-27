@@ -244,7 +244,7 @@ export function TerminalPane(props: {
       }
       if (message.type !== "attached") return
       if (!("inputProtocol" in message) || message.inputProtocol !== 1) {
-        setFailure("Persistent terminal server is out of date; restart Capri")
+        setFailure("El servidor de terminal está desactualizado; reinicia Capri")
         next.close()
         return
       }
@@ -268,7 +268,7 @@ export function TerminalPane(props: {
       if (disposed) return
       const focused = terminal?.focused
       terminal = undefined
-      setFailure("Terminal connection failed")
+      setFailure("Falló la conexión con la terminal")
       if (focused) props.onDisconnect?.()
     })
     next.addEventListener("close", () => {
@@ -276,7 +276,7 @@ export function TerminalPane(props: {
       const focused = terminal?.focused
       terminal = undefined
       // The removal event arrives separately; keep the terminal visible until then.
-      if (!exited) setFailure("Terminal disconnected")
+      if (!exited) setFailure("Terminal desconectada")
       if (focused) props.onDisconnect?.()
     })
     socket = next

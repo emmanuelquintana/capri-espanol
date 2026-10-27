@@ -52,8 +52,8 @@ describe("Mini form state", () => {
       { key: "required", type: "string", required: true },
       { key: "external", type: "external", url: "https://example.com" },
     ])
-    expect(formValidate(invalid, createFormBodyState(invalid))).toContain("Answer required")
-    expect(formUnsupported(request([{ key: "value", type: "string", pattern: "^a" }]))).toContain("Pattern")
+    expect(formValidate(invalid, createFormBodyState(invalid))).toContain("Falta respuesta")
+    expect(formUnsupported(request([{ key: "value", type: "string", pattern: "^a" }]))).toContain("patrón")
     expect(
       formUnsupported(
         request([
@@ -61,6 +61,6 @@ describe("Mini form state", () => {
           { key: "value", type: "string", when: [{ key: "toggle", op: "eq", value: true }] },
         ]),
       ),
-    ).toContain("Conditional")
+    ).toContain("condicionales")
   })
 })

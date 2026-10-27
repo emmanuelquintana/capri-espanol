@@ -536,7 +536,7 @@ export async function runNonInteractivePrompt(input: Input) {
         if (event.data.reason !== "user" && !emittedError && !permissionRejected && !formCancelled) {
           emittedError = true
           process.exitCode = 1
-          const error = { type: "aborted" as const, message: `Session interrupted: ${event.data.reason}` }
+          const error = { type: "aborted" as const, message: `Sesión interrumpida: ${event.data.reason}` }
           if (!emit("error", time, { error })) UI.error(error.message)
         }
         return
@@ -701,7 +701,7 @@ export async function runNonInteractivePrompt(input: Input) {
               return fallback ? { providerID: fallback.providerID, id: fallback.id, variant: input.variant } : undefined
             })
         : undefined
-    if (input.variant && !selected) throw new Error("Cannot select a variant before selecting a model")
+    if (input.variant && !selected) throw new Error("Selecciona primero un modelo para elegir una variante")
     if (selected) {
       await input.client.session.switchModel({ sessionID: input.sessionID, model: selected })
     }

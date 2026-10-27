@@ -153,7 +153,7 @@ test.each([
         mode.startsWith("settling") &&
         !navigated &&
         setup.captureCharFrame().includes("History message 0000") &&
-        setup.captureCharFrame().includes("Loading session history")
+        setup.captureCharFrame().includes("Cargando historial de la sesión")
       ) {
         navigated = true
         setup.mockInput.pressKey("F7")
@@ -165,12 +165,12 @@ test.each([
       setup.mockInput.pressKey(mode === "prepend-navigation" ? "F9" : "F8")
       await setup.waitFor(() => pages.length === 2)
       setup.mockInput.pressKey("HOME")
-      await setup.waitForFrame((frame) => frame.includes("Loading session history"))
+      await setup.waitForFrame((frame) => frame.includes("Cargando historial de la sesión"))
       prior.resolve()
       await setup.waitFor(() => pages.some((page) => page.end === 360 && page.limit === 200))
       await setup.waitForVisualIdle()
       expect(visible()).toBe(before)
-      expect(setup.captureCharFrame()).toContain("Loading session history")
+      expect(setup.captureCharFrame()).toContain("Cargando historial de la sesión")
       expect(pages).toEqual([
         { end: 400, limit: 20 },
         { end: 380, limit: 20 },
@@ -179,20 +179,20 @@ test.each([
       release.resolve()
       finish.resolve()
       if (mode === "prepend-failure") {
-        await setup.waitForFrame((frame) => !frame.includes("Loading session history"))
+        await setup.waitForFrame((frame) => !frame.includes("Cargando historial de la sesión"))
         expect(visible()).toBe(before)
         expect(mounted()).toHaveLength(40)
         return
       }
       await setup.waitForFrame(
-        (frame) => frame.includes("History message 0000") && !frame.includes("Loading session history"),
+        (frame) => frame.includes("History message 0000") && !frame.includes("Cargando historial de la sesión"),
       )
       expect(mounted()).toHaveLength(60)
       expect(pages).toHaveLength(5)
       return
     }
     setup.mockInput.pressKey("HOME")
-    await setup.waitForFrame((frame) => frame.includes("Loading session history…"))
+    await setup.waitForFrame((frame) => frame.includes("Cargando historial de la sesión…"))
     setup.mockInput.pressKey("HOME")
     await setup.waitForVisualIdle()
     expect(pages).toEqual([
@@ -206,7 +206,7 @@ test.each([
       if (mode === "resize-cancel") {
         setup.resize(60, 22)
         await setup.waitForFrame(
-          (frame) => frame.includes("History message 0399") && !frame.includes("Loading session history"),
+          (frame) => frame.includes("History message 0399") && !frame.includes("Cargando historial de la sesión"),
         )
       }
       await aborted.promise
@@ -221,7 +221,7 @@ test.each([
       release.resolve()
       finish.resolve()
       await setup.waitForFrame(
-        (frame) => frame.includes("History message 0000") && !frame.includes("Loading session history"),
+        (frame) => frame.includes("History message 0000") && !frame.includes("Cargando historial de la sesión"),
       )
       await setup.waitForVisualIdle()
       expect(frames).toEqual([before, visible()])
@@ -259,7 +259,7 @@ test.each([
     }
     if (mode === "page-cancel") {
       setup.mockInput.pressKey("F8")
-      await setup.waitForFrame((frame) => !frame.includes("Loading session history"))
+      await setup.waitForFrame((frame) => !frame.includes("Cargando historial de la sesión"))
       release.resolve()
       finish.resolve()
       await setup.waitFor(() => Boolean(scroll.getRenderable("message-360")))
@@ -276,7 +276,7 @@ test.each([
     if (mode === "failure") {
       release.resolve()
       finish.resolve()
-      await setup.waitForFrame((frame) => !frame.includes("Loading session history"))
+      await setup.waitForFrame((frame) => !frame.includes("Cargando historial de la sesión"))
       events.emit({
         id: "evt_live",
         created: 400,
@@ -292,7 +292,7 @@ test.each([
       expect(mounted()).toHaveLength(21)
       setup.mockInput.pressKey("HOME")
       await setup.waitForFrame(
-        (frame) => frame.includes("History message 0000") && !frame.includes("Loading session history"),
+        (frame) => frame.includes("History message 0000") && !frame.includes("Cargando historial de la sesión"),
       )
       expect(mounted()).toHaveLength(60)
       return
@@ -301,7 +301,7 @@ test.each([
       if (mode === "up-cancel") setup.mockInput.pressKey("F6")
       if (mode === "mouse-cancel") await setup.mockMouse.scroll(scroll.viewport.x + 2, scroll.viewport.y + 2, "up")
       await setup.waitForFrame(
-        (frame) => frame.includes("Jump to latest") && !frame.includes("Loading session history"),
+        (frame) => frame.includes("Jump to latest") && !frame.includes("Cargando historial de la sesión"),
       )
       await setup.waitForVisualIdle()
       const cancelled = visible()
@@ -318,7 +318,7 @@ test.each([
       await setup.waitForFrame(
         (frame) =>
           frame.includes("History message 0399") &&
-          !frame.includes("Loading session history") &&
+          !frame.includes("Cargando historial de la sesión") &&
           !frame.includes("Jump to latest"),
       )
       await setup.waitFor(() => scroll.scrollTop === maximum())
@@ -341,7 +341,7 @@ test.each([
       finish.resolve()
     }
     await setup.waitForFrame(
-      (frame) => frame.includes("History message 0000") && !frame.includes("Loading session history"),
+      (frame) => frame.includes("History message 0000") && !frame.includes("Cargando historial de la sesión"),
     )
     await setup.waitForVisualIdle()
     if (!mode.endsWith("cancel")) expect(frames).toEqual([before, visible()])
@@ -374,7 +374,7 @@ test.each([
     expect(scroll.scrollTop).toBe(maximum())
     setup.mockInput.pressKey("HOME")
     await setup.waitForFrame(
-      (frame) => frame.includes("History message 0000") && !frame.includes("Loading session history"),
+      (frame) => frame.includes("History message 0000") && !frame.includes("Cargando historial de la sesión"),
     )
     setup.mockInput.pressKey("HOME")
     await setup.waitForVisualIdle()

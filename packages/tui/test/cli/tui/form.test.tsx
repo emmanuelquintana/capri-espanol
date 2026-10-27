@@ -185,14 +185,14 @@ test("requires explicit acknowledgement before submitting an external field", as
   const prompt = await mountForm(tmp.path)
   try {
     prompt.app.mockInput.pressKey("right")
-    await prompt.app.waitForFrame((frame) => frame.includes("(acknowledgement required)"))
+    await prompt.app.waitForFrame((frame) => frame.includes("(se requiere confirmación)"))
     prompt.app.mockInput.pressEnter()
     await prompt.app.waitForFrame((frame) => frame.includes("External action must be acknowledged"))
     expect(prompt.replies).toEqual([])
 
     prompt.app.mockInput.pressKey("left")
     prompt.app.mockInput.pressKey("c")
-    await prompt.app.waitForFrame((frame) => frame.includes("press enter to confirm"))
+    await prompt.app.waitForFrame((frame) => frame.includes("pulsa enter to confirm"))
     expect(prompt.copied).toEqual(["https://example.com/authorize"])
     expect(prompt.replies).toEqual([])
 
@@ -234,7 +234,7 @@ test("shows a compact confirmation summary", async () => {
     await prompt.app.waitForFrame((frame) => frame.includes("enter submit"))
 
     const frame = prompt.app.captureCharFrame()
-    expect(frame).not.toContain("Review")
+    expect(frame).not.toContain("Revisar")
     expect(frame).not.toContain("Submit answers")
 
     prompt.app.mockInput.pressEnter()
@@ -303,7 +303,7 @@ test("pasting on a custom choice opens its editor without submitting", async () 
     await prompt.app.waitFor(() => prompt.app.renderer.currentFocusedEditor?.plainText === "production\nwest")
 
     await prompt.app.waitForFrame((frame) => frame.includes("production"))
-    expect(prompt.app.captureCharFrame()).not.toContain("Type your own answer")
+    expect(prompt.app.captureCharFrame()).not.toContain("Escribe tu respuesta")
     expect(prompt.replies).toEqual([])
   } finally {
     prompt.app.renderer.destroy()
@@ -360,7 +360,7 @@ test("clipboard shortcut opens a custom choice editor without submitting", async
     await prompt.app.waitFor(() => prompt.app.renderer.currentFocusedEditor?.plainText === "production\nwest")
 
     await prompt.app.waitForFrame((frame) => frame.includes("production"))
-    expect(prompt.app.captureCharFrame()).not.toContain("Type your own answer")
+    expect(prompt.app.captureCharFrame()).not.toContain("Escribe tu respuesta")
     expect(prompt.replies).toEqual([])
   } finally {
     prompt.app.renderer.destroy()
@@ -463,7 +463,7 @@ test("enter on an empty custom multiselect option clearly enters editing", async
     prompt.app.mockInput.pressEnter()
     await prompt.app.waitFor(() => prompt.app.renderer.currentFocusedEditor !== null)
     await prompt.app.waitForFrame((frame) => frame.includes("[✓] Type your own answer") && frame.includes("enter done"))
-    expect(prompt.app.captureCharFrame()).toContain("esc close")
+    expect(prompt.app.captureCharFrame()).toContain("esc cerrar")
     expect(prompt.app.captureCharFrame()).not.toContain("↑↓ select")
 
     prompt.app.mockInput.pressEscape()
@@ -475,7 +475,7 @@ test("enter on an empty custom multiselect option clearly enters editing", async
     prompt.app.mockInput.pressEnter()
     await prompt.app.waitFor(() => prompt.app.renderer.currentFocusedEditor === null)
     await prompt.app.waitForFrame((frame) => frame.includes("[ ] Type your own answer"))
-    expect(prompt.app.captureCharFrame()).not.toContain("Select at least")
+    expect(prompt.app.captureCharFrame()).not.toContain("Seleccionar at least")
 
     expect(prompt.replies).toEqual([])
   } finally {
@@ -504,11 +504,11 @@ test("defers multiselect validation until submission", async () => {
     prompt.app.mockInput.pressEnter()
     prompt.app.mockInput.pressArrow("right")
     await prompt.app.waitForFrame((frame) => frame.includes("[ ] Now"))
-    expect(prompt.app.captureCharFrame()).not.toContain("Select at least")
+    expect(prompt.app.captureCharFrame()).not.toContain("Seleccionar at least")
 
     prompt.app.mockInput.pressArrow("right")
     prompt.app.mockInput.pressEnter()
-    await prompt.app.waitForFrame((frame) => frame.includes("Select at least"))
+    await prompt.app.waitForFrame((frame) => frame.includes("Seleccionar at least"))
     expect(prompt.replies).toEqual([])
   } finally {
     prompt.app.renderer.destroy()
@@ -585,7 +585,7 @@ test("committing a custom multiselect answer keeps one editable custom row", asy
     await prompt.app.waitForFrame((frame) => frame.includes("2. [✓] production"))
 
     const frame = prompt.app.captureCharFrame()
-    expect(frame).not.toContain("Type your own answer")
+    expect(frame).not.toContain("Escribe tu respuesta")
     expect(frame).not.toContain("3.")
     expect(prompt.replies).toEqual([])
   } finally {

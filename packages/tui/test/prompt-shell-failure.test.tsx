@@ -67,7 +67,7 @@ whenModelShown("a failed shell command in an existing session toasts and restore
     setup.mockInput.pressEnter()
     expect(await shell.promise).toBe("echo restored")
     const frame = await setup.waitForFrame((frame) => frame.includes("Shell unavailable"))
-    expect(frame).toContain("Failed to run shell command")
+    expect(frame).toContain("No se pudo ejecutar el comando de terminal")
     expect(frame).toContain("echo restored")
   } finally {
     setup.renderer.destroy()

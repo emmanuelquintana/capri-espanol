@@ -24,7 +24,7 @@ export default Runtime.handler(
       const sessionID = requested
         ? requested
         : yield* Effect.gen(function* () {
-            intro("Export session", { output: process.stderr })
+            intro("Exportar sesión", { output: process.stderr })
             const location = yield* Effect.tryPromise({
               try: () => client.location.get({ location: { directory: process.cwd() } }),
               catch: (cause) => cause,
@@ -40,14 +40,14 @@ export default Runtime.handler(
               catch: (cause) => cause,
             })
             if (page.data.length === 0) {
-              log.error("No sessions found", { output: process.stderr })
-              outro("Done", { output: process.stderr })
+              log.error("No se encontraron sesiones", { output: process.stderr })
+              outro("Terminado", { output: process.stderr })
               return undefined
             }
             const selected = yield* Effect.tryPromise({
               try: () =>
                 autocomplete({
-                  message: "Select session to export",
+                  message: "Seleccionar sesión que se exportará",
                   maxItems: 10,
                   options: page.data.map((session) => ({
                     label: session.title,
@@ -59,7 +59,7 @@ export default Runtime.handler(
               catch: (cause) => cause,
             })
             if (isCancel(selected)) {
-              cancel("Cancelled", { output: process.stderr })
+              cancel("Cancelado", { output: process.stderr })
               process.exitCode = 130
               return undefined
             }

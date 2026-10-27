@@ -84,7 +84,7 @@ test.each([56, 160])("production footer confirms exit with a visible menu hint a
     expect(app.captureCharFrame()).toContain("ctrl+p menu")
     app.footer.requestExit()
     await app.settle()
-    expect(app.captureCharFrame()).toContain("Press ctrl+c again to exit")
+    expect(app.captureCharFrame()).toContain("Pulsa ctrl+c again to exit")
     expect(app.captureCharFrame()).not.toContain("menu")
     expect(app.footer.isClosed).toBe(false)
     app.footer.requestExit()
@@ -163,9 +163,9 @@ test("command palette can clear the screen", async () => {
     await app.settle()
     app.mockInput.pressKey("p", { ctrl: true })
     await app.settle()
-    await app.mockInput.typeText("clear screen")
+    await app.mockInput.typeText("limpiar pantalla")
     await app.settle()
-    expect(app.selected()).toContain("Clear screen")
+    expect(app.selected()).toContain("Limpiar pantalla")
     app.mockInput.pressEnter()
     expect(clear).toHaveBeenCalledWith({ clearSavedLines: false })
   } finally {
@@ -190,9 +190,9 @@ test.each([false, true])("production command menu keeps navigation visible acros
       expect(app.footer.isClosed).toBe(false)
     }
     for (const [key, title] of [
-      ["ARROW_UP", "Settings"],
+      ["ARROW_UP", "Configuración"],
       ["ARROW_DOWN", "Exit"],
-      ["HOME", "Open editor"],
+      ["HOME", "Abrir editor"],
       ["ARROW_DOWN", "Show status"],
       ["END", "Exit"],
     ]) {
@@ -231,7 +231,7 @@ test.each([false, true])(
       await app.settle()
       app.mockInput.pressKey("p", { ctrl: true })
       await app.settle()
-      await app.mockInput.typeText("switch model")
+      await app.mockInput.typeText("cambiar modelo")
       app.mockInput.pressEnter()
       await app.settle()
       for (const [key, text] of [
@@ -258,7 +258,7 @@ test.each([false, true])(
       await app.settle()
       app.mockInput.pressKey("p", { ctrl: true })
       await app.settle()
-      await app.mockInput.typeText("switch model")
+      await app.mockInput.typeText("cambiar modelo")
       app.mockInput.pressEnter()
       await app.settle()
       expect(app.selected()).toContain("current")
@@ -346,13 +346,13 @@ test.each([false, true])("wrapped notices reserve space beside a six-line draft 
   try {
     await app.settle()
     app.mockInput.pasteBracketedText(draft)
-    app.footer.event({ type: "stream.patch", patch: { notice: "failed to save settings" } })
+    app.footer.event({ type: "stream.patch", patch: { notice: "no se pudo guardar la configuración" } })
     for (const width of [16, 24, 40]) {
       app.resize(width, 8)
       await app.flush()
       expect(app.renderer.footerHeight).toBeLessThanOrEqual(7)
       expect(app.renderer.currentFocusedEditor?.plainText).toBe(draft)
-      expect(app.captureCharFrame().replace(/\s+/g, " ")).toContain("failed to save settings")
+      expect(app.captureCharFrame().replace(/\s+/g, " ")).toContain("no se pudo guardar la configuración")
       expect(app.captureCharFrame()).toContain("sixth")
     }
     app.footer.event({ type: "stream.patch", patch: { notice: "" } })
