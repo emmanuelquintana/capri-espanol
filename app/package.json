@@ -1,6 +1,6 @@
 {
   "name": "capri-espanol-desktop",
-  "version": "0.1.0-es.1",
+  "version": "0.2.0-es.1",
   "description": "Capri en español: compañera animada de escritorio",
   "author": "Capri en español contributors",
   "repository": "github:emmanuelquintana/capri-espanol",
@@ -63,6 +63,7 @@
       "icon": "assets/icons/capri.ico"
     },
     "nsis": {
+      "include": "build/installer.nsh",
       "oneClick": false,
       "perMachine": false,
       "runAfterFinish": true,

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Personalizar Capri y conectar mi IA</title>
+  <link rel="stylesheet" href="../renderer/styles/capri.css">
+  <link rel="stylesheet" href="installer.css">
+  <script type="module" src="installer.js"></script>
+</head>
+<body>
+  <header class="masthead"><img src="../../assets/capri/capri-face.png" width="44" height="44" alt=""><div><strong>CAPRI / EN ESPAÑOL</strong><span>Personalización y conexión</span></div></header>
+  <nav aria-label="Pasos de configuración"><ol class="steps"><li aria-current="step"><span>01</span> Tu Capri</li><li><span>02</span> Tu inteligencia artificial</li><li><span>03</span> Comprobar y abrir</li></ol></nav>
+  <main id="main">
+    <section id="personal-step" aria-labelledby="personal-title">
+      <p class="eyebrow">ANTES DE CONOCERNOS</p><h1 id="personal-title" tabindex="-1">Capri, a tu manera.</h1>
+      <p class="intro">Elige cómo te acompaño. Podrás cambiarlo todo después desde mi menú.</p>
+      <div class="composition">
+        <form id="personal-form">
+          <div class="fields"><label>¿Cómo te llamo?<input id="user-name" name="userName" maxlength="24" autocomplete="nickname" placeholder="Tu nombre o apodo"></label>
+          <label>Tamaño del personaje<select id="size"><option value="0.45">Pequeña</option><option value="0.6" selected>Mediana</option><option value="0.8">Grande</option></select></label></div>
+          <label>¿Cómo quieres que converse?<textarea id="persona" maxlength="500" rows="3" placeholder="Por ejemplo: cercana, con humor y respuestas breves."></textarea><span class="hint">Complementa su personalidad. No cambia las capacidades del modelo.</span></label>
+          <div class="fields"><label>Animaciones<select id="motion"><option value="auto">Seguir la preferencia de Windows</option><option value="full">Todas las animaciones</option><option value="reduced">Movimiento reducido</option></select></label>
+          <label>Cuando descanse<select id="rest"><option value="corner">En una esquina del escritorio</option><option value="taskbar">Sentada en la barra de tareas</option></select></label></div>
+          <div class="fields"><label>Pantalla<select id="display"><option value="">Pantalla principal</option></select></label>
+          <label>Dibujo del personaje<select id="render"><option value="auto">Automático</option><option value="gl">OpenGL: si aparece un fondo negro</option><option value="software">Sin tarjeta gráfica: alternativa compatible</option></select><span class="hint">El cambio de dibujo se aplica al volver a abrir Capri.</span></label></div>
+          <fieldset class="checks"><legend>Mi compañía</legend>
+            <label><input type="checkbox" id="wander" checked> Pasear y cambiar de sitio cuando esté libre</label>
+            <label><input type="checkbox" id="sound"> Activar efectos de sonido <span class="hint">Son efectos, todavía no una voz hablada.</span></label>
+            <label><input type="checkbox" id="startup"> Abrir Capri al iniciar Windows</label><p class="hint" id="startup-note" hidden>El inicio automático está disponible en el perfil principal.</p>
+          </fieldset>
+          <details><summary>Mis frases y primeros recuerdos</summary><label>Frases que puede decir<textarea id="my-lines" rows="3" aria-describedby="lists-help"></textarea></label><label>Cosas que quiero que recuerde<textarea id="memories" rows="3" aria-describedby="lists-help"></textarea></label><p class="hint" id="lists-help">Una por línea. Hasta 30 de cada tipo. El proveedor elegido puede recibirlas como contexto del chat.</p></details>
+        </form>
+        <aside class="preview" aria-label="Vista previa del tamaño"><p class="eyebrow">VISTA PREVIA</p><div class="character-space"><img id="character" src="../../assets/capri/capri-full.png" alt="Capri, el personaje que te acompañará en el escritorio"></div><p id="preview-greeting">Hola, choom. Aquí me quedo contigo.</p><span class="hint">El tamaño final depende de la escala de tu pantalla.</span></aside>
+      </div>
+    </section>
+    <section id="connection-step" aria-labelledby="connection-title" hidden>
+      <p class="eyebrow">UNA CONEXIÓN, A TU ELECCIÓN</p><h1 id="connection-title" tabindex="-1">¿Con qué IA hablamos?</h1><p class="intro">Compruebo qué tienes y te ayudo a preparar lo que falta. También puedes hacerlo después.</p>
+      <div class="composition">
+        <div><label>Elige dónde funciona tu modelo<select id="provider"><option value="later">Lo configuraré después</option><option value="ollama">Ollama · modelo en mi equipo</option><option value="lmstudio">LM Studio · modelo en mi equipo</option><option value="openrouter">OpenRouter · servicio en la nube</option><option value="openai">OpenAI · servicio en la nube</option><option value="groq">Groq · servicio en la nube</option><option value="gemini">Google Gemini · servicio en la nube</option><option value="deepseek">DeepSeek · servicio en la nube</option><option value="mistral">Mistral · servicio en la nube</option><option value="custom">Otro servidor compatible</option></select></label>
+          <p id="provider-help" class="explanation"></p>
+          <div id="local-actions" hidden><div class="button-row"><button id="install-ollama" type="button" hidden>Instalar Ollama</button><button id="start-ollama" type="button" hidden>Encender Ollama</button><button id="official" type="button">Descarga oficial</button><button id="rescan" type="button">Volver a comprobar</button></div>
+            <div id="model-download" hidden><label>Descargar un modelo para conversar<select id="download-model"></select></label><p class="hint">La descarga puede ocupar varios GB. Se inicia solo cuando pulses el botón.</p><div class="button-row"><button id="download" type="button">Descargar modelo</button><button id="cancel-download" type="button" hidden>Cancelar descarga</button></div></div>
+          </div>
+          <div id="address-fields" hidden><label>Dirección del servidor<input id="url" type="url" placeholder="http://127.0.0.1:1234/v1" maxlength="2048" spellcheck="false" aria-describedby="address-help"></label><p class="hint" id="address-help">Una dirección compatible con la API de chat de OpenAI. Si no sabes cuál es, revisa la sección de servidor de tu aplicación.</p></div>
+          <div id="key-fields" hidden><label>Clave de API <span id="key-optional"></span><input id="api-key" type="password" autocomplete="off" maxlength="4096" spellcheck="false" aria-describedby="key-help"></label><p class="hint" id="key-help">Se cifra en tu perfil de Windows. Nunca se guarda en los registros de diagnóstico.</p><div class="button-row"><button id="show-key" type="button" aria-pressed="false">Mostrar clave</button><button id="key-page" type="button">Obtener una clave</button></div></div>
+          <div id="connection-controls" hidden><button id="find-models" type="button">Buscar mis modelos</button><label id="model-field" hidden>Modelo para Capri<select id="model"></select></label><p class="hint" id="test-help">La prueba envía una frase breve al modelo elegido. Un servicio en la nube puede cobrarla según tu cuenta.</p><button id="test-model" class="primary" type="button" disabled>Probar respuesta del modelo</button><blockquote id="test-reply" hidden></blockquote></div>
+          <progress id="progress" aria-label="Progreso de la operación" hidden></progress><p id="operation-status" role="status" aria-live="polite"></p>
+        </div>
+        <aside class="requirements"><h2>Comprobación del equipo</h2><p id="machine-summary">Buscando servicios locales…</p><dl id="requirements-list"></dl><p class="hint">Capri incluye su propio motor. No necesitas instalar Node, Python, Git ni abrir una terminal.</p></aside>
+      </div>
+    </section>
+    <section id="summary-step" aria-labelledby="summary-title" hidden><p class="eyebrow">YA CASI ESTAMOS</p><h1 id="summary-title" tabindex="-1">Así nos vamos a encontrar.</h1><p class="intro" id="summary-intro"></p><dl class="summary" id="summary-list"></dl><p class="hint">La posesión de ventanas empieza apagada. No se instalarán conexiones con asistentes de programación ni se cambiarán sus ajustes.</p></section>
+    <p id="error" role="alert" hidden></p>
+  </main>
+  <footer><span id="step-status">Paso 1 de 3</span><div class="button-row"><button id="back" type="button" hidden>Atrás</button><button id="next" class="primary" type="button" disabled>Elegir mi IA</button></div></footer>
+</body>
+</html>

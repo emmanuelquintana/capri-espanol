@@ -21,6 +21,8 @@ try {
     if ((Get-FileHash -LiteralPath $installed -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash) { throw 'El ejecutable instalado es distinto.' }
     $asar = Join-Path $destination 'resources/app.asar'
     if ((Get-FileHash -LiteralPath $asar -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath (Join-Path $taskRoot 'entrega-desktop/win-unpacked/resources/app.asar') -Algorithm SHA256).Hash) { throw 'Los recursos instalados son distintos.' }
+    & node.exe (Join-Path $PSScriptRoot 'qa-instalador.cjs') $installed
+    if ($LASTEXITCODE -ne 0) { throw 'La prueba del asistente instalado no paso.' }
     & node.exe (Join-Path $PSScriptRoot 'qa-desktop.cjs') $installed
     if ($LASTEXITCODE -ne 0) { throw 'La prueba de la app instalada no paso.' }
     Write-Output 'PASS: instalador NSIS, ejecutable y recursos identicos; QA completo sobre la app instalada.'

@@ -49,13 +49,16 @@ function load(fresh = false) {
   return cache;
 }
 
-function save(patch) {
-  cache = { ...load(), ...patch };
+function save(patch, { strict = false } = {}) {
+  const next = { ...load(), ...patch };
   try {
     fs.mkdirSync(path.dirname(file()), { recursive: true });
-    fs.writeFileSync(file(), JSON.stringify(cache, null, 2));
+    fs.writeFileSync(file() + '.tmp', JSON.stringify(next, null, 2));
+    fs.renameSync(file() + '.tmp', file());
+    cache = next;
   } catch (err) {
     console.error('[capri] could not save config:', err.message);
+    if (strict) throw new Error('No se pudo guardar la configuración. Comprueba el espacio libre y los permisos de tu perfil.');
   }
   return cache;
 }

@@ -17,6 +17,7 @@ const llm = require('./llm');
 const setup = require('./setup');
 const apps = require('./apps');
 const launch = require('./launch');
+const { installerWindow } = require('./installer-window');
 const { ASSISTANTS, assistant } = require('./assistants');
 const activeAssistant = () => assistant(config.load().assistant); // Claude Code or Codex
 const activeHooks = () => activeAssistant().hooks;
@@ -45,6 +46,8 @@ let tray = null;
 let trayMenu = null; // also what she opens when you right-click her
 let demoTimer = null;
 let windowWatch = null;
+let installer = null;
+let desktopStarted = false;
 // the watcher only speaks when something changes: the overlay asks for this when it (re)loads
 let lastWindows = null;
 let chatModels = null; // the provider's models, as last seen (null: not reached)
@@ -255,8 +258,8 @@ function rendererConfig() {
   return { ...cfg, keys: Object.keys(apiKeys || {}), assistant: activeAssistant().id, lang: resolveLang(cfg.lang), langSetting: cfg.lang, floorGap: overlayArea().gap };
 }
 
-function updateConfig(patch) {
-  config.save(patch);
+function updateConfig(patch, options) {
+  config.save(patch, options);
   if ('rest' in patch) fitOverlay(); // the taskbar in her window or not
   const cfg = rendererConfig();
   overlay?.webContents.send('capri:config', cfg);
@@ -282,6 +285,7 @@ function rebuildTray() {
     { label: t.satellite, click: () => sendCommand('satellite') },
     { label: t.demo, click: () => sendCommand('showcase') },
     { label: t.help, click: () => sendCommand('welcome') },
+    { label: 'Configurar Capri y mi IA…', click: () => openInstaller() },
     ...(cfg.claude ? [{ label: t.report, click: () => sendCommand('report') }] : []),
     { label: t.talk, click: () => sendCommand('chat') },
     { label: t.custom, click: () => sendCommand('customize') },
@@ -765,19 +769,62 @@ function applyRender() {
 }
 
 function main() {
+  const firstLaunch = !fs.existsSync(config.file());
   applyRender();
   if (!app.requestSingleInstanceLock()) {
     app.quit();
     return;
   }
-  app.on('second-instance', () => sendCommand('status'));
+  app.on('second-instance', (_event, argv) => {
+    if (argv.includes('--configurar') || !desktopStarted) openInstaller();
+    else sendCommand('status');
+  });
   if (process.platform === 'win32') app.setAppUserModelId('com.emmanuelquintana.capri.espanol');
 
   app.whenReady().then(() => {
     session.defaultSession.setPermissionRequestHandler((_contents, _permission, callback) => callback(false));
-    if (!['codex', 'claude'].includes(config.load().assistant)) config.save({ assistant: activeAssistant().id });
     serveProtocol();
     registerIpc();
+    const startupAllowed = !process.env.CAPRI_ES_PROFILE;
+    installer = installerWindow({
+      getStartup: () => startupAllowed && app.getLoginItemSettings(loginItemOptions()).openAtLogin,
+      saveSettings: (patch, startup) => {
+        const before = startupAllowed && app.getLoginItemSettings(loginItemOptions()).openAtLogin;
+        try {
+          if (startupAllowed) app.setLoginItemSettings({ ...loginItemOptions(), openAtLogin: startup });
+          updateConfig(patch, { strict: true });
+        } catch (error) {
+          if (startupAllowed) app.setLoginItemSettings({ ...loginItemOptions(), openAtLogin: before });
+          throw error;
+        }
+      },
+      onComplete: () => {
+        startDesktop();
+        overlay?.showInactive();
+        refreshModels();
+      },
+      onClose: () => { if (desktopStarted) overlay?.showInactive(); else app.quit(); },
+    });
+    if (firstLaunch || process.argv.includes('--configurar')) openInstaller();
+    else startDesktop();
+  });
+
+  app.on('will-quit', () => {
+    globalShortcut.unregisterAll();
+    windowWatch?.stop();
+  });
+  app.on('window-all-closed', (e) => e.preventDefault());
+}
+
+function openInstaller() {
+  overlay?.hide();
+  installer?.open();
+}
+
+function startDesktop() {
+    if (desktopStarted) return;
+    desktopStarted = true;
+    if (!['codex', 'claude'].includes(config.load().assistant)) config.save({ assistant: activeAssistant().id });
     createOverlay();
     createTray();
     windowWatch = startWindowWatch({
@@ -805,13 +852,6 @@ function main() {
     // after sleep or a locked screen, once Windows has settled
     powerMonitor.on('resume', () => setTimeout(rearmOverlay, 2000));
     powerMonitor.on('unlock-screen', () => setTimeout(rearmOverlay, 1000));
-  });
-
-  app.on('will-quit', () => {
-    globalShortcut.unregisterAll();
-    windowWatch?.stop();
-  });
-  app.on('window-all-closed', (e) => e.preventDefault());
 }
 
 main();
